@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="CustomerBS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/RetailBanking/Card/V1" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:bs="http://xmlns.equitybank.co.ke/ESB/BS/RetailBanking/Card/V1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/BS/RetailBanking/Card/V1" location="oramds:/apps/ESBMetadata/ComponentLibrary/BusinessServices/RetailBanking/Card/V1/CardBS.wsdl"/>
+   <wsdl:portType name="CardPaymentPort">
+      <wsdl:operation name="payment">
+         <wsdl:input message="bs:PaymentRqMsg"/>
+         <wsdl:output message="bs:PaymentRsMsg"/>
+      </wsdl:operation>
+   </wsdl:portType>
+  <plnk:partnerLinkType name="CardPaymentPortTypePartnerLinkType">
+        <plnk:role name="CardPaymentPortTypeProvider">
+            <plnk:portType name="tns:CardPaymentPortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

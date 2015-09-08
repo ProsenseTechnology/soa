@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="AccessProvRouter" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Access/V1"
+wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Access/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+     
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+       
+         <case executionType="sequential" name="Way4Prov.AccessPS.authenticateMobile">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "AuthenticateCustomer"</expression>
+            </condition>
+            <action>
+               <invoke reference="Way4Prov.AccessPS" operation="authenticateMobile">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+</Mediator>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns:composite xmlns:ns="http://xmlns.oracle.com/sca/1.0">
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/CurrencyExchangeES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/TransferES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/PaymentES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/CardES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/CustomerES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/AccountES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/StatementES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/ChequeES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/ChequeBookES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/BillerES"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:PolarisReq/Business/BillES"/>
+    </ns:reference>
+</ns:composite>

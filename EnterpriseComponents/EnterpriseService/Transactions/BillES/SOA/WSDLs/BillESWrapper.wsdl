@@ -1,0 +1,37 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions name="BillES" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1"
+                  xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1"
+                 location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Transactions/Bill/V1/BillES.wsdl"/>
+    <wsdl:portType name="CreateBillPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:CreateRqMsg"/>
+            <wsdl:output message="es:CreateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="QueryBillPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:QueryRqMsg"/>
+            <wsdl:output message="es:QueryRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="UpdateBillPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:UpdateRqMsg"/>
+            <wsdl:output message="es:UpdateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <plnk:partnerLinkType name="CreateBillPLType">
+        <plnk:role name="CreateBillProvider" portType="es:CreateBillPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="QueryBillPLType">
+        <plnk:role name="QueryBillProvider" portType="es:QueryBillPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="UpdateBillPLType">
+        <plnk:role name="UpdateBillProvider" portType="es:UpdateBillPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="BillProvRouterPLType">
+        <plnk:role name="BillESProvider" portType="es:BillESPort"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

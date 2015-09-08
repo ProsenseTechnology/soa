@@ -1,0 +1,132 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<process name="QueryNationalIdentity" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/NationalIdentity/V1"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer" xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/NationalIdentity/V1"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:ess="http://xmlns.oracle.com/scheduler" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+         xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1">
+    <import ui:processWSDL="true" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/NationalIdentity/V1" location="../WSDLs/NationalIdentityESWrapper.wsdl"
+            importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="QueryNationalIdentityPL" partnerLinkType="es:QueryNationalIdentityPLType" myRole="QueryNationalIdentityProvider"/>
+        <partnerLink name="NationalIdentityProvRouterPL" partnerLinkType="es:NationalIdentityProvRouterPLType" partnerRole="NationalIdentityESProvider"/>
+    </partnerLinks>
+    <variables>
+        <variable name="RequestVariable" messageType="es:QueryRqMsg"/>
+        <variable name="ResponseVariable" messageType="es:QueryRsMsg"/>
+        <variable name="QueryNationalIdentityDBRequest" messageType="es:QueryRqMsg"/>
+        <variable name="QueryNationalIdentityDBResponse" messageType="es:QueryRsMsg"/>
+        <variable name="QueryNationalIdentityWSRequest" messageType="es:QueryRqMsg"/>
+        <variable name="QueryNationalIdentityWSResponse" messageType="es:QueryRsMsg"/>
+    </variables>
+    <faultHandlers>
+        <catchAll>
+            <sequence name="FaultSequence">
+                <assign name="AssignFault">
+                    <copy>
+                        <from>"ESB-1002001"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Code</to>
+                    </copy>
+                    <copy>
+                        <from>"Failure"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Type</to>
+                    </copy>
+                    <copy>
+                        <from>ora:getFaultAsString()</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Text</to>
+                    </copy>
+                </assign>
+                <reply name="ReplyResponse" partnerLink="QueryNationalIdentityPL" portType="es:QueryNationalIdentityPort" operation="execute" variable="ResponseVariable"/>
+            </sequence>
+        </catchAll>
+    </faultHandlers>
+    <sequence name="MainSequence">
+        <receive name="ReceiveRequest" partnerLink="QueryNationalIdentityPL" portType="es:QueryNationalIdentityPort" operation="execute" variable="RequestVariable"
+                 createInstance="yes"/>
+        <scope name="Scope1">
+            <faultHandlers>
+                <catchAll>
+                    <assign name="AssignOutput">
+                        <copy>
+                            <from>"true"</from>
+                            <to>$QueryNationalIdentityWSResponse.payload/eo:RsData/com:Status/com:Type</to>
+                        </copy>
+                    </assign>
+                </catchAll>
+            </faultHandlers>
+            <sequence>
+                <assign name="AssignNationalIdentityWSRequest">
+                    <copy>
+                        <from>$RequestVariable.payload/eo:RqData/eo:NationalIdentity</from>
+                        <to>$QueryNationalIdentityWSRequest.payload/eo:RqData/eo:NationalIdentity</to>
+                    </copy>
+                    <copy>
+                        <from>$RequestVariable.payload/com:MsgID</from>
+                        <to>$QueryNationalIdentityWSRequest.payload/com:MsgID</to>
+                    </copy>
+                    <copy>
+                        <from>$RequestVariable.payload/com:Source</from>
+                        <to>$QueryNationalIdentityWSRequest.payload/com:Source</to>
+                    </copy>
+                    <copy>
+                        <from>$RequestVariable.payload/com:MsgType</from>
+                        <to>$QueryNationalIdentityWSRequest.payload/com:MsgType</to>
+                    </copy>
+                    <copy>
+                        <from>$RequestVariable.payload/com:Service</from>
+                        <to>$QueryNationalIdentityWSRequest.payload/com:Service</to>
+                    </copy>
+                    <copy>
+                        <from>"QueryNationalIdentityByWS"</from>
+                        <to>$QueryNationalIdentityWSRequest.payload/eo:RqData/@actionCode</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokeNationalIdentityProv" bpelx:invokeAsDetail="no"
+                        partnerLink="NationalIdentityProvRouterPL" portType="es:NationalIdentityESPort"
+                        operation="query" inputVariable="QueryNationalIdentityWSRequest"
+                        outputVariable="QueryNationalIdentityWSResponse"/>
+            </sequence>
+        </scope>
+        <if name="If1">
+            <condition>$QueryNationalIdentityWSResponse.payload/eo:RsData/com:Status/com:Type = "true"</condition><sequence name="Sequence1">
+                <assign name="AssignQueryNationalIdentityDBRequest">
+                    <copy>
+                        <from>"QueryNationalIdentityByDB"</from>
+                        <to>$QueryNationalIdentityDBRequest.payload/eo:RqData/@actionCode</to>
+                    </copy>
+                    <copy>
+                        <from>$RequestVariable.payload/eo:RqData/eo:NationalIdentity</from>
+                        <to>$QueryNationalIdentityDBRequest.payload/eo:RqData/eo:NationalIdentity</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokeNationalIdentityProv"
+                                                                                                                                                      partnerLink="NationalIdentityProvRouterPL"
+                                                                                                                                                      portType="es:NationalIdentityESPort"
+                                                                                                                                                      operation="query"
+                                                                                                                                                      inputVariable="QueryNationalIdentityDBRequest"
+                                                                                                                                                      outputVariable="QueryNationalIdentityDBResponse"
+                                                                                                                                                      bpelx:invokeAsDetail="no"/><assign name="AssignResponse"
+                                                                                                                                                                                         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                    <copy>
+                        <from variable="QueryNationalIdentityDBResponse"/>
+                        <to variable="ResponseVariable"/>
+                    </copy>
+                </assign></sequence><else>
+                <assign name="AssignResponse">
+                    <copy>
+                        <from variable="QueryNationalIdentityWSResponse"/>
+                        <to variable="ResponseVariable"/>
+                    </copy>
+                </assign>
+            </else>
+        </if>
+        <reply name="ReplyResponse" partnerLink="QueryNationalIdentityPL" portType="es:QueryNationalIdentityPort" operation="execute" variable="ResponseVariable"/>
+    </sequence>
+</process>

@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="NationalIdentityProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/NationalIdentity/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Iprs.NationalIdentityPS.queryNationalIdentity">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "QueryNationalIdentityByDB"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1"/>
+               </assign>
+               <invoke reference="Iprs.NationalIdentityPS" operation="queryNationalIdentity">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="Iprs.NationalIdentityPS.queryNationalIdentityWS">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "QueryNationalIdentityByWS"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1"/>
+               </assign>
+               <invoke reference="Iprs.NationalIdentityPS" operation="queryNationalIdentityWS">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+</Mediator>

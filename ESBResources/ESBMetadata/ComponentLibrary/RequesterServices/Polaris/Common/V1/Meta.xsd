@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+    <xsd:complexType name="ESBMsgType">
+        <xsd:sequence>
+            <xsd:element name="MsgID" type="com:IDType" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

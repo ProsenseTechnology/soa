@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="FileBSCon" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://bpminternaldev.ebsafrica.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://bpminternaldev.ebsafrica.com</con:endpoint></con:endpoints><con:resource name="File" path="/ESB/BS/BackOffice/REST/File/generation"><con:settings/><con:parameters/><con:method name="File" method="POST"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>text/html</con:mediaType><con:status>403</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1">v1:ESBMsg</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/plain</con:mediaType><con:status>415</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/xml</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>text/plain</con:mediaType><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://bpminternaldev.ebsafrica.com</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1">
+    
+    <v1:MsgID>string</v1:MsgID>
+    
+    <v1:Source>PRS</v1:Source>
+    
+    <v1:MsgType>Enterprise</v1:MsgType>
+    
+    <v1:Service>FileBS</v1:Service>
+    
+    <v11:RqData actionCode="ProjectCosting">
+    
+        <v11:File>
+            <v11:FileName>TempFileName</v11:FileName>
+            <v11:FileLocation>ftp://weblogic:Oracle123@devsoa2v01.ebsafrica.com:7021/app/BatchFiles/Outgoing/Daptiv/New/</v11:FileLocation>
+              <v1:StartDate>2015-01-01</v1:StartDate>
+            <v1:EndDate>2015-01-10</v1:EndDate>
+			</v11:File>
+    </v11:RqData>
+    </v11:ESBMsg>]]></con:request><con:originalUri>http://bpminternaldev.ebsafrica.com/ESB/BS/BackOffice/REST/File</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

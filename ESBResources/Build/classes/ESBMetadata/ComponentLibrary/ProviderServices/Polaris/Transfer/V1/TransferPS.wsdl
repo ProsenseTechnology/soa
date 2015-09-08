@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="TransferPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Transfer/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Transfer/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Transactions/Transfer/V1/TransferEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateNEFTInwardFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateNEFTInwardFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateRTGSInwardFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateRTGSInwardFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateNEFTOutwardRefStatusFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateNEFTOutwardRefStatusFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateRTGSOutwardRefStatusFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateRTGSOutwardRefStatusFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ReadAccountEntryPostingReqFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ReadAccountEntryPostingReqFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateAccountEntryPostingRespFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateAccountEntryPostingRespFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ReadRTGSOutwardReqFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ReadRTGSOutwardReqFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateRTGSOutwardRespFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateRTGSOutwardRespFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="TransferPSPort">
+        <operation name="createNEFTInwardFile">
+            <input message="ps:CreateNEFTInwardFileRqMsg"/>
+            <output message="ps:CreateNEFTInwardFileRsMsg"/>
+        </operation>
+        <operation name="createRTGSInwardFile">
+            <input message="ps:CreateRTGSInwardFileRqMsg"/>
+            <output message="ps:CreateRTGSInwardFileRsMsg"/>
+        </operation>
+        <operation name="createNEFTOutwardRefStatusFile">
+            <input message="ps:CreateNEFTOutwardRefStatusFileRqMsg"/>
+            <output message="ps:CreateNEFTOutwardRefStatusFileRsMsg"/>
+        </operation>
+        <operation name="createRTGSOutwardRefStatusFile">
+            <input message="ps:CreateRTGSOutwardRefStatusFileRqMsg"/>
+            <output message="ps:CreateRTGSOutwardRefStatusFileRsMsg"/>
+        </operation>
+        <operation name="readAccountEntryPostingReqFile">
+            <input message="ps:ReadAccountEntryPostingReqFileRqMsg"/>
+            <output message="ps:ReadAccountEntryPostingReqFileRsMsg"/>
+        </operation>
+        <operation name="createAccountEntryPostingRespFile">
+            <input message="ps:CreateAccountEntryPostingRespFileRqMsg"/>
+            <output message="ps:CreateAccountEntryPostingRespFileRsMsg"/>
+        </operation>
+        <operation name="readRTGSOutwardReqFile">
+            <input message="ps:ReadRTGSOutwardReqFileRqMsg"/>
+            <output message="ps:ReadRTGSOutwardReqFileRsMsg"/>
+        </operation>
+        <operation name="createRTGSOutwardRespFile">
+            <input message="ps:CreateRTGSOutwardRespFileRqMsg"/>
+            <output message="ps:CreateRTGSOutwardRespFileRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="TransferPSPortBinding" type="ps:TransferPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="createNEFTInwardFile">
+            <soap12:operation soapAction="createNEFTInwardFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createRTGSInwardFile">
+            <soap12:operation soapAction="createRTGSInwardFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createNEFTOutwardRefStatusFile">
+            <soap12:operation soapAction="createNEFTOutwardRefStatusFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createRTGSOutwardRefStatusFile">
+            <soap12:operation soapAction="createRTGSOutwardRefStatusFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="readAccountEntryPostingReqFile">
+            <soap12:operation soapAction="readAccountEntryPostingReqFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createAccountEntryPostingRespFile">
+            <soap12:operation soapAction="CreateAccountEntryPostingRespFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="readRTGSOutwardReqFile">
+            <soap12:operation soapAction="readRTGSOutwardReqFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>            
+        </operation>
+        <operation name="createRTGSOutwardRespFile">
+            <soap12:operation soapAction="createRTGSOutwardRespFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="TransferPS">
+        <port name="TransferPSPort" binding="ps:TransferPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

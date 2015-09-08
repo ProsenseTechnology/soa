@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:application xmlns:ns0="http://wadl.dev.java.net/2009/02">
+   <ns0:doc xmlns:ns1="http://jersey.java.net/" ns1:generatedBy="Jersey: 2.5.1 2014-01-02 13:43:00"/>
+   <ns0:doc xmlns:ns2="http://jersey.java.net/" ns2:hint="This is simplified WADL with user and core resources only. To get full WADL with extended resources use the query parameter detail. Link: http://localhost:7101/charges/rest/application.wadl?detail=true"/>
+   <ns0:grammars>
+      <ns0:include href="../xsds/Charges.xsd">
+         <ns0:doc title="Generated" xml:lang="en"/>
+      </ns0:include>
+   </ns0:grammars>
+   <ns0:resources base="http://localhost:7101/charges/rest/">
+      <ns0:resource path="reports">
+         <ns0:resource path="chargestatus">
+            <ns0:method id="getChargeStatusReportList" name="GET">
+               <ns0:request>
+                  <ns0:param name="chargeStatus" style="query" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="reportsViewListVO" mediaType="application/xml"/>
+                  <ns0:representation element="reportsViewListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="chargetype">
+            <ns0:method id="getChargeTypeReportList" name="GET">
+               <ns0:request>
+                  <ns0:param name="chargeType" style="query" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="reportsViewListVO" mediaType="application/xml"/>
+                  <ns0:representation element="reportsViewListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+      </ns0:resource>
+      <ns0:resource path="chargemaster">
+         <ns0:method id="getChargeMasterList" name="GET">
+            <ns0:response>
+               <ns0:representation element="chargeMasterListVO" mediaType="application/xml"/>
+               <ns0:representation element="chargeMasterListVO" mediaType="application/json"/>
+            </ns0:response>
+         </ns0:method>
+         <ns0:method id="updateChargeMaster" name="PUT">
+            <ns0:request>
+               <ns0:representation element="chargeMasterVO" mediaType="application/xml"/>
+               <ns0:representation element="chargeMasterVO" mediaType="application/json"/>
+            </ns0:request>
+            <ns0:response>
+               <ns0:representation element="statusVO" mediaType="application/xml"/>
+               <ns0:representation element="statusVO" mediaType="application/json"/>
+            </ns0:response>
+         </ns0:method>
+         <ns0:method id="createChargeMaster" name="POST">
+            <ns0:request>
+               <ns0:representation element="chargeMasterVO" mediaType="application/xml"/>
+               <ns0:representation element="chargeMasterVO" mediaType="application/json"/>
+            </ns0:request>
+            <ns0:response>
+               <ns0:representation element="longVO" mediaType="application/xml"/>
+               <ns0:representation element="longVO" mediaType="application/json"/>
+            </ns0:response>
+         </ns0:method>
+         <ns0:resource path="{id}">
+            <ns0:param name="id" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:long"/>
+            <ns0:method id="getChargeMaster" name="GET">
+               <ns0:response>
+                  <ns0:representation element="chargeMasterVO" mediaType="application/xml"/>
+                  <ns0:representation element="chargeMasterVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+      </ns0:resource>
+      <ns0:resource path="approvals">
+         <ns0:method id="updateApprovalStatus" name="PUT">
+            <ns0:request>
+               <ns0:representation element="approvalsVO" mediaType="application/xml"/>
+               <ns0:representation element="approvalsVO" mediaType="application/json"/>
+            </ns0:request>
+            <ns0:response>
+               <ns0:representation element="statusVO" mediaType="application/xml"/>
+               <ns0:representation element="statusVO" mediaType="application/json"/>
+            </ns0:response>
+         </ns0:method>
+         <ns0:method id="createApproval" name="POST">
+            <ns0:request>
+               <ns0:representation element="approvalsVO" mediaType="application/xml"/>
+               <ns0:representation element="approvalsVO" mediaType="application/json"/>
+            </ns0:request>
+            <ns0:response>
+               <ns0:representation element="longVO" mediaType="application/xml"/>
+               <ns0:representation element="longVO" mediaType="application/json"/>
+            </ns0:response>
+         </ns0:method>
+         <ns0:resource path="{username}">
+            <ns0:param name="username" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+            <ns0:method id="getPendingApprovals" name="GET">
+               <ns0:response>
+                  <ns0:representation element="approvalsListVO" mediaType="application/xml"/>
+                  <ns0:representation element="approvalsListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+      </ns0:resource>
+      <ns0:resource path="users">
+         <ns0:method id="getUsers" name="GET">
+            <ns0:response>
+               <ns0:representation element="usersListVO" mediaType="application/xml"/>
+               <ns0:representation element="usersListVO" mediaType="application/json"/>
+            </ns0:response>
+         </ns0:method>
+      </ns0:resource>
+      <ns0:resource path="accountcharges">
+         <ns0:method id="getAccountChargesListByUsername" name="GET">
+            <ns0:request>
+               <ns0:param name="accountId" style="query" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+               <ns0:param name="username" style="query" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+            </ns0:request>
+            <ns0:response>
+               <ns0:representation element="accountChargesListVO" mediaType="application/xml"/>
+               <ns0:representation element="accountChargesListVO" mediaType="application/json"/>
+            </ns0:response>
+         </ns0:method>
+         <ns0:method id="createAccountCharges" name="POST">
+            <ns0:request>
+               <ns0:representation element="accountChargesVO" mediaType="application/xml"/>
+               <ns0:representation element="accountChargesVO" mediaType="application/json"/>
+            </ns0:request>
+            <ns0:response>
+               <ns0:representation element="statusVO" mediaType="application/xml"/>
+               <ns0:representation element="statusVO" mediaType="application/json"/>
+            </ns0:response>
+         </ns0:method>
+         <ns0:method id="updateAccountCharges" name="PUT">
+            <ns0:request>
+               <ns0:representation element="accountChargesVO" mediaType="application/xml"/>
+               <ns0:representation element="accountChargesVO" mediaType="application/json"/>
+            </ns0:request>
+            <ns0:response>
+               <ns0:representation element="statusVO" mediaType="application/xml"/>
+               <ns0:representation element="statusVO" mediaType="application/json"/>
+            </ns0:response>
+         </ns0:method>
+         <ns0:resource path="approvalstatus">
+            <ns0:method id="updateApprovalStatusId" name="PUT">
+               <ns0:request>
+                  <ns0:representation element="accountChargesVO" mediaType="application/xml"/>
+                  <ns0:representation element="accountChargesVO" mediaType="application/json"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="statusVO" mediaType="application/xml"/>
+                  <ns0:representation element="statusVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="/approved/{accountId}/{chargeMasterId}">
+            <ns0:param name="accountId" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+            <ns0:param name="chargeMasterId" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:long"/>
+            <ns0:method id="getApprovedAccountCharges" name="GET">
+               <ns0:response>
+                  <ns0:representation element="accountChargesVO" mediaType="application/xml"/>
+                  <ns0:representation element="accountChargesVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="{accountId}">
+            <ns0:param name="accountId" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+            <ns0:method id="getAccountChargesList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="accountChargesListVO" mediaType="application/xml"/>
+                  <ns0:representation element="accountChargesListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="approved">
+            <ns0:method id="createApprovedAccountCharges" name="POST">
+               <ns0:request>
+                  <ns0:representation element="accountChargesVO" mediaType="application/xml"/>
+                  <ns0:representation element="accountChargesVO" mediaType="application/json"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="statusVO" mediaType="application/xml"/>
+                  <ns0:representation element="statusVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+            <ns0:method id="updateApprovedAccountCharges" name="PUT">
+               <ns0:request>
+                  <ns0:representation element="accountChargesVO" mediaType="application/xml"/>
+                  <ns0:representation element="accountChargesVO" mediaType="application/json"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="statusVO" mediaType="application/xml"/>
+                  <ns0:representation element="statusVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="/approved/{accountId}">
+            <ns0:param name="accountId" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+            <ns0:method id="getApprovedAccountChargesList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="accountChargesListVO" mediaType="application/xml"/>
+                  <ns0:representation element="accountChargesListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="/{accountId}/{chargeMasterId}">
+            <ns0:param name="accountId" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+            <ns0:param name="chargeMasterId" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:long"/>
+            <ns0:method id="getAccountCharges" name="GET">
+               <ns0:response>
+                  <ns0:representation element="accountChargesVO" mediaType="application/xml"/>
+                  <ns0:representation element="accountChargesVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+      </ns0:resource>
+      <ns0:resource path="lookup">
+         <ns0:resource path="chargetype">
+            <ns0:method id="getChargeTypeList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="optionListVO" mediaType="application/xml"/>
+                  <ns0:representation element="optionListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="chargeoption">
+            <ns0:method id="getChargeOptionList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="optionListVO" mediaType="application/xml"/>
+                  <ns0:representation element="optionListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="waivechargesindicator">
+            <ns0:method id="getWaiveChargesIndicatorList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="optionListVO" mediaType="application/xml"/>
+                  <ns0:representation element="optionListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="chargecurrency">
+            <ns0:method id="getChargeCurrencyList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="optionListVO" mediaType="application/xml"/>
+                  <ns0:representation element="optionListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="frequency">
+            <ns0:method id="getFrequencyList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="optionListVO" mediaType="application/xml"/>
+                  <ns0:representation element="optionListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+      </ns0:resource>
+   </ns0:resources>
+</ns0:application>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="BiometricPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/EBioApi/Biometric/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/EBioApi/Biometric/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Resilience/Biometric/V1/BiometricEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="EnrollRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="EnrollRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ValidateRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ValidateRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="VerifyRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="VerifyRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="enrollCIFWithImageIdRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="enrollCIFWithImageIdRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="validateImageIdRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="validateImageIdRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="BiometricPSPort">
+        <operation name="enroll">
+            <input message="ps:EnrollRqMsg"/>
+            <output message="ps:EnrollRsMsg"/>
+        </operation>
+        <operation name="validate">
+            <input message="ps:ValidateRqMsg"/>
+            <output message="ps:ValidateRsMsg"/>
+        </operation>
+        <operation name="verify">
+            <input message="ps:VerifyRqMsg"/>
+            <output message="ps:VerifyRsMsg"/>
+        </operation>
+        <operation name="enrollCIFWithImageId">
+            <input message="ps:enrollCIFWithImageIdRqMsg"/>
+            <output message="ps:enrollCIFWithImageIdRsMsg"/>
+        </operation>
+        <operation name="validateImageId">
+            <input message="ps:validateImageIdRqMsg"/>
+            <output message="ps:validateImageIdRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="BiometricPSPortBinding" type="ps:BiometricPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="enroll">
+            <soap12:operation soapAction="enroll"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="validate">
+            <soap12:operation soapAction="validate"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="verify">
+            <soap12:operation soapAction="verify"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="enrollCIFWithImageId">
+            <soap12:operation soapAction="enrollCIFWithImageId"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="validateImageId">
+            <soap12:operation soapAction="validateImageId"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BiometricPS">
+        <port name="BiometricPSPort" binding="ps:BiometricPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

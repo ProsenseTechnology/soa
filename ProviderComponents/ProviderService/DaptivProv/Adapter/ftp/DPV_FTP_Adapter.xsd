@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/Adapter/ftp" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/Adapter/ftp" elementFormDefault="qualified"
+            attributeFormDefault="unqualified" nxsd:version="NXSD" nxsd:stream="chars" nxsd:encoding="US-ASCII">
+    <xsd:element name="HeaderLine">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                <xsd:element name="FileName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                <xsd:element name="Date" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" nxsd:quotedBy='"'/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="TrailerLine">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                <xsd:element name="NumberOfRows" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" nxsd:quotedBy='"'/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="ProjectCostFileInput">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="ProjectNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="ExpenditureType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="TaskName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="TaskDescription" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="ExpenditureItemDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="Supplier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="TransactionID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="InvoiceNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="ItemDescription" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="TransactionAmt" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="TransCurrencyCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="AccountedAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="ProjectCurrencyCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="ProjectAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="PONumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+                            <xsd:element name="Project_ID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" nxsd:quotedBy='"'/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

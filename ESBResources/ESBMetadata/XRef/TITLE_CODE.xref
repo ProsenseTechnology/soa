@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Upgraded by Xref Upgrade Utility 1.0 -->
+<xref xmlns="http://xmlns.oracle.com/xref">
+    <table name="TITLE_CODE" mode="specific" dbtable="XREF_TITLE_CODE">
+        <description>
+</description>
+        <columns>
+            <column name="CODE"/>
+            <column name="DESC"/>
+            <column name="FNCL"/>
+        </columns>
+    </table>
+</xref>

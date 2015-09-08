@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="BillType" type="com:CodeType"/>
+  <xsd:element name="BillStatus" type="com:CodeType"/>
+  <xsd:element name="Bill" type="BillType"/>
+  <xsd:element name="BillName" type="com:StringType"/>
+  <xsd:element name="CreatedBy" type="com:StringType"/>
+  <xsd:element name="CustomerName" type="com:NameType"/>
+  <xsd:element name="CustomerRefNumber" type="com:StringType"/>
+  <xsd:element name="DocumentrRefNumber" type="com:StringType"/>
+  <xsd:element name="RegionCode" type="com:StringType"/>
+  <xsd:element name="StationCode" type="com:StringType"/>
+  <xsd:element name="Status" type="com:StringType"/>
+  <xsd:element name="SystemCode" type="com:CodeType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Bill ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="BillType">
+    <xsd:sequence>
+      <xsd:element ref="com:BillIdentifier" minOccurs="0"/>
+      <xsd:element ref="BillType" minOccurs="0"/>
+      <xsd:element ref="com:BillRef" maxOccurs="unbounded" minOccurs="0"/>
+      <xsd:element ref="com:Amount" minOccurs="0"/>
+      <xsd:element ref="BillName" minOccurs="0"/>
+      <xsd:element ref="BillStatus" minOccurs="0"/>
+      <xsd:element ref="CreatedBy" minOccurs="0"/>
+      <xsd:element ref="CustomerName" minOccurs="0"/>
+      <xsd:element ref="CustomerRefNumber" minOccurs="0"/>
+      <xsd:element ref="DocumentrRefNumber" minOccurs="0"/>
+      <xsd:element ref="com:BranchName" minOccurs="0"/>
+      <xsd:element ref="com:DealerCode" minOccurs="0"/>
+      <xsd:element ref="com:DealerName" minOccurs="0"/>
+      <xsd:element ref="com:PayMethod" minOccurs="0"/>
+      <xsd:element ref="com:UserID" minOccurs="0"/>
+      <xsd:element ref="RegionCode" minOccurs="0"/>
+      <xsd:element ref="StationCode" minOccurs="0"/>
+      <xsd:element ref="Status" minOccurs="0"/>
+      <xsd:element ref="SystemCode" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="com:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Bill" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Bill" minOccurs="0"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Action Codes ============= -->
+  <!-- ====================================================================== -->
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="QueryBillStatus"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

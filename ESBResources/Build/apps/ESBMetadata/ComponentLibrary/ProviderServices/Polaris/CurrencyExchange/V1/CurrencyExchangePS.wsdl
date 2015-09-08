@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="CurrencyExchangePS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/CurrencyExchange/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/CurrencyExchange/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Transactions/CurrencyExchange/V1/CurrencyExchangeEO.xsd"/>
+        </xsd:schema>
+    </types> 
+    <message name="CreateExchangeRateMasterFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateExchangeRateMasterFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="CurrencyExchangePSPort">
+         <operation name="CreateExchangeRateMasterFile">
+            <input message="ps:CreateExchangeRateMasterFileRqMsg"/>
+            <output message="ps:CreateExchangeRateMasterFileRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="CurrencyExchangePSPortBinding" type="ps:CurrencyExchangePSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="CreateExchangeRateMasterFile">
+            <soap12:operation soapAction="CreateExchangeRateMasterFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CurrencyExchangePS">
+        <port name="CurrencyExchangePSPort" binding="ps:CurrencyExchangePSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

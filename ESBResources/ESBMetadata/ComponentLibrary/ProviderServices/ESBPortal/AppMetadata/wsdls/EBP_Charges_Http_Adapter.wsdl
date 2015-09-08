@@ -1,0 +1,547 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="EBP_Charges_Http_Adapter"
+     targetNamespace="http://xmlns.oracle.com/ProviderService/ESBPortalProv/EBP_Charges_Http_Adapter"
+     xmlns:tns="http://xmlns.oracle.com/ProviderService/ESBPortalProv/EBP_Charges_Http_Adapter"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    >
+    <plnk:partnerLinkType name="EBP_Charges_Http_Adapter">
+        <plnk:role name="EBP_Charges_Http_AdapterProvider" portType="tns:EBP_Charges_Http_Adapter_ptt"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:include schemaLocation="../xsds/Charges.xsd"/>
+        </xsd:schema>
+        <schema targetNamespace="http://xmlns.oracle.com/ProviderService/ESBPortalProv/EBP_Charges_Http_Adapter"
+             elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="getAccountChargesListByUsername_params">
+                <complexType>
+                    <sequence>
+                        <element name="accountId" type="string"/>
+                        <element name="username" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getApprovedAccountChargesList_params">
+                <complexType>
+                    <sequence>
+                        <element name="accountId" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getApprovedAccountCharges_params">
+                <complexType>
+                    <sequence>
+                        <element name="accountId" type="string"/>
+                        <element name="chargeMasterId" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getAccountChargesList_params">
+                <complexType>
+                    <sequence>
+                        <element name="accountId" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getAccountCharges_params">
+                <complexType>
+                    <sequence>
+                        <element name="accountId" type="string"/>
+                        <element name="chargeMasterId" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getPendingApprovals_params">
+                <complexType>
+                    <sequence>
+                        <element name="username" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getChargeMaster_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getChargeStatusReportList_params">
+                <complexType>
+                    <sequence>
+                        <element name="chargeStatus" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getChargeTypeReportList_params">
+                <complexType>
+                    <sequence>
+                        <element name="chargeType" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="getAccountChargesListByUsername_inputMessage">
+        <wsdl:part name="request" element="tns:getAccountChargesListByUsername_params"/>
+    </wsdl:message>
+    <wsdl:message name="getAccountChargesListByUsername_outputMessage">
+        <wsdl:part name="reply" element="accountChargesListVO"/>
+    </wsdl:message>
+    <wsdl:message name="createAccountCharges_inputMessage">
+        <wsdl:part name="request" element="accountChargesVO"/>
+    </wsdl:message>
+    <wsdl:message name="createAccountCharges_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateAccountCharges_inputMessage">
+        <wsdl:part name="request" element="accountChargesVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateAccountCharges_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateApprovalStatus_inputMessage">
+        <wsdl:part name="request" element="accountChargesVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateApprovalStatus_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="createApprovedAccountCharges_inputMessage">
+        <wsdl:part name="request" element="accountChargesVO"/>
+    </wsdl:message>
+    <wsdl:message name="createApprovedAccountCharges_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateApprovedAccountCharges_inputMessage">
+        <wsdl:part name="request" element="accountChargesVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateApprovedAccountCharges_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="getApprovedAccountChargesList_inputMessage">
+        <wsdl:part name="request" element="tns:getApprovedAccountChargesList_params"/>
+    </wsdl:message>
+    <wsdl:message name="getApprovedAccountChargesList_outputMessage">
+        <wsdl:part name="reply" element="accountChargesListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getApprovedAccountCharges_inputMessage">
+        <wsdl:part name="request" element="tns:getApprovedAccountCharges_params"/>
+    </wsdl:message>
+    <wsdl:message name="getApprovedAccountCharges_outputMessage">
+        <wsdl:part name="reply" element="accountChargesVO"/>
+    </wsdl:message>
+    <wsdl:message name="getAccountChargesList_inputMessage">
+        <wsdl:part name="request" element="tns:getAccountChargesList_params"/>
+    </wsdl:message>
+    <wsdl:message name="getAccountChargesList_outputMessage">
+        <wsdl:part name="reply" element="accountChargesListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getAccountCharges_inputMessage">
+        <wsdl:part name="request" element="tns:getAccountCharges_params"/>
+    </wsdl:message>
+    <wsdl:message name="getAccountCharges_outputMessage">
+        <wsdl:part name="reply" element="accountChargesVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateApprovalStatusId_inputMessage">
+        <wsdl:part name="request" element="approvalsVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateApprovalStatusId_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="createApproval_inputMessage">
+        <wsdl:part name="request" element="approvalsVO"/>
+    </wsdl:message>
+    <wsdl:message name="createApproval_outputMessage">
+        <wsdl:part name="reply" element="longVO"/>
+    </wsdl:message>
+    <wsdl:message name="getPendingApprovals_inputMessage">
+        <wsdl:part name="request" element="tns:getPendingApprovals_params"/>
+    </wsdl:message>
+    <wsdl:message name="getPendingApprovals_outputMessage">
+        <wsdl:part name="reply" element="approvalsListVO"/>
+    </wsdl:message>
+    <wsdl:message name="Rest_EmptyMessage"/>
+    <wsdl:message name="getChargeMasterList_outputMessage">
+        <wsdl:part name="reply" element="chargeMasterListVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateChargeMaster_inputMessage">
+        <wsdl:part name="request" element="chargeMasterVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateChargeMaster_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="createChargeMaster_inputMessage">
+        <wsdl:part name="request" element="chargeMasterVO"/>
+    </wsdl:message>
+    <wsdl:message name="createChargeMaster_outputMessage">
+        <wsdl:part name="reply" element="longVO"/>
+    </wsdl:message>
+    <wsdl:message name="getChargeMaster_inputMessage">
+        <wsdl:part name="request" element="tns:getChargeMaster_params"/>
+    </wsdl:message>
+    <wsdl:message name="getChargeMaster_outputMessage">
+        <wsdl:part name="reply" element="chargeMasterVO"/>
+    </wsdl:message>
+    <wsdl:message name="getChargeCurrencyList_outputMessage">
+        <wsdl:part name="reply" element="optionListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getChargeOptionList_outputMessage">
+        <wsdl:part name="reply" element="optionListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getChargeTypeList_outputMessage">
+        <wsdl:part name="reply" element="optionListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getFrequencyList_outputMessage">
+        <wsdl:part name="reply" element="optionListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getWaiveChargesIndicatorList_outputMessage">
+        <wsdl:part name="reply" element="optionListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getChargeStatusReportList_inputMessage">
+        <wsdl:part name="request" element="tns:getChargeStatusReportList_params"/>
+    </wsdl:message>
+    <wsdl:message name="getChargeStatusReportList_outputMessage">
+        <wsdl:part name="reply" element="reportsViewListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getChargeTypeReportList_inputMessage">
+        <wsdl:part name="request" element="tns:getChargeTypeReportList_params"/>
+    </wsdl:message>
+    <wsdl:message name="getChargeTypeReportList_outputMessage">
+        <wsdl:part name="reply" element="reportsViewListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getUsers_outputMessage">
+        <wsdl:part name="reply" element="usersListVO"/>
+    </wsdl:message>
+    <wsdl:portType name="EBP_Charges_Http_Adapter_ptt">
+        <wsdl:operation name="getAccountChargesListByUsername">
+            <wsdl:input message="tns:getAccountChargesListByUsername_inputMessage"/>
+            <wsdl:output message="tns:getAccountChargesListByUsername_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createAccountCharges">
+            <wsdl:input message="tns:createAccountCharges_inputMessage"/>
+            <wsdl:output message="tns:createAccountCharges_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateAccountCharges">
+            <wsdl:input message="tns:updateAccountCharges_inputMessage"/>
+            <wsdl:output message="tns:updateAccountCharges_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateApprovalStatus">
+            <wsdl:input message="tns:updateApprovalStatus_inputMessage"/>
+            <wsdl:output message="tns:updateApprovalStatus_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createApprovedAccountCharges">
+            <wsdl:input message="tns:createApprovedAccountCharges_inputMessage"/>
+            <wsdl:output message="tns:createApprovedAccountCharges_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateApprovedAccountCharges">
+            <wsdl:input message="tns:updateApprovedAccountCharges_inputMessage"/>
+            <wsdl:output message="tns:updateApprovedAccountCharges_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getApprovedAccountChargesList">
+            <wsdl:input message="tns:getApprovedAccountChargesList_inputMessage"/>
+            <wsdl:output message="tns:getApprovedAccountChargesList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getApprovedAccountCharges">
+            <wsdl:input message="tns:getApprovedAccountCharges_inputMessage"/>
+            <wsdl:output message="tns:getApprovedAccountCharges_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAccountChargesList">
+            <wsdl:input message="tns:getAccountChargesList_inputMessage"/>
+            <wsdl:output message="tns:getAccountChargesList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAccountCharges">
+            <wsdl:input message="tns:getAccountCharges_inputMessage"/>
+            <wsdl:output message="tns:getAccountCharges_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateApprovalStatusId">
+            <wsdl:input message="tns:updateApprovalStatusId_inputMessage"/>
+            <wsdl:output message="tns:updateApprovalStatusId_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createApproval">
+            <wsdl:input message="tns:createApproval_inputMessage"/>
+            <wsdl:output message="tns:createApproval_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPendingApprovals">
+            <wsdl:input message="tns:getPendingApprovals_inputMessage"/>
+            <wsdl:output message="tns:getPendingApprovals_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeMasterList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getChargeMasterList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateChargeMaster">
+            <wsdl:input message="tns:updateChargeMaster_inputMessage"/>
+            <wsdl:output message="tns:updateChargeMaster_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createChargeMaster">
+            <wsdl:input message="tns:createChargeMaster_inputMessage"/>
+            <wsdl:output message="tns:createChargeMaster_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeMaster">
+            <wsdl:input message="tns:getChargeMaster_inputMessage"/>
+            <wsdl:output message="tns:getChargeMaster_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeCurrencyList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getChargeCurrencyList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeOptionList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getChargeOptionList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeTypeList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getChargeTypeList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getFrequencyList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getFrequencyList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getWaiveChargesIndicatorList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getWaiveChargesIndicatorList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeStatusReportList">
+            <wsdl:input message="tns:getChargeStatusReportList_inputMessage"/>
+            <wsdl:output message="tns:getChargeStatusReportList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeTypeReportList">
+            <wsdl:input message="tns:getChargeTypeReportList_inputMessage"/>
+            <wsdl:output message="tns:getChargeTypeReportList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getUsers">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getUsers_outputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EBP_Charges_Http_Adapter_ptt-binding" type="tns:EBP_Charges_Http_Adapter_ptt">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAccountChargesListByUsername">
+            <soap:operation soapAction="getAccountChargesListByUsername"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createAccountCharges">
+            <soap:operation soapAction="createAccountCharges"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateAccountCharges">
+            <soap:operation soapAction="updateAccountCharges"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateApprovalStatus">
+            <soap:operation soapAction="updateApprovalStatus"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createApprovedAccountCharges">
+            <soap:operation soapAction="createApprovedAccountCharges"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateApprovedAccountCharges">
+            <soap:operation soapAction="updateApprovedAccountCharges"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getApprovedAccountChargesList">
+            <soap:operation soapAction="getApprovedAccountChargesList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getApprovedAccountCharges">
+            <soap:operation soapAction="getApprovedAccountCharges"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAccountChargesList">
+            <soap:operation soapAction="getAccountChargesList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAccountCharges">
+            <soap:operation soapAction="getAccountCharges"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateApprovalStatusId">
+            <soap:operation soapAction="updateApprovalStatusId"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createApproval">
+            <soap:operation soapAction="createApproval"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getPendingApprovals">
+            <soap:operation soapAction="getPendingApprovals"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeMasterList">
+            <soap:operation soapAction="getChargeMasterList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateChargeMaster">
+            <soap:operation soapAction="updateChargeMaster"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createChargeMaster">
+            <soap:operation soapAction="createChargeMaster"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeMaster">
+            <soap:operation soapAction="getChargeMaster"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeCurrencyList">
+            <soap:operation soapAction="getChargeCurrencyList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeOptionList">
+            <soap:operation soapAction="getChargeOptionList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeTypeList">
+            <soap:operation soapAction="getChargeTypeList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getFrequencyList">
+            <soap:operation soapAction="getFrequencyList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getWaiveChargesIndicatorList">
+            <soap:operation soapAction="getWaiveChargesIndicatorList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeStatusReportList">
+            <soap:operation soapAction="getChargeStatusReportList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getChargeTypeReportList">
+            <soap:operation soapAction="getChargeTypeReportList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getUsers">
+            <soap:operation soapAction="getUsers"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

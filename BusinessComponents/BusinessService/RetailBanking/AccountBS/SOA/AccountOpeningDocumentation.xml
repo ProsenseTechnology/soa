@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?oracleBPM version="12.1.3.0.0.00.00" fileRevision="20120601"?>
+<processDocumentation xmlns="http://xmlns.oracle.com/bpm/taskMetadataService/processDocumentation">
+   <component name="AccountOpening">
+      <topicDocumentations>
+         <topicDocumentation name="AccountOpening"/>
+         <topicDocumentation name="ACT12956460686512">
+            <labels>
+               <label locale="en">Validate Biometrics</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12956466703316">
+            <labels>
+               <label locale="en">Customer Validation</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12956475837347">
+            <labels>
+               <label locale="en">Create Account</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12956486005023">
+            <labels>
+               <label locale="en">Create Contract</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12956507053970">
+            <labels>
+               <label locale="en">Create Document Account</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT1295650947834">
+            <labels>
+               <label locale="en">Update Docment</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12956519661489">
+            <labels>
+               <label locale="en">Create Customer</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT13033818753565">
+            <labels>
+               <label locale="en">Notify By Email</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT13033822328014">
+            <labels>
+               <label locale="en">Notify By SMS</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="EVT12956458117218">
+            <labels>
+               <label locale="en">Start</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="EVT12956458117391">
+            <labels>
+               <label locale="en">End</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="GTW12956464173853">
+            <labels>
+               <label locale="en">Is Valid Agent</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="GTW12956468195852">
+            <labels>
+               <label locale="en">Is Customer Valid</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="GTW12956504588872">
+            <labels>
+               <label locale="en">Is Account Created</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="GTW12956520473683">
+            <labels>
+               <label locale="en">Is customer created</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf12956458117382"/>
+         <topicDocumentation name="sf12956461927083"/>
+         <topicDocumentation name="sf12956465509897"/>
+         <topicDocumentation name="sf12956467557995"/>
+         <topicDocumentation name="sf12956469251170">
+            <labels>
+               <label locale="en"></label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf12956470921556"/>
+         <topicDocumentation name="sf12956477086985"/>
+         <topicDocumentation name="sf12956478121779">
+            <labels>
+               <label locale="en"></label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf12956486947983"/>
+         <topicDocumentation name="sf12956506541866"/>
+         <topicDocumentation name="sf1295650734621"/>
+         <topicDocumentation name="sf12956510523352"/>
+         <topicDocumentation name="sf12956520211989"/>
+         <topicDocumentation name="sf12956521316722">
+            <labels>
+               <label locale="en"></label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf12956521972164">
+            <labels>
+               <label locale="en"></label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf12956524764236"/>
+         <topicDocumentation name="sf13033823347991"/>
+         <topicDocumentation name="sf13104276603370"/>
+         <topicDocumentation name="sf13104292909831">
+            <labels>
+               <label locale="en"></label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+      </topicDocumentations>
+   </component>
+</processDocumentation>

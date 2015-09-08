@@ -1,0 +1,20 @@
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="CHS_PaymentPS_rest">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Chai/Payment/V1">
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1" schemaLocation="../../../../EnterpriseObjects/Transactions/Bill/V1/BillEO.xsd"/>
+    </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/payment">
+         <method name="POST" soa:wsdlOperation="reference">
+            <request>
+               <representation mediaType="application/xml" element="cns:ESBMsg" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:ESBMsg" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

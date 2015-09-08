@@ -1,0 +1,310 @@
+<wsdl:definitions name="PolarisFTPAdapter" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Adapter/ftp" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Adapter/ftp" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plt:partnerLinkType name="PolarisFTPAdapterPLType">
+        <plt:role name="PolarisFTPAdapterRole">
+            <plt:portType name="adp:PolarisFTPAdapterPort"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Adapter/ftp" schemaLocation="PRS_FTP_Adapter.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="CreateLoanAccountMasterFileRqMsg">
+        <wsdl:part name="payload" element="adp:LoanAccountMasterFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateDepositAccountMasterFileRqMsg">
+        <wsdl:part name="payload" element="adp:DepositAccountMasterFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateAccountMasterFileRqMsg">
+        <wsdl:part name="payload" element="adp:AccountMasterFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateCustomerMasterFileRqMsg">
+        <wsdl:part name="payload" element="adp:CustomerMasterFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateCreditCardFileRqMsg">
+        <wsdl:part name="payload" element="adp:CreditCardFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateChequeStatusUpdateFileRqMsg">
+        <wsdl:part name="payload" element="adp:ChequeStatusUpdateFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateDemandDraftStatusUpdateFileRqMsg">
+        <wsdl:part name="payload" element="adp:DemandDraftStatusUpdateFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateExchangeRateMasterFileRqMsg">
+        <wsdl:part name="payload" element="adp:ExchangeRateMasterFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateNEFTInwardFileRqMsg">
+        <wsdl:part name="payload" element="adp:NEFTInwardFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateRTGSInwardFileRqMsg">
+        <wsdl:part name="payload" element="adp:RTGSInwardFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateNEFTOutwardRefStatusFileRqMsg">
+        <wsdl:part name="payload" element="adp:NEFTOutwardRefStatusFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateRTGSOutwardRefStatusFileRqMsg">
+        <wsdl:part name="payload" element="adp:RTGSOutwardRefStatusFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateCTSHandoffFileRqMsg">
+        <wsdl:part name="payload" element="adp:CTSHandoffFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateChequeLiquidationStatusFileRqMsg">
+        <wsdl:part name="payload" element="adp:ChequeLiquidationStatusFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAccountEntryPostingReqFileRqMsg">
+        <wsdl:part name="payload" element="adp:AccountEntryPostingReqFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAccountEntryPostingReqFileRsMsg">
+        <wsdl:part name="payload" element="adp:AccountEntryPostingReqFileOutput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateAccountEntryPostingRespFileRqMsg">
+        <wsdl:part name="payload" element="adp:AccountEntryPostingRespFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAverageBalanceReqFileRqMsg">
+        <wsdl:part name="payload" element="adp:AverageBalanceReqFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAverageBalanceReqFileRsMsg">
+        <wsdl:part name="payload" element="adp:AverageBalanceReqFileOutput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateAverageBalanceRespFileRqMsg">
+        <wsdl:part name="payload" element="adp:AverageBalanceRespFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="ReadRTGSOutwardReqFileRqMsg">
+        <wsdl:part name="payload" element="adp:RTGSOutwardReqFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="ReadRTGSOutwardReqFileRsMsg">
+        <wsdl:part name="payload" element="adp:RTGSOutwardReqFileOutput"/>
+    </wsdl:message>
+    <wsdl:message name="ReadInternalAccountValidationReqFileRqMsg">
+        <wsdl:part name="payload" element="adp:InternalAccountValidationReqFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="ReadInternalAccountValidationReqFileRsMsg">
+        <wsdl:part name="payload" element="adp:InternalAccountValidationReqFileOutput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateInternalAccountValidationRespFileRqMsg">
+        <wsdl:part name="payload" element="adp:InternalAccountValidationRespFileInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateRTGSOutwardRespFileRqMsg">
+        <wsdl:part name="payload" element="adp:RTGSOutwardRespFileInput"/>
+    </wsdl:message>
+    <wsdl:portType name="PolarisFTPAdapterPort">
+        <wsdl:operation name="createLoanAccountMasterFile">
+            <wsdl:input message="adp:CreateLoanAccountMasterFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createDepositAccountMasterFile">
+            <wsdl:input message="adp:CreateDepositAccountMasterFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createAccountMasterFile">
+            <wsdl:input message="adp:CreateAccountMasterFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createCustomerMasterFile">
+            <wsdl:input message="adp:CreateCustomerMasterFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createCreditCardFile">
+            <wsdl:input message="adp:CreateCreditCardFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createChequeStatusUpdateFile">
+            <wsdl:input message="adp:CreateChequeStatusUpdateFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createDemandDraftStatusUpdateFile">
+            <wsdl:input message="adp:CreateDemandDraftStatusUpdateFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createExchangeRateMasterFile">
+            <wsdl:input message="adp:CreateExchangeRateMasterFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createNEFTInwardFile">
+            <wsdl:input message="adp:CreateNEFTInwardFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createRTGSInwardFile">
+            <wsdl:input message="adp:CreateRTGSInwardFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createNEFTOutwardRefStatusFile">
+            <wsdl:input message="adp:CreateNEFTOutwardRefStatusFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createRTGSOutwardRefStatusFile">
+            <wsdl:input message="adp:CreateRTGSOutwardRefStatusFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createCTSHandoffFile">
+            <wsdl:input message="adp:CreateCTSHandoffFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createChequeLiquidationStatusFile">
+            <wsdl:input message="adp:CreateChequeLiquidationStatusFileRqMsg"/>
+        </wsdl:operation>        
+        <wsdl:operation name="readAccountEntryPostingReqFile">
+            <wsdl:input message="adp:ReadAccountEntryPostingReqFileRqMsg"/>
+            <wsdl:output message="adp:ReadAccountEntryPostingReqFileRsMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="readAverageBalanceReqFile">
+            <wsdl:input message="adp:ReadAverageBalanceReqFileRqMsg"/>
+            <wsdl:output message="adp:ReadAverageBalanceReqFileRsMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createAccountEntryPostingRespFile">
+            <wsdl:input message="adp:CreateAccountEntryPostingRespFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createAverageBalanceRespFile">
+            <wsdl:input message="adp:CreateAverageBalanceRespFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="readRTGSOutwardReqFile">
+            <wsdl:input message="adp:ReadRTGSOutwardReqFileRqMsg"/>
+            <wsdl:output message="adp:ReadRTGSOutwardReqFileRsMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="readInternalAccountValidationReqFile">
+            <wsdl:input message="adp:ReadInternalAccountValidationReqFileRqMsg"/>
+            <wsdl:output message="adp:ReadInternalAccountValidationReqFileRsMsg"/>
+        </wsdl:operation>
+         <wsdl:operation name="createInternalAccountValidationRespFile">
+            <wsdl:input message="adp:CreateInternalAccountValidationRespFileRqMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="createRTGSOutwardRespFile">
+            <wsdl:input message="adp:CreateRTGSOutwardRespFileRqMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PolarisFTPAdapterPortBinding" type="adp:PolarisFTPAdapterPort">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="createLoanAccountMasterFile">
+            <soap:operation soapAction="createLoanAccountMasterFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createDepositAccountMasterFile">
+            <soap:operation soapAction="createDepositAccountMasterFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createAccountMasterFile">
+            <soap:operation soapAction="createAccountMasterFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createCustomerMasterFile">
+            <soap:operation soapAction="createCustomerMasterFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createCreditCardFile">
+            <soap:operation soapAction="createCreditCardFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createChequeStatusUpdateFile">
+            <soap:operation soapAction="createChequeStatusUpdateFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="createDemandDraftStatusUpdateFile">
+            <soap:operation soapAction="createDemandDraftStatusUpdateFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createExchangeRateMasterFile">
+            <soap:operation soapAction="createExchangeRateMasterFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createNEFTInwardFile">
+            <soap:operation soapAction="createNEFTInwardFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createRTGSInwardFile">
+            <soap:operation soapAction="createRTGSInwardFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createNEFTOutwardRefStatusFile">
+            <soap:operation soapAction="createNEFTOutwardRefStatusFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createRTGSOutwardRefStatusFile">
+            <soap:operation soapAction="createRTGSOutwardRefStatusFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createCTSHandoffFile">
+            <soap:operation soapAction="createCTSHandoffFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="createChequeLiquidationStatusFile">
+            <soap:operation soapAction="createChequeLiquidationStatusFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="readAccountEntryPostingReqFile">
+            <soap:operation soapAction="readAccountEntryPostingReqFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="readAverageBalanceReqFile">
+            <soap:operation soapAction="readAverageBalanceReqFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+		<wsdl:operation name="createAccountEntryPostingRespFile">
+            <soap:operation soapAction="createAccountEntryPostingRespFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        
+		<wsdl:operation name="createAverageBalanceRespFile">
+            <soap:operation soapAction="createAverageBalanceRespFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+		<wsdl:operation name="readRTGSOutwardReqFile">
+            <soap:operation soapAction="readRTGSOutwardReqFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="readInternalAccountValidationReqFile">
+            <soap:operation soapAction="readInternalAccountValidationReqFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createInternalAccountValidationRespFile">
+        <soap:operation soapAction="createInternalAccountValidationRespFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+         <wsdl:operation name="createRTGSOutwardRespFile">
+        <soap:operation soapAction="createRTGSOutwardRespFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

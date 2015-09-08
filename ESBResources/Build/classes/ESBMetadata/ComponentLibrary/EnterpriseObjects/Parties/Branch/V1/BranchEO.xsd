@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Branch/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Branch/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="BranchType" type="com:CodeType"/>
+    <xsd:element name="ClearingFlag" type="com:CodeType"/>
+    <xsd:element name="BranchName" type="com:NameType"/>
+    <xsd:element name="BranchStatus" type="com:CodeType"/>
+    <xsd:element name="BankName" type="com:CodeType"/>
+    <xsd:element name="BankCode" type="com:CodeType"/>
+    <xsd:element name="Branch" type="BranchType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Branch ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="BranchType">
+        <xsd:sequence>
+            <xsd:element ref="com:BranchIdentifier" minOccurs="0"/>
+            <xsd:element ref="BranchType" minOccurs="0"/>
+            <xsd:element ref="ClearingFlag" minOccurs="0"/>
+            <xsd:element ref="com:TransferID" minOccurs="0"/>
+            <xsd:element ref="BranchName" minOccurs="0"/>
+            <xsd:element ref="BankName" minOccurs="0"/>
+            <xsd:element ref="BankCode" minOccurs="0"/>
+            <xsd:element ref="BranchStatus" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="Branch" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="Branch" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="QueryBranchStatus"/>
+            <xsd:enumeration value="UpdateBranchStatus"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

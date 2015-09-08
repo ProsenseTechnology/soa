@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con4="http://www.bea.com/wli/sb/stages/alert/config" xmlns:con5="http://www.bea.com/wli/sb/stages/routing/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ESBMetadata/ComponentLibrary/ProviderServices/Way4/Authenticate/V1/MobileAuthPS"/>
+            <con:binding>
+                <con:name>AuthenticatePSPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/PS/Way4/Authentication/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router errorHandler="error-7f000001.N2b7667e0.0.14d568a4b0b.N7f80">
+        <con:pipeline type="error" name="error-7f000001.N2b7667e0.0.14d568a4b0b.N7f80">
+            <con:stage id="_StageId-7f000001.N2b7667e0.0.14d568a4b0b.N7f7f" name="Error Reporting">
+                <con:context/>
+                <con:actions>
+                    <con1:log>
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7eec</con2:id>
+                        <con1:logLevel>debug</con1:logLevel>
+                        <con1:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con1:expr>
+                    </con1:log>
+                    <con3:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7ee9</con2:id>
+                        <con3:location>
+                            <con2:xpathText>./*[1]</con2:xpathText>
+                        </con3:location>
+                        <con3:expr>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                    <con1:report>
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7ee6</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con1:expr>
+                        <con1:labels>
+                            <con1:key>Error</con1:key>
+                            <con1:varName>fault</con1:varName>
+                            <con1:value>
+                                <con2:xpathText>./ctx:reason</con2:xpathText>
+                            </con1:value>
+                        </con1:labels>
+                    </con1:report>
+                    <con4:alert>
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7ee3</con2:id>
+                        <con4:destination ref="ESBMetadata/Templates/Pipeline/AlertDestination"/>
+                        <con4:severity>critical</con4:severity>
+                        <con4:payload>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con4:payload>
+                    </con4:alert>
+                    <con2:reply>
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7ee0</con2:id>
+                    </con2:reply>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000001.N2b7667e0.0.14d568a4b0b.N7f1e">
+            <con:stage id="_StageId-7f000001.N2b7667e0.0.14d568a4b0b.N7f1c" name="Request Audit">
+                <con:context/>
+                <con:actions>
+                    <con1:log>
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7ef8</con2:id>
+                        <con1:logLevel>debug</con1:logLevel>
+                        <con1:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con1:expr>
+                    </con1:log>
+                    <con1:report>
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7ef5</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con1:expr>
+                    </con1:report>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000001.N2b7667e0.0.14d568a4b0b.N7f1a" name="Data Validation">
+                <con:context>
+                    <con2:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Authentication/MobileAuth/V1"/>
+                </con:context>
+                <con:actions>
+                    <con3:assign varName="payload">
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7efe</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$body/*[1]</con2:xqueryText>
+                        </con3:expr>
+                    </con3:assign>
+                    <con3:validate>
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7efb</con2:id>
+                        <con3:schema ref="ESBMetadata/ComponentLibrary/EnterpriseObjects/Authentication/MobileAuth/V1/MobileAuthEO"/>
+                        <con3:schemaElement xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Authentication/MobileAuth/V1">v1:ESBMsg</con3:schemaElement>
+                        <con3:varName>body</con3:varName>
+                        <con3:location>
+                            <con2:xpathText>./*[1]</con2:xpathText>
+                        </con3:location>
+                    </con3:validate>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000001.N2b7667e0.0.14d568a4b0b.N7f1d">
+            <con:stage id="_StageId-7f000001.N2b7667e0.0.14d568a4b0b.N7f1b" name="Response Audit">
+                <con:context/>
+                <con:actions>
+                    <con1:log>
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7ef2</con2:id>
+                        <con1:logLevel>debug</con1:logLevel>
+                        <con1:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con1:expr>
+                    </con1:log>
+                    <con1:report>
+                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7eef</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con1:expr>
+                    </con1:report>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Message Flow">
+                <con:request>request-7f000001.N2b7667e0.0.14d568a4b0b.N7f1e</con:request>
+                <con:response>response-7f000001.N2b7667e0.0.14d568a4b0b.N7f1d</con:response>
+            </con:pipeline-node>
+            <con:branch-node type="operation" id="_FlowId-7f000001.N2b7667e0.0.14d568a4b0b.N7f05" name="Operations">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="authenticate">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="Route to Way4 Auth">
+                                <con:context>
+                                    <con2:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Authentication/MobileAuth/V1"/>
+                                </con:context>
+                                <con:actions>
+                                    <con5:route>
+                                        <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7f01</con2:id>
+                                        <con5:service ref="Way4Prov/Business/WY4_Auth_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con5:outboundTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7edd</con2:id>
+                                                <con3:location>
+                                                    <con2:xpathText>.</con2:xpathText>
+                                                </con3:location>
+                                                <con3:expr>
+                                                    <con2:xsltTransform>
+                                                        <con2:resource ref="Way4Prov/Transformation/Authenticate/xsl/WY4_AuthenticatePS_mobileAuth_Rq"/>
+                                                        <con2:input>$body/*</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con5:outboundTransform>
+                                        <con5:responseTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con2:id>_ActionId-7f000001.N2b7667e0.0.14d568a4b0b.N7ed7</con2:id>
+                                                <con3:location>
+                                                    <con2:xpathText>.</con2:xpathText>
+                                                </con3:location>
+                                                <con3:expr>
+                                                    <con2:xsltTransform>
+                                                        <con2:resource ref="Way4Prov/Transformation/Authenticate/xsl/WY4_AuthenticatePS_mobileAuth_Rs"/>
+                                                        <con2:input>$body/*</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con5:responseTransform>
+                                    </con5:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

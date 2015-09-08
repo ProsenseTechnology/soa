@@ -1,0 +1,339 @@
+<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+            xmlns:bio="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1"
+            xmlns:fileo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+              schemaLocation="../../../Parties/Customer/V1/CustomerEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1"
+              schemaLocation="../../../Resilience/Biometric/V1/BiometricEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+              schemaLocation="../../../Misc/File/V1/FileEO.xsd"/>
+  <!--======================================================================-->
+  <!--============= Referenced Elements =============-->
+  <!--======================================================================-->
+  <xsd:element name="AccountType" type="com:CodeType"/>
+  <xsd:element name="AccountSubType" type="com:CodeType"/>
+  <xsd:element name="AccountOpenDate" type="com:DateType"/>
+  <xsd:element name="AccountOwnership" type="com:CodeType"/>
+  <xsd:element name="ModeOfOperation" type="com:CodeType"/>
+  <xsd:element name="NoCreditStatus" type="com:CodeType"/>
+  <xsd:element name="NoDebitStatus" type="com:CodeType"/>
+  <xsd:element name="DelinquencyStatus" type="com:CodeType"/>
+  <xsd:element name="UserID" type="com:IDType"/>
+  <xsd:element name="MaturityDate" type="com:DateType"/>
+  <xsd:element name="CurrentInterestRate" type="com:RateType"/>
+  <xsd:element name="InterestRate" type="com:RateType"/>
+  <xsd:element name="TenorValue" type="com:IntegerType"/>
+  <xsd:element name="InterestAccrued" type="com:IntegerType"/>
+  <xsd:element name="InterestToDate" type="com:StringType"/>
+  <xsd:element name="SettlementCurrency" type="com:CodeType"/>
+  <xsd:element name="FundingAccount" type="com:IDType"/>
+  <xsd:element name="PaymentFrequency" type="com:IDType"/>
+  <xsd:element name="Original_Amount" type="com:IntegerType"/>
+  <xsd:element name="OutStanding_Amount" type="com:IntegerType"/>
+  <xsd:element name="PastDueAmount" type="com:IntegerType"/>
+  <xsd:element name="LastPaymentAmount" type="com:IntegerType"/>
+  <xsd:element name="LastPaymentReceivedDate" type="com:DateType"/>
+  <xsd:element name="TotalNumberofInstallments" type="com:IntegerType"/>
+  <xsd:element name="InstallmentsPaid" type="com:IntegerType"/>
+  <xsd:element name="NextPaymentDate" type="com:DateType"/>
+  <xsd:element name="DisbursementAccount" type="com:IDType"/>
+  <xsd:element name="InterestRepaymentAccount" type="com:IDType"/>
+  <xsd:element name="Tenure" type="com:IDType"/>
+  <xsd:element name="ApprovedLimit" type="com:IntegerType"/>
+  <xsd:element name="NextPrincipalDueDate" type="com:DateType"/>
+  <xsd:element name="NextInterestDueDate" type="com:DateType"/>
+  <xsd:element name="NoofDelayed_Payments" type="com:IntegerType"/>
+  <xsd:element name="DisbursedAmount" type="com:IntegerType"/>
+  <xsd:element name="AccountClosureFlag" type="com:CodeType"/>
+  <xsd:element name="PostedDateTime" type="com:DateTimeType"/>
+  <xsd:element name="MaturityInstructions" type="com:TextType"/>
+  <xsd:element name="ClosureDate" type="com:DateType"/>
+  <xsd:element name="LoanType" type="com:CodeType"/>
+  <xsd:element name="LoanProducts" type="com:StringType"/>
+  <xsd:element name="LoanAmount" type="com:AmountType"/>
+  <xsd:element name="LoanPeriod" type="com:NumericType"/>
+  <xsd:element name="ResponseCode" type="com:StringType"/>
+  <xsd:element name="EffectiveInterestRate" type="com:NumericType"/>
+  <xsd:element name="Fees" type="com:NumericType"/>
+  <xsd:element name="MinimumLoanTerm" type="com:NumericType"/>
+  <xsd:element name="MaximumLoanTerm" type="com:NumericType"/>
+  <xsd:element name="MaxCreditLimitAmnt" type="com:AmountType"/>
+  <xsd:element name="MinCreditLimitAmnt" type="com:AmountType"/>
+  <xsd:element name="AffordableMonthlyRepayment" type="com:AmountType"/>
+  <xsd:element name="MaximumAffordableLoanAmount" type="com:AmountType"/>
+  <xsd:element name="MinimumLoanAmount" type="com:AmountType"/>
+  <xsd:element name="EazzyLoanLimit" type="com:NumericType"/>
+  <xsd:element name="MaxPLLimitAmnt" type="com:AmountType"/>
+  <xsd:element name="MaxCCLimitAmnt" type="com:AmountType"/>
+  <xsd:element name="MaxPLInstallment" type="com:NumericType"/>
+  <xsd:element name="SchemeCode" type="com:StringType"/>
+  <xsd:element name="AllowMarketing" type="com:StringType"/>
+  <xsd:element name="RepaymentStartDate" type="com:IntegerType"/>
+  <xsd:element name="RepaymentEndDate" type="com:IntegerType"/>
+  <xsd:element name="ResidentialStatus" type="com:StringType"/>
+  <xsd:element name="TimeAtAdressYY" type="com:IntegerType"/>
+  <xsd:element name="TimeAtAdressMM" type="com:IntegerType"/>
+  <xsd:element name="ODBalance" type="com:NumericType"/>
+  <xsd:element name="CCardLimit" type="com:NumericType"/>
+  <xsd:element name="UnsecInstallmLimit" type="com:NumericType"/>
+  <xsd:element name="OverdraftLimit" type="com:NumericType"/>
+  <xsd:element name="RiskGrading" type="com:StringType"/>
+  <xsd:element name="PolicyRules" type="com:StringType"/>
+  <xsd:element name="LoanDecision" type="com:TextType"/>
+  <xsd:element name="AccountCreateStatus" type="com:StringType"/>
+  <xsd:element name="NewAccOpened" type="com:StringType"/>
+  <xsd:element name="MerchantReferenceNumber" type="com:StringType"/>
+  <xsd:element name="MerchantID" type="com:StringType"/>
+  <xsd:element name="ClientContribution" type="com:NumericType"/>
+  <xsd:element name="Period" type="com:IntegerType"/>
+  <xsd:element name="AverageBalance" type="com:IntegerType"/>
+  <xsd:element name="AccountDespatchCode" type="com:CodeType"/>
+  <xsd:element name="CalenderType" type="com:CodeType"/>
+  <xsd:element name="StmtDuration" type="com:CodeType"/>
+  <xsd:element name="WeekDay" type="com:CodeType"/>
+  <xsd:element name="WeekNum" type="com:CodeType"/>
+  <xsd:element name="StartDay" type="com:StringType"/>
+  <xsd:element name="HolidaytStatus" type="com:CodeType"/>
+  <xsd:element name="AccountStmtCode" type="com:CodeType"/>
+  <xsd:element name="StatementFrequency" type="StatementFrequencyType"/>
+  <xsd:element name="EndOfTransactionBalanceMethod" type="com:StringType"/>
+  <xsd:element name="DebitInterestMethodIndicator" type="com:TextType"/>
+  <xsd:element name="CorporateRepresentativeSigFlag" type="com:TextType"/>
+  <xsd:element name="MinimumStatementRequiredIndicator" type="com:TextType"/>
+  <xsd:element name="DebitIntPrenotificationIndicator" type="com:TextType"/>
+  <xsd:element name="GeneralLedgerSubHeadCode" type="com:CodeType"/>
+  <xsd:element name="GeneralLedgerSubHeadCurrency" type="com:CodeType"/>
+  <xsd:element name="StatementMode" type="com:CodeType"/>
+  <xsd:element name="AccountStatementNextPrintDate" type="com:DateType"/>
+  <xsd:element name="SecurityCode" type="com:StringType"/>
+  <xsd:element name="RecordDeleteIndicator" type="com:StringType"/>
+  <xsd:element name="SecurityPercentage" type="com:StringType"/>
+  <xsd:element name="DebtSeniority" type="com:StringType"/>
+  <xsd:element name="SecurityCodeDescription" type="com:StringType"/>
+  <xsd:element name="InterfaceCode" type="com:StringType"/>
+  <xsd:element name="ConsumerReferenceNumber" type="com:StringType"/>
+  <xsd:element name="AccountStatus" type="com:CodeType"/>
+  <xsd:element name="Account" type="AccountType"/>  
+  <xsd:element name="InstallmentAmount" type="com:AmountType"/>
+  <xsd:element name="InstallmentPeriod" type="com:NumericType"/>
+  
+  <xsd:element name="JijengeAccount">
+  <xsd:complexType>
+  <xsd:sequence>
+  <xsd:element ref="InstallmentAmount" minOccurs="0"/>
+  <xsd:element ref="InstallmentPeriod" minOccurs="0"/>
+  </xsd:sequence>
+  </xsd:complexType>
+  </xsd:element>
+  <!--======================
+  ================================================-->
+  <!--============= Account =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="AccountType">
+    <xsd:sequence>
+      <xsd:element ref="bio:Biometric" minOccurs="0"/>
+      <xsd:element ref="fileo:File" minOccurs="0"/>
+      <xsd:element ref="com:AccountIdentifier" minOccurs="0"/>
+      <xsd:element ref="AccountType" minOccurs="0"/>
+      <xsd:element ref="AccountSubType" minOccurs="0"/>
+      <xsd:element ref="AccountOpenDate" minOccurs="0"/>
+      <xsd:element ref="AccountOwnership" minOccurs="0"/>
+      <xsd:element ref="ModeOfOperation" minOccurs="0"/>
+      <xsd:element ref="AccountStmtCode" minOccurs="0"/>
+      <xsd:element ref="StatementFrequency" minOccurs="0"/>
+      <xsd:element ref="AccountDespatchCode" minOccurs="0"/>
+      <xsd:element ref="custeo:Customer" minOccurs="0"/>
+      <xsd:element ref="com:Balance" minOccurs="0"/>
+      <xsd:element ref="NoCreditStatus" minOccurs="0"/>
+      <xsd:element ref="NoDebitStatus" minOccurs="0"/>
+      <xsd:element ref="DelinquencyStatus" minOccurs="0"/>
+      <xsd:element ref="com:RelationshipManagerName" minOccurs="0"/>
+      <xsd:element ref="com:RelationshipManagerEmailID" minOccurs="0"/>
+      <xsd:element ref="com:Amount" minOccurs="0"/>
+      <xsd:element ref="com:MobileWalletVendor" minOccurs="0"/>
+      <xsd:element ref="com:TransactionReferenceNumber" minOccurs="0"/>
+      <xsd:element ref="UserID" minOccurs="0"/>
+      <xsd:element ref="MaturityDate" minOccurs="0"/>
+      <xsd:element ref="CurrentInterestRate" minOccurs="0"/>
+      <xsd:element ref="InterestRate" minOccurs="0"/>
+      <xsd:element ref="TenorValue" minOccurs="0"/>
+      <xsd:element ref="com:Remarks" minOccurs="0"/>
+      <xsd:element ref="InterestToDate" minOccurs="0"/>
+      <xsd:element ref="InterestAccrued" minOccurs="0"/>
+      <xsd:element ref="SettlementCurrency" minOccurs="0"/>
+      <xsd:element ref="FundingAccount" minOccurs="0"/>
+      <xsd:element ref="PaymentFrequency" minOccurs="0"/>
+      <xsd:element ref="Original_Amount" minOccurs="0"/>
+      <xsd:element ref="OutStanding_Amount" minOccurs="0"/>
+      <xsd:element ref="PastDueAmount" minOccurs="0"/>
+      <xsd:element ref="LastPaymentAmount" minOccurs="0"/>
+      <xsd:element ref="LastPaymentReceivedDate" minOccurs="0"/>
+      <xsd:element ref="TotalNumberofInstallments" minOccurs="0"/>
+      <xsd:element ref="InstallmentsPaid" minOccurs="0"/>
+      <xsd:element ref="NextPaymentDate" minOccurs="0"/>
+      <xsd:element ref="DisbursementAccount" minOccurs="0"/>
+      <xsd:element ref="InterestRepaymentAccount" minOccurs="0"/>
+      <xsd:element ref="Tenure" minOccurs="0"/>
+      <xsd:element ref="ApprovedLimit" minOccurs="0"/>
+      <xsd:element ref="NextPrincipalDueDate" minOccurs="0"/>
+      <xsd:element ref="NextInterestDueDate" minOccurs="0"/>
+      <xsd:element ref="NoofDelayed_Payments" minOccurs="0"/>
+      <xsd:element ref="DisbursedAmount" minOccurs="0"/>
+      <xsd:element ref="AccountClosureFlag" minOccurs="0"/>
+      <xsd:element ref="com:StartDate" minOccurs="0"/>
+      <xsd:element ref="com:EndDate" minOccurs="0"/>
+      <xsd:element ref="com:Item" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="PostedDateTime" minOccurs="0"/>
+      <xsd:element ref="MaturityInstructions" minOccurs="0"/>
+      <xsd:element ref="com:TotalAmount" minOccurs="0"/>
+      <xsd:element ref="ClosureDate" minOccurs="0"/>
+      <xsd:element ref="LoanType" minOccurs="0"/>
+      <xsd:element ref="LoanProducts" minOccurs="0"/>
+      <xsd:element ref="LoanAmount" minOccurs="0"/>
+      <xsd:element ref="LoanPeriod" minOccurs="0"/>
+      <xsd:element ref="ResponseCode" minOccurs="0"/>
+      <xsd:element ref="EffectiveInterestRate" minOccurs="0"/>
+      <xsd:element ref="Fees" minOccurs="0"/>
+      <xsd:element ref="MinimumLoanTerm" minOccurs="0"/>
+      <xsd:element ref="MaximumLoanTerm" minOccurs="0"/>
+      <xsd:element ref="MaxCreditLimitAmnt" minOccurs="0"/>
+      <xsd:element ref="MinCreditLimitAmnt" minOccurs="0"/>
+      <xsd:element ref="MaximumAffordableLoanAmount" minOccurs="0"/>
+      <xsd:element ref="MinimumLoanAmount" minOccurs="0"/>
+      <xsd:element ref="EazzyLoanLimit" minOccurs="0"/>
+      <xsd:element ref="MaxPLLimitAmnt" minOccurs="0"/>
+      <xsd:element ref="MaxCCLimitAmnt" minOccurs="0"/>
+      <xsd:element ref="MaxPLInstallment" minOccurs="0"/>
+      <xsd:element ref="SchemeCode" minOccurs="0"/>
+      <xsd:element ref="AllowMarketing" minOccurs="0"/>
+      <xsd:element ref="RepaymentStartDate" minOccurs="0"/>
+      <xsd:element ref="RepaymentEndDate" minOccurs="0"/>
+      <xsd:element ref="ResidentialStatus" minOccurs="0"/>
+      <xsd:element ref="TimeAtAdressYY" minOccurs="0"/>
+      <xsd:element ref="TimeAtAdressMM" minOccurs="0"/>
+      <xsd:element ref="com:GoodsCategory" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="ODBalance" minOccurs="0"/>
+      <xsd:element ref="CCardLimit" minOccurs="0"/>
+      <xsd:element ref="UnsecInstallmLimit" minOccurs="0"/>
+      <xsd:element ref="OverdraftLimit" minOccurs="0"/>
+      <xsd:element ref="RiskGrading" minOccurs="0"/>
+      <xsd:element ref="PolicyRules" minOccurs="0"/>
+      <xsd:element ref="LoanDecision" minOccurs="0"/>
+      <xsd:element ref="AccountCreateStatus" minOccurs="0"/>
+      <xsd:element ref="NewAccOpened" minOccurs="0"/>
+      <xsd:element ref="MerchantReferenceNumber" minOccurs="0"/>
+      <xsd:element ref="MerchantID" minOccurs="0"/>
+      <xsd:element ref="ClientContribution" minOccurs="0"/>
+      <xsd:element ref="Period" minOccurs="0"/>
+      <xsd:element ref="AverageBalance" minOccurs="0"/>
+      <xsd:element ref="EndOfTransactionBalanceMethod" minOccurs="0"/>
+      <xsd:element ref="DebitInterestMethodIndicator" minOccurs="0"/>
+      <xsd:element ref="CorporateRepresentativeSigFlag" minOccurs="0"/>
+      <xsd:element ref="MinimumStatementRequiredIndicator" minOccurs="0"/>
+      <xsd:element ref="DebitIntPrenotificationIndicator" minOccurs="0"/>
+      <xsd:element ref="GeneralLedgerSubHeadCode" minOccurs="0"/>
+      <xsd:element ref="GeneralLedgerSubHeadCurrency" minOccurs="0"/>
+      <xsd:element ref="StatementMode" minOccurs="0"/>
+      <xsd:element ref="AccountStatementNextPrintDate" minOccurs="0"/>
+      <xsd:element ref="com:BankName" minOccurs="0"/>
+      <xsd:element ref="com:BranchName" minOccurs="0"/>
+      <xsd:element ref="com:NomineeRegistrationNumber" minOccurs="0"/>
+      <xsd:element ref="com:NomineeName" minOccurs="0"/>
+      <xsd:element ref="com:NomineeMinorIndicator" minOccurs="0"/>
+      <xsd:element ref="com:NomineeBirthDate" minOccurs="0"/>
+      <xsd:element ref="com:NomineePercentValue" minOccurs="0"/>
+      <xsd:element ref="com:RelationType" minOccurs="0"/>
+      <xsd:element ref="com:FaxNumber" minOccurs="0"/>
+      <xsd:element ref="com:TelexNumber" minOccurs="0"/>
+      <xsd:element ref="com:RelatedPartyType" minOccurs="0"/>
+      <xsd:element ref="com:RelatedPartyTypeDesc" minOccurs="0"/>
+      <xsd:element ref="com:RelatedPartyCode" minOccurs="0"/>
+      <xsd:element ref="com:RelatedPartyCodeDesc" minOccurs="0"/>
+      <xsd:element ref="SecurityCode" minOccurs="0"/>
+      <xsd:element ref="SecurityCodeDescription" minOccurs="0"/>
+      <xsd:element ref="InterfaceCode" minOccurs="0"/>
+      <xsd:element ref="ConsumerReferenceNumber" minOccurs="0"/>
+      <xsd:element ref="com:TransactionDateTime" minOccurs="0"/>
+      <xsd:element ref="com:TenorDays" minOccurs="0"/>
+      <xsd:element ref="com:TenorMonths" minOccurs="0"/>
+      <xsd:element ref="com:GuardianCode" minOccurs="0"/>
+      <xsd:element ref="com:GuardianName" minOccurs="0"/>
+      <xsd:element ref="RecordDeleteIndicator" minOccurs="0"/>
+      <xsd:element ref="SecurityPercentage" minOccurs="0"/>
+      <xsd:element ref="DebtSeniority" minOccurs="0"/>
+      <xsd:element ref="AccountStatus" minOccurs="0"/>
+	  <xsd:element ref="JijengeAccount" minOccurs="0"/>	  
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StatementFrequencyType">
+    <xsd:sequence>
+      <xsd:element ref="CalenderType" minOccurs="0"/>
+      <xsd:element ref="StmtDuration" minOccurs="0"/>
+      <xsd:element ref="StartDay" minOccurs="0"/>
+      <xsd:element ref="WeekDay" minOccurs="0"/>
+      <xsd:element ref="WeekNum" minOccurs="0"/>
+      <xsd:element ref="HolidaytStatus" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--======================================================================-->
+  <!--============= ESB Message =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="com:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Account" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Account" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--======================================================================-->
+  <!--============= Action Codes =============-->
+  <!--======================================================================-->
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CreateSBAccount"/>
+      <xsd:enumeration value="CreateCAAccount"/>
+      <xsd:enumeration value="QueryRetailAccountDetailByID"/>
+      <xsd:enumeration value="QueryRetailAccountSummaryByID"/>
+      <xsd:enumeration value="QueryRetailAccountStatusByID"/>
+      <xsd:enumeration value="QueryRetailAccountBalanceByID"/>
+	  <xsd:enumeration value="QueryBalanceSummaryByID"/>
+	  
+      <xsd:enumeration value="QueryMobileAccountSummaryByPhone"/>
+      <xsd:enumeration value="QueryRetailAccountInquiryByNationalID"/>
+      <xsd:enumeration value="LoanAccountMaster"/>
+      <xsd:enumeration value="DepositAccountMaster"/>
+      <xsd:enumeration value="AccountMaster"/>
+      <xsd:enumeration value="AverageBalance"/>
+      <xsd:enumeration value="InternalAccountValidation"/>
+      <xsd:enumeration value="InternalAccountValidationFile"/>
+      <xsd:enumeration value="AverageBalanceFile"/>
+      <xsd:enumeration value="QueryLoan"/>
+      <xsd:enumeration value="CreateLoanAccount"/>
+      <xsd:enumeration value="QueryVirtualAccountStatus"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

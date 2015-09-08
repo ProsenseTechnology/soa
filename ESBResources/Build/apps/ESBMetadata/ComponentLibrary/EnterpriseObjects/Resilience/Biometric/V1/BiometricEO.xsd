@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+			xmlns:empeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+	<xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1" schemaLocation="../../../Parties/Employee/V1/EmployeeEO.xsd"/> 	
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="BiometricType" type="com:CodeType"/>
+    <xsd:element name="BiometricStatus" type="com:CodeType"/>
+    <xsd:element name="Biometric" type="BiometricType"/>
+    <xsd:element name="BiometricImage" type="BiometricImageType"/>
+    <xsd:complexType name="BiometricImageType">
+        <xsd:sequence>
+            <xsd:element ref="com:FingerPrints" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Biometric ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="BiometricType">
+        <xsd:sequence>
+            <xsd:element ref="com:BiometricIdentifier" minOccurs="0"/>
+            <xsd:element ref="com:BiometricUserIdentifier" minOccurs="0"/>
+            <xsd:element ref="BiometricImage" minOccurs="0"/>
+            <xsd:element ref="com:CustomerIdentifier" minOccurs="0"/>
+            <xsd:element ref="BiometricType" minOccurs="0"/>
+            <xsd:element ref="BiometricStatus" minOccurs="0"/>
+            <xsd:element ref="empeo:Employee" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="Biometric" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="Biometric" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="EnrollBioImage"/>
+            <xsd:enumeration value="ValidateBioImage"/>
+            <xsd:enumeration value="EnrollCIFWithImageId"/>
+            <xsd:enumeration value="ValidateImageIdForCIF"/>
+            <xsd:enumeration value="VerifyBioImage"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

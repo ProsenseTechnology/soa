@@ -1,0 +1,10 @@
+<?xml version = '1.0'?>
+<jobset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="IncomingFilesJobSet" execution-mode="PARALLEL" first-step=""
+        xmlns="http://xmlns.oracle.com/scheduler">
+    <description/>
+    <display-name>IncomingFilesJobSet</display-name>
+    <parameter-list>
+        <parameter name="SYS_effectiveApplication" data-type="string">EssNativeHostingApp</parameter>
+    </parameter-list>
+    <steps/>
+</jobset>

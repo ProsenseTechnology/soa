@@ -1,0 +1,92 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<process name="CreateCustomer" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer" xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:ess="http://xmlns.oracle.com/scheduler" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+         xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1">
+    <import ui:processWSDL="true" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1" location="../WSDLs/CustomerESWrapper.wsdl"
+            importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="CreateCustomerPL" partnerLinkType="es:CreateCustomerPLType" myRole="CreateCustomerProvider"/>
+        <partnerLink name="CustomerProvRouterPL" partnerLinkType="es:CustomerProvRouterPLType" partnerRole="CustomerESProvider"/>
+    </partnerLinks>
+    <variables>
+        <variable name="RequestVariable" messageType="es:CreateRqMsg"/>
+        <variable name="ResponseVariable" messageType="es:CreateRsMsg"/>
+        <variable name="VerifyCustomerRequest" messageType="es:UpdateRqMsg"/>
+        <variable name="VerifyCustomerResponse" messageType="es:UpdateRsMsg"/>
+    </variables>
+    <faultHandlers>
+        <catchAll>
+            <sequence name="FaultSequence">
+                <assign name="AssignFault">
+                    <copy>
+                        <from>"ESB-1002001"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Code</to>
+                    </copy>
+                    <copy>
+                        <from>"Failure"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Type</to>
+                    </copy>
+                    <copy>
+                        <from>ora:getFaultAsString()</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Text</to>
+                    </copy>
+                </assign>
+                <reply name="ReplyResponse" partnerLink="CreateCustomerPL" portType="es:CreateCustomerPort" operation="execute" variable="ResponseVariable"/>
+            </sequence>
+        </catchAll>
+    </faultHandlers>
+    <sequence name="MainSequence">
+        <receive name="ReceiveRequest" partnerLink="CreateCustomerPL" portType="es:CreateCustomerPort" operation="execute" variable="RequestVariable"
+                 createInstance="yes"/>
+        <invoke name="InvokeCustomerProv" partnerLink="CustomerProvRouterPL" portType="es:CustomerESPort" operation="create" inputVariable="RequestVariable"
+                outputVariable="ResponseVariable" bpelx:invokeAsDetail="no"/>
+        <if name="If1">
+            <condition>$ResponseVariable.payload/eo:RsData/eo:Customer/com:CustomerIdentifier/com:CustomerID != ""</condition>
+            <sequence>
+                <assign name="SetVerifyCustomerRequest">
+                    <copy>
+                        <from>$RequestVariable.payload/com:MsgID</from>
+                        <to>$VerifyCustomerRequest.payload/com:MsgID</to>
+                    </copy>
+                    <copy>
+                        <from>$RequestVariable.payload/com:Source</from>
+                        <to>$VerifyCustomerRequest.payload/com:Source</to>
+                    </copy>
+                    <copy>
+                        <from>$RequestVariable.payload/com:MsgType</from>
+                        <to>$VerifyCustomerRequest.payload/com:MsgType</to>
+                    </copy>
+                    <copy>
+                        <from>$RequestVariable.payload/com:Service</from>
+                        <to>$VerifyCustomerRequest.payload/com:Service</to>
+                    </copy>
+                    <copy>
+                        <from>"VerifyCustomerDetails"</from>
+                        <to>$VerifyCustomerRequest.payload/eo:RqData/@actionCode</to>
+                    </copy>
+                    <copy>
+                        <from>$ResponseVariable.payload/eo:RsData/eo:Customer/com:CustomerIdentifier/com:CustomerID</from>
+                        <to>$VerifyCustomerRequest.payload/eo:RqData/eo:Customer/com:CustomerIdentifier/com:CustomerID</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokeVerifyCustomer" bpelx:invokeAsDetail="no" partnerLink="CustomerProvRouterPL"
+                        portType="es:CustomerESPort" operation="update" inputVariable="VerifyCustomerRequest"
+                        outputVariable="VerifyCustomerResponse"/>
+            </sequence>
+            <else>
+                <empty name="Empty1"/>
+            </else>
+        </if>
+        <reply name="ReplyResponse" partnerLink="CreateCustomerPL" portType="es:CreateCustomerPort" operation="execute" variable="ResponseVariable"/>
+    </sequence>
+</process>

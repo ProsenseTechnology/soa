@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Transfer/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:rcom="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Transfer/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+              schemaLocation="../../../../EnterpriseObjects/Transactions/Transfer/V1/TransferEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+              schemaLocation="../../Common/V1/CommonComponents.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="InstructedAmount" type="rcom:AmountType"/>
+  <xsd:element name="TransactionType" type="com:CodeType"/>
+  <xsd:element name="Transfer" type="TransferType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Transfer ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="TransactionType">
+    <xsd:sequence>
+      <xsd:element name="TransactionTypeCode" type="com:CodeType"/>
+      <xsd:element name="TransferReferenceNumber" type="com:IDType"/>
+      <xsd:element ref="com:BankID"/>
+      <xsd:element ref="com:AccountID"/>
+      <xsd:element ref="TransactionType" minOccurs="0"/>
+      <xsd:element name="TransactionDescription" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="TransactionAmount" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="AccountCurrency" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="ValueDate" type="com:StringType" minOccurs="0"/>
+      <xsd:element ref="com:Remarks" minOccurs="0"/>
+      <xsd:element name="Rate" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="TransactionCurrency" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="RateCode" type="com:CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TransferType">
+    <xsd:sequence>
+      <xsd:element name="TransferIdentifier" type="rcom:TransferIdentifierType" minOccurs="0"/>
+      <xsd:element ref="eo:TransferType" minOccurs="0"/>
+      <xsd:element name="Transaction" type="TransactionType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="eo:PurposeCode" minOccurs="0"/>
+      <xsd:element ref="eo:ChargeEventID" minOccurs="0"/>
+      <xsd:element ref="eo:ChargeOption" minOccurs="0"/>
+      <xsd:element ref="eo:WaiveChargesIndicator" minOccurs="0"/>
+      <xsd:element ref="eo:TransferOrderType" minOccurs="0"/>
+      <xsd:element ref="rcom:Amount" minOccurs="0"/>
+      <xsd:element ref="InstructedAmount" minOccurs="0"/>
+      <xsd:element ref="rcom:ChargeAmount" minOccurs="0"/>
+      <xsd:element ref="com:ValueDate" minOccurs="0"/>
+      <xsd:element ref="eo:DebitValueDate" minOccurs="0"/>
+      <xsd:element ref="eo:DebitExecutionDate" minOccurs="0"/>
+      <xsd:element ref="eo:CreditValueDate" minOccurs="0"/>
+      <xsd:element ref="eo:CreditExecutionDate" minOccurs="0"/>
+      <xsd:element ref="rcom:Rate" minOccurs="0"/>
+      <xsd:element ref="com:Remarks" minOccurs="0"/>
+      <xsd:element ref="eo:TransferReferenceNumber" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref="com:PayFromAccount" minOccurs="0"/>
+          <xsd:element ref="com:PayeeAccount" minOccurs="0"/>
+          <xsd:element ref="com:CountryCode" minOccurs="0"/>
+          <xsd:element ref="eo:IntermediaryIndicator" minOccurs="0"/>
+          <xsd:element ref="eo:IntermediaryAccount" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="com:MobileWalletVendor" minOccurs="0"/>
+          <xsd:element ref="com:PayFromMobileWallet" minOccurs="0"/>
+          <xsd:element ref="com:PayeeMobileWallet" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element ref="TransactionType" minOccurs="0"/>
+      <xsd:element ref="eo:TransferStatus" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="rcom:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Transfer" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Transfer" minOccurs="0"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

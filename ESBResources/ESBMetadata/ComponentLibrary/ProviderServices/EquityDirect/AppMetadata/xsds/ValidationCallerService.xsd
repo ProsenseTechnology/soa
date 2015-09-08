@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Oracle JAX-WS 2.1.5. -->
+<xs:schema xmlns:tns="http://equitybank.co.ke/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://equitybank.co.ke/">
+    <xs:element name="getBillDetails" type="tns:getBillDetails"/>
+    <xs:element name="getBillDetailsObj" type="tns:getBillDetailsObj"/>
+    <xs:element name="getBillDetailsObjResponse" type="tns:getBillDetailsObjResponse"/>
+    <xs:element name="getBillDetailsResponse" type="tns:getBillDetailsResponse"/>
+    <xs:element name="getValidation" type="tns:getValidation"/>
+    <xs:element name="getValidationObj" type="tns:getValidationObj"/>
+    <xs:element name="getValidationObjResponse" type="tns:getValidationObjResponse"/>
+    <xs:element name="getValidationResponse" type="tns:getValidationResponse"/>
+    <xs:complexType name="getValidation">
+        <xs:sequence>
+            <xs:element name="billerCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="billNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="amount" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getValidationResponse">
+        <xs:sequence>
+            <xs:element name="return" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getBillDetails">
+        <xs:sequence>
+            <xs:element name="billerCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="billNumber" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getBillDetailsResponse">
+        <xs:sequence>
+            <xs:element name="return" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getValidationObj">
+        <xs:sequence>
+            <xs:element name="billerCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="billNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="amount" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getValidationObjResponse">
+        <xs:sequence>
+            <xs:element name="return" type="tns:results" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="results">
+        <xs:sequence>
+            <xs:element name="amount" type="xs:string" minOccurs="0"/>
+            <xs:element name="billName" type="xs:string" minOccurs="0"/>
+            <xs:element name="billNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="billStatus" type="xs:string" minOccurs="0"/>
+            <xs:element name="created_on" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="currency_code" type="xs:string" minOccurs="0"/>
+            <xs:element name="customerName" type="xs:string" minOccurs="0"/>
+            <xs:element name="customerRefNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="department_code" type="xs:string" minOccurs="0"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+            <xs:element name="doc_ref" type="xs:string" minOccurs="0"/>
+            <xs:element name="dueDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="expiryDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="message" type="xs:string" minOccurs="0"/>
+            <xs:element name="paidAmount" type="xs:string" minOccurs="0"/>
+            <xs:element name="region_code" type="xs:string" minOccurs="0"/>
+            <xs:element name="slippaymentcode" type="xs:string" minOccurs="0"/>
+            <xs:element name="station_Code" type="xs:string" minOccurs="0"/>
+            <xs:element name="status" type="xs:boolean"/>
+            <xs:element name="system_code" type="xs:string" minOccurs="0"/>
+            <xs:element name="tax_type_desc" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getBillDetailsObj">
+        <xs:sequence>
+            <xs:element name="billerCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="billNumber" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getBillDetailsObjResponse">
+        <xs:sequence>
+            <xs:element name="return" type="tns:results" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,23 @@
+<adapter-config name="EBizAppsAdapter" adapter="apps" wsdlLocation="EBZ_Apps_Adapter.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+    <connection-factory UIConnectionName="EBiz" location="eis/Apps/EBiz" UIConcurrentPgmName="" UIOracleAppType="DBOBJECT"/>
+    <endpoint-interaction portType="EBizAppsAdapterPort" operation="createProject">
+        <interaction-spec className="oracle.tip.adapter.apps.AppsStoredProcedureInteractionSpec">
+            <property name="SchemaName" value="APPS"/>
+            <property name="PackageName" value="XXPA_PROJECT"/>
+            <property name="ProcedureName" value="CREATE_PROJECT"/>
+            <property name="IRepInternalName" value="PLSQL:XXPA_PROJECT:CREATE_PROJECT"/>
+            <property name="Username" value="sysadmin"/>
+            <property name="Responsibility" value="System Administrator"/>
+        </interaction-spec>
+    </endpoint-interaction>
+    <endpoint-interaction portType="EBizAppsAdapterPort" operation="updateProject">
+        <interaction-spec className="oracle.tip.adapter.apps.AppsStoredProcedureInteractionSpec">
+            <property name="SchemaName" value="APPS"/>
+            <property name="PackageName" value="XX_ESB_XXPA_PROJECT"/>
+            <property name="ProcedureName" value="PROJECTS_UPLOADED"/>
+            <property name="IRepInternalName" value="PLSQL:XX_ESB_XXPA_PROJECT:PROJECTS_UPLOADED"/>
+            <property name="Username" value="sysadmin"/>
+            <property name="Responsibility" value="System Administrator"/>
+        </interaction-spec>
+    </endpoint-interaction>
+</adapter-config>

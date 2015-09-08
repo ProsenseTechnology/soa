@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="ESBPortalTest" soapui-version="5.0.0-m-SNAPSHOT" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="application" type="rest" basePath="/charges/rest/" definitionUrl="file:/E:/work/equitysvn/intranet/EquityWCResources/SOAPUI/charges/application.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT"/><con:endpoints><con:endpoint>http://Raman-PC:8080/</con:endpoint><con:endpoint>http://localhost:7101</con:endpoint><con:endpoint>http://localhost:8088/</con:endpoint></con:endpoints><con:resource name="chargemaster" path="chargemaster"><con:settings/><con:parameters/><con:resource name="{id}" path="1"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:long</con:type><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET - getChargeMaster" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>chargeMasterVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>chargeMasterVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request/><con:originalUri>http://localhost/charges/rest/chargemaster/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:method name="PUT - updateChargeMaster" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>chargeMasterVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>chargeMasterVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>statusVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>statusVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request><![CDATA[<chargeMasterVO>
+<id>1</id>
+<chargeType>SUBSCRIPTION</chargeType>
+<frequency>BI-ANNUAL</frequency>
+<updateBy>test2</updateBy>
+</chargeMasterVO>]]></con:request><con:originalUri>http://localhost/charges/rest/chargemaster</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="POST - createChargeMaster" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>chargeMasterVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>chargeMasterVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>longVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>longVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request><![CDATA[<chargeMasterVO>
+<chargeType>SALARY_RUN</chargeType>
+<frequency>ANNUAL</frequency>
+<createdBy>test</createdBy>
+</chargeMasterVO>]]></con:request><con:originalUri>http://localhost/charges/rest/chargemaster</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="GET - getChargeMasterList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>chargeMasterListVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>chargeMasterListVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request/><con:originalUri>http://localhost/charges/rest/chargemaster</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="accountcharges" path="accountcharges"><con:settings/><con:parameters/><con:resource name="{accountId}" path="12345"><con:settings/><con:parameters><con:parameter><con:name>accountId</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET - getAccountChargesList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>accountChargesListVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>accountChargesListVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9292</con:endpoint><con:request/><con:originalUri>http://localhost/charges/rest/accountcharges/12345</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/{accountId}/{chargeMasterId}" path="12345/1"><con:settings/><con:parameters><con:parameter><con:name>accountId</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>chargeMasterId</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:long</con:type><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET - getAccountCharges" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>accountChargesVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>accountChargesVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9292</con:endpoint><con:request/><con:originalUri>http://localhost/charges/rest/accountcharges/12345/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:method name="POST - createAccountCharges" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>accountChargesVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>accountChargesVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>statusVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>statusVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:</con:endpoint><con:request><![CDATA[<accountChargesVO>
+<accountId>12345</accountId>
+<chargeMasterId>1</chargeMasterId>
+<chargeCurrency>KES</chargeCurrency>
+<chargeOption>EMPLOYEE</chargeOption>
+<createdBy>test</createdBy>
+<waiveChargesIndicator>N</waiveChargesIndicator>
+<customerId>123456789</customerId>
+<approvedBy>approver</approvedBy>
+<chargeAmount>123.45</chargeAmount>
+<comments>test comments</comments>        
+</accountChargesVO>]]></con:request><con:originalUri>http://localhost/charges/rest/accountcharges</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="PUT - updateAccountCharges" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>accountChargesVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>accountChargesVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>statusVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>statusVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request><![CDATA[<accountChargesVO>
+<accountId>12345</accountId>
+<chargeMasterId>1</chargeMasterId>
+<chargeCurrency>USD</chargeCurrency>
+<chargeOption>EMPLOYER</chargeOption>
+<updateBy>test2</updateBy>
+<referenceNumber>12345</referenceNumber>
+<chargeStatus>SUCCESS</chargeStatus>
+<approvedBy>approver2</approvedBy>
+<chargeAmount>234.56</chargeAmount>
+<comments>test update comments</comments>        
+</accountChargesVO>]]></con:request><con:originalUri>http://localhost/charges/rest/accountcharges</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="lookup" path="lookup"><con:settings/><con:parameters/><con:resource name="chargeoption" path="chargeoption"><con:settings/><con:parameters/><con:method name="GET - getChargeOptionList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>optionListVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>optionListVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request/><con:originalUri>http://localhost/charges/rest/lookup/chargeoption</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="frequency" path="frequency"><con:settings/><con:parameters/><con:method name="GET - getFrequencyList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>optionListVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>optionListVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request/><con:originalUri>http://localhost/charges/rest/lookup/frequency</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="chargecurrency" path="chargecurrency"><con:settings/><con:parameters/><con:method name="GET - getChargeCurrencyList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>optionListVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>optionListVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request/><con:originalUri>http://localhost/charges/rest/lookup/chargecurrency</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="chargetype" path="chargetype"><con:settings/><con:parameters/><con:method name="GET - getChargeTypeList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element>optionListVO</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element>optionListVO</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request/><con:originalUri>http://localhost/charges/rest/lookup/chargetype</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="waivechargesindicator" path="waivechargesindicator"><con:settings/><con:parameters/><con:method name="Method 1" method="GET"><con:settings/><con:parameters/><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8088</con:endpoint><con:request/><con:originalUri>http://Raman-PC/charges/rest/lookup/waivechargesindicator</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:resource></con:interface><con:restMockService port="9292" path="/" host="localhost" name="REST MockService 1" docroot=""><con:settings/><con:properties/><con:restMockAction name="/charges/rest/chargemaster" method="PUT" resourcePath="/charges/rest/chargemaster"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Success Response" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<statusVO>
+   <status>SUCCESS</status>
+   <message>Update charge master successful</message>
+</statusVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/chargemaster" method="POST" resourcePath="/charges/rest/chargemaster"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Success Response" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<longVO>
+   <status>SUCCESS</status>
+   <message>Create charge master successful</message>
+   <value>1</value>
+</longVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/chargemaster" method="GET" resourcePath="/charges/rest/chargemaster"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Success Response" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<chargeMasterListVO>
+   <status>SUCCESS</status>
+   <message>Get charge master list successful</message>
+   <chargeMasterVO>
+      <id>2</id>
+      <chargeType>SALARY_RUN</chargeType>
+      <createdBy>test</createdBy>
+      <frequency>ANNUAL</frequency>
+      <createDate>2015-05-28T10:48:06+03:00</createDate>
+   </chargeMasterVO>
+   <chargeMasterVO>
+      <id>1</id>
+      <chargeType>SUBSCRIPTION</chargeType>
+      <createdBy>test</createdBy>
+      <frequency>BI-ANNUAL</frequency>
+      <createDate>2015-05-27T17:51:11+03:00</createDate>
+      <lastUpdated>2015-05-28T10:32:45+03:00</lastUpdated>
+      <updateBy>test2</updateBy>
+   </chargeMasterVO>
+</chargeMasterListVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/chargemaster/1" method="GET" resourcePath="/charges/rest/chargemaster/1"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Success Response" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<chargeMasterVO>
+   <status>SUCCESS</status>
+   <message>Get charge master successful</message>
+   <id>1</id>
+   <chargeType>SUBSCRIPTION</chargeType>
+   <createdBy>test</createdBy>
+   <frequency>BI-ANNUAL</frequency>
+   <createDate>2015-05-27T17:51:11+03:00</createDate>
+   <lastUpdated>2015-05-28T10:32:45+03:00</lastUpdated>
+   <updateBy>test2</updateBy>
+</chargeMasterVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/accountcharges" method="POST" resourcePath="/charges/rest/accountcharges"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Success Response" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<statusVO>
+   <status>SUCCESS</status>
+   <message>Create account charges successful</message>
+</statusVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/accountcharges" method="PUT" resourcePath="/charges/rest/accountcharges"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Success Response" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<statusVO>
+   <status>SUCCESS</status>
+   <message>Update account charges successful</message>
+</statusVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/accountcharges/" method="GET" resourcePath="/charges/rest/accountcharges/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Success Response" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<accountChargesListVO>
+   <status>SUCCESS</status>
+   <message>Get account charges list successful</message>
+   <accountChargesVO>
+      <accountId>12345</accountId>
+      <chargeMasterId>2</chargeMasterId>
+      <chargeCurrency>KES</chargeCurrency>
+      <chargeOption>EMPLOYEE</chargeOption>
+      <createdBy>test</createdBy>
+      <createDate>2015-07-20T17:31:34+03:00</createDate>
+      <waiveChargesIndicator>N</waiveChargesIndicator>
+      <customerId>123456789</customerId>
+      <approvedBy>approver</approvedBy>
+      <approvedStatus>APPROVED</approvedStatus>
+      <chargeAmount>123.45</chargeAmount>
+      <comments>test comments</comments>
+   </accountChargesVO>
+   <accountChargesVO>
+      <accountId>12345</accountId>
+      <chargeMasterId>1</chargeMasterId>
+      <chargeCurrency>USD</chargeCurrency>
+      <chargeOption>EMPLOYER</chargeOption>
+      <createdBy>test</createdBy>
+      <createDate>2015-07-20T17:40:03+03:00</createDate>
+      <lastUpdated>2015-07-20T17:40:15+03:00</lastUpdated>
+      <updateBy>test2</updateBy>
+      <waiveChargesIndicator>N</waiveChargesIndicator>
+      <referenceNumber>12345</referenceNumber>
+      <chargeStatus>SUCCESS</chargeStatus>
+      <customerId>123456789</customerId>
+      <approvedBy>approver2</approvedBy>
+      <approvedStatus>APPROVED</approvedStatus>
+      <chargeAmount>234.56</chargeAmount>
+      <comments>test update comments</comments>
+   </accountChargesVO>
+</accountChargesListVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/lookup/chargeoption" method="GET" resourcePath="/charges/rest/lookup/chargeoption"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<optionListVO>
+   <status>SUCCESS</status>
+   <message>Get charge option successful</message>
+   <optionVO>
+      <code>EMPLOYEE</code>
+      <description>Employee</description>
+      <type>chargeOption</type>
+   </optionVO>
+   <optionVO>
+      <code>EMPLOYER</code>
+      <description>Employer</description>
+      <type>chargeOption</type>
+   </optionVO>
+   <optionVO>
+      <code>SHARE</code>
+      <description>Share</description>
+      <type>chargeOption</type>
+   </optionVO>
+</optionListVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/lookup/frequency" method="GET" resourcePath="/charges/rest/lookup/frequency"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<optionListVO>
+   <status>SUCCESS</status>
+   <message>Get frequency successful</message>
+   <optionVO>
+      <code>ANNUAL</code>
+      <description>Annual</description>
+      <type>frequency</type>
+   </optionVO>
+   <optionVO>
+      <code>BI_ANNUAL</code>
+      <description>Bi Annual</description>
+      <type>frequency</type>
+   </optionVO>
+   <optionVO>
+      <code>MONTHLY</code>
+      <description>Monthly</description>
+      <type>frequency</type>
+   </optionVO>
+   <optionVO>
+      <code>QUARTERLY</code>
+      <description>Quarterly</description>
+      <type>frequency</type>
+   </optionVO>
+</optionListVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/lookup/chargecurrency" method="GET" resourcePath="/charges/rest/lookup/chargecurrency"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<optionListVO>
+   <status>SUCCESS</status>
+   <message>Get charge currency successful</message>
+   <optionVO>
+      <code>KES</code>
+      <description>Kenyan Shilling</description>
+      <type>chargeCurrency</type>
+   </optionVO>
+   <optionVO>
+      <code>USD</code>
+      <description>US Dollar</description>
+      <type>chargeCurrency</type>
+   </optionVO>
+</optionListVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/lookup/chargetype" method="GET" resourcePath="/charges/rest/lookup/chargetype"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<optionListVO>
+   <status>SUCCESS</status>
+   <message>Get charge type successful</message>
+   <optionVO>
+      <code>EFT</code>
+      <description>Electronic Fund Transfer</description>
+      <type>chargeType</type>
+   </optionVO>
+   <optionVO>
+      <code>SALARY_RUN</code>
+      <description>Salary Run</description>
+      <type>chargeType</type>
+   </optionVO>
+   <optionVO>
+      <code>STANDING_INSTRUCTION_FAILURE</code>
+      <description>Standing Instruction Failure</description>
+      <type>chargeType</type>
+   </optionVO>
+   <optionVO>
+      <code>SUBSCRIPTION</code>
+      <description>Subscription</description>
+      <type>chargeType</type>
+   </optionVO>
+   <optionVO>
+      <code>SWIFT</code>
+      <description>Swift</description>
+      <type>chargeType</type>
+   </optionVO>
+</optionListVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/lookup/waivechargesindicator" method="GET" resourcePath="/charges/rest/lookup/waivechargesindicator"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent><![CDATA[<optionListVO>
+   <status>SUCCESS</status>
+   <message>Get waive charges indicator successful</message>
+   <optionVO>
+      <code>N</code>
+      <description>No</description>
+      <type>waiveChargesIndicator</type>
+   </optionVO>
+   <optionVO>
+      <code>Y</code>
+      <description>Yes</description>
+      <type>waiveChargesIndicator</type>
+   </optionVO>
+</optionListVO>]]></con:responseContent></con:response></con:restMockAction><con:restMockAction name="/charges/rest/accountcharges/12345/1" method="GET" resourcePath="/charges/rest/accountcharges/12345/1"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Success Response" httpResponseStatus="200" mediaType="application/xml"><con:settings/><con:responseContent><![CDATA[<accountChargesVO>
+   <status>SUCCESS</status>
+   <message>Get account charges successful</message>
+   <accountId>12345</accountId>
+   <chargeMasterId>1</chargeMasterId>
+   <chargeCurrency>USD</chargeCurrency>
+   <chargeOption>EMPLOYER</chargeOption>
+   <createdBy>test</createdBy>
+   <createDate>2015-07-20T17:40:03+03:00</createDate>
+   <lastUpdated>2015-07-20T17:40:15+03:00</lastUpdated>
+   <updateBy>test2</updateBy>
+   <waiveChargesIndicator>N</waiveChargesIndicator>
+   <referenceNumber>12345</referenceNumber>
+   <chargeStatus>SUCCESS</chargeStatus>
+   <customerId>123456789</customerId>
+   <approvedBy>approver2</approvedBy>
+   <approvedStatus>APPROVED</approvedStatus>
+   <chargeAmount>234.56</chargeAmount>
+   <comments>test update comments</comments>
+</accountChargesVO>]]></con:responseContent><con:header><con:name>Transfer-Encoding</con:name><con:value>chunked</con:value></con:header><con:header><con:name>Content-Encoding</con:name><con:value>gzip</con:value></con:header><con:header><con:name>Server</con:name><con:value>Jetty(6.1.26)</con:value></con:header></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

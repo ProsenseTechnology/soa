@@ -1,0 +1,145 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="CustomerProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Finacle.CustomerPS.retCustAdd">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreateRetailCustomer'</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+               </assign>
+               <invoke reference="Finacle.CustomerPS" operation="retCustAdd">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="Polaris.CustomerPS.CreateCustomerMasterFile">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CustomerMaster'</expression>
+            </condition>
+            <action>
+               <invoke reference="Polaris.CustomerPS" operation="CreateCustomerMasterFile">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Finacle.CustomerPS.custOnboard">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryRetailCustomerStatusByID'</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload" target="$out.payload"/>
+               </assign>
+               <invoke reference="Finacle.CustomerPS" operation="custOnboard">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+	 <case executionType="sequential" name="Finacle.CustomerPS.queryClientEmail">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryEmailIDByPaymentReference'</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+               </assign>
+               <invoke reference="Finacle.CustomerPS" operation="queryClientEmail">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+		  </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="Finacle.CustomerPS.queryCustomerMaster">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CustomerMaster'</expression>
+            </condition>
+            <action>
+               <invoke reference="Finacle.CustomerPS" operation="queryCustomerMaster">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="Finacle.CustomerPS.accountInqByCustId">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryRetailAccountInqByCusttID'</expression>
+            </condition>
+            <action>
+               <invoke reference="Finacle.CustomerPS" operation="accountInqByCustId">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Finacle.CustomerPS.custOnboardUpd">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='UpdateRetailCustomerStatusByID'</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload" target="$out.payload"/>
+               </assign>
+               <invoke reference="Finacle.CustomerPS" operation="custOnboardUpd">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload" target="$out.payload"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="Finacle.CustomerPS.verifyCustomerDetails">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "VerifyCustomerDetails"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+               </assign>
+               <invoke reference="Finacle.CustomerPS" operation="verifyCustomerDetails">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+</Mediator>

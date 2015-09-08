@@ -1,0 +1,271 @@
+<definitions name="ChargePS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Transactions/Charge/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Transactions/Charge/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Transactions/Charge/V1/ChargeEO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="getWaiveChargesIndicatorListRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getWaiveChargesIndicatorListRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getApprovedAccountChargesRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getApprovedAccountChargesRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeMasterListRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeMasterListRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeMasterRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeMasterRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getApprovedAccountChargesListRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getApprovedAccountChargesListRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="createApprovedAccountChargesRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="createApprovedAccountChargesRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="updateApprovedAccountChargesRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="updateApprovedAccountChargesRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeTypeListRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeTypeListRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeCurrencyListRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeCurrencyListRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeOptionListRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="getChargeOptionListRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="updateChargeMasterRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="updateChargeMasterRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message> 
+  <message name="createChargeMasterRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>  
+  <message name="createChargeMasterRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  
+   <message name="getFrequencyListRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>  
+  <message name="getFrequencyListRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <portType name="ChargePSPort">
+    <operation name="getWaiveChargesIndicatorList">
+      <input message="ps:getWaiveChargesIndicatorListRqMsg"/>
+      <output message="ps:getWaiveChargesIndicatorListRsMsg"/>
+    </operation>
+    <operation name="getApprovedAccountCharges">
+      <input message="ps:getApprovedAccountChargesRqMsg"/>
+      <output message="ps:getApprovedAccountChargesRsMsg"/>
+    </operation>
+      <operation name="getApprovedAccountChargesList">
+      <input message="ps:getApprovedAccountChargesListRqMsg"/>
+      <output message="ps:getApprovedAccountChargesListRsMsg"/>
+    </operation>
+    <operation name="createApprovedAccountCharges">
+      <input message="ps:createApprovedAccountChargesRqMsg"/>
+      <output message="ps:createApprovedAccountChargesRsMsg"/>
+    </operation>
+    <operation name="updateApprovedAccountCharges">
+      <input message="ps:updateApprovedAccountChargesRqMsg"/>
+      <output message="ps:updateApprovedAccountChargesRsMsg"/>
+    </operation>
+    <operation name="getChargeTypeList">
+      <input message="ps:getChargeTypeListRqMsg"/>
+      <output message="ps:getChargeTypeListRsMsg"/>
+    </operation>
+    <operation name="getChargeCurrencyList">
+      <input message="ps:getChargeCurrencyListRqMsg"/>
+      <output message="ps:getChargeCurrencyListRsMsg"/>
+    </operation>
+    <operation name="getChargeOptionList">
+      <input message="ps:getChargeOptionListRqMsg"/>
+      <output message="ps:getChargeOptionListRsMsg"/>
+    </operation>
+    <operation name="getChargeMasterList">
+      <input message="ps:getChargeMasterListRqMsg"/>
+      <output message="ps:getChargeMasterListRsMsg"/>
+    </operation>
+    <operation name="getChargeMaster">
+      <input message="ps:getChargeMasterRqMsg"/>
+      <output message="ps:getChargeMasterRsMsg"/>
+    </operation>
+    <operation name="updateChargeMaster">
+      <input message="ps:updateChargeMasterRqMsg"/>
+      <output message="ps:updateChargeMasterRsMsg"/>
+    </operation>
+    <operation name="createChargeMaster">
+      <input message="ps:createChargeMasterRqMsg"/>
+      <output message="ps:createChargeMasterRsMsg"/>
+    </operation>
+     <operation name="getFrequencyList">
+      <input message="ps:getFrequencyListRqMsg"/>
+      <output message="ps:getFrequencyListRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="ChargePSPortBinding" type="ps:ChargePSPort">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getWaiveChargesIndicatorList">
+      <soap12:operation soapAction="getWaiveChargesIndicatorList"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getApprovedAccountCharges">
+      <soap12:operation soapAction="getApprovedAccountCharges"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getApprovedAccountChargesList">
+      <soap12:operation soapAction="getApprovedAccountChargesList"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="createApprovedAccountCharges">
+      <soap12:operation soapAction="createApprovedAccountCharges"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getChargeTypeList">
+      <soap12:operation soapAction="getChargeTypeList"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getChargeCurrencyList">
+      <soap12:operation soapAction="getChargeCurrencyList"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getChargeOptionList">
+      <soap12:operation soapAction="getChargeOptionList"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="updateApprovedAccountCharges">
+      <soap12:operation soapAction="updateApprovedAccountCharges"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getChargeMasterList">
+      <soap12:operation soapAction="getChargeMasterList"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getChargeMaster">
+      <soap12:operation soapAction="getChargeMaster"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="createChargeMaster">
+      <soap12:operation soapAction="createChargeMaster"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="updateChargeMaster">
+      <soap12:operation soapAction="updateChargeMaster"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getFrequencyList">
+      <soap12:operation soapAction=" getFrequencyList"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+ 
+  <service name="ChargePS">
+    <port name="ChargePSPort" binding="ps:ChargePSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

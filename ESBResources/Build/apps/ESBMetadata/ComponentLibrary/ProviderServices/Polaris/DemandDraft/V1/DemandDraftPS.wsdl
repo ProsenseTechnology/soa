@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="DemandDraftPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/DemandDraft/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/DemandDraft/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/DemandDraft/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/DemandDraft/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Instruments/DemandDraft/V1/DemandDraftEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateDDStatusUpdateFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateDDStatusUpdateFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="DemandDraftPSPort">
+         <operation name="createDDStatusUpdateFile">
+            <input message="ps:CreateDDStatusUpdateFileRqMsg"/>
+            <output message="ps:CreateDDStatusUpdateFileRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="DemandDraftPSPortBinding" type="ps:DemandDraftPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+         <operation name="createDDStatusUpdateFile">
+            <soap12:operation soapAction="createDDStatusUpdateFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="DemandDraftPS">
+        <port name="DemandDraftPSPort" binding="ps:DemandDraftPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

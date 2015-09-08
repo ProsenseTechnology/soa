@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:bm="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1"
+             xmlns:bs="http://xmlns.equitybank.co.ke/ESB/BS/Party/Employee/V1" name="EmployeeBS"
+             targetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/Party/Employee/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Parties/Employee/V1/EmployeeEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="ValidationRqMsg">
+        <part name="payload" element="bm:ESBMsg"/>
+    </message>
+    <message name="ValidationRsMsg">
+        <part name="payload" element="bm:ESBMsg"/>
+    </message>
+    <portType name="EmployeeBSPort">
+        <operation name="validation">
+            <input message="bs:ValidationRqMsg"/>
+            <output message="bs:ValidationRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="EmployeeBSPortBinding" type="bs:EmployeeBSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="validation">
+            <soap12:operation soapAction="validation"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="EmployeeBS">
+        <port name="EmployeeBSPort" binding="bs:EmployeeBSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

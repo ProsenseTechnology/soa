@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Mediator name="CustomerRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.oracle.com/sca/1.0/mediator" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/Parties/Customer/V1">
+   <operation name="validation" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="CustomerValidation.CustomerValidation.service.initiate">
+            <action>
+               <assign>
+                  <copy expression="$in.payload/bm:ESBMsg" target="$out.parameters/tns:validation/bm:ESBMsg" xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerValidation" xmlns:bm="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+               </assign>
+               <invoke reference="CustomerValidation.CustomerValidation.service" operation="validation">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.parameters/tns:validationResponse/tns6:ESBMsg" target="$out.payload/tns6:ESBMsg" xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerValidation" xmlns:tns6="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="notification" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Notifiation.Notifiation.service.notification_2">
+            <action>
+               <assign>
+                  <copy expression="$in.payload/bm:ESBMsg" target="$out.parameters/tns:notification/bm:ESBMsg"
+                        xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/Notifiation"
+                        xmlns:bm="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+               </assign>
+               <invoke reference="Notifiation.Notifiation.service" operation="notification"/>
+            </action>
+         </case>
+      </switch>
+   </operation>
+</Mediator>

@@ -1,0 +1,11 @@
+<adapter-config name="MYS_Reply_jms" adapter="jms" wsdlLocation="MYS_Reply_jms.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  <connection-factory UIJmsProvider="THIRDPARTY" location="eis/webspheremq/Queue"/>
+  <endpoint-interaction portType="Produce_Message_ptt" operation="Produce_Message">
+    <interaction-spec className="oracle.tip.adapter.jms.outbound.JmsProduceInteractionSpec">
+      <property name="TimeToLive" value="0"/>
+      <property name="PayloadType" value="TextMessage"/>
+      <property name="DeliveryMode" value="Persistent"/>
+      <property name="DestinationName" value="TIPLUS2.BO.REPLY"/>
+    </interaction-spec>
+  </endpoint-interaction>
+</adapter-config>

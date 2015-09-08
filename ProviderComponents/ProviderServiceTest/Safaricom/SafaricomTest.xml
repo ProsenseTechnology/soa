@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="SafaricomTest" resourceRoot="" soapui-version="5.0.0-m-SNAPSHOT" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SendSmsBinding" type="wsdl" bindingName="{http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service}SendSmsBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/Mustaque/Documents/SOAPUI/Safaricom/SendSmsService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\Mustaque\Documents\SOAPUI\Safaricom\SendSmsService.wsdl"><con:part><con:url>file:\C:\Users\Mustaque\Documents\SOAPUI\Safaricom\SendSmsService.wsdl</con:url><con:content><![CDATA[<!--May 30, 2006-->
+<wsdl:definitions name="parlayx_sms_send_service" targetNamespace="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service" xmlns:interface="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/interface">
+  <wsdl:import namespace="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/interface" location="SendSmsInterface.wsdl"/>
+  <wsdl:binding name="SendSmsBinding" type="interface:SendSms">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sendSms">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PolicyException">
+        <soap:fault name="PolicyException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="sendSmsLogo">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PolicyException">
+        <soap:fault name="PolicyException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="sendSmsRingtone">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PolicyException">
+        <soap:fault name="PolicyException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSmsDeliveryStatus">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="PolicyException">
+        <soap:fault name="PolicyException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SendSmsService">
+    <wsdl:port name="SendSms" binding="tns:SendSmsBinding">
+      <soap:address location="http://localhost:9080/SendSmsService/services/SendSms"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\Mustaque\Documents\SOAPUI\Safaricom\SendSmsInterface.wsdl</con:url><con:content><![CDATA[<!--May 30, 2006-->
+<wsdl:definitions name="parlayx_sms_send_interface" targetNamespace="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/interface" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:parlayx_sms_send="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/interface" xmlns:parlayx_common_faults="http://www.csapi.org/wsdl/parlayx/common/v2_0/faults" xmlns:parlayx_sms_xsd="http://www.csapi.org/schema/parlayx/sms/v2_2" xmlns:parlayx_common_xsd="http://www.csapi.org/schema/parlayx/common/v2_1" xmlns:parlayx_sms_send_local_xsd="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">
+  <wsdl:import namespace="http://www.csapi.org/wsdl/parlayx/common/v2_0/faults" location="common_faults.wsdl"/>
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">
+      <xsd:import namespace="http://www.csapi.org/schema/parlayx/sms/v2_2" schemaLocation="sms_types.xsd"/>
+      <xsd:import namespace="http://www.csapi.org/schema/parlayx/common/v2_1" schemaLocation="common_types.xsd"/>
+      <xsd:element name="sendSms" type="parlayx_sms_send_local_xsd:sendSms"/>
+      <xsd:complexType name="sendSms">
+        <xsd:sequence>
+          <xsd:element name="addresses" type="xsd:anyURI" minOccurs="1" maxOccurs="unbounded"/>
+          <xsd:element name="senderName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="charging" type="parlayx_common_xsd:ChargingInformation" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="message" type="xsd:string"/>
+          <xsd:element name="receiptRequest" type="parlayx_common_xsd:SimpleReference" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="sendSmsResponse" type="parlayx_sms_send_local_xsd:sendSmsResponse"/>
+      <xsd:complexType name="sendSmsResponse">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="sendSmsLogo" type="parlayx_sms_send_local_xsd:sendSmsLogo"/>
+      <xsd:complexType name="sendSmsLogo">
+        <xsd:sequence>
+          <xsd:element name="addresses" type="xsd:anyURI" minOccurs="1" maxOccurs="unbounded"/>
+          <xsd:element name="senderName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="charging" type="parlayx_common_xsd:ChargingInformation" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="image" type="xsd:base64Binary"/>
+          <xsd:element name="smsFormat" type="parlayx_sms_xsd:SmsFormat"/>
+          <xsd:element name="receiptRequest" type="parlayx_common_xsd:SimpleReference" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="sendSmsLogoResponse" type="parlayx_sms_send_local_xsd:sendSmsLogoResponse"/>
+      <xsd:complexType name="sendSmsLogoResponse">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="sendSmsRingtone" type="parlayx_sms_send_local_xsd:sendSmsRingtone"/>
+      <xsd:complexType name="sendSmsRingtone">
+        <xsd:sequence>
+          <xsd:element name="addresses" type="xsd:anyURI" minOccurs="1" maxOccurs="unbounded"/>
+          <xsd:element name="senderName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="charging" type="parlayx_common_xsd:ChargingInformation" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="ringtone" type="xsd:string"/>
+          <xsd:element name="smsFormat" type="parlayx_sms_xsd:SmsFormat"/>
+          <xsd:element name="receiptRequest" type="parlayx_common_xsd:SimpleReference" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="sendSmsRingtoneResponse" type="parlayx_sms_send_local_xsd:sendSmsRingtoneResponse"/>
+      <xsd:complexType name="sendSmsRingtoneResponse">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getSmsDeliveryStatus" type="parlayx_sms_send_local_xsd:getSmsDeliveryStatus"/>
+      <xsd:complexType name="getSmsDeliveryStatus">
+        <xsd:sequence>
+          <xsd:element name="requestIdentifier" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getSmsDeliveryStatusResponse" type="parlayx_sms_send_local_xsd:getSmsDeliveryStatusResponse"/>
+      <xsd:complexType name="getSmsDeliveryStatusResponse">
+        <xsd:sequence>
+          <xsd:element name="result" type="parlayx_sms_xsd:DeliveryInformation" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SendSms_sendSmsRequest">
+    <wsdl:part name="parameters" element="parlayx_sms_send_local_xsd:sendSms"/>
+  </wsdl:message>
+  <wsdl:message name="SendSms_sendSmsResponse">
+    <wsdl:part name="result" element="parlayx_sms_send_local_xsd:sendSmsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="SendSms_sendSmsLogoRequest">
+    <wsdl:part name="parameters" element="parlayx_sms_send_local_xsd:sendSmsLogo"/>
+  </wsdl:message>
+  <wsdl:message name="SendSms_sendSmsLogoResponse">
+    <wsdl:part name="result" element="parlayx_sms_send_local_xsd:sendSmsLogoResponse"/>
+  </wsdl:message>
+  <wsdl:message name="SendSms_sendSmsRingtoneRequest">
+    <wsdl:part name="parameters" element="parlayx_sms_send_local_xsd:sendSmsRingtone"/>
+  </wsdl:message>
+  <wsdl:message name="SendSms_sendSmsRingtoneResponse">
+    <wsdl:part name="result" element="parlayx_sms_send_local_xsd:sendSmsRingtoneResponse"/>
+  </wsdl:message>
+  <wsdl:message name="SendSms_getSmsDeliveryStatusRequest">
+    <wsdl:part name="parameters" element="parlayx_sms_send_local_xsd:getSmsDeliveryStatus"/>
+  </wsdl:message>
+  <wsdl:message name="SendSms_getSmsDeliveryStatusResponse">
+    <wsdl:part name="result" element="parlayx_sms_send_local_xsd:getSmsDeliveryStatusResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="SendSms">
+    <wsdl:operation name="sendSms">
+      <wsdl:input message="parlayx_sms_send:SendSms_sendSmsRequest"/>
+      <wsdl:output message="parlayx_sms_send:SendSms_sendSmsResponse"/>
+      <wsdl:fault name="ServiceException" message="parlayx_common_faults:ServiceException"/>
+      <wsdl:fault name="PolicyException" message="parlayx_common_faults:PolicyException"/>
+    </wsdl:operation>
+    <wsdl:operation name="sendSmsLogo">
+      <wsdl:input message="parlayx_sms_send:SendSms_sendSmsLogoRequest"/>
+      <wsdl:output message="parlayx_sms_send:SendSms_sendSmsLogoResponse"/>
+      <wsdl:fault name="ServiceException" message="parlayx_common_faults:ServiceException"/>
+      <wsdl:fault name="PolicyException" message="parlayx_common_faults:PolicyException"/>
+    </wsdl:operation>
+    <wsdl:operation name="sendSmsRingtone">
+      <wsdl:input message="parlayx_sms_send:SendSms_sendSmsRingtoneRequest"/>
+      <wsdl:output message="parlayx_sms_send:SendSms_sendSmsRingtoneResponse"/>
+      <wsdl:fault name="ServiceException" message="parlayx_common_faults:ServiceException"/>
+      <wsdl:fault name="PolicyException" message="parlayx_common_faults:PolicyException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getSmsDeliveryStatus">
+      <wsdl:input message="parlayx_sms_send:SendSms_getSmsDeliveryStatusRequest"/>
+      <wsdl:output message="parlayx_sms_send:SendSms_getSmsDeliveryStatusResponse"/>
+      <wsdl:fault name="ServiceException" message="parlayx_common_faults:ServiceException"/>
+      <wsdl:fault name="PolicyException" message="parlayx_common_faults:PolicyException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\Mustaque\Documents\SOAPUI\Safaricom\common_faults.wsdl</con:url><con:content><![CDATA[<!--January 5, 2006-->
+<wsdl:definitions name="common_faults" targetNamespace="http://www.csapi.org/wsdl/parlayx/common/v2_0/faults" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:parlayx_common_xsd="http://www.csapi.org/schema/parlayx/common/v2_1">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://www.csapi.org/schema/parlayx/common/v2_1" schemaLocation="common_types.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ServiceException">
+    <wsdl:part name="ServiceException" element="parlayx_common_xsd:ServiceException"/>
+  </wsdl:message>
+  <wsdl:message name="PolicyException">
+    <wsdl:part name="PolicyException" element="parlayx_common_xsd:PolicyException"/>
+  </wsdl:message>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\Mustaque\Documents\SOAPUI\Safaricom\common_types.xsd</con:url><con:content><![CDATA[<!--January 5, 2006-->
+<xsd:schema targetNamespace="http://www.csapi.org/schema/parlayx/common/v2_1" xmlns:parlayx_common_xsd="http://www.csapi.org/schema/parlayx/common/v2_1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="TimeMetric">
+    <xsd:sequence>
+      <xsd:element name="metric" type="parlayx_common_xsd:TimeMetrics"/>
+      <xsd:element name="units" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ChargingInformation">
+    <xsd:sequence>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="currency" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="amount" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="code" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SimpleReference">
+    <xsd:sequence>
+      <xsd:element name="endpoint" type="xsd:anyURI"/>
+      <xsd:element name="interfaceName" type="xsd:string"/>
+      <xsd:element name="correlator" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ServiceError">
+    <xsd:sequence>
+      <xsd:element name="messageId" type="xsd:string"/>
+      <xsd:element name="text" type="xsd:string"/>
+      <xsd:element name="variables" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="TimeMetrics">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Millisecond"/>
+      <xsd:enumeration value="Second"/>
+      <xsd:enumeration value="Minute"/>
+      <xsd:enumeration value="Hour"/>
+      <xsd:enumeration value="Day"/>
+      <xsd:enumeration value="Week"/>
+      <xsd:enumeration value="Month"/>
+      <xsd:enumeration value="Year"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="ServiceException" type="parlayx_common_xsd:ServiceException"/>
+  <xsd:complexType name="ServiceException">
+    <xsd:sequence>
+      <xsd:element name="messageId" type="xsd:string"/>
+      <xsd:element name="text" type="xsd:string"/>
+      <xsd:element name="variables" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PolicyException" type="parlayx_common_xsd:PolicyException"/>
+  <xsd:complexType name="PolicyException">
+    <xsd:sequence>
+      <xsd:element name="messageId" type="xsd:string"/>
+      <xsd:element name="text" type="xsd:string"/>
+      <xsd:element name="variables" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\Mustaque\Documents\SOAPUI\Safaricom\sms_types.xsd</con:url><con:content><![CDATA[<!--May 30, 2006-->
+<xsd:schema targetNamespace="http://www.csapi.org/schema/parlayx/sms/v2_2" xmlns:parlayx_sms_xsd="http://www.csapi.org/schema/parlayx/sms/v2_2" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="DeliveryInformation">
+    <xsd:sequence>
+      <xsd:element name="address" type="xsd:anyURI"/>
+      <xsd:element name="deliveryStatus" type="parlayx_sms_xsd:DeliveryStatus"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SmsMessage">
+    <xsd:sequence>
+      <xsd:element name="message" type="xsd:string"/>
+      <xsd:element name="senderAddress" type="xsd:anyURI"/>
+      <xsd:element name="smsServiceActivationNumber" type="xsd:anyURI"/>
+      <xsd:element name="dateTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="DeliveryStatus">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="DeliveredToNetwork"/>
+      <xsd:enumeration value="DeliveryUncertain"/>
+      <xsd:enumeration value="DeliveryImpossible"/>
+      <xsd:enumeration value="MessageWaiting"/>
+      <xsd:enumeration value="DeliveredToTerminal"/>
+      <xsd:enumeration value="DeliveryNotificationNotSupported"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SmsFormat">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Ems"/>
+      <xsd:enumeration value="SmartMessaging"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://Mustaque-PC:8088/SendSmsService/services/SendSms</con:endpoint><con:endpoint>http://localhost:9080/SendSmsService/services/SendSms</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="getSmsDeliveryStatus" bindingOperationName="getSmsDeliveryStatus" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/SendSmsService/services/SendSms</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <loc:getSmsDeliveryStatus>\r
+         <loc:requestIdentifier>?</loc:requestIdentifier>\r
+      </loc:getSmsDeliveryStatus>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service/SendSms/getSmsDeliveryStatusRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="sendSms" bindingOperationName="sendSms" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9292/SendSmsService/services/SendSms</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loc:sendSms>
+         <loc:addresses>254722123456</loc:addresses>
+         <loc:senderName>1234</loc:senderName>
+         <loc:message>This is a test message</loc:message>
+         <loc:receiptRequest>
+            <endpoint>http://10.138.30.123:9080/notify</endpoint>
+            <interfaceName>SmsNotification</interfaceName>
+            <correlator>123</correlator>
+         </loc:receiptRequest>
+      </loc:sendSms>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service/SendSms/sendSmsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="sendSmsLogo" bindingOperationName="sendSmsLogo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/SendSmsService/services/SendSms</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <loc:sendSmsLogo>\r
+         <!--1 or more repetitions:-->\r
+         <loc:addresses>?</loc:addresses>\r
+         <!--Optional:-->\r
+         <loc:senderName>?</loc:senderName>\r
+         <!--Optional:-->\r
+         <loc:charging>\r
+            <description>?</description>\r
+            <!--Optional:-->\r
+            <currency>?</currency>\r
+            <!--Optional:-->\r
+            <amount>?</amount>\r
+            <!--Optional:-->\r
+            <code>?</code>\r
+         </loc:charging>\r
+         <loc:image>cid:233168581974</loc:image>\r
+         <loc:smsFormat>?</loc:smsFormat>\r
+         <!--Optional:-->\r
+         <loc:receiptRequest>\r
+            <endpoint>?</endpoint>\r
+            <interfaceName>?</interfaceName>\r
+            <correlator>?</correlator>\r
+         </loc:receiptRequest>\r
+      </loc:sendSmsLogo>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service/SendSms/sendSmsLogoRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="sendSmsRingtone" bindingOperationName="sendSmsRingtone" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/SendSmsService/services/SendSms</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <loc:sendSmsRingtone>\r
+         <!--1 or more repetitions:-->\r
+         <loc:addresses>?</loc:addresses>\r
+         <!--Optional:-->\r
+         <loc:senderName>?</loc:senderName>\r
+         <!--Optional:-->\r
+         <loc:charging>\r
+            <description>?</description>\r
+            <!--Optional:-->\r
+            <currency>?</currency>\r
+            <!--Optional:-->\r
+            <amount>?</amount>\r
+            <!--Optional:-->\r
+            <code>?</code>\r
+         </loc:charging>\r
+         <loc:ringtone>?</loc:ringtone>\r
+         <loc:smsFormat>?</loc:smsFormat>\r
+         <!--Optional:-->\r
+         <loc:receiptRequest>\r
+            <endpoint>?</endpoint>\r
+            <interfaceName>?</interfaceName>\r
+            <correlator>?</correlator>\r
+         </loc:receiptRequest>\r
+      </loc:sendSmsRingtone>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service/SendSms/sendSmsRingtoneRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SafDealerImpServiceSoapBinding" type="wsdl" bindingName="{http://ws.equitybank/}SafDealerImpServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/Prosense7/Downloads/SafDealerService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/Prosense7/Downloads/SafDealerService.wsdl"><con:part><con:url>file:/C:/Users/Prosense7/Downloads/SafDealerService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SafDealerImpService" targetNamespace="http://ws.equitybank/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.equitybank/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://ws.equitybank/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="authRequest" type="tns:authRequest"/>
+      <xs:element name="authRequestResponse" type="tns:authRequestResponse"/>
+      <xs:element name="finRequest" type="tns:finRequest"/>
+      <xs:element name="finRequestResponse" type="tns:finRequestResponse"/>
+      <xs:complexType name="finRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dealer" type="tns:dealer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="dealer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:string"/>
+          <xs:element minOccurs="0" name="branchName" type="xs:string"/>
+          <xs:element minOccurs="0" name="checkNumber" type="xs:string"/>
+          <xs:element minOccurs="0" name="chequeType" type="xs:string"/>
+          <xs:element minOccurs="0" name="dealerAccountNumber" type="xs:string"/>
+          <xs:element minOccurs="0" name="dealerCode" type="xs:string"/>
+          <xs:element minOccurs="0" name="dealerName" type="xs:string"/>
+          <xs:element minOccurs="0" name="finacleUserId" type="xs:string"/>
+          <xs:element minOccurs="0" name="payMethod" type="xs:string"/>
+          <xs:element minOccurs="0" name="payRef" type="xs:string"/>
+          <xs:element minOccurs="0" name="respCode" type="xs:string"/>
+          <xs:element minOccurs="0" name="serviceId" type="xs:string"/>
+          <xs:element minOccurs="0" name="valueDate" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="finRequestResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:dealer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="authRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dealer" type="tns:dealer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="authRequestResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:dealer"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="authRequestResponse">
+    <wsdl:part element="tns:authRequestResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="finRequestResponse">
+    <wsdl:part element="tns:finRequestResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="finRequest">
+    <wsdl:part element="tns:finRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authRequest">
+    <wsdl:part element="tns:authRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SafDealer">
+    <wsdl:operation name="finRequest">
+      <wsdl:input message="tns:finRequest" name="finRequest"></wsdl:input>
+      <wsdl:output message="tns:finRequestResponse" name="finRequestResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authRequest">
+      <wsdl:input message="tns:authRequest" name="authRequest"></wsdl:input>
+      <wsdl:output message="tns:authRequestResponse" name="authRequestResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SafDealerImpServiceSoapBinding" type="tns:SafDealer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="finRequest">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="finRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="finRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authRequest">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="authRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="authRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SafDealerImpService">
+    <wsdl:port binding="tns:SafDealerImpServiceSoapBinding" name="SafDealerImpPort">
+      <soap:address location="http://10.1.9.100:9500/SafDealerPortal/SafDealerImpService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.1.9.100:9500/SafDealerPortal/SafDealerImpService</con:endpoint><con:endpoint>http://Lenovo-PC:9292/SafDealerPortal/SafDealerImpService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="billValidation" bindingOperationName="authRequest" type="Request-Response" outputName="authRequestResponse" inputName="authRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://Lenovo-PC:9292/SafDealerPortal/SafDealerImpService</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.equitybank/">
+   <soapenv:Header />
+   <soapenv:Body>
+      <ws:authRequest>
+         <dealer>
+            <amount>132105.00</amount>
+            <branchName>MACHAKOS BRANCH</branchName>
+            <dealerAccountNumber>0810297617335</dealerAccountNumber>
+            <dealerCode>D-I008</dealerCode>
+            <dealerName/>
+            <payMethod>?</payMethod>
+            <payRef>?</payRef>
+            <respCode/>
+         </dealer>
+      </ws:authRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.equitybank/SafDealer/authRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="billPayment" bindingOperationName="finRequest" type="Request-Response" outputName="finRequestResponse" inputName="finRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://Lenovo-PC:9292/SafDealerPortal/SafDealerImpService</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.equitybank/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:finRequest>
+         <dealer>
+            <amount>132105.00</amount>
+            <branchName>MACHAKOS BRANCH</branchName>
+            <dealerAccountNumber>0810297617335</dealerAccountNumber>
+            <dealerCode>D-I008</dealerCode>
+            <dealerName/>
+            <finacleUserId>SI18569</finacleUserId>
+            <payMethod>C</payMethod>
+            <payRef>5474512</payRef>
+            <respCode/>
+            <serviceId/>
+         </dealer>
+      </ws:finRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.equitybank/SafDealer/finRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="9292" path="/SendSmsService/services/SendSms" host="localhost" name="SendSmsBindingMock" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getSmsDeliveryStatus" interface="SendSmsBinding" operation="getSmsDeliveryStatus"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loc:getSmsDeliveryStatusResponse>
+         <!--Zero or more repetitions:-->
+         <loc:result>
+            <address>?</address>
+            <deliveryStatus>?</deliveryStatus>
+         </loc:result>
+      </loc:getSmsDeliveryStatusResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service/SendSms/getSmsDeliveryStatusResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="sendSms" interface="SendSmsBinding" operation="sendSms"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loc:sendSmsResponse>
+         <loc:result>00005200401110225063201000041</loc:result>
+      </loc:sendSmsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service/SendSms/sendSmsResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="sendSmsLogo" interface="SendSmsBinding" operation="sendSmsLogo"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loc:sendSmsLogoResponse>
+         <loc:result>?</loc:result>
+      </loc:sendSmsLogoResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service/SendSms/sendSmsLogoResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="sendSmsRingtone" interface="SendSmsBinding" operation="sendSmsRingtone"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/sms/send/v2_2/local">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loc:sendSmsRingtoneResponse>
+         <loc:result>?</loc:result>
+      </loc:sendSmsRingtoneResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.csapi.org/wsdl/parlayx/sms/send/v2_2/service/SendSms/sendSmsRingtoneResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:mockService port="9292" path="/SafDealerPortal/SafDealerImpService" host="Lenovo-PC" name="SafDealerServiceMock" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="billValidation" interface="SafDealerImpServiceSoapBinding" operation="billValidation"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <ns2:authRequestResponse xmlns:ns2="http://ws.equitybank/">
+         <return>
+            <amount>132105.00</amount>
+            <branchName>MACHAKOS BRANCH</branchName>
+            <dealerAccountNumber>0810297617335</dealerAccountNumber>
+            <dealerCode>D-I008</dealerCode>
+            <dealerName>IMAGE CONNECTIONS LTD</dealerName>
+            <payMethod>000002</payMethod>
+            <payRef>?</payRef>
+            <respCode>00</respCode>
+         </return>
+      </ns2:authRequestResponse>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.equitybank/SafDealer/authRequestResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="billPayment" interface="SafDealerImpServiceSoapBinding" operation="billPayment"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <ns2:finRequestResponse xmlns:ns2="http://ws.equitybank/">
+         <return>
+            <amount>132105.00</amount>
+            <branchName>MACHAKOS BRANCH</branchName>
+            <dealerAccountNumber>0810297617335</dealerAccountNumber>
+            <dealerCode>D-I008</dealerCode>
+            <dealerName/>
+            <finacleUserId>SI18569</finacleUserId>
+            <payMethod>000001</payMethod>
+            <payRef>5474512</payRef>
+            <respCode>00</respCode>
+            <serviceId/>
+         </return>
+      </ns2:finRequestResponse>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.equitybank/SafDealer/finRequestResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="NationalIdentityPS_rest">NationalIdentityPS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Resilience/NationalIdentity/V1/NationalIdentityEO.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/queryNationalIdentity">
+            <method name="POST" soa:wsdlOperation="queryNationalIdentity">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/queryNationalIdentityWS">
+            <method name="POST" soa:wsdlOperation="queryNationalIdentityWS">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

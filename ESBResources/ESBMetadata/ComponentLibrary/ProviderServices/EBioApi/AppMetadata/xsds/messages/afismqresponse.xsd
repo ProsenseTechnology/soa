@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.innovatrics.com/afismq/schema/message/afismqresponse"
+           xmlns:a="http://www.innovatrics.com/afismq/schema/message/afismqresponse"
+           elementFormDefault="qualified">
+           
+    <xs:include schemaLocation="extract_response.xsd"/>
+    <xs:include schemaLocation="register_response.xsd"/>
+    <xs:include schemaLocation="identify_response.xsd"/>
+    <xs:include schemaLocation="identify_and_register_response.xsd"/>
+    <xs:include schemaLocation="clear_response.xsd"/>
+    <xs:include schemaLocation="get_count_response.xsd"/>
+    <xs:include schemaLocation="ping_response.xsd"/>
+    <xs:include schemaLocation="get_pending_jobs_response.xsd"/>
+    <xs:include schemaLocation="delete_response.xsd"/>
+    <xs:include schemaLocation="update_response.xsd"/>
+    <xs:include schemaLocation="get_response.xsd"/>
+    <xs:include schemaLocation="verify_response.xsd"/>
+    <xs:include schemaLocation="shutdown_response.xsd"/>
+ 
+    <xs:simpleType name="ResponseType">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="ExtractResponse"/>
+            <xs:enumeration value="RegisterResponse"/>
+            <xs:enumeration value="IdentifyResponse"/>
+            <xs:enumeration value="IdentifyAndRegisterResponse"/>
+            <xs:enumeration value="Failure"/>
+            <xs:enumeration value="GetResponse"/>
+            <xs:enumeration value="ClearResponse"/>
+            <xs:enumeration value="GetCountResponse"/>
+            <xs:enumeration value="PingResponse"/>
+            <xs:enumeration value="GetPendingJobsResponse"/>
+            <xs:enumeration value="DeleteResponse"/>
+            <xs:enumeration value="UpdateResponse"/>
+            <xs:enumeration value="VerifyResponse"/>
+            <xs:enumeration value="ShutdownResponse"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="message">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="header">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="version" type="xs:int"/>
+                            <xs:element name="type" type="a:ResponseType"/>
+                            <xs:element name="system" type="xs:string"/>
+                            <xs:element name="request_id" minOccurs="0" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:choice>
+                    <xs:element ref="a:extract"/>
+                    <xs:element ref="a:register"/>
+                    <xs:element ref="a:identify"/>
+                    <xs:element ref="a:identify_and_register"/>
+                    <xs:element name="failure">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="error">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="code" type="xs:int"/>
+                                            <xs:element name="msg" minOccurs="0" type="xs:string"/>
+                                            <xs:element name="original_message_type" minOccurs="0" type="xs:string"/>
+                                            <xs:element name="internal_stacktrace" type="xs:string"/>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="rejected_message" type="xs:string"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element ref="a:clear"/>
+                    <xs:element ref="a:get_count"/>
+                    <xs:element ref="a:ping"/>
+                    <xs:element ref="a:get_pending_jobs"/>
+                    <xs:element ref="a:delete"/>
+                    <xs:element ref="a:update"/>
+                    <xs:element ref="a:get"/>
+                    <xs:element ref="a:verify"/>
+                    <xs:element ref="a:shutdown"/>
+                </xs:choice>
+            
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

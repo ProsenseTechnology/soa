@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.innovatrics.com/afismq/schema/message/afismqresponse"
+           xmlns:a="http://www.innovatrics.com/afismq/schema/message/afismqresponse"
+           elementFormDefault="qualified">
+    
+    <xs:include schemaLocation="applicant.xsd"/>
+    <xs:include schemaLocation="register_response.xsd"/>
+    <xs:include schemaLocation="identify_response.xsd"/>
+ 
+    <xs:element name="identify_and_register">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="a:register"/>
+                <xs:element ref="a:candidates"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

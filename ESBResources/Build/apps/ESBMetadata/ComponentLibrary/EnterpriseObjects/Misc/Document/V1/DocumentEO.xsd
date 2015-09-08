@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"
+            xmlns:acceo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" schemaLocation="../../../Accounts/Account/V1/AccountEO.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="DocumentType" type="com:CodeType"/>
+    <xsd:element name="DocumentTypeID" type="com:CodeType"/>
+    <xsd:element name="DocumentSubTypeID" type="com:CodeType"/>
+    <xsd:element name="DocumentName" type="com:NameType"/>
+    <xsd:element name="DocumentStatus" type="com:CodeType"/>
+    <xsd:element name="DocumentUpdatedBy" type="com:NameType"/>
+    <xsd:element name="DocumentCreatedBy" type="com:NameType"/>
+    <xsd:element name="DocumentFileContent" type="com:BinaryObjectType_toRemove"/>
+    <xsd:element name="DocumentAccount" type="com:NameType"/>
+    <xsd:element name="DocumentAccountType" type="com:IDType"/>
+    <xsd:element name="Document" type="DocumentType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Document ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="DocumentType">
+        <xsd:sequence>
+            <xsd:element ref="com:DocumentIdentifier" minOccurs="0"/>
+            <xsd:element ref="DocumentType" minOccurs="0"/>
+            <xsd:element ref="DocumentName" minOccurs="0"/>
+            <xsd:element ref="DocumentTypeID" minOccurs="0"/>
+            <xsd:element ref="DocumentSubTypeID" minOccurs="0"/>
+            <xsd:element ref="DocumentCreatedBy" minOccurs="0"/>
+            <xsd:element ref="DocumentUpdatedBy" minOccurs="0"/>
+            <xsd:element ref="DocumentFileContent" minOccurs="0"/>
+            <xsd:element ref="acceo:Account" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="DocumentStatus" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="Document" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="Document" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="QueryStatus"/>
+            <xsd:enumeration value="CreateDocument"/>
+            <xsd:enumeration value="CreateAccount"/>
+            <xsd:enumeration value="QueryDocumentByID"/>
+            <xsd:enumeration value="UpdateDocumentByID"/>
+            <xsd:enumeration value="QueryAccountListByID"/>
+            <xsd:enumeration value="QueryCountPendingDocumentById"/>
+            <xsd:enumeration value="QueryPendingDocumentByID"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

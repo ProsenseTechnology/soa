@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="approvalsListVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="approvalsVO" type="approvalsVO" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="accountChargesVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="accountId" type="xsd:string"/>
+          <xsd:element name="chargeMasterId" type="xsd:long"/>
+          <xsd:element name="chargeCurrency" type="xsd:string"/>
+          <xsd:element name="chargeOption" type="xsd:string"/>
+          <xsd:element name="createdBy" type="xsd:string"/>
+          <xsd:element name="discountPercentage" type="xsd:double"/>
+          <xsd:element name="createDate" type="xsd:dateTime"/>
+          <xsd:element name="lastUpdated" type="xsd:dateTime"/>
+          <xsd:element name="lastRunBy" type="xsd:string"/>
+          <xsd:element name="lastRunDate" type="xsd:dateTime"/>
+          <xsd:element name="nextRunDate" type="xsd:dateTime"/>
+          <xsd:element name="updateBy" type="xsd:string"/>
+          <xsd:element name="waiveChargesIndicator" type="xsd:string"/>
+          <xsd:element name="referenceNumber" type="xsd:string"/>
+          <xsd:element name="chargeStatus" type="xsd:string"/>
+          <xsd:element name="customerId" type="xsd:string"/>
+          <xsd:element name="approvedBy" type="xsd:string"/>
+          <xsd:element name="approvedStatus" type="xsd:string"/>
+          <xsd:element name="chargeAmount" type="xsd:double"/>
+          <xsd:element name="comments" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="reportsViewListVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="reportsViewVO" type="reportsViewVO" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="optionListVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="optionVO" type="optionVO" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="optionVO">
+    <xsd:sequence>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="type" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="chargeMasterVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:long"/>
+          <xsd:element name="chargeAmount" type="xsd:double"/>
+          <xsd:element name="chargeType" type="xsd:string"/>
+          <xsd:element name="comments" type="xsd:string"/>
+          <xsd:element name="createdBy" type="xsd:string"/>
+          <xsd:element name="frequency" type="xsd:string"/>
+          <xsd:element name="createDate" type="xsd:dateTime"/>
+          <xsd:element name="lastUpdated" type="xsd:dateTime"/>
+          <xsd:element name="updateBy" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="usersVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="username" type="xsd:string"/>
+          <xsd:element name="userDescription" type="xsd:string"/>
+          <xsd:element name="userRole" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="approvalsVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:long"/>
+          <xsd:element name="requestBy" type="xsd:string"/>
+          <xsd:element name="approvedBy" type="xsd:string"/>
+          <xsd:element name="requestType" type="xsd:string"/>
+          <xsd:element name="approvedStatus" type="xsd:string"/>
+          <xsd:element name="accountId" type="xsd:string"/>
+          <xsd:element name="chargeMasterId" type="xsd:long"/>
+          <xsd:element name="chargeAmount" type="xsd:double"/>
+          <xsd:element name="chargeType" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="longVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="value" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="accountChargesListVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="accountChargesVO" type="accountChargesVO" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="chargeMasterListVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="chargeMasterVO" type="chargeMasterVO" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="statusVO">
+    <xsd:sequence>
+      <xsd:element name="status" type="statusTypeVO"/>
+      <xsd:element name="statusCode" type="xsd:string"/>
+      <xsd:element name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="usersListVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="usersVO" type="usersVO" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="reportsViewVO">
+    <xsd:complexContent>
+      <xsd:extension base="statusVO">
+        <xsd:sequence>
+          <xsd:element name="accountChargesVO" type="accountChargesVO"/>
+          <xsd:element name="chargeMasterVO" type="chargeMasterVO"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ForEachVO">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="approvalsListVO" type="approvalsListVO" maxOccurs="unbounded"/>
+        <xsd:element name="accountChargesVO" type="accountChargesVO" maxOccurs="unbounded"/>
+        <xsd:element name="reportsViewListVO" type="reportsViewListVO" maxOccurs="unbounded"/>
+        <xsd:element name="optionListVO" type="optionListVO" maxOccurs="unbounded"/>
+        <xsd:element name="optionVO" type="optionVO" maxOccurs="unbounded"/>
+        <xsd:element name="chargeMasterVO" type="chargeMasterVO" maxOccurs="unbounded"/>
+        <xsd:element name="usersVO" type="usersVO" maxOccurs="unbounded"/>
+        <xsd:element name="approvalsVO" type="approvalsVO" maxOccurs="unbounded"/>
+        <xsd:element name="longVO" type="longVO" maxOccurs="unbounded"/>
+        <xsd:element name="accountChargesListVO" type="accountChargesListVO" maxOccurs="unbounded"/>
+        <xsd:element name="chargeMasterListVO" type="chargeMasterListVO" maxOccurs="unbounded"/>
+        <xsd:element name="statusVO" type="statusVO" maxOccurs="unbounded"/>
+        <xsd:element name="usersListVO" type="usersListVO" maxOccurs="unbounded"/>
+        <xsd:element name="reportsViewVO" type="reportsViewVO" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="approvalsListVO" type="approvalsListVO"/>
+  <xsd:element name="accountChargesVO" type="accountChargesVO"/>
+  <xsd:element name="reportsViewListVO" type="reportsViewListVO"/>
+  <xsd:element name="optionListVO" type="optionListVO"/>
+  <xsd:element name="optionVO" type="optionVO"/>
+  <xsd:element name="chargeMasterVO" type="chargeMasterVO"/>
+  <xsd:element name="usersVO" type="usersVO"/>
+  <xsd:element name="approvalsVO" type="approvalsVO"/>
+  <xsd:element name="longVO" type="longVO"/>
+  <xsd:element name="accountChargesListVO" type="accountChargesListVO"/>
+  <xsd:element name="chargeMasterListVO" type="chargeMasterListVO"/>
+  <xsd:element name="statusVO" type="statusVO"/>
+  <xsd:element name="usersListVO" type="usersListVO"/>
+  <xsd:element name="reportsViewVO" type="reportsViewVO"/>
+  <xsd:simpleType name="statusTypeVO">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="SUCCESS"/>
+      <xsd:enumeration value="FAILURE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

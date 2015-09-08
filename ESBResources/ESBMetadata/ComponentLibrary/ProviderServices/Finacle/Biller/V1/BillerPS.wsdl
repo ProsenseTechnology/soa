@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="BillerPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Biller/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Biller/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Biller/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Biller/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Parties/Biller/V1/BillerEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="QueryBillerRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryBillerRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryBillerCodeRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryBillerCodeRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="BillerPSPort">
+        <operation name="queryBiller">
+            <input message="ps:QueryBillerRqMsg"/>
+            <output message="ps:QueryBillerRsMsg"/>
+        </operation>
+        <operation name="queryBillerCode">
+            <input message="ps:QueryBillerCodeRqMsg"/>
+            <output message="ps:QueryBillerCodeRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="BillerPSPortBinding" type="ps:BillerPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="queryBiller">
+            <soap12:operation soapAction="queryBiller"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryBillerCode">
+            <soap12:operation soapAction="queryBillerCode"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BillerPS">
+        <port name="BillerPSPort" binding="ps:BillerPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

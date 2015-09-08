@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="CardProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Instruments/Card/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Polaris.CardPS.createCreditCardFile">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreditCard'</expression>
+            </condition>
+            <action>
+               <invoke reference="Polaris.CardPS" operation="createCreditCardFile">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Way4.CardPS.queryCreditCardFeed">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreditCard'</expression>
+            </condition>
+            <action>
+               <invoke reference="Way4.CardPS" operation="queryCreditCardFeed">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="Way4.CardPS.queryCreditCardDetails">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryCardDetailByNumber'</expression>
+            </condition>
+            <action>
+               <invoke reference="Way4.CardPS" operation="queryCreditCardDetails">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="Way4.CardPS.queryCreditCardSummary">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryCardSummaryByNumber'</expression>
+            </condition>
+            <action>
+               <invoke reference="Way4.CardPS" operation="queryCreditCardSummary">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+</Mediator>

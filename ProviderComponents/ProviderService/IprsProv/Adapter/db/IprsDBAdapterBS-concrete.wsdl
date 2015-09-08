@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProviderService/IprsProv/IprsDBAdapterBS" name="IprsDBAdapterBS-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="IprsDBAdapterBS.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProviderService/IprsProv/IprsDBAdapterBS"/>
+    <wsdl:binding name="IprsDBAdapterBS_ptt-binding" type="ipr:IprsDBAdapterBS_ptt" xmlns:ipr="http://xmlns.oracle.com/pcbpel/adapter/db/ProviderService/IprsProv/IprsDBAdapterBS">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="IprsDBAdapterBSSelect">
+            <soap:operation soapAction="IprsDBAdapterBSSelect"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

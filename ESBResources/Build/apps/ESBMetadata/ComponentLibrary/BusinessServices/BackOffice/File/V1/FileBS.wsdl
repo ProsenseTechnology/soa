@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="FileBS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/BackOffice/File/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:bs="http://xmlns.equitybank.co.ke/ESB/BS/BackOffice/File/V1"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" schemaLocation="../../../../EnterpriseObjects/Misc/File/V1/FileEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="GenerationRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ConsumptionRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="FileBSPort">
+        <operation name="generation">
+            <input message="bs:GenerationRqMsg"/>
+        </operation>
+        <operation name="consumption">
+            <input message="bs:ConsumptionRqMsg"/>
+        </operation>
+    </portType>
+    <binding name="FileBSPortBinding" type="bs:FileBSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="generation">
+            <soap12:operation soapAction="generation"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+        </operation>
+        <operation name="consumption">
+            <soap12:operation soapAction="consumption"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+        </operation>
+    </binding>
+    <binding name="FileBSPortBindingSoap" type="bs:FileBSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="generation">
+            <soap:operation soapAction="generation"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+        <operation name="consumption">
+            <soap:operation soapAction="consumption"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+    </binding>
+    <service name="FileBS">
+        <port name="FileBSPort" binding="bs:FileBSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+     name="AccountES"
+     targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <wsdl:documentation>
+        <abstractWSDL>https://ProsenseMachine:7102/soa-infra/directWsdl/Accounts/AccountES!1.0/AccountES_direct?resource=%2FWSDLs%2FAccountESWrapper.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="CreateAccountPLType">
+        <plnk:role name="CreateAccountProvider" portType="es:CreateAccountPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="QueryAccountPLType">
+        <plnk:role name="QueryAccountProvider" portType="es:QueryAccountPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="UpdateAccountPLType">
+        <plnk:role name="UpdateAccountProvider" portType="es:UpdateAccountPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="AccountProvRouterPLType">
+        <plnk:role name="AccountESProvider" portType="es:AccountESPort"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1" location="http://ProsenseMachine:7101/soa-infra/directWsdl/Accounts/AccountES!1.0/AccountES_direct?resource=oramds%3A%2Fapps%2FESBMetadata%2FComponentLibrary%2FEnterpriseServices%2FAccounts%2FAccount%2FV1%2FAccountES.wsdl"/>
+    <wsdl:portType name="CreateAccountPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:CreateRqMsg"/>
+            <wsdl:output message="es:CreateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="QueryAccountPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:QueryRqMsg"/>
+            <wsdl:output message="es:QueryRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="UpdateAccountPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:UpdateRqMsg"/>
+            <wsdl:output message="es:UpdateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AccountESPortDirectBinding1.1" type="es:AccountESPort">
+        <soap:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" transport="http://xmlns.oracle.com/soa/direct"/>
+        <wsdl:operation name="create">
+            <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" style="document" soapAction="create"/>
+            <wsdl:input>
+                <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="query">
+            <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" style="document" soapAction="query"/>
+            <wsdl:input>
+                <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="update">
+            <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" style="document" soapAction="update"/>
+            <wsdl:input>
+                <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="AccountESPortDirectBinding1.2" type="es:AccountESPort">
+        <soap12:binding xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" transport="http://xmlns.oracle.com/soa/direct"/>
+        <wsdl:operation name="create">
+            <soap12:operation xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" style="document" soapAction="create"
+                 soapActionRequired="false"/>
+            <wsdl:input>
+                <soap12:body xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="query">
+            <soap12:operation xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" style="document" soapAction="query"
+                 soapActionRequired="false"/>
+            <wsdl:input>
+                <soap12:body xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="update">
+            <soap12:operation xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" style="document" soapAction="update"
+                 soapActionRequired="false"/>
+            <wsdl:input>
+                <soap12:body xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" use="literal" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AccountES_direct">
+        <wsdl:port name="AccountES_directDirectBindingPort11" binding="es:AccountESPortDirectBinding1.1">
+            <soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="t3://ProsenseMachine:7101/Accounts/AccountES!1.0/AccountES_direct"/>
+        </wsdl:port>
+        <wsdl:port name="AccountES_directDirectBindingPort12" binding="es:AccountESPortDirectBinding1.2">
+            <soap12:address xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" location="t3://ProsenseMachine:7101/Accounts/AccountES!1.0/AccountES_direct"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

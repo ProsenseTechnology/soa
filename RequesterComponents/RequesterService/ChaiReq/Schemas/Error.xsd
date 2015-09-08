@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:cs="http://xmlns.equitybank.co.ke/ESB/RS/Fault/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Fault/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:element name="ApplicationError">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element name="messages" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+ 
+<xsd:element name="ServerError">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element name="messages" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+</xsd:schema>

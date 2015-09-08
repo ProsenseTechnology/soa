@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Cheque/V1" xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="ChequePS_rest">ChequePS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Cheque/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Instruments/Cheque/V1/ChequeEO.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/stopChkAdd">
+            <method name="POST" soa:wsdlOperation="stopChkAdd">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/chqStatusInq">
+            <method name="POST" soa:wsdlOperation="chqStatusInq">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/queryChequeUpdateStatus">
+            <method name="POST" soa:wsdlOperation="queryChequeUpdateStatus">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/queryChequeDetails">
+            <method name="POST" soa:wsdlOperation="queryChequeDetails">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/queryLiquidationChequeStatus">
+            <method name="POST" soa:wsdlOperation="queryLiquidationChequeStatus">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

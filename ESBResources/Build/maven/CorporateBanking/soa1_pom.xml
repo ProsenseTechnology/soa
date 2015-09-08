@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ke.co.equitybank</groupId>
+    <artifactId>ESB</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Accounts/AccountES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Misc/DocumentES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Misc/NotificationES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Parties/CustomerES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Resilience/AccessES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Resilience/BiometricES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Resilience/ListOfValuesES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Resilience/NationalIdentityES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Resilience/SignatureES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Transactions/BillES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Transactions/CurrencyExchangeES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Transactions/PaymentES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Transactions/StatementES</module>
+        <module>../../../../EnterpriseComponents/EnterpriseService/Transactions/TransferES</module>
+    </modules>
+</project>

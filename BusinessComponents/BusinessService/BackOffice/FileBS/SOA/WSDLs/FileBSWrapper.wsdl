@@ -1,0 +1,23 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions name="FileBS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/BackOffice/File/V1"
+                  xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:bs="http://xmlns.equitybank.co.ke/ESB/BS/BackOffice/File/V1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/BS/BackOffice/File/V1"
+                 location="oramds:/apps/ESBMetadata/ComponentLibrary/BusinessServices/BackOffice/File/V1/FileBS.wsdl"/>
+    <wsdl:portType name="FileGenerationPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="bs:GenerationRqMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="FileConsumptionPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="bs:ConsumptionRqMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <plnk:partnerLinkType name="FileGenerationPLType">
+        <plnk:role name="FileGenerationProvider" portType="bs:FileGenerationPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="FileConsumptionPLType">
+        <plnk:role name="FileConsumptionProvider" portType="bs:FileConsumptionPort"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1" xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="CurrencyExchangePS_rest">CurrencyExchangePS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Transactions/CurrencyExchange/V1/CurrencyExchangeEO.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/CreateExchangeRateMasterFile">
+            <method name="POST" soa:wsdlOperation="CreateExchangeRateMasterFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

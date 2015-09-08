@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
+    <dgm:gService name="ChargeBS_direct">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="123" width="137" height="96">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="116" width="156" height="110">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="ChargeBS_direct" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1#wsdl.interface(ChargeBSPort)" callbackInterface="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1#wsdl.interface(ChargeBSPortCallback)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/direct_adapter_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>createCharge</dgm:item>
+            <dgm:item>createChargeCallback</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gReference name="ChargeES">
+        <dgm:body borderWidth="2" arcRad="20" X="766" Y="26" width="136" height="108">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="756" Y="19" width="156" height="122">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="ChargeES" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Charge/V1#wsdl.interface(ChargeESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/direct_adapter_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>create</dgm:item>
+            <dgm:item>query</dgm:item>
+            <dgm:item>update</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="TransferES">
+        <dgm:body borderWidth="2" arcRad="20" X="766" Y="168" width="136" height="108">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="756" Y="161" width="156" height="122">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="TransferES" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Transfer/V1#wsdl.interface(TransferESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/direct_adapter_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>create</dgm:item>
+            <dgm:item>query</dgm:item>
+            <dgm:item>update</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gComponent name="CorporateCharges">
+        <dgm:body borderWidth="2" arcRad="20" X="520" Y="108" width="130" height="86">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="510" Y="101" width="150" height="102">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="References.Externals.ChargeBS_direct.service" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1#wsdl.interface(ChargeBSPort)" callbackInterface="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1#wsdl.interface(ChargeBSPortCallback)"/>
+        <dgm:outputPort name="Services.Externals.ChargeES.reference" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Charge/V1#wsdl.interface(ChargeESPort)"/>
+        <dgm:outputPort name="Services.Externals.TransferES.reference" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Transfer/V1#wsdl.interface(TransferESPort)"/>
+        <dgm:nodeIcon URI="/oracle/bpm/fusion/soa/msg/images/bpmncomponent20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="ChargeRouter">
+        <dgm:body borderWidth="2" arcRad="20" X="274" Y="108" width="130" height="61">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="264" Y="101" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="ChargeRouter" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1#wsdl.interface(ChargeBSPort)" callbackInterface="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1#wsdl.interface(ChargeBSPortCallback)"/>
+        <dgm:outputPort name="CorporateCharges.References.Externals.ChargeBS_direct.service" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1#wsdl.interface(ChargeBSPort)" callbackInterface="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1#wsdl.interface(ChargeBSPortCallback)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gWireLink source="CorporateCharges/Services.Externals.ChargeES.reference" target="ChargeES" width="2">
+        <dgm:gSegment X1="660" Y1="133" X2="684" Y2="133"/>
+        <dgm:gSegment X1="684" Y1="133" X2="684" Y2="36"/>
+        <dgm:gSegment X1="684" Y1="36" X2="756" Y2="36"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="CorporateCharges/Services.Externals.TransferES.reference" target="TransferES" width="2">
+        <dgm:gSegment X1="660" Y1="158" X2="684" Y2="158"/>
+        <dgm:gSegment X1="684" Y1="158" X2="684" Y2="178"/>
+        <dgm:gSegment X1="684" Y1="178" X2="756" Y2="178"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ChargeBS_direct" target="ChargeRouter/ChargeRouter" width="2">
+        <dgm:gSegment X1="168" Y1="133" X2="264" Y2="133"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ChargeRouter/CorporateCharges.References.Externals.ChargeBS_direct.service" target="CorporateCharges/References.Externals.ChargeBS_direct.service" width="2">
+        <dgm:gSegment X1="414" Y1="133" X2="510" Y2="133"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+</dgm:gDiagram>

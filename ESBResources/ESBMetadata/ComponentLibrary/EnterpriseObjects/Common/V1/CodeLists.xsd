@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" elementFormDefault="qualified"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" attributeFormDefault="unqualified">
+    <xsd:include schemaLocation="DataTypes.xsd"/>
+    <xsd:simpleType name="LanguageCodeType">
+        <xsd:restriction base="com:StringType"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="Create"/>
+            <xsd:enumeration value="Query"/>
+            <xsd:enumeration value="QueryStatus"/>
+            <xsd:enumeration value="Update"/>
+            <xsd:enumeration value="Delete"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ResponseCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="Success"/>
+            <xsd:enumeration value="Failure"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="MsgTypeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="Requester"/>
+            <xsd:enumeration value="Business"/>
+            <xsd:enumeration value="Enterprise"/>
+            <xsd:enumeration value="Provider"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ServiceType">
+        <xsd:restriction base="com:StringType">
+            <!-- ====================================================================== -->
+            <!-- ============= Business ============= -->
+            <!-- ====================================================================== -->
+            <!-- ============= BackOffice ============= -->
+            <xsd:enumeration value="FileBS"/>
+            <xsd:enumeration value="FileConsumption"/>
+            <!-- ====================================================================== -->
+            <!-- ============= Enterprise ============= -->
+            <!-- ====================================================================== -->
+            <!-- ============= Accounts ============= -->
+            <xsd:enumeration value="AccountES"/>
+            <!-- ============= Instruments ============= -->
+            <xsd:enumeration value="CardES"/>
+            <xsd:enumeration value="ChequeES"/>
+            <xsd:enumeration value="ChequeBookES"/>
+            <!-- ============= Misc ============= -->
+            <xsd:enumeration value="NotificationES"/>
+            <xsd:enumeration value="DocumentES"/>
+            <xsd:enumeration value="TagES"/>
+            <xsd:enumeration value="FileES"/>
+            <!-- ============= Parties ============= -->
+            <xsd:enumeration value="BillerES"/>
+            <xsd:enumeration value="CustomerES"/>
+            <xsd:enumeration value="BranchES"/>
+            <xsd:enumeration value="EmployeeES"/>
+            <!-- ============= Resilience ============= -->
+            <xsd:enumeration value="BiometricES"/>
+            <xsd:enumeration value="ListOfValuesES"/>
+            <xsd:enumeration value="NationalIdentityES"/>
+            <xsd:enumeration value="ProjectES"/>
+            <xsd:enumeration value="SignatureES"/>
+            <!-- ============= Transactions ============= -->
+            <xsd:enumeration value="BillES"/>
+            <xsd:enumeration value="PaymentES"/>
+            <xsd:enumeration value="TransferES"/>
+            <xsd:enumeration value="CurrencyExchangeES"/>
+            <xsd:enumeration value="StatementES"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="UG prePROD web" resourceRoot="${projectDir}" soapui-version="5.1.3" abortOnError="false" runType="SEQUENTIAL" id="ed623c43-ee9b-406a-99be-f15a85f2320d" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="OUGWSSoapBinding" type="wsdl" bindingName="{http://ougwebcomponent.components.oug.osgi.scorex.com/}OUGWSSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://10.1.94.37:9988/OUGWar/workflow_soap" id="301c6af4-3d66-463a-a33c-fe138d6a3db3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.1.94.37:9988/OUGWar/workflow_soap"><con:part><con:url>http://10.1.94.37:9988/OUGWar/workflow_soap</con:url><con:content><![CDATA[<wsdl:definitions name="OUGWS" targetNamespace="http://ougwebcomponent.components.oug.osgi.scorex.com/" xmlns:ns1="http://schemas.xmlsoap.org/wsdl/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ougwebcomponent.components.oug.osgi.scorex.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ougwebcomponent.components.oug.osgi.scorex.com/" xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://jaxb.dev.java.net/array"/>
+      <xs:element name="ougWS" type="tns:ougWS"/>
+      <xs:element name="ougWSResponse" type="tns:ougWSResponse"/>
+      <xs:complexType name="ougWS">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="workflow_name" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="data_flux" type="ns1:stringArray"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ougWSResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="data_flux" type="ns1:stringArray"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://jaxb.dev.java.net/array" xmlns="http://jaxb.dev.java.net/array" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType final="#all" name="stringArray">
+        <xs:sequence>
+          <xs:element maxOccurs="2" minOccurs="2" name="item" nillable="false" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ougWSResponse">
+    <wsdl:part element="tns:ougWSResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ougWS">
+    <wsdl:part element="tns:ougWS" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OUGWS">
+    <wsdl:operation name="ougWS">
+      <wsdl:input message="tns:ougWS" name="ougWS"></wsdl:input>
+      <wsdl:output message="tns:ougWSResponse" name="ougWSResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OUGWSSoapBinding" type="tns:OUGWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ougWS">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ougWS">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ougWSResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OUGWS">
+    <wsdl:port binding="tns:OUGWSSoapBinding" name="OUGWSImplPort">
+      <soap:address location="http://10.1.94.37:9988/OUGWar/workflow_soap"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.1.18.35:9989/OUGWar/workflow_soap</con:endpoint><con:endpoint>http://10.1.94.37:9988/OUGWar/workflow_soap</con:endpoint><con:endpoint>http://10.17.6.38:9988/OUGWar/workflow_soap</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="ougWS" bindingOperationName="ougWS" type="Request-Response" outputName="ougWSResponse" inputName="ougWS" receivesAttachments="false" sendsAttachments="false" anonymous="optional" id="b815d857-799f-4053-b79a-56cddef507f8"><con:settings/><con:call name="Loan Limit SOAP" id="049dc0ba-86b5-4500-890a-88bf4ecbc668"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.17.6.38:9988/OUGWar/workflow_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oug="http://ougwebcomponent.components.oug.osgi.scorex.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oug:ougWS>
+         <workflow_name>LoanLimit</workflow_name>
+         <!--Zero or more repetitions:-->
+         <data_flux>
+            <item>CustId</item>
+            <item>54303885455</item>
+         </data_flux>
+         <data_flux>
+            <item>Product</item>
+            <item>LA530</item>
+         </data_flux>
+      </oug:ougWS>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>NTLM</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>NTLM</con:addedBasicAuthenticationTypes><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ougwebcomponent.components.oug.osgi.scorex.com/OUGWS/ougWS"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Loan Limit HTTP HEADER" id="cee85899-9dae-466d-9366-1be0198021cd"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="Product" value="LA510"/>
+  &lt;con:entry key="workflow" value="LoanLimit"/>
+  &lt;con:entry key="CustId" value="54303885455"/>
+&lt;/xml-fragment></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.18.35:9989/OUGWar/workflow_header</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ougwebcomponent.components.oug.osgi.scorex.com/OUGWS/ougWS"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CustOrigination SOAP" id="367ff8d7-124b-49fe-9cdf-0e18d98746aa"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.18.35:9989/OUGWar/workflow_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oug="http://ougwebcomponent.components.oug.osgi.scorex.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oug:ougWS>
+         <workflow_name>CustOrigination</workflow_name>
+         <!--Zero or more repetitions:-->
+         <data_flux>
+            <item>CustId</item>
+            <item>54303747387</item>
+         </data_flux>
+         <data_flux>
+            <item>Product</item>
+            <item>LA511</item>
+         </data_flux>
+         <data_flux>
+            <item>LoanAmount</item>
+            <item>6000</item>
+         </data_flux>
+         <data_flux>
+            <item>LoanPeriod</item>
+            <item>6</item>
+         </data_flux>
+         <data_flux>
+            <item>CustMobile</item>
+            <item>0735594547</item>
+         </data_flux>
+         <data_flux>
+            <item>Charge</item>
+            <item>4</item>
+         </data_flux>
+         <data_flux>
+            <item>MarketingOffer</item>
+            <item>N</item>
+         </data_flux> 
+         <data_flux>
+            <item>BranchID</item>
+            <item>111</item>
+         </data_flux>
+         <data_flux>
+            <item>AcctManag</item>
+            <item>mat</item>
+         </data_flux>                                  
+      </oug:ougWS>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>NTLM</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>NTLM</con:addedBasicAuthenticationTypes><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ougwebcomponent.components.oug.osgi.scorex.com/OUGWS/ougWS"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CustOrigination HTTP HEADER" id="5b635d53-a726-444b-8279-06b36472209b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="LoanPeriod" value="6"/>
+  <con:entry key="MarketingOffer" value="N"/>
+  <con:entry key="Product" value="LA530"/>
+  <con:entry key="LoanAmount" value="10000"/>
+  <con:entry key="Charge" value="4"/>
+  <con:entry key="CustMobile" value="0735594999"/>
+  <con:entry key="workflow" value="CustOrigination"/>
+  <con:entry key="CustId" value="54303885455"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.94.36:9988/OUGWar/workflow_header</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ougwebcomponent.components.oug.osgi.scorex.com/OUGWS/ougWS"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Instore Loan HTTP HEADER" id="0df1dcf0-4edd-49fc-b818-4a94f175bea2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="ResidentialStatus" value="2"/>
+  <con:entry key="Product" value="LA510"/>
+  <con:entry key="Good1" value="TV"/>
+  <con:entry key="EmploymentStatus" value="2"/>
+  <con:entry key="RepaymentEndDate" value="20122015"/>
+  <con:entry key="TimeAtAdressYY" value="1"/>
+  <con:entry key="workflow" value="LoanLimit"/>
+  <con:entry key="CustId" value="54303885455"/>
+  <con:entry key="EmployerName" value="EQUITY"/>
+  <con:entry key="Term" value="6"/>
+  <con:entry key="Good_Amount1" value="50000"/>
+  <con:entry key="RepaymentStartDate" value="20072015"/>
+  <con:entry key="EmployerPhone" value="0657385727"/>
+  <con:entry key="Contribution" value="10000"/>
+  <con:entry key="TimeInEmploymentMM" value="10"/>
+  <con:entry key="Good_Category1" value="2"/>
+  <con:entry key="TimeAtAdressMM" value="4"/>
+  <con:entry key="TimeInEmploymentYY" value="7"/>
+  <con:entry key="MaritalStatus" value="M"/>
+  <con:entry key="RequestedLoanAmount" value="40000"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.94.36:9988/OUGWar/workflow_header</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ougwebcomponent.components.oug.osgi.scorex.com/OUGWS/ougWS"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Instore Loan SOAP" id="2f3fc023-c9f7-4db3-84e7-821ae9b47dcf"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.17.6.38:9988/OUGWar/workflow_soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oug="http://ougwebcomponent.components.oug.osgi.scorex.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oug:ougWS>
+         <workflow_name>Instore</workflow_name>
+         <!--Zero or more repetitions:-->
+         <data_flux>
+            <item>CustID</item>
+            <item>54302416264</item>
+         </data_flux>
+         <data_flux>
+            <item>Product</item>
+            <item>LA527</item>
+         </data_flux>
+         <data_flux>
+            <item>MaritalStatus</item>
+            <item>M</item>
+         </data_flux>
+         <data_flux>
+            <item>ResidentialStatus</item>
+            <item>2</item>
+         </data_flux>
+         <data_flux>
+            <item>TimeAtAdressYY</item>
+            <item>1</item>
+         </data_flux>
+         <data_flux>
+            <item>TimeAtAdressMM</item>
+            <item>2</item>
+         </data_flux>
+         <data_flux>
+            <item>EmploymentStatus</item>
+            <item>3</item>
+         </data_flux>
+         <data_flux>
+            <item>EmployerName</item>
+            <item>EQUITY</item>
+         </data_flux>
+         <data_flux>
+            <item>EmployerPhone</item>
+            <item>0657385727</item>
+         </data_flux>
+         <data_flux>
+            <item>TimeInEmploymentYY</item>
+            <item>7</item>
+         </data_flux>
+         <data_flux>
+            <item>TimeInEmploymentMM</item>
+            <item>10</item>
+         </data_flux>
+         <data_flux>
+            <item>RequestedLoanAmount</item>
+            <item>10000</item>
+         </data_flux>
+         <data_flux>
+            <item>Term</item>
+            <item>6</item>
+         </data_flux>
+         <data_flux>
+            <item>RepaymentStartDate</item>
+            <item>06062015</item>
+         </data_flux>
+         <data_flux>
+            <item>RepaymentEndDate</item>
+            <item>06112015</item>
+         </data_flux>
+         <data_flux>
+            <item>Good_Category1</item>
+            <item>2</item>
+         </data_flux>  
+         <data_flux>
+            <item>Good1</item>
+            <item>TV</item>
+         </data_flux>         
+         <data_flux>
+            <item>Good_Amount1</item>
+            <item>20000</item>
+         </data_flux>         
+         <data_flux>
+            <item>Contribution</item>
+            <item>10000</item>
+         </data_flux>
+         <data_flux>
+            <item>BranchID</item>
+            <item>111</item>
+        </data_flux>
+      </oug:ougWS>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>NTLM</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>NTLM</con:addedBasicAuthenticationTypes><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ougwebcomponent.components.oug.osgi.scorex.com/OUGWS/ougWS"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

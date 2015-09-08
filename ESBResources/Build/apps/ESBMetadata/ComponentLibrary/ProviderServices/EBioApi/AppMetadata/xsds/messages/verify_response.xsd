@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.innovatrics.com/afismq/schema/message/afismqresponse"
+           xmlns:a="http://www.innovatrics.com/afismq/schema/message/afismqresponse"
+           elementFormDefault="qualified">
+
+    <xs:include schemaLocation="applicant.xsd"/>
+ 
+    <xs:element name="verify">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="applicant" type="a:response_applicant" minOccurs="0"/>
+                <xs:element name="candidates">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="candidate" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="index" type="xs:int"/>
+                                        <xs:element name="score" type="xs:int"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

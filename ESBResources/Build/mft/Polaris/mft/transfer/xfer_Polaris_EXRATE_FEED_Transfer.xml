@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Transfer createdBy="weblogic" description="Polaris_EXRATE_FEED_Transfer" id="xfer_Polaris_EXRATE_FEED_Transfer" lastModifiedBy="weblogic" name="Polaris_EXRATE_FEED_Transfer" priority="medium" xmlns="http://xmlns.oracle.com/mft/transfer">
+   <Source>
+      <SourceRef id="soRef_PolarisOSBSource" sourceRef="/mft/source/so_PolarisOSBSource.xml#so_PolarisOSBSource"/>
+   </Source><ContentFilters>
+      <ContentFilter order="1">
+         <ContentTypeIdentifier name="Polaris_EXRATE_FEED" patternType="file">
+            <pattern>EXRATE_FEED*</pattern>
+         </ContentTypeIdentifier>
+      </ContentFilter>
+   </ContentFilters>
+   <Targets>
+      <Target id="xfer_tgt_PolarisFTP_EXRATE">
+         <TargetRef id="tgtRef_PolarisFTP_EXRATE" targetRef="/mft/target/tgt_PolarisFTP.xml#tgt_PolarisFTP">
+            <TechnologyBindingOverrides xmlns="http://xmlns.oracle.com/mft/binding">
+               <SSH-FTP folder="EXRATE_FEED/incoming/"/>
+            </TechnologyBindingOverrides>
+         </TargetRef>
+      </Target>
+   </Targets>
+</Transfer>

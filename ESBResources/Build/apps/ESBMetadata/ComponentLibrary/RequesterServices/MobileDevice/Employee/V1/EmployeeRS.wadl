@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Employee/V1" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="EmployeeRS">EmployeeRS</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Employee/V1" xmlns:RS="http://xmlns.equitybank.co.ke/ESB/RS/MobileDevice/Employee/V1">
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Employee/V1" schemaLocation="EmployeeRO.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/validation">
+         <method name="PUT" soa:wsdlOperation="validation">
+            <request>
+               <representation mediaType="application/json" element="cns:EmployeeValidationRequestRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Employee/V1"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:EmployeeValidationResponseRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Employee/V1"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

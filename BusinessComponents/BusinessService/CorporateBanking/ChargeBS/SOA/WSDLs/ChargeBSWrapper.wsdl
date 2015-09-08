@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="ChargeBS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:bs="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/BS/CorporateBanking/Charge/V1" location="oramds:/apps/ESBMetadata/ComponentLibrary/BusinessServices/CorporateBanking/Charge/V1/ChargeBS.wsdl"/>
+   <wsdl:portType name="CorporateChargePort">
+      <wsdl:operation name="createCharge">
+         <wsdl:input message="bs:CreateChargeRqMsg"/>
+         <wsdl:output message="bs:CreateChargeRsMsg"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <plnk:partnerLinkType name="ChargeValidationPLType">
+      <plnk:role name="ChargeValidationProvider" portType="bs:ChargeValidationPort"/>
+   </plnk:partnerLinkType>
+</wsdl:definitions>

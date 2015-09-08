@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?oracleBPM version="12.1.3.0.1.00.00" fileRevision="20120601"?>
+<processDocumentation xmlns="http://xmlns.oracle.com/bpm/taskMetadataService/processDocumentation">
+   <component name="FileGeneration">
+      <topicDocumentations>
+         <topicDocumentation name="FileGeneration"/>
+         <topicDocumentation name="ACT1287765162110">
+            <labels>
+               <label locale="en">QueryData</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12877657316520">
+            <labels>
+               <label locale="en">CreateFile</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12877658833825">
+            <labels>
+               <label locale="en">UpdateData</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="EVT12876269999982">
+            <labels>
+               <label locale="en">Start</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="EVT12877874965042">
+            <labels>
+               <label locale="en">End</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf12876270000076"/>
+         <topicDocumentation name="sf12877652818140"/>
+         <topicDocumentation name="sf12877658332288"/>
+         <topicDocumentation name="sf12877877961132"/>
+      </topicDocumentations>
+   </component>
+</processDocumentation>

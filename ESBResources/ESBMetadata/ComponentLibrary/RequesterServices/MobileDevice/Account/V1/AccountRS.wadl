@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Account/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="AccountRS">AccountRS</doc>
+  <grammars>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                xmlns:rm="http://xmlns.equitybank.co.ke/RM/MobileDevice/Account/V1"
+                xmlns:rsc="http://xmlns.equitybank.co.ke/RSC/MobileDevice/Account/V1">
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Account/V1"
+                  schemaLocation="AccountRO.xsd"/>
+    </xsd:schema>
+  </grammars>
+  <resources>
+    <resource path="/opening">
+      <method name="PUT" soa:wsdlOperation="opening">
+        <request>
+          <representation mediaType="application/json" element="cns:AccountOpeningRequestRM"
+                          xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Account/V1"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json" element="cns:AccountOpeningResponseRM"
+                          xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Account/V1"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/queryLoanLimit">
+      <method name="GET" soa:wsdlOperation="queryLoanLimit">
+        <request>
+          <param name="CIFCode" style="query" soa:expression="$msg.LoanQueryRequest/ro:CIFCode" default=""
+                 type="xsd:string"/>
+          <param name="LoanProducts" style="query" soa:expression="$msg.LoanQueryRequest/ro:LoanDetails/ro:LoanProducts"
+                 default="" type="xsd:string"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json" element="cns:LoanQueryResponseRM"
+                          xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Account/V1"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/createLoanAccount">
+      <method name="PUT" soa:wsdlOperation="createLoanAccount">
+        <request>
+          <representation mediaType="application/json" element="cns:CreateLoanAccountRequestRM"
+                          xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Account/V1"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json" element="cns:CreateLoanAccountResponseRM"
+                          xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Account/V1"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

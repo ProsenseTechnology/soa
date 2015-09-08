@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Access/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Access/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    
+    
+      <xsd:element name="RC" type="com:StringType"/>
+      <xsd:element name="DataRC" type="com:StringType"/>
+      <xsd:element name="Role" type="com:StringType"/>
+      <xsd:element name="Firstname" type="com:StringType"/>
+      <xsd:element name="PACC" type="com:StringType"/>
+      <xsd:element name="Status" type="com:StatusType"/>
+      
+    
+    <xsd:element name="PhonePin" type="com:StringType"/>
+    <xsd:element name="PhoneNumber" type="com:TextType"/>
+	<xsd:element name="Access" type="AccessType"/>
+	<xsd:element name="PhoneAccess" type="PhoneAccessType"/>
+	<xsd:complexType name="PhoneAccessType">
+    <xsd:sequence>
+      <xsd:element ref="PhoneNumber" minOccurs="0"/>
+      <xsd:element ref="PhonePin" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Access ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="AccessType">
+        <xsd:sequence>
+            <xsd:element ref="PhoneAccess" minOccurs="0"/>
+      <xsd:element ref="RC" minOccurs="0"/>
+      <xsd:element ref="DataRC" minOccurs="0"/>
+      <xsd:element ref="Role" minOccurs="0"/>
+      <xsd:element ref="Firstname" minOccurs="0"/>
+      <xsd:element ref="PACC" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="Access" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="Access" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="QueryStatus"/>
+            <xsd:enumeration value="AuthenticateCustomer"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

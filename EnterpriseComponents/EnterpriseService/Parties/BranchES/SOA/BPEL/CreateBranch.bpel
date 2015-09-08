@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<process name="CreateBranch" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Branch/V1"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer" xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Branch/V1"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:ess="http://xmlns.oracle.com/scheduler" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+         xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Branch/V1">
+    <import ui:processWSDL="true" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Branch/V1" location="../WSDLs/BranchESWrapper.wsdl"
+            importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="CreateBranchPL" partnerLinkType="es:CreateBranchPLType" myRole="CreateBranchProvider"/>
+        <partnerLink name="BranchProvRouterPL" partnerLinkType="es:BranchProvRouterPLType" partnerRole="BranchESProvider"/>
+    </partnerLinks>
+    <variables>
+        <variable name="RequestVariable" messageType="es:CreateRqMsg"/>
+        <variable name="ResponseVariable" messageType="es:CreateRsMsg"/>
+    </variables>
+    <faultHandlers>
+        <catchAll>
+            <sequence name="FaultSequence">
+                <assign name="AssignFault">
+                    <copy>
+                        <from>"ESB-1002001"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Code</to>
+                    </copy>
+                    <copy>
+                        <from>"Failure"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Type</to>
+                    </copy>
+                    <copy>
+                        <from>ora:getFaultAsString()</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Text</to>
+                    </copy>
+                </assign>
+                <reply name="ReplyResponse" partnerLink="CreateBranchPL" portType="es:CreateBranchPort" operation="execute" variable="ResponseVariable"/>
+            </sequence>
+        </catchAll>
+    </faultHandlers>
+    <sequence name="MainSequence">
+        <receive name="ReceiveRequest" partnerLink="CreateBranchPL" portType="es:CreateBranchPort" operation="execute" variable="RequestVariable"
+                 createInstance="yes"/>
+        <invoke name="InvokeBranchProv" partnerLink="BranchProvRouterPL" portType="es:BranchESPort" operation="create" inputVariable="RequestVariable"
+                outputVariable="ResponseVariable" bpelx:invokeAsDetail="no"/>
+        <reply name="ReplyResponse" partnerLink="CreateBranchPL" portType="es:CreateBranchPort" operation="execute" variable="ResponseVariable"/>
+    </sequence>
+</process>

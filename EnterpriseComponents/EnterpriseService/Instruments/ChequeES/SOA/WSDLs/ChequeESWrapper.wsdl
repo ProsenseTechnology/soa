@@ -1,0 +1,37 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions name="ChequeES" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Instruments/Cheque/V1"
+                  xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Instruments/Cheque/V1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Instruments/Cheque/V1"
+                 location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Instruments/Cheque/V1/ChequeES.wsdl"/>
+    <wsdl:portType name="CreateChequePort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:CreateRqMsg"/>
+            <wsdl:output message="es:CreateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="QueryChequePort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:QueryRqMsg"/>
+            <wsdl:output message="es:QueryRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="UpdateChequePort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:UpdateRqMsg"/>
+            <wsdl:output message="es:UpdateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <plnk:partnerLinkType name="CreateChequePLType">
+        <plnk:role name="CreateChequeProvider" portType="es:CreateChequePort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="QueryChequePLType">
+        <plnk:role name="QueryChequeProvider" portType="es:QueryChequePort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="UpdateChequePLType">
+        <plnk:role name="UpdateChequeProvider" portType="es:UpdateChequePort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="ChequeProvRouterPLType">
+        <plnk:role name="ChequeESProvider" portType="es:ChequeESPort"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

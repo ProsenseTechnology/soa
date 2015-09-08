@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:configjarSettings xmlns:p="http://www.bea.com/alsb/tools/configjar/config">
+    <p:source>
+        <p:project dir="/Users/KRISHNA/jdeveloper/mywork/soaNew/ESBResources/ESBMetadata"/>
+        <p:fileset>
+            <p:exclude name="*/overview.xml"/>
+            <p:exclude name="*/pom.xml"/>
+            <p:exclude name="*/.settings/**"/>
+            <p:exclude name="*/.data/**"/>
+        </p:fileset>
+    </p:source>
+    <p:configjar jar="/Users/KRISHNA/jdeveloper/mywork/soaNew/ESBResources/ESBMetadata/.data/maven/sbconfig.sbar">
+        <p:projectLevel includeSystem="false">
+            <p:project>ESBMetadata</p:project>
+        </p:projectLevel>
+    </p:configjar>
+</p:configjarSettings>

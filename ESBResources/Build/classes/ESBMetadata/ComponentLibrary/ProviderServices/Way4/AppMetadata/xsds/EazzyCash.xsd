@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xsd:element name="request">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="eazzycash">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="amount" type="xsd:integer"/>
+              <xsd:element name="sender" type="xsd:string"/>
+              <xsd:element name="name" type="xsd:string"/>
+              <xsd:element name="number" type="xsd:string"/>
+              <xsd:element name="telco" type="xsd:string"/>
+              <xsd:element name="rrn" type="xsd:string"/>
+              <xsd:element name="signature" type="xsd:base64Binary"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+   <xsd:element name="response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="MsgId" type="xsd:integer"/>
+        <xsd:element name="eazzycashres">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="status" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

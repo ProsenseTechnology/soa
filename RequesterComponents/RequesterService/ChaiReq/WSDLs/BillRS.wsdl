@@ -1,0 +1,74 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<definitions
+     name="BillRS"
+     targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Chai/Bill/V1"
+     xmlns="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+     xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Chai/Bill/V1"
+     xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RS/Chai/BillRO/V1"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl"
+     xmlns:flt="http://xmlns.equitybank.co.ke/ESB/RS/Fault/V1"
+    >
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Chai/BillRO/V1" schemaLocation="../Schemas/BillRO.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Fault/V1" schemaLocation="../Schemas/Error.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateBillRqMsg">
+        <part name="payload" element="ro:ESBMsg"/>
+    </message>
+    <message name="CreateBillRsMsg">
+        <part name="payload" element="ro:messages"/>
+    </message>
+    <message name="InternalServerErrorMsg">
+        <part name="InternalServerErrorFault" element="flt:ServerError"/>
+    </message>
+    <message name="BadRequestMsg">
+        <part name="BadRequestFault" element="flt:ApplicationError"/>
+    </message>
+    <portType name="BillRSPort">
+        <operation name="createBill">
+            <input message="rs:CreateBillRqMsg"/>
+            <output message="rs:CreateBillRsMsg"/>
+            <fault name="InternalServerError" message="rs:InternalServerErrorMsg"/>
+            <fault name="BadRequest" message="rs:BadRequestMsg"/>
+        </operation>
+        <operation name="updateBill">
+            <input message="rs:CreateBillRqMsg"/>
+            <output message="rs:CreateBillRsMsg"/>
+            <fault name="InternalServerError" message="rs:InternalServerErrorMsg"/>
+            <fault name="BadRequest" message="rs:BadRequestMsg"/>
+        </operation>
+    </portType>
+    <binding name="BillRSPortBinding" type="rs:BillRSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="createBill">
+            <soap:operation soapAction="createBill"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="updateBill">
+            <soap:operation soapAction="updateBill"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BillRS">
+        <port name="BillRSPort" binding="rs:BillRSPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

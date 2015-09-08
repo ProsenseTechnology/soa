@@ -1,0 +1,287 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="TransferProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Transfer/V1"
+          xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1">
+  <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+    <switch>
+      <case executionType="sequential" name="Finacle.AddTransferPS.xferTrnAdd">
+        <condition language="xpath">
+          <expression>($in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreateRetailIntraBankTransfer') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountEntryPosting')</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload" target="$out.payload"/>
+          </assign>
+          <invoke reference="Finacle.AddTransferPS" operation="xferTrnAdd">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.TransferPS.createPOThruFI">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreateSwiftTransfer'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload" target="$out.payload"/>
+          </assign>
+          <invoke reference="Finacle.TransferPS" operation="createPOThruFI">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.TransferPS.createPOThruFI">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreateRtgsTransfer'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload" target="$out.payload"/>
+          </assign>
+          <invoke reference="Finacle.TransferPS" operation="createPOThruFI">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.TransferPS.createNEFTInwardFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='NEFTInward'</expression>
+        </condition>
+        <action>
+          <invoke reference="Polaris.TransferPS" operation="createNEFTInwardFile">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.TransferPS.createRTGSInwardFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSInward'</expression>
+        </condition>
+        <action>
+          <invoke reference="Polaris.TransferPS" operation="createRTGSInwardFile">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.TransferPS.createNEFTOutwardRefStatusFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='NEFTOutwardRefStatus'</expression>
+        </condition>
+        <action>
+          <invoke reference="Polaris.TransferPS" operation="createNEFTOutwardRefStatusFile">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.TransferPS.createRTGSOutwardRefStatusFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSOutwardRefStatus'</expression>
+        </condition>
+        <action>
+          <invoke reference="Polaris.TransferPS" operation="createRTGSOutwardRefStatusFile">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+
+      
+      <case executionType="sequential" name="Way4.TransferPS.mobileWalletTransfer">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreateMobileWalletTransfer'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload" target="$out.payload"/>
+          </assign>
+          <invoke reference="Way4.TransferPS" operation="mobileWalletTransfer">
+            <onReply>
+              <transform/>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.TransferPS.createAccountEntryPostingRespFile">
+      <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountEntryPostingFile'</expression>
+            </condition>
+        <action>
+          <assign>
+                  <copy expression="$in.payload" target="$out.payload"/>
+            </assign>
+          <invoke reference="Polaris.TransferPS" operation="createAccountEntryPostingRespFile">
+            <onReply>
+                     <assign>
+                        <copy expression="$in.payload" target="$out.payload"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.AddTransferPS.createPOThruFI">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode ='RTGSOutwardReq'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in" target="$out"/>
+          </assign>
+          <invoke reference="Finacle.AddTransferPS" operation="createPOThruFI">
+            <onReply>
+              <assign>
+                <copy expression="$in" target="$out"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.TransferPS.createRTGSOutwardRespFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'RTGSOutwardReqFile'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in" target="$out"/>
+          </assign>
+          <invoke reference="Polaris.TransferPS" operation="createRTGSOutwardRespFile">
+            <onReply>
+              <assign>
+                <copy expression="$in" target="$out"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+    </switch>
+  </operation>
+  <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+    <switch>
+      <case executionType="sequential" name="Finacle.TransferPS.createNEFTInward">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='NEFTInward'</expression>
+        </condition>
+        <action>
+          <invoke reference="Finacle.TransferPS" operation="createNEFTInward">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.TransferPS.createRTGSInward">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSInward'</expression>
+        </condition>
+        <action>
+          <invoke reference="Finacle.TransferPS" operation="createRTGSInward">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.TransferPS.queryNEFTOutwardRefStatus">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='NEFTOutwardRefStatus'</expression>
+        </condition>
+        <action>
+          <invoke reference="Finacle.TransferPS" operation="queryNEFTOutwardRefStatus">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.TransferPS.queryRTGSOutwardRefStatus">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSOutwardRefStatus'</expression>
+        </condition>
+        <action>
+          <invoke reference="Finacle.TransferPS" operation="queryRTGSOutwardRefStatus">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="coherenceAdapterGet.Get">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryMobileWalletTransferByID'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression='concat($in.payload/eo:ESBMsg/ns0:Source,"-" ,$in.payload/eo:ESBMsg/eo:RqData/eo:Transfer/eo:TransferReferenceNumber)'
+                  target="$out.property.jca.coherence.Key" xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"/>
+          </assign>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.TransferPS.readAccountEntryPostingReqFile">
+      <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountEntryPostingFile'</expression>
+        </condition>
+        <action>
+        <assign>
+            <copy expression="$in.payload" target="$out.payload"/>
+          </assign>
+          <invoke reference="Polaris.TransferPS" operation="readAccountEntryPostingReqFile">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.TransferPS.readRTGSOutwardReqFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'RTGSOutwardReqFile'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in" target="$out"/>
+          </assign>
+          <invoke reference="Polaris.TransferPS" operation="readRTGSOutwardReqFile">
+            <onReply>
+              <assign>
+                <copy expression="$in" target="$out"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+    </switch>
+  </operation>
+ 
+     
+  <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+</Mediator>

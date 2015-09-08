@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="EBioApiProvTest" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BiometricPSCPortBinding" type="wsdl" bindingName="{http://xmlns.equitybank.co.ke/PSC/EBioApi/Biometric/V1}BiometricPSCPortBinding" soapVersion="1_1" anonymous="optional" definition="http://10.1.25.52:8011/PSC/EBioApi/Biometric?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.1.25.52:8011/PSC/EBioApi/Biometric?wsdl"><con:part><con:url>http://10.1.25.52:8011/PSC/EBioApi/Biometric?wsdl</con:url><con:content><![CDATA[<WL5G3N0:definitions name="BiometricPSC" targetNamespace="http://xmlns.equitybank.co.ke/PSC/EBioApi/Biometric/V1" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://xmlns.equitybank.co.ke/PM/EBioApi/Biometric/V1" xmlns:WL5G3N2="http://xmlns.equitybank.co.ke/PSC/EBioApi/Biometric/V1" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:pm="http://xmlns.equitybank.co.ke/PM/EBioApi/Biometric/V1" xmlns:psc="http://xmlns.equitybank.co.ke/PSC/EBioApi/Biometric/V1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/PM/EBioApi/Biometric/V1" schemaLocation="http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FProviderComponents%2FPM%2FEBioApi%2FBiometric%2FV1%2FBiometricPM"/>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="ValidateRequestMessage">
+    <WL5G3N0:part element="WL5G3N1:ValidateRequestPM" name="ValidateRequest"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="ValidateResponseMessage">
+    <WL5G3N0:part element="WL5G3N1:ValidateResponsePM" name="ValidateResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="BiometricPSCPort">
+    <WL5G3N0:operation name="validate">
+      <WL5G3N0:input message="WL5G3N2:ValidateRequestMessage"/>
+      <WL5G3N0:output message="WL5G3N2:ValidateResponseMessage"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="BiometricPSCPortBinding" type="WL5G3N2:BiometricPSCPort">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="validate">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="BiometricPSCPortBindingQSService">
+    <WL5G3N0:documentation>OSB Service</WL5G3N0:documentation>
+    <WL5G3N0:port binding="WL5G3N2:BiometricPSCPortBinding" name="BiometricPSCPortBindingQSPort">
+      <WL5G3N3:address location="http://10.1.25.52:8011/PSC/EBioApi/Biometric"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FProviderComponents%2FPM%2FEBioApi%2FBiometric%2FV1%2FBiometricPM</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/PM/EBioApi/Biometric/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/PM/EBioApi/Biometric/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:eo="http://xmlns.equitybank.co.ke/EO/Resilience/Biometric/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Common/V1" schemaLocation="http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Resilience/Biometric/V1" schemaLocation="http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FResilience%2FBiometric%2FV1%2FBiometricEO"/>
+  <!--======================================================================-->
+  <!--============= Validate Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="ValidateRequestPMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="ValidateRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ValidateRequestPM" type="ValidateRequestPMType"/>
+  <xsd:complexType name="ValidateRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="ValidateRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ValidateRequestType">
+    <xsd:sequence>
+      <xsd:element ref="eo:BiometricEO" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ValidateRequest" type="ValidateRequestType"/>
+  <!--======================================================================-->
+  <!--============= Validate Response =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="ValidateResponsePMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="ValidateResponseDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ValidateResponsePM" type="ValidateResponsePMType"/>
+  <xsd:complexType name="ValidateResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="ValidateResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ValidateResponseType">
+    <xsd:sequence>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ValidateResponse" type="ValidateResponseType"/>
+  <!--======================================================================-->
+  <!--============= Enroll Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="EnrollRequestPMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="EnrollRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="EnrollRequestPM" type="EnrollRequestPMType"/>
+  <xsd:complexType name="EnrollRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="EnrollRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EnrollRequestType">
+    <xsd:sequence>
+      <xsd:element ref="eo:BiometricEO" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EnrollRequest" type="EnrollRequestType"/>
+  <!--======================================================================-->
+  <!--============= Enroll Response =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="EnrollResponsePMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="EnrollResponseDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="EnrollResponsePM" type="EnrollResponsePMType"/>
+  <xsd:complexType name="EnrollResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="EnrollResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EnrollResponseType">
+    <xsd:sequence>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EnrollResponse" type="EnrollResponseType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCodeLists"/>
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FMeta"/>
+  <xsd:complexType name="BiometricDetailsType">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:complexType name="IdentificationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="IdentifierType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Identification" type="com:IdentificationType"/>
+  <xsd:complexType name="StatusType">
+    <xsd:sequence>
+      <xsd:element name="Code" type="CodeType" minOccurs="0"/>
+      <xsd:element name="EffectiveDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="Description" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Status" type="StatusType"/>
+  <xsd:complexType name="PreferenceType">
+    <xsd:sequence>
+      <xsd:element name="PriorityRanking" type="NumericType" minOccurs="0"/>
+      <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Preference" type="PreferenceType"/>
+  <xsd:complexType name="StopPaymentInstructionType">
+    <xsd:sequence>
+      <xsd:element name="RequestDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="ReasonCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="ReasonDescription" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CountryCode" type="CodeType"/>
+  <xsd:element name="StopPaymentInstruction" type="StopPaymentInstructionType"/>
+  <xsd:complexType name="AddressType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="FormatCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="LineOne" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineTwo" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineThree" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineFour" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CityName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="StateName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CountyName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="CountryCode" minOccurs="0"/>
+      <xsd:element name="PostalCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Address" type="AddressType"/>
+  <xsd:complexType name="AddressCommunicationType">
+    <xsd:sequence>
+      <xsd:element ref="Address" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AddressCommunication" type="AddressCommunicationType"/>
+  <xsd:complexType name="PhoneCommunicationType">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="CompleteNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element name="CountryCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="AreaCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="LocalNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ExtensionNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PhoneCommunication" type="PhoneCommunicationType"/>
+  <xsd:complexType name="EmailCommunicationType">
+    <xsd:sequence>
+      <xsd:element name="URI" type="URIType" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EmailCommunication" type="EmailCommunicationType"/>
+  <xsd:complexType name="ContactType">
+    <xsd:sequence>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Contact" type="ContactType"/>
+  <xsd:complexType name="PersonNameType">
+    <xsd:sequence>
+      <xsd:element name="FullName" type="NameType" minOccurs="0"/>
+      <xsd:element name="FirstName" type="NameType" minOccurs="0"/>
+      <xsd:element name="MiddleName" type="NameType" minOccurs="0"/>
+      <xsd:element name="LastName" type="NameType" minOccurs="0"/>
+      <xsd:element name="Title" type="TextType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonName" type="PersonNameType"/>
+  <xsd:complexType name="LocationType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0"/>
+      <xsd:element ref="Address" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Location" type="LocationType"/>
+  <xsd:complexType name="IdentityDocumentType">
+    <xsd:sequence>
+      <xsd:element name="NumberID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssueDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="ExpirationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="IssuingCountryCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingStateCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingLocation" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IssuingAuthority" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="IdentityDocument" type="IdentityDocumentType"/>
+  <xsd:complexType name="SignatureType">
+    <xsd:sequence>
+      <xsd:element name="SignImage" minOccurs="0" type="xsd:base64Binary"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Signature" type="SignatureType"/>
+  <xsd:complexType name="PersonType">
+    <xsd:sequence>
+      <xsd:element name="BirthDateTime" type="com:DateTimeType" minOccurs="0"/>
+      <xsd:element name="BirthCountryCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="BirthCityName" type="com:NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="PreferredCommunicationLanguageCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="GenderCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="IdentityDocument" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Person" type="PersonType"/>
+  <xsd:complexType name="OrganizationType">
+    <xsd:sequence>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IncorporationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="RegistrationCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Organization" type="OrganizationType"/>
+  <xsd:complexType name="PartyType">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref="Person" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="Organization" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element ref="AddressCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="PhoneCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="EmailCommunication" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Party" type="PartyType"/>
+  <xsd:complexType name="PersonPartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PersonPartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonPartyReference" type="PersonPartyReferenceType"/>
+  <xsd:complexType name="PartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="OrganizationName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="PersonName" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PartyReference" type="PartyReferenceType"/>
+  <xsd:element name="AccountHolder" type="PartyReferenceType"/>
+  <xsd:complexType name="BankType">
+    <xsd:sequence>
+      <xsd:element name="BankID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0"/>
+      <xsd:element name="SWIFTCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Bank" type="BankType"/>
+  <xsd:complexType name="BankBranchType">
+    <xsd:sequence>
+      <xsd:element name="BankBranchID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BankBranch" type="BankBranchType"/>
+  <xsd:element name="AccountID" type="com:IdentifierType"/>
+  <xsd:complexType name="AccountType">
+    <xsd:sequence>
+      <xsd:element ref="AccountID" minOccurs="0"/>
+      <xsd:element ref="AccountHolder" minOccurs="0"/>
+      <xsd:element ref="Bank" minOccurs="0"/>
+      <xsd:element ref="BankBranch" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Account" type="AccountType"/>
+  <xsd:element name="PayeeAccount" type="AccountType"/>
+  <xsd:element name="PayFromAccount" type="AccountType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCodeLists</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FDataTypes"/>
+  <xsd:simpleType name="LanguageCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ImplementationCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="BPEL"/>
+      <xsd:enumeration value="MEDIATOR"/>
+      <xsd:enumeration value="BPMN"/>
+      <xsd:enumeration value="ESB"/>
+      <xsd:enumeration value="Other"/>
+      <xsd:enumeration value="JAVA"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SortDirectionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ASC"/>
+      <xsd:enumeration value="DESC"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LogicalOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="AND"/>
+      <xsd:enumeration value="OR"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="QueryOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="EQUALS"/>
+      <xsd:enumeration value="NOT_EQUALS"/>
+      <xsd:enumeration value="GREATER_THAN"/>
+      <xsd:enumeration value="GREATER_THAN_EQUALS"/>
+      <xsd:enumeration value="LESS_THAN"/>
+      <xsd:enumeration value="LESS_THAN_EQUALS"/>
+      <xsd:enumeration value="CONTAINS"/>
+      <xsd:enumeration value="DOES_NOT_CONTAIN"/>
+      <xsd:enumeration value="LIKE"/>
+      <xsd:enumeration value="NOT_LIKE"/>
+      <xsd:enumeration value="LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="NOT_LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="IS_BLANK"/>
+      <xsd:enumeration value="IS_NOT_BLANK"/>
+      <xsd:enumeration value="BETWEEN"/>
+      <xsd:enumeration value="NOT_BETWEEN"/>
+      <xsd:enumeration value="IN"/>
+      <xsd:enumeration value="NOT_IN"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ResponseCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ID"/>
+      <xsd:enumeration value="OBJECT"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATE"/>
+      <xsd:enumeration value="READ"/>
+      <xsd:enumeration value="READSTATUS"/>
+      <xsd:enumeration value="UPDATE"/>
+      <xsd:enumeration value="DELETE"/>
+      <xsd:enumeration value="SYNC"/>
+      <xsd:enumeration value="CANCEL"/>
+      <xsd:enumeration value="STOP"/>
+      <xsd:enumeration value="VALIDATE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BusinessScopeCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DebugLevelCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Low"/>
+      <xsd:enumeration value="Medium"/>
+      <xsd:enumeration value="High"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SyncActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATEUPDATE"/>
+      <xsd:enumeration value="CREATEREPLACE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FDataTypes</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:complexType name="AmountType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="currencyCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="BinaryObjectType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:base64Binary">
+        <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="CodeType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateType">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateTimeType">
+    <xsd:restriction base="xsd:dateTime"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DurationType">
+    <xsd:restriction base="xsd:duration"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IdentifierType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IndicatorType">
+    <xsd:restriction base="xsd:boolean">
+      <xsd:pattern value="false"/>
+      <xsd:pattern value="true"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="IntegerType">
+    <xsd:restriction base="xsd:integer"/>
+  </xsd:simpleType>
+  <xsd:complexType name="MeasureType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="NameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NumericType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PercentType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:complexType name="QuantityType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="RateType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="baseValue" type="xsd:decimal" use="optional"/>
+        <xsd:attribute name="baseUnitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="TextType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="StringType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="URIType">
+    <xsd:restriction base="xsd:anyURI"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="YearType">
+    <xsd:restriction base="xsd:gYear"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="TimeType">
+    <xsd:restriction base="xsd:time"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="01"/>
+      <xsd:pattern value="02"/>
+      <xsd:pattern value="03"/>
+      <xsd:pattern value="04"/>
+      <xsd:pattern value="05"/>
+      <xsd:pattern value="06"/>
+      <xsd:pattern value="07"/>
+      <xsd:pattern value="08"/>
+      <xsd:pattern value="09"/>
+      <xsd:pattern value="10"/>
+      <xsd:pattern value="11"/>
+      <xsd:pattern value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthDayType">
+    <xsd:restriction base="xsd:gMonthDay"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PositiveIntegerType">
+    <xsd:restriction base="xsd:positiveInteger"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NonNegativeIntegerType">
+    <xsd:restriction base="xsd:nonNegativeInteger">
+      <xsd:minInclusive value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FMeta</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:complexType name="MessageType">
+    <xsd:sequence>
+      <xsd:element ref="com:MessageHeader"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Message" type="com:MessageType"/>
+  <xsd:complexType name="MessageHeaderType">
+    <xsd:sequence>
+      <xsd:element name="MessageID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ActionCode" type="com:ActionCodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CreationDateTime" type="com:DateTimeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CreatedBy" type="com:StringType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="InstanceID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="com:SenderApplication" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="MessageHeader" type="com:MessageHeaderType"/>
+  <xsd:complexType name="SenderApplicationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Version" type="com:StringType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SenderApplication" type="com:SenderApplicationType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FResilience%2FBiometric%2FV1%2FBiometricEO</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Resilience/Biometric/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EO/Resilience/Biometric/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Common/V1" schemaLocation="http://10.1.25.52:8011/PSC/EBioApi/Biometric?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:complexType name="BiometricEOType">
+    <xsd:sequence>
+      <xsd:element ref="com:Identification" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BiometricEO" type="BiometricEOType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.1.25.52:8011/PSC/EBioApi/Biometric</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="validate" bindingOperationName="validate" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.25.52:8011/PSC/EBioApi/Biometric</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/PM/EBioApi/Biometric/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Resilience/Biometric/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:ValidateRequestPM>
+         <v11:MessageHeader>
+            <!--Optional:-->
+            <v11:MessageID>?</v11:MessageID>
+            <!--Optional:-->
+            <v11:ActionCode>?</v11:ActionCode>
+            <!--Optional:-->
+            <v11:CreationDateTime>?</v11:CreationDateTime>
+            <!--Optional:-->
+            <v11:CreatedBy>?</v11:CreatedBy>
+            <!--Optional:-->
+            <v11:InstanceID>?</v11:InstanceID>
+            <!--Optional:-->
+            <v11:SenderApplication>
+               <!--Optional:-->
+               <v11:ID>?</v11:ID>
+               <!--Optional:-->
+               <v11:Version>?</v11:Version>
+            </v11:SenderApplication>
+         </v11:MessageHeader>
+         <v1:DataArea>
+            <v1:ValidateRequest>
+               <!--Optional:-->
+               <v12:BiometricEO>
+                  <!--Optional:-->
+                  <v11:Identification>
+                     <!--Optional:-->
+                     <v11:ID>748305</v11:ID>
+                  </v11:Identification>
+               </v12:BiometricEO>
+            </v1:ValidateRequest>
+         </v1:DataArea>
+      </v1:ValidateRequestPM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/PSC/EBioApi/Biometric/V1/BiometricPSCPort/validateRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

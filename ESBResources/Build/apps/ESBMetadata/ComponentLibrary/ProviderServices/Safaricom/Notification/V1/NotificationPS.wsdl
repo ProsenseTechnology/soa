@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="NotificationPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Safaricom/Notification/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Notification/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Safaricom/Notification/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Notification/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Misc/Notification/V1/NotificationEO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="SendSmsRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="SendSmsRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <portType name="NotificationPSPort">
+    <operation name="sendSms">
+      <input message="ps:SendSmsRqMsg"/>
+      <output message="ps:SendSmsRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="NotificationPSPortBinding" type="ps:NotificationPSPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="sendSms">
+      <soap12:operation soapAction="sendSms"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="NotificationPS">
+    <port name="NotificationPSPort" binding="ps:NotificationPSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Payment/V1"
+                 xmlns:billrs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/BillPayment/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="PaymentRS_rest">PaymentRS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Payment/V1" schemaLocation="PaymentRO.xsd"/>
+            
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/createCardPayment">
+            <method name="POST" soa:wsdlOperation="createCardPayment">
+                <request>
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+		<resource path="/createBillPayment">
+            <method name="POST" soa:wsdlOperation="createBillPayment">
+                <request>
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/query">
+            <method name="POST" soa:wsdlOperation="query">
+                <request>
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

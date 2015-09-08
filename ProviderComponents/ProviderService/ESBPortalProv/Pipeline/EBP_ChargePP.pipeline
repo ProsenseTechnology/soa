@@ -1,0 +1,1029 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ESBMetadata/ComponentLibrary/ProviderServices/ESBPortal/Charge/V1/ChargePS"/>
+            <con:binding>
+                <con:name>ChargePSPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/PS/Transactions/Charge/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:template-overrides>
+            <con:template-branch-override id="_FlowId-N3f57c7ff.79382b7a.0.14d902488bb.N7fe2">
+                <con:branch-node>
+                    <con:branch-table>
+                        <con:branch name="createApprovedAccountCharges">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>createApprovedAccountCharges</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_createApprovedAccountChargesRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="V11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_createApprovedAccountChargesRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f60">
+                                    <con1:insert varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="getApprovedAccountCharges">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>getApprovedAccountCharges</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getApprovedAccountChargesRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getApprovedAccountChargesRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="getApprovedAccountChargesList">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>getApprovedAccountChargesList</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getApprovedAccountChargesListRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getApprovedAccountChargesListRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="updateApprovedAccountCharges">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>updateApprovedAccountCharges</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_updateApprovedAccountChargesRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_updateApprovedAccountChargesRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="createChargeMaster">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO  /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>createChargeMaster</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_createChargeMasterRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_createChargeMasterRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="updateChargeMaster">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO/></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>updateChargeMaster</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_updateChargeMasterRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_updateChargeMasterRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="getChargeMaster">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>getChargeMaster</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeMasterRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f60">
+                                    <con1:insert varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeMasterRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="getChargeMasterList">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>getChargeMasterList</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeMasterListRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f60">
+                                    <con1:insert varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeMasterListRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="getChargeOptionList">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>getChargeOptionList</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031a46.5f71401.0.14ee2dac25e.N7ff9">
+                                    <con1:assign varName="InputMsg" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/*[1]</con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeOptionListRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f60">
+                                    <con1:insert varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeOptionListRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="getChargeCurrencyList">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>getChargeCurrencyList</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeCurrencyListRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f60">
+                                    <con1:insert varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeCurrencyListRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="getWaiveChargesIndicatorList">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>getWaiveChargesIndicatorList</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getWaiveChargesIndicatorListRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f60">
+                                    <con1:insert varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getWaiveChargesIndicatorListRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="getChargeTypeList">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>getChargeTypeList</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeOptionListRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f60">
+                                    <con1:insert varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getChargeTypeListRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="getFrequencyList">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7fcb">
+                                    <con1:assign varName="ForEachResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ForEachVO /></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Charge</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="ESBPortalProv/Business/EBP_Charges_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>getFrequencyList</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="false">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="false">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f60">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f92">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2e">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031aef.N7420d36d.0.14e1a2c52e7.N7f2d">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f63">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getFrequencyListRq"/>
+                                                <con2:input>$body/*</con2:input>
+                                                <con2:param name="index">
+                                                    <con2:path>data(xs:int($Index))</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a031aef.6bb3971a.0.14e0febd852.N7f28">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBPortalProv/Transformation/Charge/EBPChargePS_getFrequencyListRs"/>
+                                                <con2:input>$ForEachResponse</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                    </con:branch-table>
+                </con:branch-node>
+            </con:template-branch-override>
+            <con:action-override id="_ActionId-a031a6a.7752c19d.0.14dbd290ba9.N7f39">
+                <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con1:schema ref="ESBMetadata/ComponentLibrary/EnterpriseObjects/Transactions/Charge/V1/ChargeEO"/>
+                    <con1:schemaElement xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">v1:ESBMsg</con1:schemaElement>
+                </con1:validate>
+            </con:action-override>
+        </con:template-overrides>
+    </con:router>
+    <con:template ref="ESBMetadata/Templates/Pipeline/ForeachProviderPP_v2"/>
+</con:pipelineEntry>

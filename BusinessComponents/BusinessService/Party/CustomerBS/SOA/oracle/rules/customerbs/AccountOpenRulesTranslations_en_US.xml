@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<properties>
+   <entry key="AG}-2f7fd4e8:14d31f81886:-7c20">Person is dead</entry>
+   <entry key="AG}-2f7fd4e8:14d31f81886:-7c2b">CustomerID</entry>
+   <entry key="AG}-2f7fd4e8:14d31f81886:-7c27">DOB</entry>
+   <entry key="AG}-2f7fd4e8:14d31f81886:-7c2d">ID</entry>
+   <entry key="AG}-2f7fd4e8:14d31f81886:-7c29">DeathDate</entry>
+   <entry key="AG}-2f7fd4e8:14d31f81886:-7c23">CustomerId is null</entry>
+   <entry key="AG}-2f7fd4e8:14d31f81886:-7c24">Id is null</entry>
+   <entry key="AG}-2f7fd4e8:14d31f81886:-7c1f">No Death Date</entry>
+</properties>

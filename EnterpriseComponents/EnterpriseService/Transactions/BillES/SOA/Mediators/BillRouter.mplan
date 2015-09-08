@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="BillRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="CreateBill.CreateBillPL.execute">
+            <action>
+               <invoke reference="CreateBill.CreateBillPL" operation="execute">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="QueryBill.QueryBillPL.execute">
+            <action>
+               <invoke reference="QueryBill.QueryBillPL" operation="execute">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="UpdateBill.UpdateBillPL.execute">
+            <action>
+               <invoke reference="UpdateBill.UpdateBillPL" operation="execute">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+</Mediator>

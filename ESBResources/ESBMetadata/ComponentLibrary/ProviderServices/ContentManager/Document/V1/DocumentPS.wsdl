@@ -1,0 +1,330 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<definitions
+     name="DocumentPS"
+     targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/ContentManager/Document/V1"
+     xmlns="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+     xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"
+     xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/ContentManager/Document/V1"
+    >
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1" schemaLocation="../../../../EnterpriseObjects/Misc/Document/V1/DocumentEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="GetContextListRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetContextListRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetOriginListRqMsg">
+        <part name="payload" element="eo:DocumentName"/>
+    </message>
+    <message name="GetOriginListRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetDocumentTypeListRqMsg">
+        <part name="payload" element="eo:DocumentName"/>
+    </message>
+    <message name="GetDocumentTypeListRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetDocumentSubTypeListRqMsg">
+        <part name="payload" element="eo:DocumentName"/>
+    </message>
+    <message name="GetDocumentSubTypeListRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="DownloadDocumentRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="DownloadDocumentRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="SearchDocumentRqMsg">
+        <part name="payload" element="eo:DocumentName"/>
+    </message>
+    <message name="SearchDocumentRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateDocumentUserTagRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateDocumentUserTagRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetDocumentRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetDocumentRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetUserTagListRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetUserTagListRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateUserTagRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateUserTagRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateDocumentRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateDocumentRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CountPendingDocumentRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CountPendingDocumentRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetAccountListRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetAccountListRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetPendingDocumentsRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetPendingDocumentsRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateDocumentRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateDocumentRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateAccountRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateAccountRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="DocumentPSPort">
+        <operation name="getContextList">
+            <input message="ps:GetContextListRqMsg"/>
+            <output message="ps:GetContextListRsMsg"/>
+        </operation>
+        <operation name="getOriginList">
+            <input message="ps:GetOriginListRqMsg"/>
+            <output message="ps:GetOriginListRsMsg"/>
+        </operation>
+        <operation name="getDocumentTypeList">
+            <input message="ps:GetDocumentTypeListRqMsg"/>
+            <output message="ps:GetDocumentTypeListRsMsg"/>
+        </operation>
+        <operation name="getDocumentSubTypeList">
+            <input message="ps:GetDocumentSubTypeListRqMsg"/>
+            <output message="ps:GetDocumentSubTypeListRsMsg"/>
+        </operation>
+        <operation name="downloadDocument">
+            <input message="ps:DownloadDocumentRqMsg"/>
+            <output message="ps:DownloadDocumentRsMsg"/>
+        </operation>
+        <operation name="searchDocument">
+            <input message="ps:SearchDocumentRqMsg"/>
+            <output message="ps:SearchDocumentRsMsg"/>
+        </operation>
+        <operation name="createDocumentUserTag">
+            <input message="ps:CreateDocumentUserTagRqMsg"/>
+            <output message="ps:CreateDocumentUserTagRsMsg"/>
+        </operation>
+        <operation name="getDocument">
+            <input message="ps:GetDocumentRqMsg"/>
+            <output message="ps:GetDocumentRsMsg"/>
+        </operation>
+        <operation name="getUserTagList">
+            <input message="ps:GetUserTagListRqMsg"/>
+            <output message="ps:GetUserTagListRsMsg"/>
+        </operation>
+        <operation name="createUserTag">
+            <input message="ps:CreateUserTagRqMsg"/>
+            <output message="ps:CreateUserTagRsMsg"/>
+        </operation>
+        <operation name="createDocument">
+            <input message="ps:CreateDocumentRqMsg"/>
+            <output message="ps:CreateDocumentRsMsg"/>
+        </operation>
+        <operation name="countPendingDocument">
+            <input message="ps:CountPendingDocumentRqMsg"/>
+            <output message="ps:CountPendingDocumentRsMsg"/>
+        </operation>
+        <operation name="getAccountList">
+            <input message="ps:GetAccountListRqMsg"/>
+            <output message="ps:GetAccountListRsMsg"/>
+        </operation>
+        <operation name="getPendingDocument">
+            <input message="ps:GetPendingDocumentsRqMsg"/>
+            <output message="ps:GetPendingDocumentsRsMsg"/>
+        </operation>
+        <operation name="updateDocument">
+            <input message="ps:UpdateDocumentRqMsg"/>
+            <output message="ps:UpdateDocumentRsMsg"/>
+        </operation>
+        <operation name="createAccount">
+            <input message="ps:CreateAccountRqMsg"/>
+            <output message="ps:CreateAccountRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="DocumentPSPortBinding" type="ps:DocumentPSPort">
+        <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getContextList">
+            <soap12:operation soapAction="getContextList" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getOriginList">
+            <soap12:operation soapAction="getOriginList" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getDocumentTypeList">
+            <soap12:operation soapAction="getDocumentTypeList" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getDocumentSubTypeList">
+            <soap12:operation soapAction="getDocumentSubTypeList" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="downloadDocument">
+            <soap12:operation soapAction="downloadDocument" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="searchDocument">
+            <soap12:operation soapAction="searchDocument" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createDocumentUserTag">
+            <soap12:operation soapAction="createDocumentUserTag" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getDocument">
+            <soap12:operation soapAction="getDocument" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getUserTagList">
+            <soap12:operation soapAction="getUserTagList" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createUserTag">
+            <soap12:operation soapAction="createUserTag" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createDocument">
+            <soap12:operation soapAction="createDocument" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="countPendingDocument">
+            <soap12:operation soapAction="countPendingDocument" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getAccountList">
+            <soap12:operation soapAction="getAccountList" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getPendingDocument">
+            <soap12:operation soapAction="getPendingDocument" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="updateDocument">
+            <soap12:operation soapAction="updateDocument" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createAccount">
+            <soap12:operation soapAction="createAccount" soapActionRequired="false"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="DocumentPS">
+        <port name="DocumentPSPort" binding="ps:DocumentPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

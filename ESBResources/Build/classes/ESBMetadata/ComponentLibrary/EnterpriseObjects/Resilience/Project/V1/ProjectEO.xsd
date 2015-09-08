@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1"
+			xmlns:fileo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" schemaLocation="../../../Misc/File/V1/FileEO.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="ProjectType" type="com:CodeType"/>
+    <xsd:element name="ProjectStatus" type="com:CodeType"/>
+    <xsd:element name="ProjectName" type="com:NameType"/>
+    <xsd:element name="ProjectDescription" type="com:TextType"/>
+    <xsd:element name="ExpenditureType" type="com:CodeType"/>
+    <xsd:element name="ExpenditureDescription" type="com:TextType"/>
+    <xsd:element name="TaskName" type="com:NameType"/>
+    <xsd:element name="TaskDescription" type="com:TextType"/>
+    <xsd:element name="ExpenditureDate" type="com:DateType"/>
+    <xsd:element name="SupplierName" type="com:NameType"/>
+    <xsd:element name="TransactionID" type="com:IDType"/>
+    <xsd:element name="TransactionAmount" type="com:AmountType"/>
+    <xsd:element name="AccountedAmount" type="com:AmountType"/>
+    <xsd:element name="ProjectAmount" type="com:AmountType"/>
+    <xsd:element name="InvoiceNumber" type="com:IDType"/>
+    <xsd:element name="PONumber" type="com:IDType"/>
+    <xsd:element name="Project" type="ProjectType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Project ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ProjectType">
+        <xsd:sequence>
+            <xsd:element ref="com:ProjectIdentifier" minOccurs="0"/>
+            <xsd:element ref="ProjectType" minOccurs="0"/>
+            <xsd:element ref="ProjectName" minOccurs="0"/>
+            <xsd:element ref="ProjectDescription" minOccurs="0"/>
+            <xsd:element ref="com:TemplateName" minOccurs="0"/>
+            <xsd:element ref="com:StartDate" minOccurs="0"/>
+            <xsd:element ref="com:EndDate" minOccurs="0"/>
+            <xsd:element ref="com:OrganizationName" minOccurs="0"/>
+            <xsd:element ref="ExpenditureType" minOccurs="0"/>
+            <xsd:element ref="ExpenditureDescription" minOccurs="0"/>
+            <xsd:element ref="TaskName" minOccurs="0"/>
+            <xsd:element ref="TaskDescription" minOccurs="0"/>
+            <xsd:element ref="ExpenditureDate" minOccurs="0"/>
+            <xsd:element ref="SupplierName" minOccurs="0"/>
+            <xsd:element ref="TransactionID" minOccurs="0"/>
+            <xsd:element ref="TransactionAmount" minOccurs="0"/>
+            <xsd:element ref="AccountedAmount" minOccurs="0"/>
+            <xsd:element ref="ProjectAmount" minOccurs="0"/>
+            <xsd:element ref="InvoiceNumber" minOccurs="0"/>
+            <xsd:element ref="PONumber" minOccurs="0"/>
+            <xsd:element ref="ProjectStatus" minOccurs="0"/>
+            <xsd:element ref="fileo:File" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="Project" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="Project" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="com:Status" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="Create"/>
+            <xsd:enumeration value="QueryProjectCost"/>
+            <xsd:enumeration value="ProjectCosting"/>
+            <xsd:enumeration value="Update"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

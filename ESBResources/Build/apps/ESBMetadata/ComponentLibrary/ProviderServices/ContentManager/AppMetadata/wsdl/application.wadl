@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:application xmlns:ns0="http://wadl.dev.java.net/2009/02">
+   <ns0:doc xmlns:ns1="http://jersey.java.net/" ns1:generatedBy="Jersey: 2.5.1 2014-01-02 13:43:00"/>
+   <ns0:doc xmlns:ns2="http://jersey.java.net/" ns2:hint="This is simplified WADL with user and core resources only. To get full WADL with extended resources use the query parameter detail. Link: http://localhost:7101/documentmanagement/rest/application.wadl?detail=true"/>
+   <ns0:grammars>
+      <ns0:include href="../xsds/xsd0.xsd">
+         <ns0:doc title="Generated" xml:lang="en"/>
+      </ns0:include>
+   </ns0:grammars>
+   <ns0:resources base="http://localhost:7101/documentmanagement/rest/">
+      <ns0:resource path="document">
+         <ns0:resource path="/download/{id}">
+            <ns0:param name="id" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:long"/>
+            <ns0:method id="downloadDocument" name="GET">
+               <ns0:response>
+                  <ns0:representation element="downloadVO" mediaType="application/xml"/>
+                  <ns0:representation element="downloadVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="/accountList/{documentId}">
+            <ns0:param name="documentId" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:long"/>
+            <ns0:method id="getAccountList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="accountListVO" mediaType="application/xml"/>
+                  <ns0:representation element="accountListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="createAccounts">
+            <ns0:method id="createAccounts" name="POST">
+               <ns0:request>
+                  <ns0:representation element="accountListVO" mediaType="application/xml"/>
+                  <ns0:representation element="accountListVO" mediaType="application/json"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="statusVO" mediaType="application/xml"/>
+                  <ns0:representation element="statusVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="/getDocument/{id}">
+            <ns0:param name="id" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:long"/>
+            <ns0:method id="getDocument" name="GET">
+               <ns0:response>
+                  <ns0:representation element="documentViewVO" mediaType="application/xml"/>
+                  <ns0:representation element="documentViewVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="updateDocument">
+            <ns0:method id="updateDocument" name="PUT">
+               <ns0:request>
+                  <ns0:representation element="documentVO" mediaType="application/xml"/>
+                  <ns0:representation element="documentVO" mediaType="application/json"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="statusVO" mediaType="application/xml"/>
+                  <ns0:representation element="statusVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="originList">
+            <ns0:method id="getOriginList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="originListVO" mediaType="application/xml"/>
+                  <ns0:representation element="originListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="getPendingDocuments/{numberOfResults}">
+            <ns0:param name="numberOfResults" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:long"/>
+            <ns0:method id="getPendingDocuments" name="GET">
+               <ns0:response>
+                  <ns0:representation element="documentListVO" mediaType="application/xml"/>
+                  <ns0:representation element="documentListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="createUserTag">
+            <ns0:method id="createUserTag" name="POST">
+               <ns0:request>
+                  <ns0:representation element="userTagVO" mediaType="application/xml"/>
+                  <ns0:representation element="userTagVO" mediaType="application/json"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="longVO" mediaType="application/xml"/>
+                  <ns0:representation element="longVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="searchDocuments">
+            <ns0:method id="searchDocuments" name="GET">
+               <ns0:request>
+                  <ns0:param name="document" style="query" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="documentViewListVO" mediaType="application/xml"/>
+                  <ns0:representation element="documentViewListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="documentSubTypeList">
+            <ns0:method id="getDocumentSubTypeList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="documentSubTypeListVO" mediaType="application/xml"/>
+                  <ns0:representation element="documentSubTypeListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="createDocument">
+            <ns0:method id="createDocument" name="POST">
+               <ns0:request>
+                  <ns0:representation element="documentVO" mediaType="application/xml"/>
+                  <ns0:representation element="documentVO" mediaType="application/json"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="longVO" mediaType="application/xml"/>
+                  <ns0:representation element="longVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="documentTypeList">
+            <ns0:method id="getDocumentTypeList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="documentTypeListVO" mediaType="application/xml"/>
+                  <ns0:representation element="documentTypeListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="contextList">
+            <ns0:method id="getContextList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="contextListVO" mediaType="application/xml"/>
+                  <ns0:representation element="contextListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="/countPendingDocuments/{id}">
+            <ns0:param name="id" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:long"/>
+            <ns0:method id="countPendingDocuments" name="GET">
+               <ns0:response>
+                  <ns0:representation element="longVO" mediaType="application/xml"/>
+                  <ns0:representation element="longVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="/userTagList/{username}">
+            <ns0:param name="username" style="template" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:string"/>
+            <ns0:method id="getUserTagList" name="GET">
+               <ns0:response>
+                  <ns0:representation element="userTagListVO" mediaType="application/xml"/>
+                  <ns0:representation element="userTagListVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+         <ns0:resource path="createDocumentUserTag">
+            <ns0:method id="createDocumentUserTag" name="POST">
+               <ns0:request>
+                  <ns0:representation element="documentUserTagVO" mediaType="application/xml"/>
+                  <ns0:representation element="documentUserTagVO" mediaType="application/json"/>
+               </ns0:request>
+               <ns0:response>
+                  <ns0:representation element="statusVO" mediaType="application/xml"/>
+                  <ns0:representation element="statusVO" mediaType="application/json"/>
+               </ns0:response>
+            </ns0:method>
+         </ns0:resource>
+      </ns0:resource>
+   </ns0:resources>
+</ns0:application>

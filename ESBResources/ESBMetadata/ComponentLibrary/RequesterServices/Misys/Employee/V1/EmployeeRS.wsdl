@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="EmployeeRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Misys/Employee/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Misys/Employee/V1" xmlns:ro="urn:control.services.tiplus2.misys.com">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="urn:control.services.tiplus2.misys.com" schemaLocation="../../AppMetadata/V1/Control.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="AccountOfficerRqMsg">
+        <part name="payload" element="ro:ServiceRequest"/>
+    </message>
+    <message name="AccountOfficerRsMsg">
+        <part name="payload" element="ro:ServiceResponse"/>
+    </message>
+    <portType name="EmployeeRSPort">
+        <operation name="accountOfficer">
+            <input message="rs:AccountOfficerRqMsg"/>
+            <output message="rs:AccountOfficerRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="EmployeeRSPortBinding" type="rs:EmployeeRSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="accountOfficer">
+            <soap12:operation soapAction="accountOfficer"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="EmployeeRS">
+        <port name="EmployeeRSPort" binding="rs:EmployeeRSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

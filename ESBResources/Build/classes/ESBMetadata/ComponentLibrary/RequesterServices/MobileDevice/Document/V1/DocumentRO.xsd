@@ -1,0 +1,114 @@
+<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1" schemaLocation="../../../../EnterpriseObjects/Misc/Document/V1/DocumentEO.xsd"/>
+  <xsd:complexType name="AccountListType">
+    <xsd:sequence>
+      <xsd:element name="AccountNumber" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="AccountType" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= SearchDocument Request ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="QueryDocumentRequestRMType">
+    <xsd:sequence>
+      <xsd:element name="RefID" minOccurs="0" type="xsd:string"/>
+      <xsd:element name="Count" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="QueryDocumentRequestRM" type="QueryDocumentRequestRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= SearchDocument Response ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="QueryDocumentResponseRMType">
+    <xsd:sequence>
+      <xsd:element name="Document" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="RefID" type="xsd:string"/>
+            <xsd:element name="Content" type="xsd:string"/>
+            <xsd:element name="Instruction" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Count" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="QueryDocumentResponseRM" type="QueryDocumentResponseRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= CreateDocument Request ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CreateDocumentRequestRMType">
+    <xsd:sequence>
+      <xsd:element name="Content" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CreateDocumentRequestRM" type="CreateDocumentRequestRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= CreateDocument Response ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CreateDocumentResponseRMType">
+    <xsd:sequence>
+      <xsd:element name="RefID" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CreateDocumentResponseRM" type="CreateDocumentResponseRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= CreateAccounts Request ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CreateAccountsRequestRMType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Account" type="AccountListType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CreateAccountsRequestRM" type="CreateAccountsRequestRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= CreateAccounts Response ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CreateAccountsResponseRMType">
+    <xsd:sequence>
+      <xsd:element name="Status" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CreateAccountsResponseRM" type="CreateAccountsResponseRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= GetAccountList Request ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="GetAccountListRequestRMType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetAccountListRequestRM" type="GetAccountListRequestRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= GetAccountList Response ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="GetAccountListResponseRMType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="AccountList" type="AccountListType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetAccountListResponseRM" type="GetAccountListResponseRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= UpdateDocument Request ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="UpdateDocumentRequestRMType">
+    <xsd:sequence>
+      <xsd:element name="RefID" type="xsd:string"/>
+      <xsd:element name="Instruction" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="UpdateDocumentRequestRM" type="UpdateDocumentRequestRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= UpdateDocument Response ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="UpdateDocumentResponseRMType">
+    <xsd:sequence>
+      <xsd:element name="Status" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="UpdateDocumentResponseRM" type="UpdateDocumentResponseRMType"/>
+</xsd:schema>

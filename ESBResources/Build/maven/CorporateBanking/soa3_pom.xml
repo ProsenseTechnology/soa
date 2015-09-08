@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ke.co.equitybank</groupId>
+    <artifactId>ESB</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <modules>
+	    <module>../../../..//ESBResources/ESBMetadata</module>
+        <module>../../../../ProviderComponents/ProviderService/EquityDirectProv</module>
+        <module>../../../../ProviderComponents/ProviderService/FinacleProv</module>
+        <module>../../../../ProviderComponents/ProviderService/PolarisProv</module>
+        <module>../../../../ProviderComponents/ProviderService/SafaricomProv</module>
+        <module>../../../../ProviderComponents/ProviderService/Way4Prov</module>
+        <module>../../../../RequesterComponents/RequesterService/PolarisReq</module>
+    </modules>
+</project>

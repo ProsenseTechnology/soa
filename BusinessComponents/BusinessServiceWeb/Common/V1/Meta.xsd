@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/BusinessObjects/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/BusinessObjects/Common/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:include schemaLocation="CodeLists.xsd"/>
+  <xsd:include schemaLocation="CommonComponents.xsd"/>
+  <xsd:complexType name="RequestBM_Type">
+    <xsd:sequence>
+      <xsd:element ref="RequestBMHeader"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RequestBMHeader_Type">
+    <xsd:sequence>
+      <xsd:element name="BMID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element name="BMName" type="Name_Type" minOccurs="0"/>
+      <xsd:element name="BMVersion" type="String_Type" minOccurs="0"/>
+      <xsd:element name="BOName" type="Name_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="AgentName" type="String_Type" minOccurs="0"/>
+      <xsd:element ref="AgentBioAuthInfo" minOccurs="0"/>
+      <xsd:element ref="BankId"/>
+      <xsd:element ref="BranchId"/>
+      <xsd:element name="CreationDateTime" type="DateTime_Type" minOccurs="0"/>
+      <xsd:element name="CreatedBy" type="String_Type" minOccurs="0"/>
+      <xsd:element name="ActionCode" type="ActionCode_Type" minOccurs="0"/>
+      <xsd:element name="LanguageCode" type="LanguageCode_Type" minOccurs="0"/>
+      <xsd:element name="InstanceID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element ref="Sender" minOccurs="0"/>
+      <xsd:element ref="Target" minOccurs="0"/>
+      <xsd:element name="Login" type="String_Type" minOccurs="0"/>
+      <xsd:element name="Password" type="String_Type" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseBM_Type">
+    <xsd:sequence>
+      <xsd:element ref="ResponseBMHeader"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseBMHeader_Type">
+    <xsd:sequence>
+      <xsd:element name="BMID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element name="BMName" type="Name_Type" minOccurs="0"/>
+      <xsd:element name="BMVersion" type="String_Type" minOccurs="0"/>
+      <xsd:element name="BOName" type="Name_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="AgentName" type="String_Type"/>
+      <xsd:element name="CreationDateTime" type="DateTime_Type" minOccurs="0"/>
+      <xsd:element name="CreatedBy" type="String_Type"/>
+      <xsd:element name="ActionCode" type="Code_Type" minOccurs="0"/>
+      <xsd:element name="LanguageCode" type="Code_Type" minOccurs="0"/>
+      <xsd:element name="InstanceID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element ref="Sender" minOccurs="0"/>
+      <xsd:element ref="Target" minOccurs="0"/>
+      <xsd:element ref="ResponseStatus" minOccurs="0"/>
+      <xsd:element ref="FaultNotification" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Sender_Type">
+    <xsd:sequence>
+      <xsd:element name="ID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element name="Description" type="Text_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="TransactionCode" type="Code_Type" minOccurs="0"/>
+      <xsd:element name="CallingServiceName" type="Name_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="Application" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Target_Type">
+    <xsd:sequence>
+      <xsd:element name="ID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element name="ServiceName" type="Name_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="Application" minOccurs="0"/>
+      <xsd:element name="EndPointURI" type="URI_Type" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Application_Type">
+    <xsd:sequence>
+      <xsd:element name="ID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element name="Version" type="String_Type" minOccurs="0"/>
+      <xsd:element ref="ApplicationObjectKey" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ApplicationObjectKey_Type">
+    <xsd:sequence>
+      <xsd:element name="ID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element name="ContextID" type="Identifier_Type" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseStatus_Type">
+    <xsd:sequence>
+      <xsd:element name="Code" type="Code_Type" minOccurs="0"/>
+      <xsd:element name="Message" type="Text_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <!-- Added by Mustaque!-->
+      <xsd:element name="Status" type="StatusCode_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="StatusDesc" type="StatusDesc_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="ServerStatusCode" type="ServerStatusCode_Type"/>
+      <xsd:element name="Severity" type="ClosedEnum" minOccurs="0"/>
+      <!--xsd:element name="AsyncRsInfo" type="AsyncRsInfo_Type"/-->
+      <!--xsd:element name="AdditionalStatus" type="AdditionalStatus_Type" minOccurs="0"/>
+      <xsd:element name="StatusModBy" type="OpenEnum" minOccurs="0"/>
+      <xsd:element name="Memo" type="Memo_Type" minOccurs="0"/-->
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--Present in CommonCOmponents- -->
+  <!--xsd:complexType name="AdditionalStatus_Type">
+    <xsd:sequence>
+      <xsd:element name="Status" type="StatusCode_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="StatusDesc" type="StatusDesc_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="ServerStatusCode" type="ServerStatusCode_Type"/>
+      <xsd:element name="Severity" type="ClosedEnum" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType-->
+  <xsd:complexType name="Fault_Type">
+    <xsd:sequence>
+      <xsd:element ref="FaultNotification" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FaultNotification_Type">
+    <xsd:sequence>
+      <xsd:element name="BusinessComponentID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element name="ReportingDateTime" type="DateTime_Type" minOccurs="0"/>
+      <xsd:element name="CorrectiveAction" type="Text_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="FaultMessage" minOccurs="0"/>
+      <xsd:element ref="FaultingService" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FaultMessage_Type">
+    <xsd:sequence>
+      <xsd:element name="Code" type="Code_Type" minOccurs="0"/>
+      <xsd:element name="Text" type="Text_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="Severity" type="Code_Type" minOccurs="0"/>
+      <xsd:element name="Stack" type="Text_Type" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FaultingService_Type">
+    <xsd:sequence>
+      <xsd:element name="ID" type="Identifier_Type" minOccurs="0"/>
+      <xsd:element name="ImplementationCode" type="ImplementationCode_Type" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RequestBM" type="RequestBM_Type"/>
+  <xsd:element name="RequestBMHeader" type="RequestBMHeader_Type"/>
+  <xsd:element name="ResponseBM" type="ResponseBM_Type"/>
+  <xsd:element name="ResponseBMHeader" type="ResponseBMHeader_Type"/>
+  <xsd:element name="Sender" type="Sender_Type"/>
+  <xsd:element name="Target" type="Target_Type"/>
+  <xsd:element name="Application" type="Application_Type"/>
+  <xsd:element name="ApplicationObjectKey" type="ApplicationObjectKey_Type"/>
+  <xsd:element name="ResponseStatus" type="ResponseStatus_Type"/>
+  <xsd:element name="Fault" type="Fault_Type"/>
+  <xsd:element name="FaultNotification" type="FaultNotification_Type"/>
+  <xsd:element name="FaultMessage" type="FaultMessage_Type"/>
+  <xsd:element name="FaultingService" type="FaultingService_Type"/>
+  <!-- Added by Mustaque - Start -->
+  <!--Removed By Prabhat Creating Duplicacy Same present in CommonComponent can access via ref=common:AsyncRsInfo_Type-->
+  <!--xsd:complexType name="AsyncRsInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="AvailDt" minOccurs="0"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType-->
+  <!--xsd:element name="AvailDt" type="AvailDt_Type"/ -->
+  <!--xsd:element name="ExpDt" type="ExpDt_Type"/-->
+  <!-- Added by Mustaque - End -->
+</xsd:schema>

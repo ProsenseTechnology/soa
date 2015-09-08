@@ -1,0 +1,25 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:bo="http://xmlns.equitybank.co.ke/ESB/BO/RetailBanking/Account/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="AccountBS_rest">AccountBS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/BO/RetailBanking/Account/V1"
+                        schemaLocation="AccountBO.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/opening">
+            <method name="POST" soa:wsdlOperation="opening">
+                <request>
+                    <representation mediaType="application/xml" element="bo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="bo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+       
+    </resources>
+</application>

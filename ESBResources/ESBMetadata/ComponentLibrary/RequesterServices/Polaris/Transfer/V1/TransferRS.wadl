@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Transfer/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="TransferRS_rest">TransferRS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Transfer/V1" schemaLocation="TransferRO.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/create">
+            <method name="POST" soa:wsdlOperation="create">
+                <request>
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+           <resource path="/queryStatus">
+            <method name="POST" soa:wsdlOperation="queryStatus">
+                <request>
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

@@ -1,0 +1,366 @@
+<adapter-config name="FinacleDBAdapter " adapter="db" wsdlLocation="FIN_DB_Adapter.wsdl"
+                xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  <connection-factory UIConnectionName="Finacle" location="eis/DB/Finacle"/>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryEmployee">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString"
+                value="select EMP.EMP_NAME EmpName,EMP.EMP_ID EmpId,EMP.EMP_EMAIL_ID EmailId from tbaadm.get EMP ,tbaadm.upr ROLE WHERE EMP.EMP_ID = ROLE.USER_EMP_ID AND ROLE.USER_WORK_CLASS = 200 AND ROLE.ROLE_ID LIKE 'BRM'"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryCustomerMaster">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select 
+a.BANK_ID BankId,
+a.ORGKEY CustomerId,
+a.CORPORATE_NAME CustName,
+a.ORGKEY PrimaryID,
+a.MANAGER RMName,
+a.ADDRESS_LINE1 Address1,
+a.ADDRESS_LINE2 Address2,
+a.ADDRESS_LINE3 Address3,
+(SELECT REF_DESC FROM tbaadm.RCT WHERE
+REF_REC_TYPE='01'AND REF_CODE=a.city and rct.bank_id='54') CityTown,
+a.COUNTRY CountryCode,
+a.ZIP ZipCode,
+a.PREFERREDPHONE PhoneNo,
+a.PREFERREDPHONE CellNo,
+a.PREFERREDEMAIL EmailID,
+a.PRIMARY_SOL_ID BranchCode,
+decode(a.SUSPEND_FLAG,'N','A','C') Status 
+from crmuser.accounts a
+where
+trunc(a.BODATEMODIFIED) = #startDate and ISEBANKINGENABLED = 'Y'"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryAccountMaster">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString"
+                value="select 
+                a.BANK_ID BankId,
+                foracid AcountNo,
+                acct_crncy_code AccountCcy,
+                sol_id Branch,
+                ACCT_NAME AccountName,
+                to_char(acct_opn_date,'YYYYMMDD') OpenDate,
+                cif_id CustomerId,
+decode(schm_type,'CAA','1','SBA','1','TDA','2','LAA','3','CASA') AccountType,schm_code ProductCd,decode(cif_id,null,'Bank','Customer') AccCategory,
+decode(acct_cls_flg,'Y','C','O') ClosureFlag,to_char(acct_cls_date,'YYYYMMDD') ClosureDate,decode((select ACCT_STATUS  from tbaadm.SMT WHERE acid=a.acid),'A','N',null,'N','Y') InactiveStatus from tbaadm.gam a,crmuser.accounts b where a.CIF_ID = b.orgkey and a.del_flg='N' and a.bank_id='54' and a.CUST_ID is not null and a.SCHM_TYPE != 'LAA' and b.ISEBANKINGENABLED in('Y','N','') and trunc(a.LCHG_TIME)= #changeDate"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryDepositAccountMaster">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select g.bank_id BankId,g.cif_id CustomerId,g.foracid DepositAccountNumber,t.TRAN_ID BilyetNumber,tam_crncy_code
+Currency,t.xfer_in_ind Status,
+t.cumulative_principal CurrentPrincipalAmount,t.deposit_amount DepositAmount,
+to_char(t.maturity_date,'YYYYMMDD') MaturityDate,e.interest_rate CurrentInterestRate,e.nrml_booked_amount_cr InterestToDate,e.interest_rate InterestRate,t.deposit_period_mths TenorValue,
+to_char(t.open_effective_date,'YYYYMMDD') PostingDate,
+decode(auto_renewal_flg, 'N' ,'No AutoRenewal','R','AutoRenewal') as MaturityInstructions,
+g.acct_cls_flg from TBAADM.gam g, TBAADM.tam t,tbaadm.eit e AccountClosureFlag
+from TBAADM.gam g, TBAADM.tam t,tbaadm.eit e
+where g.acid = t.acid
+and e.entity_id = t.acid
+and g.schm_type = 'TDA'
+and g.acct_opn_date between #startDate and #endDate"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryExchangeRate">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select BANK_ID BankId, VAR_CRNCY_CODE BaseCcy,a.FXD_CRNCY_CODE
+CounterCcy,to_char(RTLIST_DATE,'YYYYMMDD') StartDate,
+sum(decode(a.RATECODE,'CNB',CUST_VAR_CRNCY_UNITS))
+BidRate,sum(decode(a.RATECODE,'CNS',CUST_VAR_CRNCY_UNITS)) OfferRate,
+sum(decode(a.RATECODE,'MEAN',CUST_VAR_CRNCY_UNITS))
+MidRate,to_char(RTLIST_DATE,'YYYYMMDD') LastDate from tbaadm.rtl a,
+(select FXD_CRNCY_CODE,RATECODE,max(LCHG_TIME) maxtime from tbaadm.rtl
+where bank_id = '54'
+and ratecode in ('CNS','CNB','MEAN')
+and FXD_CRNCY_CODE != 'YEN'
+group by FXD_CRNCY_CODE,RATECODE) b
+where a.ratecode in ('CNS','CNB','MEAN')
+and a.LCHG_TIME=b.maxtime
+and a.FXD_CRNCY_CODE=b.FXD_CRNCY_CODE
+and a.RATECODE=b.RATECODE
+and A.bank_id = '54'
+group by VAR_CRNCY_CODE,a.FXD_CRNCY_CODE,RTLIST_DATE,BANK_ID"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryChequeUpdateStatus">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select d.bank_id BankId,d.tran_id TransactionRefNo,d.INSTRMNT_NUM CoreTxnRefNo,g.foracid AccountNo,d.INSTRMNT_NUM InstNo,
+(substr(CHQ_LVS_STAT,
+((to_number(trim(d.instrmnt_num)))-(to_number(trim(c.BEGIN_CHQ_NUM))))+1,1)) Status
+from tbaadm.htd d,tbaadm.hth h,tbaadm.gam g,tbaadm.cbt c
+where
+h.tran_id = d.tran_id
+and g.acid = d.acid
+and g.acid = c.acid
+and to_number(trim(d.instrmnt_num)) BETWEEN trim(c.BEGIN_CHQ_NUM) AND trim(c.END_CHQ_NUM)
+and h.tran_date = d.tran_date
+and h.tran_date BETWEEN #startDate AND #endDate
+and h.DELIVERY_CHANNEL_ID = 'VER'
+and d.part_tran_type = 'D'"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryLoanAccountMaster">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select g.bank_id UnitId,g.schm_type AccType,g.schm_code AccSubType,g.sanct_lim TotalLoanAmount,round(NRML_ACCRUED_AMOUNT_DR,2) InterestAccrued,
+l.lam_crncy_code SettlementCurrency,g.foracid LoanAccountNumber,l.lam_crncy_code LoanCurrency,g.acct_Name  LoanAccountName,decode(l.loan_type,'N','Normal','T','Transfer-In') LoanType,b.foracid FundingAccount,r.lr_freq_type PaymentFrequency,l.dis_amt OriginalAmount,g.clr_bal_amt OutStandingAmount,
+sum(t.DMD_AMT) - sum(t.TOT_ADJ_AMT) PastDueAmount, d.flow_amt LastPaymentAmount,to_char(d.value_date,'YYYYMMDD') LastPaymentReceivedDate,r.num_of_flows TotalNumberofInstallments,
+f.fullypaid InstallmentsPaid,to_char(dis_shdl_date,'YYYYMMDD') LoanStartDate,to_char(l.ei_perd_end_date,'YYYYMMDD') LoanMaturityDate,abs(e.interest_rate) InterestRate,to_char(r.next_dmd_date,'YYYYMMDD')NextPaymentDate,b.foracid DisbursementAccount,b.foracid InterestRepaymentAccount,decode(g.acct_cls_flg,'Y','Closed','N','Open','Open') Loanstatus,l.rep_perd_mths Tenure,to_char(l.ei_perd_end_date,'YYYYMMDD') LoanClosureDate,
+g.sanct_lim ApprovedLimit,a.SUB_CLASSIFICATION_SYSTEM DelinquencyStatus,to_char(r.next_dmd_date,'YYYYMMDD') NextPrincipalDueDate,to_char(r.next_dmd_date,'YYYYMMDD')  NextInterestDueDate,f.delayledpaid NoofDelayedPayments,
+dis_amt DisbursedAmount from tbaadm.gam g,tbaadm.gam b,tbaadm.lam l, tbaadm.eit e,tbaadm.ldt t,tbaadm.acd a,(select acid,flow_amt,value_date,bank_id from tbaadm.ltd l
+where value_date = (select max(VALUE_DATE) from tbaadm.ltd where acid = l.acid) and flow_id = 'COLLC') d,
+(select acid,count(case when count1 >= 0 then 1 end) fullypaid,count(case when count1 &lt; 0 then 1 end) delayledpaid from
+(select acid,dmd_date,sum(tot_adj_amt) - sum(dmd_amt) count1 from tbaadm.ldt
+where bank_id in ('54','55','56','11','50') group by acid ,dmd_date) group by acid) f,(select sol_id,acid,lr_freq_type,num_of_flows,next_dmd_date from tbaadm.lrs r where r.SHDL_NUM = (select max(b.SHDL_NUM) from TBAADM.lrs b where r.acid = b.acid) and FLOW_ID ='EIDEM')r
+where l.acid = g.acid
+and d.acid = g.acid
+and e.entity_id = g.acid
+and l.op_acid = b.acid
+and t.acid = g.acid
+and r.acid = g.acid
+and f.acid =g.acid
+and r.sol_id = g.sol_id
+and a.B2K_TYPE ='ACCNT'
+and g.acid = a.B2K_ID
+and g.acct_opn_date BETWEEN #startDate AND #endDate
+and g.schm_type='LAA'
+group by
+ g.bank_id,g.acid,g.schm_type,g.schm_code,dis_amt,NRML_ACCRUED_AMOUNT_DR,lam_crncy_code,
+g.foracid,g.acct_Name,g.clr_bal_amt,g.acct_cls_flg,l.loan_type,b.foracid,r.lr_freq_type,d.flow_amt,d.value_date,r.num_of_flows,f.fullypaid,f.delayledpaid,dis_shdl_date,
+l.ei_perd_end_date,e.interest_rate,r.next_dmd_date,l.rep_perd_mths,ei_perd_end_date,l.lam_crncy_code,
+g.sanct_lim,a.SUB_CLASSIFICATION_SYSTEM"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryRTGSOutwardRefStatus">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select htd.bank_id BankId,htd.tran_id TranRefNo,pord.pymt_ref_num UTRNo,decode(pstd_flg,'Y','S','F') Status from tbaadm.pord,tbaadm.htd
+where htd.ref_num = pord.pymt_ref_num
+and htd.tran_date BETWEEN #startDate AND #endDate
+and htd. tran_type = 'T'
+and htd.tran_sub_type = 'CI'
+and part_tran_type = 'D'
+and substr(tran_particular,1,7) != 'Charges'
+and substr(tran_particular,1,19) != 'remmittance charges'"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="createNEFTInward">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select otc.bank_id UnitId,gam.foracid DrAcct,
+city||state||country Address,
+htd.TRAN_AMT TranAmt,otc.DEST_BANK_CODE BankCode,otc.DEST_CUST_ACCT
+BenAcctId,otc.DEST_CUST_NAME BenCustName,ECS_TRAN_REF_NO UniqueTransactionRefNo
+from tbaadm.htd,tbaadm.otc,tbaadm.gam,crmuser.accounts
+where htd.TRAN_DATE=otc.TRAN_DATE
+and otc.cust_acct = gam.acid
+and accounts.orgkey = gam.cif_id
+and htd.TRAN_ID=otc.TRAN_ID
+and htd.part_tran_type='D'
+and htd.tran_date between #startDate AND #endDate"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="createRTGSInward">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select 
+      gam.bank_id UnitId,
+      foracid DrAcct,
+      tran_amt TranAmt,
+      recvr_bank_code BankCode,
+      benef_party_acct BenCustAcctId,
+benef_party_name BenCustName,
+BENEF_PARTY_ADDR1 BenCustAddr1,
+BENEF_PARTY_ADDR2 BenCustAddr2,
+Address OrdInstAddr1,
+sender_to_recvr_info SendRecvInfo1,
+ref_num UniqueTransactionRefNo
+from tbaadm.pord,tbaadm.htd,tbaadm.gam,
+(select bank_id,orgkey,preferredphone,preferredemail,address_line1||' '||
+(select ref_desc from tbaadm.rct where ref_code = a.state and ref_rec_type='02' )||' '||
+(select ref_desc from tbaadm.rct where ref_code = a.country and ref_rec_type='03')||' '||
+zip Address from crmuser.accounts a) a  
+where
+htd.ref_num = pord.pymt_ref_num
+and htd.tran_date between #startDate AND #endDate
+and htd.acid = gam.acid
+and a.orgkey = gam.cif_id
+and htd. tran_type = 'T'
+and htd.tran_sub_type = 'CI'
+and schm_type != 'LAA'
+and substr(tran_particular,1,7)  != 'Charges'
+and substr(tran_particular,1,19) != 'remmittance charges'"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryNEFTOutwardRefStatus">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select h.bank_id BankId, 
+h.tran_id TranRefNo,
+o.ecs_tran_ref_no UTRNo,
+decode(pstd_flg,'Y','S','F') Status
+from tbaadm.otc o,tbaadm.htd h where
+o.tran_id = h.tran_id
+and o.tran_date = h.tran_date
+and h.part_tran_type = 'D'
+and h.tran_date between #startDate and #endDate"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryDDUpdateStatus">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select 
+ddc.bank_id BankId,
+ddc.tran_id TransactionRefNo,
+ddc.dd_num CoreTxnRefNo,
+gam.foracid AccountNo,
+ddc.instrmnt_num InstNo,
+dst.dd_status Status
+from tbaadm.ddc,tbaadm.gam,tbaadm.dst where
+ddc.pur_acid = gam.acid
+and dst.dd_num = ddc.dd_num
+and ddc.tran_date between #startDate and #endDate"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryChequeDetails">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select to_char(i.ENTRY_DATE,'YYYYMMDD') EntryDate,
+I.SOL_ID SolId,
+d.PART_TRAN_AMT_IN_INST_CRNCY AmountTCY,
+c.TRAN_ID TranId,
+I.INST_NUM InstNum,
+concat(p.bank_code,p.br_code) RoutingNo,
+I.PART_TRAN_TYPE PartTranType,
+g.FORACID ForAcctId,
+g.CUST_ID CustId,
+p.PAYING_ACCT_ID PayingAcctId,
+p.FREETEXT3 FreeText3,
+i.INST_AMT InstAmt,
+d.SET_REL_REG_STAT SetRelRegStat,
+to_char(i.VALUE_DATE,'YYYYMMDD') ValueDate,
+to_char(i.ENTRY_DATE,'YYYYMMDD') DepositSlipDate,
+c.TRAN_ID DepositSlipNo
+from tbaadm.Ici i,tbaadm.gam g, tbaadm.bkc b,tbaadm.oci p,tbaadm.icp c,tbaadm.ocp d
+where p.INSTRMNT_ID=i.INST_NUM
+and i.OUT_REJ_ZONE_CODE=p.clg_zone_code
+and I.DRAWEE_BANK_CODe=b.bank_code
+and d.acid = g.acid
+and d.PART_TRAN_TYPE = 'C' and d.del_flg!='Y' and d.SET_REL_REG_STAT='R'
+and I.acid=g.acid
+and i.PART_TRAN_TYPE = 'D'
+and i.ZONE_DATE = #startDate
+and i.sol_id='000'
+and OUT_REJ_SET_NUM is not null
+AND i.STATUS_IND='P'"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryLiquidationChequeStatus">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="SELECT p.PAYING_ACCT_ID PayingAcctId,
+I.INST_NUM InstNum,
+i.INST_AMT InstAmt,
+b.BANK_SHORT_NAME BankShortName,
+g.FORACID ForAcctId,
+g.ACCT_NAME AcctName,
+I.SOL_ID SolId,
+to_char(i.VALUE_DATE,'YYYYMMDD') ValueDate,
+to_char(i.ENTRY_DATE,'YYYYMMDD') EntryDate,
+I.STATUS_IND StatusInd,
+I.REJ_CODE_1 RejCode1,
+c.TRAN_ID TranId
+FROM tbaadm.Ici i,
+tbaadm.gam g,
+tbaadm.bkc b,
+tbaadm.oci p,
+tbaadm.icp c
+WHERE p.INSTRMNT_ID =i.INST_NUM
+AND i.OUT_REJ_ZONE_CODE=p.clg_zone_code
+AND I.DRAWEE_BANK_CODe =b.bank_code
+AND I.acid =g.acid
+AND i.PART_TRAN_TYPE = 'D'
+AND i.ZONE_DATE = #startDate
+AND OUT_REJ_SET_NUM IS NOT NULL
+AND i.STATUS_IND ='P'"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="accountInqByCustId">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select * from
+(select BANK_ID BankId,
+foracid AccountNo,
+acct_crncy_code AccountCcy,
+sol_id Branch,
+ACCT_NAME AccountName,
+to_char(acct_opn_date,'YYYYMMDD') OpenDate,
+cif_id CIFNo,
+schm_type AccountType,
+schm_code ProductCd,decode(cif_id,null,'Bank','Customer') AccCategory,
+decode(acct_cls_flg,'Y','C','O') ClosureFlag,
+to_char(acct_cls_date,'YYYYMMDD') ClosureDate,
+decode((select ACCT_STATUS  from tbaadm.SMT WHERE acid=a.acid),'A','N',null,'N','Y') InactiveStatus 
+from tbaadm.gam a
+where del_flg='N'
+and a.cif_id = #customerIDTBA
+and CUST_ID is not null) a,
+(select 
+a.BANK_ID BankId_1,
+a.orgkey CifNo,
+a.name CustName,
+a.orgkey PrimaryID,
+MANAGER RMName, 
+a.ADDRESS_LINE1 Address1,
+decode(a.ADDRESS_LINE2 ,null,(SELECT REF_DESC FROM tbaadm.RCT WHERE REF_REC_TYPE='01'AND REF_CODE=a.city and rct.bank_id = '54')) Address2,
+a.ADDRESS_LINE3 Address3,
+(SELECT REF_DESC FROM tbaadm.RCT WHERE REF_REC_TYPE='01'AND REF_CODE=a.city and rct.bank_id = '54') CityTown,
+a.COUNTRY  CountryCode,
+a.ZIP ZipCode,
+a.PREFERREDPHONE PhoneNo,
+a.PREFERREDPHONE CellNo,
+a.PREFERREDEMAIL EmailID,
+a.PRIMARY_SOL_ID BranchCode,
+decode(gender,'F','I','M','I','C') CustCategory,
+decode(a.SUSPENDED,'N','A','C') Status 
+from crmuser.accounts a
+where
+a.orgkey = #customerIDCRM) b
+where
+a.cifno = b.cifno
+"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryAverageBalance">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select 
+gam.cif_id CifId,  
+to_char(EOD_DATE,'MMYYYY') Period, 
+round(avg(VALUE_DATE_BAL)) AverageBalance
+from tbaadm.gam, tbaadm.eab
+where cif_id = #cifId
+and gam.bank_id = eab.bank_id
+and gam.acid = eab.acid
+and schm_type in('SBA', 'CAA')
+and   to_char(EOD_DATE,'MMYYYY') = #eodDate
+group by gam.cif_id,  to_char(EOD_DATE,'MMYYYY')"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="FinacleDBAdapterPort" operation="queryClientEmail">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString"
+                value="select
+                a.name CustomerName,g.foracid AccountNumber,a.email Email from tbaadm.pord o,tbaadm.dtd d,tbaadm.gam g,crmuser.accounts a where o.PYMT_REF_NUM = #payRefNum and  d.part_tran_srl_num = '   2' and o.PYMT_REF_NUM = d.ref_num and g.acid = d.acid and a.orgkey = g.cif_id and o.bank_id in ('54','55','56','11','50') and d.bank_id in ('54','55','56','11','50') and g.bank_id in ('54','55','56','11','50') and a.bank_id in ('54','55','56','11','50')"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+</adapter-config>

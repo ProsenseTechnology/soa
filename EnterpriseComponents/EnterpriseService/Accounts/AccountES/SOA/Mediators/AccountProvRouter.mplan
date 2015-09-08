@@ -1,0 +1,417 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="AccountProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"
+          xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1">
+  <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+    <switch>
+      <case executionType="sequential" name="Finacle.AccountPS.sbAcctAdd">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "CreateSBAccount"</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+          </assign>
+          <invoke reference="Finacle.AccountPS" operation="sbAcctAdd">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.AccountPS.caAcctAdd">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "CreateCAAccount"</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+          </assign>
+          <invoke reference="Finacle.AccountPS" operation="caAcctAdd">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="SignatureES.create">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "CreateSignature"</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload/eo:ESBMsg/ns0:MsgID" target="$out.payload/ns4:ESBMsg/ns0:MsgID"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                  xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"/>
+            <copy expression="$in.payload/eo:ESBMsg/ns0:Source" target="$out.payload/ns4:ESBMsg/ns0:Source"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                  xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"/>
+            <copy expression="$in.payload/eo:ESBMsg/ns0:MsgType" target="$out.payload/ns4:ESBMsg/ns0:MsgType"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                  xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"/>
+            <copy expression="$in.payload/eo:ESBMsg/ns0:Service" target="$out.payload/ns4:ESBMsg/ns0:Service"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                  xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"/>
+            <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:Account"
+                  target="$out.payload/ns3:ESBMsg/ns3:RqData/ns3:Signature/eo:Account"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  xmlns:ns3="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"/>
+            <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                  target="$out.payload/ns3:ESBMsg/ns3:RqData/@actionCode"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  xmlns:ns3="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"/>
+          </assign>
+          <invoke reference="SignatureES" operation="create">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload/eo:ESBMsg/eo:RsData/ns0:Status"
+                      target="$out.payload/ns3:ESBMsg/ns3:RsData/ns0:Status"
+                      xmlns:ns3="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                      xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.AccountPS.createAccountMasterFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountMaster'</expression>
+        </condition>
+        <action>
+          <invoke reference="Polaris.AccountPS" operation="createAccountMasterFile">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.AccountPS.createDepositAccountMasterFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='DepositAccountMaster'</expression>
+        </condition>
+        <action>
+          <invoke reference="Polaris.AccountPS" operation="createDepositAccountMasterFile">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.AccountPS.createLoanAccountMasterFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='LoanAccountMaster'</expression>
+        </condition>
+        <action>
+          <invoke reference="Polaris.AccountPS" operation="createLoanAccountMasterFile">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Experian.AccountPS.createLoanAccount">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreateLoanAccount'</expression>
+        </condition>
+        <action>
+          <invoke reference="Experian.AccountPS" operation="createLoanAccount">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.AccountPS.createAverageBalanceFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'AverageBalanceFile'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload" target="$out.payload"/>
+          </assign>
+          <invoke reference="Polaris.AccountPS" operation="createAverageBalanceFile">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.BalAccountPS.queryAverageBalance">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'AverageBalance'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in" target="$out"/>
+          </assign>
+          <invoke reference="Finacle.BalAccountPS" operation="queryAverageBalance">
+            <onReply>
+              <assign>
+                <copy expression="$in" target="$out"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.AccountPS.createInternalAccountValidationFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'InternalAccountValidationFile'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload" target="$out.payload"/>
+          </assign>
+          <invoke reference="Polaris.AccountPS" operation="createInternalAccountValidationFile">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.BalAccountPS.custAcctInquiry">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'InternalAccountValidation'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in" target="$out"/>
+          </assign>
+          <invoke reference="Finacle.BalAccountPS" operation="custAcctInquiry">
+            <onReply>
+              <assign>
+                <copy expression="$in" target="$out"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+    </switch>
+  </operation>
+  <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+    <switch>
+      <case executionType="sequential" name="Way4.AccountPS.mobileWalletInquiry">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryMobileAccountSummaryByPhone'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+          </assign>
+          <invoke reference="Way4.AccountPS" operation="mobileWalletInquiry">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.AccountPS.virtualAcctTest">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryRetailAccountStatusByID'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload" target="$out.payload/eo:ESBMsg"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+          </assign>
+          <invoke reference="Finacle.AccountPS" operation="virtualAcctTest">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.AccountPS_V1.custAcctInquiry">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryRetailAccountSummaryByID' or $in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryRetailAccountDetailByID' or $in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryBalanceSummaryByID' or $in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'QueryRetailAccountInquiryByNationalID'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload" target="$out.payload"/>
+          </assign>
+          <invoke reference="Finacle.AccountPS_V1" operation="custAcctInquiry">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+       <case executionType="sequential" name="Finacle.AccountPS_V1.balInq">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryRetailAccountBalanceByID'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload" target="$out.payload"/>
+            <copy expression="'QueryRetailAccountBalanceByID'" target="$out.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+          </assign>
+          <invoke reference="Finacle.AccountPS_V1" operation="balInq">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+     
+      <!--case executionType="sequential" name="Finacle.AccountPS.custAcctInquiry">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "QueryRetailAccountInquiryByNationalID"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+               </assign>
+               <invoke reference="Finacle.AccountPS" operation="custAcctInquiry">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case-->
+      <case executionType="sequential" name="Finacle.AccountPS.accountMaster">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountMaster'</expression>
+        </condition>
+        <action>
+          <invoke reference="Finacle.AccountPS" operation="queryAccountMaster">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.AccountPS.depositAccountMaster">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='DepositAccountMaster'</expression>
+        </condition>
+        <action>
+          <invoke reference="Finacle.AccountPS" operation="queryDepositAccountMaster">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Finacle.AccountPS.loanAccountMaster">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='LoanAccountMaster'</expression>
+        </condition>
+        <action>
+          <invoke reference="Finacle.AccountPS" operation="queryLoanAccountMaster">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Experian.AccountPS.queryLoan">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryLoan'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                  xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"/>
+          </assign>
+          <invoke reference="Experian.AccountPS" operation="queryLoanLimit">
+            <onReply>
+              <assign>
+                <copy expression="$in.payload" target="$out.payload"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.AccountPS.readAverageBalanceFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'AverageBalanceFile'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in" target="$out"/>
+          </assign>
+          <invoke reference="Polaris.AccountPS" operation="readAverageBalanceFile">
+            <onReply>
+              <assign>
+                <copy expression="$in" target="$out"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+      <case executionType="sequential" name="Polaris.AccountPS.readInternalAccountValidationFile">
+        <condition language="xpath">
+          <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'InternalAccountValidationFile'</expression>
+        </condition>
+        <action>
+          <assign>
+            <copy expression="$in" target="$out"/>
+          </assign>
+          <invoke reference="Polaris.AccountPS" operation="readInternalAccountValidationFile">
+            <onReply>
+              <assign>
+                <copy expression="$in" target="$out"/>
+              </assign>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+    </switch>
+  </operation>
+  <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+    <switch>
+      <case executionType="sequential" name="Finacle.AccountPS.sbAcctAdd">
+        <action>
+          <invoke reference="Finacle.AccountPS" operation="sbAcctAdd">
+            <onReply>
+              <reply/>
+            </onReply>
+          </invoke>
+        </action>
+      </case>
+    </switch>
+  </operation>
+</Mediator>

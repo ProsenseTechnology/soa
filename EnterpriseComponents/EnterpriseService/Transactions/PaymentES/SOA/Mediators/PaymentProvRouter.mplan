@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="PaymentProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Payment/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Payment/V1"
+          xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Way4.PaymentPS.cardPayment">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreateCardPayment'</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload" target="$out.payload"/>
+               </assign>
+               <invoke reference="Way4.PaymentPS" operation="cardPayment">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload" target="$out.payload"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="Finacle.PaymentPS.billerGetDetails">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreateBillPayment'</expression>
+            </condition>
+            <action>
+               <invoke reference="Finacle.PaymentPS" operation="billerGetDetails">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="Safaricom.BillPS.billPayment">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/eo:Payment/com:BillIdentifier/com:BillerID='SafariCom'</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload" target="$out.payload"/>
+               </assign>
+               <invoke reference="Safaricom.BillPS" operation="billPayment">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Finacle.PaymentPS.billerGetDetails">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='QueryBillPaymentByID'</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload" target="$out.payload"/>
+               </assign>
+               <invoke reference="Finacle.PaymentPS" operation="billerGetDetails">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload" target="$out.payload"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+</Mediator>

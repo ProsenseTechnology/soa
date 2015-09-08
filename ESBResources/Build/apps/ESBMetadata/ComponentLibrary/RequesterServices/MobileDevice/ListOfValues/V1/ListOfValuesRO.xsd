@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/ListOfValues/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/ListOfValues/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/ListOfValues/V1" elementFormDefault="qualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/ListOfValues/V1"
+                schemaLocation="../../../../EnterpriseObjects/Resilience/ListOfValues/V1/ListOfValuesEO.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= QueryListOfValues Request ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="QueryListOfValuesRequestRMType">
+                <xsd:sequence>
+                    <xsd:element ref="eo:ListName" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="QueryListOfValuesRequestRM" type="QueryListOfValuesRequestRMType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= QueryListOfValues Response ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="QueryListOfValuesResponseRMType">
+                <xsd:sequence>
+                    <xsd:element ref="eo:ListOfValues" minOccurs="1" maxOccurs="unbounded"/>
+                </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="QueryListOfValuesResponseRM" type="QueryListOfValuesResponseRMType"/>
+</xsd:schema>

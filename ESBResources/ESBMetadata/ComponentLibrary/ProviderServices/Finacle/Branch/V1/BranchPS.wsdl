@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="BranchPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Branch/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Branch/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Branch/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Branch/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Parties/Branch/V1/BranchEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="BankBranchInqRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="BankBranchInqRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="BranchPSPort">
+        <operation name="bankBranchInq">
+            <input message="ps:BankBranchInqRqMsg"/>
+            <output message="ps:BankBranchInqRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="BranchPSPortBinding" type="ps:BranchPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="bankBranchInq">
+            <soap12:operation soapAction="bankBranchInq"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BranchPS">
+        <port name="BranchPSPort" binding="ps:BranchPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

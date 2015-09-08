@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="AccountPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Access/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Access/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Access/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Access/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Resilience/Access/V1/AccessEO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="AuthenticateMobileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="AuthenticateMobileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <portType name="AccessPSPort">
+    <operation name="authenticateMobile">
+      <input message="ps:AuthenticateMobileRqMsg"/>
+      <output message="ps:AuthenticateMobileRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="AccessPSPortBinding" type="ps:AccessPSPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="authenticateMobile">
+      <soap12:operation soapAction="authenticateMobile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="AccessPS">
+    <port name="AccessPSPort" binding="ps:AccessPSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

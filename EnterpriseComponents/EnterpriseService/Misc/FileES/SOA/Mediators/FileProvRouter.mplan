@@ -1,0 +1,871 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="FileProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Misc/File/V1"
+          xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+          xmlns:accteo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+          xmlns:cardeo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"
+          xmlns:chequeeo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Cheque/V1"
+          xmlns:ddeo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/DemandDraft/V1"
+          xmlns:curexeo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+          xmlns:transeo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+          xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+          xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+          xmlns:prjeo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1">
+    <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+        <switch>
+            <case executionType="sequential" name="ProjectES.create">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='ProjectCosting'</expression>
+                </condition>
+                <action>
+                    <transform/>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/prjeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/prjeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/prjeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/prjeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/eo:Payload"
+                              target="$out.payload/prjeo:ESBMsg/prjeo:RqData"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/prjeo:ESBMsg/prjeo:RqData/@actionCode"/>
+                        <copy expression="concat('ProjectCost_Feed_',string(xp20:format-dateTime(xp20:current-dateTime(),'[Y0001][M01][D01][H01][m01][s01]')),'.txt')"
+                              target="$out.payload/ns1:ESBMsg/ns1:RqData/ns1:Project/eo:File/eo:FileName"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1"
+                              xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"/>
+                    </assign>
+                    <invoke reference="ProjectES" operation="create">
+                        <onReply>
+                            <assign>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/eo:ESBMsg/eo:RsData/eo:Project/ns1:File"
+                                      target="$out.payload/ns1:ESBMsg/ns1:RsData/ns1:File"
+                                      xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/prjeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="AccountES.create">
+                <condition language="xpath">
+                    <expression>($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountMaster') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='DepositAccountMaster') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='LoanAccountMaster') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AverageBalance')or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AverageBalanceFile') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='InternalAccountValidation')or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='InternalAccountValidationFile')</expression>
+                </condition>
+                <action>
+                 <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/accteo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/accteo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/accteo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/accteo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/eo:Payload"
+                              target="$out.payload/accteo:ESBMsg/accteo:RqData"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/accteo:ESBMsg/accteo:RqData/@actionCode"/>
+                    </assign>
+                    
+                    <invoke reference="AccountES" operation="create">
+                        <onReply>
+                         <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_AccountES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/accteo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/eo:ESBMsg/eo:RsData/eo:Account/ns3:File"
+                                      target="$out.payload/ns3:ESBMsg/ns3:RsData/ns3:File"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                                      xmlns:ns3="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"/>
+                                <copy expression="$in.payload/accteo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/accteo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/accteo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/accteo:ESBMsg/accteo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                      
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="CardES.create">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreditCard'</expression>
+                </condition>
+                <action>
+                 <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/cardeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/cardeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/cardeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/cardeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/eo:Payload"
+                              target="$out.payload/cardeo:ESBMsg/cardeo:RqData"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/cardeo:ESBMsg/cardeo:RqData/@actionCode"/>
+                    </assign>
+                    <invoke reference="CardES" operation="create">
+                        <onReply>
+                              <assign>
+                                <copy expression="$in.payload/cardeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/cardeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/cardeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/cardeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/cardeo:ESBMsg/cardeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="ChequeES.create">
+                <condition language="xpath">
+                    <expression>($in.payload/eo:ESBMsg/eo:RqData/@actionCode='LiquidationChequeStatus') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='CTSHandoff') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='ChequeStatusUpdate') </expression>
+                </condition>
+                <action>
+                 <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/chequeeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/chequeeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/chequeeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/chequeeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/eo:Payload"
+                              target="$out.payload/chequeeo:ESBMsg/chequeeo:RqData"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/chequeeo:ESBMsg/chequeeo:RqData/@actionCode"/>
+                    </assign>
+                    <invoke reference="ChequeES" operation="create">
+                        <onReply>
+                              <assign>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/eo:ESBMsg/eo:RsData/eo:Cheque/ns1:File"
+                                      target="$out.payload/ns1:ESBMsg/ns1:RsData/ns1:File"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Cheque/V1"
+                                      xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"/>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/chequeeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="DemandDraftES.create">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='DemandDraftStatusUpdate'</expression>
+                </condition>
+                <action>
+                 <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/ddeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/ddeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/ddeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/ddeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/eo:Payload"
+                              target="$out.payload/ddeo:ESBMsg/ddeo:RqData"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/ddeo:ESBMsg/ddeo:RqData/@actionCode"/>
+                    </assign>
+                    <invoke reference="DemandDraftES" operation="create">
+                        <onReply>
+                              <assign>
+                                <copy expression="$in.payload/ddeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/ddeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/ddeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/ddeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/eo:ESBMsg/eo:RsData/eo:DemandDraft/ns1:File"
+                                      target="$out.payload/ns1:ESBMsg/ns1:RsData/ns1:File"
+                                      xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/DemandDraft/V1"/>
+                                <copy expression="$in.payload/ddeo:ESBMsg/ddeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="CustomerES.create">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CustomerMaster'</expression>
+                </condition>
+                <action>
+                 <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/custeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/custeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/custeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/custeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/eo:Payload"
+                              target="$out.payload/custeo:ESBMsg/custeo:RqData"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/custeo:ESBMsg/custeo:RqData/@actionCode"/>
+                    </assign>
+                    <invoke reference="CustomerES" operation="create">
+                        <onReply>
+                              <assign>
+                                <copy expression="$in.payload/custeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/custeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/custeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/custeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/eo:ESBMsg/eo:RsData/eo:Customer/ns3:File"
+                                      target="$out.payload/ns3:ESBMsg/ns3:RsData/ns3:File"
+                                      xmlns:ns3="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"/>
+                                <copy expression="$in.payload/custeo:ESBMsg/custeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="TransferES.create">
+                <condition language="xpath">
+                    <expression>($in.payload/eo:ESBMsg/eo:RqData/@actionCode='NEFTInward') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSInward') or  ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='NEFTOutwardRefStatus') or  ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSOutwardRefStatus') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountEntryPosting') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountEntryPostingFile') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSOutwardReq') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSOutwardReqFile')</expression>
+                </condition>
+                <action>
+                 <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/transeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/transeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/transeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/transeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/eo:Payload"
+                              target="$out.payload/transeo:ESBMsg/transeo:RqData"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/transeo:ESBMsg/transeo:RqData/@actionCode"/>
+                    </assign>
+                    <invoke reference="TransferES" operation="create">
+                        <onReply>
+                        <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_TransferES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>                                
+                                <copy expression="$in.payload/transeo:ESBMsg/transeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="CurrencyExchangeES.create">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='ExchangeRateMaster'</expression>
+                </condition>
+                <action>
+                 <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/curexeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/curexeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/curexeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/curexeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/eo:Payload"
+                              target="$out.payload/curexeo:ESBMsg/curexeo:RqData"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/curexeo:ESBMsg/curexeo:RqData/@actionCode"/>
+                    </assign>
+                    <invoke reference="CurrencyExchangeES" operation="create">
+                        <onReply>
+                              <assign>
+                                <copy expression="$in.payload/curexeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/curexeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/curexeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/curexeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/eo:ESBMsg/eo:RsData/eo:CurrencyExchange/ns1:File"
+                                      target="$out.payload/ns1:ESBMsg/ns1:RsData/ns1:File"
+                                      xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"/>
+                                <copy expression="$in.payload/curexeo:ESBMsg/curexeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            
+        </switch>
+    </operation>
+    <operation name="queryData" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+        <switch>
+            <case executionType="sequential" name="ProjectES.query">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='ProjectCosting'</expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID" target="$out.payload/prjeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source" target="$out.payload/prjeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType" target="$out.payload/prjeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service" target="$out.payload/prjeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode" target="$out.payload/prjeo:ESBMsg/prjeo:RqData/@actionCode"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/com:StartDate"
+                              target="$out.payload/prjeo:ESBMsg/prjeo:RqData/prjeo:Project/com:StartDate"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/com:EndDate"
+                              target="$out.payload/prjeo:ESBMsg/prjeo:RqData/prjeo:Project/com:EndDate"/>
+                    </assign>
+                    <invoke reference="ProjectES" operation="query">
+                        <onReply>
+                            <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_ProjectES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                            <assign>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/prjeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"
+                                      />
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="AccountES.query">
+                <condition language="xpath">
+                    <expression>($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountMaster') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='DepositAccountMaster') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='LoanAccountMaster') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AverageBalanceFile') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='InternalAccountValidationFile')</expression>
+                </condition>
+                <action>
+                    
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/accteo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/accteo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/accteo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/accteo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/accteo:ESBMsg/accteo:RqData/@actionCode"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File"
+                              target="$out.payload/accteo:ESBMsg/accteo:RqData/accteo:Account/eo:File"
+                              />
+                    </assign>
+                    <invoke reference="AccountES" operation="query">
+                        <onReply>
+                            <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_AccountES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/accteo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/accteo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/accteo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/accteo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/accteo:ESBMsg/accteo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="CardES.query">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CreditCard'</expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/ns0:MsgID" target="$out.payload/ns1:ESBMsg/ns0:MsgID"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/ns0:Source" target="$out.payload/ns1:ESBMsg/ns0:Source"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/ns0:MsgType"
+                              target="$out.payload/ns1:ESBMsg/ns0:MsgType"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/ns0:Service"
+                              target="$out.payload/ns1:ESBMsg/ns0:Service"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/ns1:ESBMsg/ns1:RqData/@actionCode"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/ns0:StartDate"
+                              target="$out.payload/ns1:ESBMsg/ns1:RqData/ns1:Card/ns1:CardOpenDate"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                    </assign>
+                    <invoke reference="CardES" operation="query">
+                        <onReply>
+                            <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_CardES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/eo:ESBMsg/ns0:MsgID"
+                                      target="$out.payload/ns4:ESBMsg/ns0:MsgID"
+                                      xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                                      xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                                <copy expression="$in.payload/eo:ESBMsg/ns0:Source"
+                                      target="$out.payload/ns4:ESBMsg/ns0:Source"
+                                      xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                                      xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                                <copy expression="$in.payload/eo:ESBMsg/ns0:MsgType"
+                                      target="$out.payload/ns4:ESBMsg/ns0:MsgType"
+                                      xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                                      xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                                <copy expression="$in.payload/eo:ESBMsg/ns0:Service"
+                                      target="$out.payload/ns4:ESBMsg/ns0:Service"
+                                      xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                                      xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                                <copy expression="$in.payload/eo:ESBMsg/eo:RsData/ns0:Status"
+                                      target="$out.payload/ns4:ESBMsg/ns4:RsData/ns0:Status"
+                                      xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                                      xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                                      xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="ChequeES.query">
+                <condition language="xpath">
+                    <expression>($in.payload/eo:ESBMsg/eo:RqData/@actionCode='LiquidationChequeStatus') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='CTSHandoff') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='ChequeStatusUpdate') </expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID" target="$out.payload/chequeeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source" target="$out.payload/chequeeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType" target="$out.payload/chequeeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service" target="$out.payload/chequeeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode" target="$out.payload/chequeeo:ESBMsg/chequeeo:RqData/@actionCode"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/com:StartDate"
+                              target="$out.payload/chequeeo:ESBMsg/chequeeo:RqData/chequeeo:Cheque/chequeeo:IssueDate"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/com:EndDate"
+                              target="$out.payload/chequeeo:ESBMsg/chequeeo:RqData/chequeeo:Cheque/com:EndDate"/>
+                    </assign>
+                    <invoke reference="ChequeES" operation="query">
+                        <onReply>
+                            <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_ChequeES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/chequeeo:ESBMsg/chequeeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="DemandDraftES.query">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='DemandDraftStatusUpdate'</expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID" target="$out.payload/ddeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source" target="$out.payload/ddeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType" target="$out.payload/ddeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service" target="$out.payload/ddeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode" target="$out.payload/ddeo:ESBMsg/ddeo:RqData/@actionCode"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/com:StartDate"
+                              target="$out.payload/ddeo:ESBMsg/ddeo:RqData/ddeo:DemandDraft/ddeo:IssueDate"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/com:EndDate"
+                              target="$out.payload/ddeo:ESBMsg/ddeo:RqData/ddeo:DemandDraft/com:EndDate"/>
+                    </assign>
+                    <invoke reference="DemandDraftES" operation="query">
+                        <onReply>
+                            <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_DemandDraftES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/ddeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/ddeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/ddeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/ddeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/ddeo:ESBMsg/ddeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="CustomerES.query">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='CustomerMaster'</expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID" target="$out.payload/custeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source" target="$out.payload/custeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType" target="$out.payload/custeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service" target="$out.payload/custeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode" target="$out.payload/custeo:ESBMsg/custeo:RqData/@actionCode"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/com:StartDate"
+                              target="$out.payload/custeo:ESBMsg/custeo:RqData/custeo:Customer/com:StartDate"/>
+                    </assign>
+                    <invoke reference="CustomerES" operation="query">
+                        <onReply>
+                            <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_CustomerES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/custeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/custeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/custeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/custeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/custeo:ESBMsg/custeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="CurrencyExchangeES.query">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='ExchangeRateMaster'</expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID" target="$out.payload/curexeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source" target="$out.payload/curexeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType" target="$out.payload/curexeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service" target="$out.payload/curexeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode" target="$out.payload/curexeo:ESBMsg/curexeo:RqData/@actionCode"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/com:StartDate"
+                              target="$out.payload/curexeo:ESBMsg/curexeo:RqData/curexeo:CurrencyExchange/com:StartDate"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/com:EndDate"
+                              target="$out.payload/curexeo:ESBMsg/curexeo:RqData/curexeo:CurrencyExchange/com:EndDate"/>
+                    </assign>
+                    <invoke reference="CurrencyExchangeES" operation="query">
+                        <onReply>
+                            <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_CurrencyExchangeES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/curexeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/curexeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/curexeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/curexeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/curexeo:ESBMsg/curexeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="TransferES.query">
+                <condition language="xpath">
+                    <expression>($in.payload/eo:ESBMsg/eo:RqData/@actionCode='NEFTInward') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSInward') or  ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='NEFTOutwardRefStatus') or  ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSOutwardRefStatus') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountEntryPostingFile') or ($in.payload/eo:ESBMsg/eo:RqData/@actionCode='RTGSOutwardReqFile')</expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/ns0:MsgID" target="$out.payload/ns1:ESBMsg/ns0:MsgID"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/ns0:Source" target="$out.payload/ns1:ESBMsg/ns0:Source"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/ns0:MsgType"
+                              target="$out.payload/ns1:ESBMsg/ns0:MsgType"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/ns0:Service"
+                              target="$out.payload/ns1:ESBMsg/ns0:Service"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/ns1:ESBMsg/ns1:RqData/@actionCode"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File"
+                              target="$out.payload/ns1:ESBMsg/ns1:RqData/ns1:Transfer/eo:File"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/ns0:EndDate"
+                              target="$out.payload/ns1:ESBMsg/ns1:RqData/ns1:Transfer/ns0:ValueDate"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/ns0:StartDate"
+                              target="$out.payload/ns1:ESBMsg/ns1:RqData/ns1:Transfer/ns1:DebitValueDate"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                              xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                              xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"/>
+                    </assign>
+                    <invoke reference="TransferES" operation="query">
+                        <onReply>
+                            <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_TransferES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/transeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="TransferES.query">
+                <condition language="xpath">
+                    <expression>($in.payload/eo:ESBMsg/eo:RqData/@actionCode='AccountEntryPostingReq')</expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID" target="$out.payload/transeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source" target="$out.payload/transeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType" target="$out.payload/transeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service" target="$out.payload/transeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode" target="$out.payload/transeo:ESBMsg/transeo:RqData/@actionCode"/>
+                    </assign>
+                    <invoke reference="TransferES" operation="query">
+                        <onReply>
+                            <transform>
+                                <part name="$out.payload"
+                                      function="xslt(../Transformations/FileES_TransferES_Rs.xsl, $in.payload)"/>
+                            </transform>
+                              <assign>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/transeo:ESBMsg/transeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+        </switch>
+    </operation>
+    <operation name="updateData" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+        <switch>
+            <case executionType="sequential" name="ProjectES.update">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='ProjectCosting'</expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgID"
+                              target="$out.payload/prjeo:ESBMsg/com:MsgID"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Source"
+                              target="$out.payload/prjeo:ESBMsg/com:Source"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:MsgType"
+                              target="$out.payload/prjeo:ESBMsg/com:MsgType"/>
+                        <copy expression="$in.payload/eo:ESBMsg/com:Service"
+                              target="$out.payload/prjeo:ESBMsg/com:Service"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/eo:File/eo:Payload"
+                              target="$out.payload/prjeo:ESBMsg/prjeo:RqData"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"/>
+                        <copy expression="$in.payload/eo:ESBMsg/eo:RqData/@actionCode"
+                              target="$out.payload/prjeo:ESBMsg/prjeo:RqData/@actionCode"/>
+                    </assign>
+                    <invoke reference="ProjectES" operation="update">
+                        <onReply>
+                            <transform/>
+                            <assign>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:MsgID"
+                                      target="$out.payload/eo:ESBMsg/com:MsgID"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:Source"
+                                      target="$out.payload/eo:ESBMsg/com:Source"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:MsgType"
+                                      target="$out.payload/eo:ESBMsg/com:MsgType"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/com:Service"
+                                      target="$out.payload/eo:ESBMsg/com:Service"/>
+                                <copy expression="$in.payload/prjeo:ESBMsg/prjeo:RsData/com:Status"
+                                      target="$out.payload/eo:ESBMsg/eo:RsData/com:Status"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="Polaris.FilePS.fileNotify">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'RTGSOutwardReq' or $in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'CustomerMaster' or $in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'AccountMaster'</expression>
+                </condition>
+                <action>
+                    <assign>
+                        <copy expression="$in" target="$out"/>
+                    </assign>
+                    <invoke reference="Polaris.FilePS" operation="fileNotify">
+                        <onReply>
+                            <assign>
+                                <copy expression="$in" target="$out"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+        </switch>
+    </operation>
+    <operation name="transfer" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+        <switch>
+            <case executionType="sequential" name="Daptiv.FilePS.transferFile">
+                <condition language="xpath">
+                    <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'ProjectCosting'</expression>
+                </condition>
+                <action>
+                    <invoke reference="Daptiv.FilePS" operation="transferFile">
+                        <onReply>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+            <case executionType="sequential" name="Polaris.FilePS.transferFile">
+                <action>
+                    <assign>
+                        <copy expression="$in" target="$out"/>
+                    </assign>
+                    <invoke reference="Polaris.FilePS" operation="transferFile">
+                        <onReply>
+                            <assign>
+                                <copy expression="$in" target="$out"/>
+                            </assign>
+                            <reply/>
+                        </onReply>
+                    </invoke>
+                </action>
+            </case>
+        </switch>
+    </operation>
+</Mediator>

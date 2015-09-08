@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="SignaturePS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Signature/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Signature/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Resilience/Signature/V1/SignatureEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="SignatureAddRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="SignatureAddRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="SignaturePSPort">
+        <operation name="signatureAdd">
+            <input message="ps:SignatureAddRqMsg"/>
+            <output message="ps:SignatureAddRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="SignaturePSPortBinding" type="ps:SignaturePSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="signatureAdd">
+            <soap12:operation soapAction="signatureAdd"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="SignaturePS">
+        <port name="SignaturePSPort" binding="ps:SignaturePSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

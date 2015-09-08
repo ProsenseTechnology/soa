@@ -1,0 +1,31 @@
+<wsdl:definitions name="BillPSC" targetNamespace="http://xmlns.equitybank.co.ke/ProviderComponents/PSC/Transactions/Bill/V1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.equitybank.co.ke/ProviderComponents/PSC/Transactions/Bill/V1" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import schemaLocation="../XSD/ChaiBillPSM.xsd" namespace="http://xmlns.equitybank.co.ke/ProviderComponents/PSC/Transactions/Bill/V1"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:portType name="BillPSCPort">
+    <wsdl:operation name="query">
+      <wsdl:input message="tns:QueryBillRequestMessage"/>
+      <wsdl:output message="tns:QueryBillResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:message name="QueryBillRequestMessage">
+    <wsdl:part name="QueryBillRequest" element="tns:ChaiBillRequestPSM"/>
+  </wsdl:message>
+  <wsdl:message name="QueryBillResponseMessage">
+    <wsdl:part name="QueryBillResponse" element="tns:ChaiBillResponsePSM"/>
+  </wsdl:message>
+  <wsdl:binding name="Bill_SOAPHttpBinding" type="tns:BillPSCPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="query">
+      <soap:operation style="document" soapAction="query"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://xmlns.equitybank.co.ke/ProviderComponents/PSC/Transactions/Bill/V1"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://xmlns.equitybank.co.ke/ProviderComponents/PSC/Transactions/Bill/V1"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

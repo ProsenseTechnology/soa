@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xsd:element name="UFXMsg">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="MsgId" type="xsd:string"/>
+                <xsd:element name="Source">
+                    <xsd:complexType>
+                        <xsd:attribute name="app" type="xsd:string"/>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="MsgData"/>
+            </xsd:sequence>
+            <xsd:attribute name="direction" type="xsd:string"/>
+            <xsd:attribute name="msg_type" type="xsd:string"/>
+            <xsd:attribute name="resp_class" type="xsd:string"/>
+            <xsd:attribute name="resp_code" type="xsd:integer"/>
+            <xsd:attribute name="scheme" type="xsd:string"/>
+            <xsd:attribute name="version" type="xsd:float"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

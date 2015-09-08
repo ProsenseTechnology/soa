@@ -1,0 +1,36 @@
+<wsdl:definitions name="EBizDBAdapter" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/db" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/db" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plt:partnerLinkType name="EBizDBAdapterPLType">
+        <plt:role name="EBizDBAdapterRole">
+            <plt:portType name="adp:EBizDBAdapterPort"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/db" schemaLocation="EBZ_DB_Adapter.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="QueryProjectCostRqMsg">
+        <wsdl:part name="payload" element="adp:QueryProjectCostInput"/>
+    </wsdl:message>
+    <wsdl:message name="QueryProjectCostRsMsg">
+        <wsdl:part name="payload" element="adp:ProjectInfoCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="EBizDBAdapterPort">
+        <wsdl:operation name="queryProjectCost">
+            <wsdl:input message="adp:QueryProjectCostRqMsg"/>
+            <wsdl:output message="adp:QueryProjectCostRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EBizDBAdapterPortBinding" type="adp:EBizDBAdapterPort">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="queryProjectCost">
+            <soap:operation soapAction="queryProjectCost"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

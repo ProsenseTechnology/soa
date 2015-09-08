@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ESBMetadata/ComponentLibrary/ProviderServices/Polaris/Account/V1/AccountPS"/>
+            <con:binding>
+                <con:name>AccountPSPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Account/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:template-overrides>
+            <con:action-override id="_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fb4">
+                <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con1:schema ref="ESBMetadata/ComponentLibrary/EnterpriseObjects/Accounts/Account/V1/AccountEO"/>
+                    <con1:schemaElement xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1">v1:ESBMsg</con1:schemaElement>
+                </con1:validate>
+            </con:action-override>
+            <con:template-branch-override id="_FlowId-N3f57fefe.4752c7fd.0.14c9676a917.N7f33">
+                <con:branch-node>
+                    <con:branch-table>
+                        <con:branch name="createAccountMasterFile">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="PolarisProv/Business/PRS_FTP_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>createAccountMasterFile</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_createAccountMasterFile_Rq"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                                <con2:param name="filename">
+                                                    <con2:path>$filename</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_createAccountMasterFile_Rs"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                                <con2:param name="filename">
+                                                    <con2:path>$filename</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e51">
+                                    <con:actions>
+                                        <con1:ifThenElse xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7e40</con2:id>
+                                            <con1:case id="_BranchId-a031a2e.376e873e.0.14e3e185de6.N7e3f">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "read")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7e3e</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/v1:ESBMsg/v1:RqData/v1:Account/v11:File/v11:FileName/text()</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:case id="_BranchId-a031a53.N41967dc.0.14eaf56252b.N7df3">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "create")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:assign varName="filename">
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a53.N41967dc.0.14eaf56252b.N7df0</con2:id>
+                                                        <con1:expr>
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:concat(dvm:lookup("ESBMetadata/DVM/TARGET_FILENAME", "Key", $body/v1:ESBMsg/v1:RqData/@actionCode, "Value", "")
+,"_"
+,string(fn:year-from-dateTime(fn:current-dateTime()))
+,string(fn:month-from-dateTime(fn:current-dateTime()))
+,string(fn:day-from-dateTime(fn:current-dateTime()))
+,string(fn:hours-from-dateTime(fn:current-dateTime()))
+,string(fn:minutes-from-dateTime(fn:current-dateTime()))
+,fn:substring-before(string(fn:seconds-from-dateTime(fn:current-dateTime())), "."),".txt")</con2:xqueryText>
+                                                        </con1:expr>
+                                                    </con1:assign>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a53.N41967dc.0.14eaf56252b.N7ded</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$filename</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:default/>
+                                        </con1:ifThenElse>
+                                    </con:actions>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7f6b">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e50">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e55">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="createDepositAccountMasterFile">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="PolarisProv/Business/PRS_FTP_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>createDepositAccountMasterFile</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_createDepositAccountMasterFile_Rq"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                                <con2:param name="filename">
+                                                    <con2:path>$filename</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_createDepositAccountMasterFile_Rs"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                                <con2:param name="filename">
+                                                    <con2:path>$filename</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e51">
+                                    <con:actions>
+                                        <con1:ifThenElse xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7dfd</con2:id>
+                                            <con1:case id="_BranchId-a031a2e.376e873e.0.14e3e185de6.N7dfc">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "read")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7dfb</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/v1:ESBMsg/v1:RqData/v1:Account/v11:File/v11:FileName</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:case id="_BranchId-a031a53.N41967dc.0.14eaf56252b.N7e0a">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "create")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:assign varName="filename">
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a53.N41967dc.0.14eaf56252b.N7e07</con2:id>
+                                                        <con1:expr>
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:concat(dvm:lookup("ESBMetadata/DVM/TARGET_FILENAME", "Key", $body/v1:ESBMsg/v1:RqData/@actionCode, "Value", "")
+,"_"
+,string(fn:year-from-dateTime(fn:current-dateTime()))
+,string(fn:month-from-dateTime(fn:current-dateTime()))
+,string(fn:day-from-dateTime(fn:current-dateTime()))
+,string(fn:hours-from-dateTime(fn:current-dateTime()))
+,string(fn:minutes-from-dateTime(fn:current-dateTime()))
+,fn:substring-before(string(fn:seconds-from-dateTime(fn:current-dateTime())), "."),".txt")</con2:xqueryText>
+                                                        </con1:expr>
+                                                    </con1:assign>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a53.N41967dc.0.14eaf56252b.N7e04</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$filename</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:default/>
+                                        </con1:ifThenElse>
+                                    </con:actions>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7f6b">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e50">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e55">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="createLoanAccountMasterFile">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="PolarisProv/Business/PRS_FTP_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>createLoanAccountMasterFile</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_createLoanAccountMasterFile_Rq"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                                <con2:param name="filename">
+                                                    <con2:path>$filename</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_createLoanAccountMasterFile_Rs"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                                <con2:param name="filename">
+                                                    <con2:path>$filename</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e51">
+                                    <con:actions>
+                                        <con1:ifThenElse xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7df1</con2:id>
+                                            <con1:case id="_BranchId-a031a2e.376e873e.0.14e3e185de6.N7df0">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "read")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7def</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/v1:ESBMsg/v1:RqData/v1:Account/v11:File/v11:FileName</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:case id="_BranchId-a031a53.N41967dc.0.14eaf56252b.N7deb">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "create")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:assign varName="filename">
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a53.N41967dc.0.14eaf56252b.N7de8</con2:id>
+                                                        <con1:expr>
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:concat(dvm:lookup("ESBMetadata/DVM/TARGET_FILENAME", "Key", $body/v1:ESBMsg/v1:RqData/@actionCode, "Value", "")
+,"_"
+,string(fn:year-from-dateTime(fn:current-dateTime()))
+,string(fn:month-from-dateTime(fn:current-dateTime()))
+,string(fn:day-from-dateTime(fn:current-dateTime()))
+,string(fn:hours-from-dateTime(fn:current-dateTime()))
+,string(fn:minutes-from-dateTime(fn:current-dateTime()))
+,fn:substring-before(string(fn:seconds-from-dateTime(fn:current-dateTime())), "."),".txt")</con2:xqueryText>
+                                                        </con1:expr>
+                                                    </con1:assign>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a53.N41967dc.0.14eaf56252b.N7de5</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$filename</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:default/>
+                                        </con1:ifThenElse>
+                                    </con:actions>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7f6b">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e50">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e55">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="readAverageBalanceFile">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e51">
+                                    <con:actions>
+                                        <con1:ifThenElse xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7de5</con2:id>
+                                            <con1:case id="_BranchId-a031a2e.376e873e.0.14e3e185de6.N7de4">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "read")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7de3</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/v1:ESBMsg/v1:RqData/v1:Account/v11:File/v11:FileName</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:default/>
+                                        </con1:ifThenElse>
+                                    </con:actions>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7f6b">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e50">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e55">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="PolarisProv/Business/PRS_FTP_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>readAverageBalanceReqFile</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_readAverageBalanceFile_Rq"/>
+                                                <con2:input>$body/*</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_readAverageBalanceFile_Rs"/>
+                                                <con2:input>$body/*</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="createAverageBalanceFile">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e51">
+                                    <con:actions>
+                                        <con1:ifThenElse xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7dd9</con2:id>
+                                            <con1:case id="_BranchId-a031a2e.376e873e.0.14e3e185de6.N7dd8">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "read")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7dd7</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/v1:ESBMsg/v1:RqData/v1:Account/v11:File/v11:FileName</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:default/>
+                                        </con1:ifThenElse>
+                                    </con:actions>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7f6b">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e50">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e55">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="PolarisProv/Business/PRS_FTP_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>createAverageBalanceRespFile</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_createAverageBalanceFile_Rq"/>
+                                                <con2:input>$body/*</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_createAverageBalanceFile_Rs"/>
+                                                <con2:input>$body/*</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="queryVirtualAccountStatus">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="PolarisProv/Business/PRS_http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>processMessage</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e51">
+                                    <con:actions>
+                                        <con1:ifThenElse xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7dcd</con2:id>
+                                            <con1:case id="_BranchId-a031a2e.376e873e.0.14e3e185de6.N7dcc">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "read")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7dcb</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/v1:ESBMsg/v1:RqData/v1:Account/v11:File/v11:FileName</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:default/>
+                                        </con1:ifThenElse>
+                                    </con:actions>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7f6b">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e50">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e55">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_queryVirtualAccountStatus_Rq"/>
+                                                <con2:input>$body/*</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00">
+                                    <con1:replace contents-only="true" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_queryVirtualAccountStatus_Rs"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="readInternalAccountValidationFile">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="PolarisProv/Business/PRS_FTP_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>readInternalAccountValidationReqFile</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e51">
+                                    <con:actions>
+                                        <con1:ifThenElse xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7ec7</con2:id>
+                                            <con1:case id="_BranchId-a031a2e.376e873e.0.14e3e185de6.N7ec6">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "read")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7ec3</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/v1:ESBMsg/v1:RqData/v1:Account/v11:File/v11:FileName/text()</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:default/>
+                                        </con1:ifThenElse>
+                                    </con:actions>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_readInternalAccountValidationFile_Rq"/>
+                                                <con2:input>$body/*</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7f6b">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e50">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00">
+                                    <con1:replace contents-only="true" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_readInternalAccountValidationFile_Rs"/>
+                                                <con2:input>$body/*</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e55">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                                <con:action-override id="_ActionId-a031ac4.2ea54d44.0.14d662776d8.N7e91">
+                                    <con1:replace contents-only="true" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:location>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
+                                        </con1:location>
+                                        <con1:expr>
+                                            <con2:xqueryTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="ESBMetadata/XQuery/ESBHeader_Rs"/>
+                                                <con2:param name="ESBMsgResponse">
+                                                    <con2:path>$body/*[1]</con2:path>
+                                                </con2:param>
+                                                <con2:param name="ESBMsgInput">
+                                                    <con2:path>$InputMsg</con2:path>
+                                                </con2:param>
+                                            </con2:xqueryTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="createInternalAccountValidationFile">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="PolarisProv/Business/PRS_FTP_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>createInternalAccountValidationRespFile</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e51">
+                                    <con:actions>
+                                        <con1:ifThenElse xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7d87</con2:id>
+                                            <con1:case id="_BranchId-a031a2e.376e873e.0.14e3e185de6.N7d86">
+                                                <con1:condition>
+                                                    <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:starts-with($inbound/ctx:service/ctx:operation, "read")</con2:xqueryText>
+                                                </con1:condition>
+                                                <con1:actions>
+                                                    <con1:transport-headers>
+                                                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2e.376e873e.0.14e3e185de6.N7d83</con2:id>
+                                                        <con1:header-set>outbound-request</con1:header-set>
+                                                        <con1:header value="expression" name="jca.ftp.FileName">
+                                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/v1:ESBMsg/v1:RqData/v1:Account/v11:File/v11:FileName/text()</con2:xqueryText>
+                                                        </con1:header>
+                                                    </con1:transport-headers>
+                                                </con1:actions>
+                                            </con1:case>
+                                            <con1:default/>
+                                        </con1:ifThenElse>
+                                    </con:actions>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="PolarisProv/Transformation/Account/xsl/PRS_AccountPS_createInternalAccountValidation_Rq"/>
+                                                <con2:input>$body/*</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7f6b">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e50">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.e4d409a.0.14d80af6c6d.N7e55">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:default-branch/>
+                    </con:branch-table>
+                </con:branch-node>
+            </con:template-branch-override>
+        </con:template-overrides>
+    </con:router>
+    <con:template ref="ESBMetadata/Templates/Pipeline/ProviderPP"/>
+</con:pipelineEntry>

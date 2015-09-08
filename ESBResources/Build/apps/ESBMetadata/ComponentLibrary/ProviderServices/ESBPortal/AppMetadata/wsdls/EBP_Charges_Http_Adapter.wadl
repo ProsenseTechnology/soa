@@ -1,0 +1,422 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:tns="http://xmlns.oracle.com/ProviderService/ESBPortalProv/EBP_Charges_Http_Adapter"
+             xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="EBP_Charges_Http_Adapter">RestReference</doc>
+  <grammars>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:include schemaLocation="../xsds/Charges.xsd"/>
+    </xsd:schema>
+    <schema targetNamespace="http://xmlns.oracle.com/ProviderService/ESBPortalProv/EBP_Charges_Http_Adapter"
+            elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="getAccountChargesListByUsername_params">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="string"/>
+            <element name="username" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getApprovedAccountChargesList_params">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getApprovedAccountCharges_params">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="string"/>
+            <element name="chargeMasterId" type="long"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getAccountChargesList_params">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getAccountCharges_params">
+        <complexType>
+          <sequence>
+            <element name="accountId" type="string"/>
+            <element name="chargeMasterId" type="long"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getPendingApprovals_params">
+        <complexType>
+          <sequence>
+            <element name="username" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getChargeMaster_params">
+        <complexType>
+          <sequence>
+            <element name="id" type="long"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getChargeStatusReportList_params">
+        <complexType>
+          <sequence>
+            <element name="chargeStatus" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getChargeTypeReportList_params">
+        <complexType>
+          <sequence>
+            <element name="chargeType" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </grammars>
+  <resources>
+    <resource path="accountcharges">
+      <method name="GET" soa:wsdlOperation="getAccountChargesListByUsername">
+        <request>
+          <param name="accountId" style="query" soa:expression="$msg.request/tns:accountId" default=""
+                 type="xsd:string"/>
+          <param name="username" style="query" soa:expression="$msg.request/tns:username" default="" type="xsd:string"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="accountChargesListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+      <method name="POST" soa:wsdlOperation="createAccountCharges">
+        <request>
+          <ns0:representation mediaType="application/xml" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+      <method name="PUT" soa:wsdlOperation="updateAccountCharges">
+        <request>
+          <ns0:representation mediaType="application/xml" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accountcharges/approvalstatus">
+      <method name="PUT" soa:wsdlOperation="updateApprovalStatus">
+        <request>
+          <ns0:representation mediaType="application/xml" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accountcharges/approved">
+      <method name="POST" soa:wsdlOperation="createApprovedAccountCharges">
+        <request>
+          <ns0:representation mediaType="application/xml" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+      <method name="PUT" soa:wsdlOperation="updateApprovedAccountCharges">
+        <request>
+          <ns0:representation mediaType="application/xml" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accountcharges/approved/{accountId}">
+      <method name="GET" soa:wsdlOperation="getApprovedAccountChargesList">
+        <request>
+          <param name="accountId" style="template" soa:expression="$msg.request/tns:accountId" default=""
+                 type="xsd:string"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="accountChargesListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accountcharges/approved/{accountId}/{chargeMasterId}">
+      <method name="GET" soa:wsdlOperation="getApprovedAccountCharges">
+        <request>
+          <param name="accountId" style="template" soa:expression="$msg.request/tns:accountId" default=""
+                 type="xsd:string"/>
+          <param name="chargeMasterId" style="template" soa:expression="$msg.request/tns:chargeMasterId" default=""
+                 type="xsd:long"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accountcharges/{accountId}">
+      <method name="GET" soa:wsdlOperation="getAccountChargesList">
+        <request>
+          <param name="accountId" style="template" soa:expression="$msg.request/tns:accountId" default=""
+                 type="xsd:string"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="accountChargesListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accountcharges/{accountId}/{chargeMasterId}">
+      <method name="GET" soa:wsdlOperation="getAccountCharges">
+        <request>
+          <param name="accountId" style="template" soa:expression="$msg.request/tns:accountId" default=""
+                 type="xsd:string"/>
+          <param name="chargeMasterId" style="template" soa:expression="$msg.request/tns:chargeMasterId" default=""
+                 type="xsd:long"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="accountChargesVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="approvals">
+      <method name="PUT" soa:wsdlOperation="updateApprovalStatusId">
+        <request>
+          <ns0:representation mediaType="application/xml" element="approvalsVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="approvalsVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+      <method name="POST" soa:wsdlOperation="createApproval">
+        <request>
+          <ns0:representation mediaType="application/xml" element="approvalsVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="approvalsVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="longVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="longVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="approvals/{username}">
+      <method name="GET" soa:wsdlOperation="getPendingApprovals">
+        <request>
+          <param name="username" style="template" soa:expression="$msg.request/tns:username" default=""
+                 type="xsd:string"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="approvalsListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="approvalsListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="chargemaster">
+      <method name="GET" soa:wsdlOperation="getChargeMasterList">
+        <request/>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="chargeMasterListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="chargeMasterListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+      <method name="PUT" soa:wsdlOperation="updateChargeMaster">
+        <request>
+          <ns0:representation mediaType="application/xml" element="chargeMasterVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="chargeMasterVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="statusVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+      <method name="POST" soa:wsdlOperation="createChargeMaster">
+        <request>
+          <ns0:representation mediaType="application/xml" element="chargeMasterVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="chargeMasterVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="longVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="longVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="chargemaster/{id}">
+      <method name="GET" soa:wsdlOperation="getChargeMaster">
+        <request>
+          <param name="id" style="template" soa:expression="$msg.request/tns:id" default="" type="xsd:long"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="chargeMasterVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="chargeMasterVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="lookup/chargecurrency">
+      <method name="GET" soa:wsdlOperation="getChargeCurrencyList">
+        <request/>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="lookup/chargeoption">
+      <method name="GET" soa:wsdlOperation="getChargeOptionList">
+        <request/>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="lookup/chargetype">
+      <method name="GET" soa:wsdlOperation="getChargeTypeList">
+        <request/>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="lookup/frequency">
+      <method name="GET" soa:wsdlOperation="getFrequencyList">
+        <request/>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="lookup/waivechargesindicator">
+      <method name="GET" soa:wsdlOperation="getWaiveChargesIndicatorList">
+        <request/>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="optionListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="reports/chargestatus">
+      <method name="GET" soa:wsdlOperation="getChargeStatusReportList">
+        <request>
+          <param name="chargeStatus" style="query" soa:expression="$msg.request/tns:chargeStatus" default=""
+                 type="xsd:string"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="reportsViewListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="reportsViewListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="reports/chargetype">
+      <method name="GET" soa:wsdlOperation="getChargeTypeReportList">
+        <request>
+          <param name="chargeType" style="query" soa:expression="$msg.request/tns:chargeType" default=""
+                 type="xsd:string"/>
+        </request>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="reportsViewListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="reportsViewListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="users">
+      <method name="GET" soa:wsdlOperation="getUsers">
+        <request/>
+        <response status="200">
+          <ns0:representation mediaType="application/xml" element="usersListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+          <ns0:representation mediaType="application/json" element="usersListVO" xmlns=""
+                              xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/alert/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con5="http://www.bea.com/wli/sb/stages/publish/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con6="http://www.bea.com/wli/sb/stages/routing/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="MisysReq/Adapter/mq/Enquiry/MQPollerService-concrete"/>
+            <con:binding>
+                <con:name>ENQUIRY_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/pcbpel/adapter/mq/RequesterService/MQPoller/MQPollerService</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router errorHandler="error-a031ad3.N36e6032b.0.14d41eab863.N7ce0">
+        <con:pipeline type="request" name="request-a031a75.N9231284.0.14d293b0c65.N7fec">
+            <con:stage id="_StageId-a031a75.N9231284.0.14d293b0c65.N7fea" name="LoggingIncomingRequest">
+                <con:context>
+                    <con2:varNsDecl prefix="urn" namespace="urn:control.services.tiplus2.misys.com"/>
+                </con:context>
+                <con:actions>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f57fff6.N78f4f136.0.14d3e59a2e5.N7ffe</con2:id>
+                        <con3:logLevel>info</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                        <con3:message/>
+                    </con3:log>
+                    <con4:assign varName="JMSHeader">
+                        <con2:id>_ActionId-a015566.297e006.6.14e7740aaed.N8000</con2:id>
+                        <con4:expr>
+                            <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn-bea:inlinedXML(data($inbound/ctx:transport/ctx:request/tp:headers/jca:jca.mq.RFH2.JMSFolder))</con:xqueryText>
+                        </con4:expr>
+                    </con4:assign>
+                    <con4:insert varName="body">
+                        <con2:id>_ActionId-a015566.297e006.4.14e72ad208a.N7ffc</con2:id>
+                        <con4:location>
+                            <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./urn:ServiceRequest/urn:RequestHeader</con:xpathText>
+                        </con4:location>
+                        <con4:where>last-child</con4:where>
+                        <con4:expr>
+                            <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;urn:CorrelationId>{data($JMSHeader/Cid)}&lt;/urn:CorrelationId></con:xqueryText>
+                        </con4:expr>
+                    </con4:insert>
+                    <con1:alert>
+                        <con2:id>_ActionId-a031a75.N9231284.0.14d293b0c65.N7fe6</con2:id>
+                        <con1:destination ref="ESBMetadata/Templates/Pipeline/AlertDestination"/>
+                        <con1:description>Generic Incoming Alert</con1:description>
+                        <con1:severity>normal</con1:severity>
+                        <con1:payload>
+                            <con2:xqueryText>&lt;Details>{$body}&lt;/Details></con2:xqueryText>
+                        </con1:payload>
+                    </con1:alert>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N3f57fff6.N78f4f136.0.14d3e59a2e5.N7ff9" name="PublishToRequestorRouting">
+                <con:context/>
+                <con:actions>
+                    <con5:routingTable>
+                        <con2:id>_ActionId-a031ada.N7d0b92c0.0.14d71ac3161.N7f2f</con2:id>
+                        <con5:expression>
+                            <con2:xqueryText>data($body/*:ServiceRequest/*:RequestHeader/*:Operation)</con2:xqueryText>
+                        </con5:expression>
+                        <con5:case id="_BranchId-a031ada.N7d0b92c0.0.14d71ac3161.N7f2e">
+                            <con5:operator>equals</con5:operator>
+                            <con5:value>"AvailBal"</con5:value>
+                            <con5:route>
+                                <con2:id>_ActionId-a031ada.N7d0b92c0.0.14d71ac3161.N7f2d</con2:id>
+                                <con5:service ref="MisysReq/Pipeline/MYS_AccountPP" xsi:type="con:PipelineRef"/>
+                                <con5:operation>availBal</con5:operation>
+                                <con5:outboundTransform/>
+                            </con5:route>
+                        </con5:case>
+                        <con5:case id="_BranchId-a031ada.N7d0b92c0.0.14d71ac3161.N7f1c">
+                            <con5:operator>equals</con5:operator>
+                            <con5:value>"AccountSearch"</con5:value>
+                            <con5:route>
+                                <con2:id>_ActionId-a031ada.N7d0b92c0.0.14d71ac3161.N7f1b</con2:id>
+                                <con5:service ref="MisysReq/Pipeline/MYS_AccountPP" xsi:type="con:PipelineRef"/>
+                                <con5:operation>accountSearch</con5:operation>
+                                <con5:outboundTransform/>
+                            </con5:route>
+                        </con5:case>
+                        <con5:case id="_BranchId-a031ada.N7d0b92c0.0.14d71ac3161.N7f17">
+                            <con5:operator>equals</con5:operator>
+                            <con5:value>"AccountDetails"</con5:value>
+                            <con5:route>
+                                <con2:id>_ActionId-a031ada.N7d0b92c0.0.14d71ac3161.N7f16</con2:id>
+                                <con5:service ref="MisysReq/Pipeline/MYS_AccountPP" xsi:type="con:PipelineRef"/>
+                                <con5:operation>accountDetails</con5:operation>
+                                <con5:outboundTransform/>
+                            </con5:route>
+                        </con5:case>
+                        <con5:case id="_BranchId-a031ada.N7d0b92c0.0.14d71ac3161.N7f28">
+                            <con5:operator>equals</con5:operator>
+                            <con5:value>"CustomerSearch"</con5:value>
+                            <con5:route>
+                                <con2:id>_ActionId-a031ada.N7d0b92c0.0.14d71ac3161.N7f27</con2:id>
+                                <con5:service ref="MisysReq/Pipeline/MYS_CustomerPP" xsi:type="con:PipelineRef"/>
+                                <con5:operation>customerSearch</con5:operation>
+                                <con5:outboundTransform/>
+                            </con5:route>
+                        </con5:case>
+                        <con5:case id="_BranchId-a031ada.N7d0b92c0.0.14d71ac3161.N7f23">
+                            <con5:operator>equals</con5:operator>
+                            <con5:value>"CustomerDetails"</con5:value>
+                            <con5:route>
+                                <con2:id>_ActionId-a031ada.N7d0b92c0.0.14d71ac3161.N7f22</con2:id>
+                                <con5:service ref="MisysReq/Pipeline/MYS_CustomerPP" xsi:type="con:PipelineRef"/>
+                                <con5:operation>customerDetails</con5:operation>
+                                <con5:outboundTransform/>
+                            </con5:route>
+                        </con5:case>
+                        <con5:case id="_BranchId-a031ada.N7d0b92c0.0.14d71ac3161.N7f23">
+                            <con5:operator>equals</con5:operator>
+                            <con5:value>"Posting"</con5:value>
+                            <con5:route>
+                                <con2:id>_ActionId-a031ada.N7d0b92c0.0.14d71ac3161.N7f22</con2:id>
+                                <con5:service ref="MisysReq/Pipeline/MYS_TransferPP" xsi:type="con:PipelineRef"/>
+                                <con5:operation>posting</con5:operation>
+                                <con5:outboundTransform/>
+                            </con5:route>
+                        </con5:case>
+                    </con5:routingTable>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a031a75.N9231284.0.14d293b0c65.N7feb">
+            <con:stage id="_StageId-aafa90e.N4fcbc003.0.14da38973d1.N7fb5" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con3:log>
+                        <con2:id>_ActionId-aafa90e.N4fcbc003.0.14da38973d1.N7fb4</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="error" name="error-a031ad3.N36e6032b.0.14d41eab863.N7ce0">
+            <con:stage id="_StageId-a031ad3.N36e6032b.0.14d41eab863.N7ca6" name="ErrorReporting" xmlns:con3="http://www.bea.com/wli/sb/stages/alert/config" xmlns:con1="http://www.bea.com/wli/sb/stages/logging/config">
+                <con:context/>
+                <con:actions>
+                    <con1:log>
+                        <con2:id>_ActionId-a031ad3.N36e6032b.0.14d41eab863.N7ca5</con2:id>
+                        <con1:logLevel>debug</con1:logLevel>
+                        <con1:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con1:expr>
+                    </con1:log>
+                    <con4:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-a031ad3.N36e6032b.0.14d41eab863.N7ca4</con2:id>
+                        <con4:location>
+                            <con2:xpathText>.</con2:xpathText>
+                        </con4:location>
+                        <con4:expr>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con4:expr>
+                    </con4:replace>
+                    <con1:report>
+                        <con2:id>_ActionId-a031ad3.N36e6032b.0.14d41eab863.N7ca3</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con1:expr>
+                        <con1:labels>
+                            <con1:key>AccountRoutingError</con1:key>
+                            <con1:varName>fault</con1:varName>
+                            <con1:value>
+                                <con2:xpathText>./ctx:reason</con2:xpathText>
+                            </con1:value>
+                        </con1:labels>
+                    </con1:report>
+                    <con3:alert xmlns:con6="http://www.bea.com/wli/sb/stages/alert/config">
+                        <con2:id>_ActionId-a031ad3.N36e6032b.0.14d41eab863.N7ca2</con2:id>
+                        <con6:destination ref="ESBMetadata/Templates/Pipeline/AlertDestination"/>
+                        <con3:description>Error while Processing Generic</con3:description>
+                        <con3:severity>major</con3:severity>
+                        <con3:payload>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con3:payload>
+                    </con3:alert>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="PipelinePairNode1">
+                <con:request>request-a031a75.N9231284.0.14d293b0c65.N7fec</con:request>
+                <con:response>response-a031a75.N9231284.0.14d293b0c65.N7feb</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

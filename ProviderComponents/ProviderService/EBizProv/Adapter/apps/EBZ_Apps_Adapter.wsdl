@@ -1,0 +1,55 @@
+<wsdl:definitions name="EBizAppsAdapter" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plt:partnerLinkType name="EBizAppsAdapterPLType">
+        <plt:role name="EBizAppsAdapterRole">
+            <plt:portType name="adp:EBizAppsAdapterPort"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps" schemaLocation="EBZ_Apps_Adapter.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="CreateProjectRqMsg">
+        <wsdl:part name="payload" element="adp:CreateProjectInput"/>
+    </wsdl:message>
+    <wsdl:message name="CreateProjectRsMsg">
+        <wsdl:part name="payload" element="adp:AppsStoredProcedureOutput"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateProjectRqMsg">
+        <wsdl:part name="payload" element="adp:UpdateProjectInput"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateProjectRsMsg">
+        <wsdl:part name="payload" element="adp:AppsStoredProcedureOutput"/>
+    </wsdl:message>
+    <wsdl:portType name="EBizAppsAdapterPort">
+        <wsdl:operation name="createProject">
+            <wsdl:input message="adp:CreateProjectRqMsg"/>
+            <wsdl:output message="adp:CreateProjectRsMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateProject">
+            <wsdl:input message="adp:UpdateProjectRqMsg"/>
+            <wsdl:output message="adp:UpdateProjectRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EBizAppsAdapterPortBinding" type="adp:EBizAppsAdapterPort">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="createProject">
+            <soap:operation soapAction="createProject"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateProject">
+            <soap:operation soapAction="updateProject"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

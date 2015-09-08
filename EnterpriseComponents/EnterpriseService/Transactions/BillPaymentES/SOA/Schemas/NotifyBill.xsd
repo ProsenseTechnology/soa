@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified"
+	targetNamespace="http://xmlns.oracle.com/EnterpriseService_Transactions/BillPaymentES/NotifyBill"
+	xmlns:nf="http://xmlns.oracle.com/EnterpriseService_Transactions/BillPaymentES/NotifyBill"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+	<element name="NotifyBillRequest">
+		<complexType>
+			<sequence>
+                                <element name="Payments" type="nf:PaymentsType" minOccurs="0" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+        <element name="NotifyBillResponse">
+		<complexType>
+			<sequence>
+                                <element name="Payments" type="nf:PaymentsType" minOccurs="0" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+        <complexType name="PaymentsType">
+      <sequence>
+         <element name="foracid" type="nf:string16" minOccurs="0" nillable="true"/>
+         <element name="tranDate" type="dateTime" minOccurs="0" nillable="true"/>
+         <element name="tranId" type="nf:string9" minOccurs="0" nillable="true"/>
+         <element name="tranAmt" type="decimal" minOccurs="0" nillable="true"/>
+         <element name="id" type="long" nillable="true"/>
+         <element name="status" type="nf:string16" minOccurs="0" nillable="true"/>
+      </sequence>
+   </complexType>
+   <simpleType name="string16">
+      <restriction base="string">
+         <maxLength value="16"/>
+      </restriction>
+   </simpleType>
+   <simpleType name="string9">
+      <restriction base="string">
+         <maxLength value="9"/>
+      </restriction>
+   </simpleType>
+</schema>

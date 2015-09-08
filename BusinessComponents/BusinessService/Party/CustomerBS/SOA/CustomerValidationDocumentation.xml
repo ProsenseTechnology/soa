@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?oracleBPM version="12.1.3.0.0.00.00" fileRevision="20120601"?>
+<processDocumentation xmlns="http://xmlns.oracle.com/bpm/taskMetadataService/processDocumentation">
+   <component name="CustomerValidation">
+      <topicDocumentations>
+         <topicDocumentation name="CustomerValidation"/>
+         <topicDocumentation name="ACT12930650974044">
+            <labels>
+               <label locale="en">National Id lookup</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12930652766943">
+            <labels>
+               <label locale="en">Query Custome rID</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12930663460491">
+            <labels>
+               <label locale="en">Account Opening Rules</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12930669689441">
+            <labels>
+               <label locale="en">Set Rules Parameter</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT12997497227894">
+            <labels>
+               <label locale="en">Set Rules Parameter</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="ACT13373251520332">
+            <labels>
+               <label locale="en">Set Invalid Customer</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="EVT12930576571681">
+            <labels>
+               <label locale="en">Start</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="EVT12930576571622">
+            <labels>
+               <label locale="en">End</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="GTW12930654316953">
+            <labels>
+               <label locale="en">Is NationalID Valid</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="GTW13373239394017">
+            <labels>
+               <label locale="en">Is Customer Valid</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf12930576571790"/>
+         <topicDocumentation name="sf12930651956465"/>
+         <topicDocumentation name="sf12930654039568"/>
+         <topicDocumentation name="sf12930654861845">
+            <labels>
+               <label locale="en">Yes</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf12930657848520">
+            <labels>
+               <label locale="en">No</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf1293066390760"/>
+         <topicDocumentation name="sf12997498294734"/>
+         <topicDocumentation name="sf13373241601886">
+            <labels>
+               <label locale="en"></label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
+         <topicDocumentation name="sf13373253883289"/>
+         <topicDocumentation name="sf13373261317722"/>
+         <topicDocumentation name="sf13373263170521"/>
+      </topicDocumentations>
+   </component>
+</processDocumentation>

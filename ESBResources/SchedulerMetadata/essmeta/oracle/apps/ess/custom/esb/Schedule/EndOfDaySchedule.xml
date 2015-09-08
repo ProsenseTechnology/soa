@@ -1,0 +1,6 @@
+<?xml version = '1.0'?>
+<schedule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="EndOfDaySchedule" xmlns="http://xmlns.oracle.com/scheduler">
+   
+   
+   
+<description/><display-name>EndOfDaySchedule</display-name><time-zone>Africa/Addis_Ababa</time-zone><recurrence><count>0</count><frequency>DAILY</frequency><interval>1</interval><months-of-year></months-of-year><weeks-of-month></weeks-of-month><days-of-month></days-of-month><days-of-week></days-of-week><time-of-day>20:3:0</time-of-day></recurrence></schedule>

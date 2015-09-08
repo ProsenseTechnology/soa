@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<decisionServices xmlns="http://xmlns.oracle.com/bpel/rules" name="AccountOpenRules">
+    <ruleEngineProvider provider="Oracle_11.0.0.0.0" name="OracleRulesSDK">
+        <repository type="SCA-Archive">
+            <path>CustomerBS/oracle/rules/customerbs/AccountOpenRules.rules</path>
+        </repository>
+    </ruleEngineProvider>
+    <decisionService name="AccountOpenRules_DecisionService" ruleEngineProviderReference="OracleRulesSDK" targetNamespace="http://xmlns.oracle.com/AccountOpenRules/AccountOpenRules_DecisionService">
+        <catalog>AccountOpenRules</catalog>
+        <pattern name="CallFunctionStateless">
+            <arguments>
+                <call>customerbs.AccountOpenRules.DecisionService</call>
+            </arguments>
+        </pattern>
+        <pattern name="CallFunctionStateful">
+            <arguments>
+                <call>customerbs.AccountOpenRules.DecisionService</call>
+            </arguments>
+        </pattern>
+    </decisionService>
+    <schemaInformation>
+        <dictionary fqnPackage="customerbs" fqnName="AccountOpenRules" updateNumber="138">
+            <schemaBrowser>
+                <package>ke.co.equitybank.xmlns.bs.party.customer.rules.v1</package>
+                <namespace>http://xmlns.equitybank.co.ke/BS/Party/Customer/Rules/V1</namespace>
+            </schemaBrowser>
+            <schemaImport namespace="http://xmlns.equitybank.co.ke/BS/Party/Customer/Rules/V1" localPart="AccountOpenRules.xsd" schemaLocation="Schemas/AccountOpenRules.xsd">
+                <import namespace="http://xmlns.equitybank.co.ke/BS/Party/Customer/Rules/V1" localPart="AccountOpenRules.xsd" schemaLocation="Schemas/AccountOpenRules.xsd"/>
+                <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" localPart="AccountEO.xsd" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Accounts/Account/V1/AccountEO.xsd"/>
+                <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" localPart="CommonComponents.xsd" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+                <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" localPart="FileEO.xsd" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Misc/File/V1/FileEO.xsd"/>
+                <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" localPart="CustomerEO.xsd" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Parties/Customer/V1/CustomerEO.xsd"/>
+                <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" localPart="Meta.xsd" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Common/V1/Meta.xsd"/>
+                <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" localPart="BiometricEO.xsd" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Resilience/Biometric/V1/BiometricEO.xsd"/>
+                <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" localPart="CodeLists.xsd" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Common/V1/CodeLists.xsd"/>
+                <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" localPart="DataTypes.xsd" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Common/V1/DataTypes.xsd"/>
+            </schemaImport>
+        </dictionary>
+    </schemaInformation>
+</decisionServices>

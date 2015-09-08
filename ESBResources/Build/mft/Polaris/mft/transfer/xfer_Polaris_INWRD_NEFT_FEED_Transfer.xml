@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Transfer createdBy="weblogic" description="Polaris_INWRD_NEFT_FEED_Transfer" id="xfer_Polaris_INWRD_NEFT_FEED_Transfer" lastModifiedBy="weblogic" name="Polaris_INWRD_NEFT_FEED_Transfer" priority="medium" xmlns="http://xmlns.oracle.com/mft/transfer">
+   <Source>
+      <SourceRef id="soRef_PolarisOSBSource" sourceRef="/mft/source/so_PolarisOSBSource.xml#so_PolarisOSBSource"/>
+   </Source><ContentFilters>
+      <ContentFilter order="1">
+         <ContentTypeIdentifier name="Polaris_INWRD_NEFT_FEED" patternType="file">
+            <pattern>INWRD_NEFT_FEED*</pattern>
+         </ContentTypeIdentifier>
+      </ContentFilter>
+   </ContentFilters>
+   <Targets>
+      <Target id="xfer_tgt_PolarisFTP_INWRD_NEFT">
+         <TargetRef id="tgtRef_PolarisFTP_INWRD_NEFT" targetRef="/mft/target/tgt_PolarisFTP.xml#tgt_PolarisFTP">
+            <TechnologyBindingOverrides xmlns="http://xmlns.oracle.com/mft/binding">
+               <SSH-FTP folder="INWRD_NEFT_FEED/incoming/"/>
+            </TechnologyBindingOverrides>
+         </TargetRef>
+      </Target>
+   </Targets>
+</Transfer>

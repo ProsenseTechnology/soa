@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="CardPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Card/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Card/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Instruments/Card/V1/CardEO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="CreateCreditCardFileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateCreditCardFileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <portType name="CardPSPort">
+    <operation name="createCreditCardFile">
+      <input message="ps:CreateCreditCardFileRqMsg"/>
+      <output message="ps:CreateCreditCardFileRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="CardPSPortBinding" type="ps:CardPSPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="createCreditCardFile">
+      <soap12:operation soapAction="createCreditCardFile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="CardPS">
+    <port name="CardPSPort" binding="ps:CardPSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

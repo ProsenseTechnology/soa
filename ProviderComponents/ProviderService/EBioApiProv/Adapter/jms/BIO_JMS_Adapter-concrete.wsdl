@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/jms/ProviderService/EBioApiProv/BIO_JMS_Adapter" name="BIO_JMS_Adapter-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="BIO_JMS_Adapter.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/jms/ProviderService/EBioApiProv/BIO_JMS_Adapter"/>
+    <wsdl:binding name="validate_ptt-binding" type="bio:validate_ptt" xmlns:bio="http://xmlns.oracle.com/pcbpel/adapter/jms/ProviderService/EBioApiProv/BIO_JMS_Adapter">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="validate">
+            <soap:operation soapAction="validate"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

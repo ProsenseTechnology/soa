@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <project-properties class="java.util.concurrent.ConcurrentHashMap">
+    <entry>
+      <string>parametersDefinitionProperties</string>
+      <copy-write-list-property>
+        <originalValue class="hudson.util.CopyOnWriteList">
+          <hudson.model.ParametersDefinitionProperty>
+            <parameterDefinitions>
+              <hudson.model.ChoiceParameterDefinition>
+                <name>SOA3Environment</name>
+                <description></description>
+                <choices class="java.util.Arrays$ArrayList">
+                  <a class="string-array">
+                    <string>SOA3-BUILD</string>
+                    <string>SOA3-DEV</string>
+                    <string>SOA3-TEST</string>
+                    <string>SOA3-UAT</string>
+                  </a>
+                </choices>
+              </hudson.model.ChoiceParameterDefinition>
+              <hudson.model.StringParameterDefinition>
+                <name>Code_Path</name>
+                <description></description>
+                <defaultValue></defaultValue>
+              </hudson.model.StringParameterDefinition>
+              <hudson.model.ChoiceParameterDefinition>
+                <name>Project</name>
+                <description></description>
+                <choices class="java.util.Arrays$ArrayList">
+                  <a class="string-array">
+                    <string>OnBoarding</string>
+                    <string>Daptiv</string>
+                    <string>Eatta</string>
+                    <string>CorporateBanking</string>
+                  </a>
+                </choices>
+              </hudson.model.ChoiceParameterDefinition>
+            </parameterDefinitions>
+          </hudson.model.ParametersDefinitionProperty>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </copy-write-list-property>
+    </entry>
+    <entry>
+      <string>customWorkspace</string>
+      <string-property>
+        <originalValue class="string">/home/soauser1/build/${Code_Path}</originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </string-property>
+    </entry>
+    <entry>
+      <string>builders</string>
+      <describable-list-property>
+        <originalValue class="hudson.util.DescribableList">
+          <maven-builder>
+            <config>
+              <installationId>localM3</installationId>
+              <goals>pre-integration-test</goals>
+              <privateRepository>false</privateRepository>
+              <privateTmpdir>false</privateTmpdir>
+              <pomFile>ESBResources/Build/maven/${Project}/soa3_pom.xml</pomFile>
+              <properties>
+                <entries>
+                  <entry name="maven.repo.local" value="/home/soauser1/.m2/repository"/>
+                </entries>
+              </properties>
+              <errors>false</errors>
+              <verbosity>NORMAL</verbosity>
+              <offline>false</offline>
+              <snapshotUpdateMode>NORMAL</snapshotUpdateMode>
+              <recursive>true</recursive>
+              <checksumMode>NORMAL</checksumMode>
+              <failMode>NORMAL</failMode>
+              <makeMode>NONE</makeMode>
+              <settingsId>ac472460-e530-41bb-8b67-cfe34f944645</settingsId>
+              <globalSettingsId>ac472460-e530-41bb-8b67-cfe34f944645</globalSettingsId>
+              <toolChainsId>NONE</toolChainsId>
+            </config>
+          </maven-builder>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </describable-list-property>
+    </entry>
+    <entry>
+      <string>scm</string>
+      <scm-property>
+        <originalValue class="hudson.scm.NullSCM"/>
+        <propertyOverridden>false</propertyOverridden>
+      </scm-property>
+    </entry>
+  </project-properties>
+  <keepDependencies>false</keepDependencies>
+  <creationTime>1439628086809</creationTime>
+  <properties/>
+  <cascadingChildrenNames class="java.util.concurrent.CopyOnWriteArraySet"/>
+  <cascading-job-properties class="java.util.concurrent.CopyOnWriteArraySet">
+    <string>org-hudsonci-plugins-snapshotmonitor-WatchedDependenciesProperty</string>
+  </cascading-job-properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <concurrentBuild>false</concurrentBuild>
+  <cleanWorkspaceRequired>false</cleanWorkspaceRequired>
+</project>

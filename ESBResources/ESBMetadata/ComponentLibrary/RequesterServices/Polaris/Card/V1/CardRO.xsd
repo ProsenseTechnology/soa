@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Card/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:rcom="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+            xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Card/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+              schemaLocation="../../../../EnterpriseObjects/Parties/Customer/V1/CustomerEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"
+              schemaLocation="../../../../EnterpriseObjects/Instruments/Card/V1/CardEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+              schemaLocation="../../Common/V1/CommonComponents.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="AvailableCreditLimit" type="rcom:AmountType"/>
+  <xsd:element name="AvailableCashLimit" type="rcom:AmountType"/>
+  <xsd:element name="TotalCreditLimit" type="rcom:AmountType"/>
+  <xsd:element name="CurrentBalance" type="rcom:AmountType"/>
+  <xsd:element name="TotalPaymentDue" type="rcom:AmountType"/>
+  <xsd:element name="CardHolderName" type="com:NameType"/>
+  <xsd:element name="BlockedAmount" type="rcom:AmountType"/>
+  <xsd:element name="UsedAmount" type="rcom:AmountType"/>
+  <xsd:element name="Card" type="CardType"/>
+  <xsd:element name="CardIssuerFlag" type="com:CodeType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Card ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CardType">
+    <xsd:sequence>
+      <xsd:element ref="com:CardIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="com:CardID" minOccurs="0"/>
+      <xsd:element ref="com:CardNumber" minOccurs="0"/>
+      <xsd:element name="FullName" type="com:NameType" minOccurs="0"/>
+      <xsd:element ref="com:AccountCurrency" minOccurs="0"/>
+      <xsd:element name="AvailableCredit" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="UsedAmount" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="NextBillingDate" type="com:DateType" minOccurs="0"/>
+      <xsd:element name="CardName" type="com:StringType" minOccurs="0"/>
+      <xsd:element ref="CurrentBalance" minOccurs="0"/>
+      <xsd:element name="UnbilledAmount" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="LastPaymentAmount" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element ref="TotalCreditLimit" minOccurs="0"/>
+      <xsd:element ref="AvailableCreditLimit" minOccurs="0"/>
+      <xsd:element ref="AvailableCashLimit" minOccurs="0"/>
+      <xsd:element name="CashLimit" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="TotalPaymentDue" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="MinPaymentDue" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="PastDueAmount" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="PaymentDueDate" type="com:DateType" minOccurs="0"/>
+      <xsd:element name="AutoRecoveryOption" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="RecoveryAccount" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="LastBillingDate" type="com:DateType" minOccurs="0"/>
+      <xsd:element name="CardType" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="CardStatus" type="com:CodeType" minOccurs="0"/>
+      
+      <xsd:element name="CardSubType" type="com:StringType" minOccurs="0"/>
+      <xsd:element ref="custeo:Customer" minOccurs="0"/>
+      <xsd:element ref="eo:CardOpenDate" minOccurs="0"/>
+      <xsd:element name="CardOwnership" type="com:CodeType" minOccurs="0"/>
+      
+      <xsd:element name="EmbossedName" type="com:NameType" minOccurs="0"/>
+      
+      <xsd:element name="CreditLimit" type="xsd:decimal" minOccurs="0"/>
+      
+      <xsd:element name="CardExpiryDate" type="com:DateType" minOccurs="0"/>
+      
+      <xsd:element name="TotalAmountDue" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element ref="CardHolderName" minOccurs="0"/>
+      <xsd:element name="CardAccountNumber" type="com:IDType" minOccurs="0"/>
+      <xsd:element ref="com:CustomerID" minOccurs="0"/>
+      <xsd:element ref="com:CustomerIdentifier" minOccurs="0"/>
+      <xsd:element name="CardIssuer" type="com:CodeType" minOccurs="0"/>
+      <xsd:element ref="CardIssuerFlag" minOccurs="0"/>
+      <xsd:element name="CardReissueFlag" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="NextStatementDate" type="com:DateType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="rcom:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Card" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Card" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

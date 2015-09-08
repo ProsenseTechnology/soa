@@ -1,0 +1,16 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions name="EmployeeBS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/Party/Employee/V1"
+                  xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:bs="http://xmlns.equitybank.co.ke/ESB/BS/Party/Employee/V1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/BS/Party/Employee/V1"
+                 location="oramds:/apps/ESBMetadata/ComponentLibrary/BusinessServices/Party/Employee/V1/EmployeeBS.wsdl"/>
+    <wsdl:portType name="EmployeeValidationPort">
+        <wsdl:operation name="initiate">
+            <wsdl:input message="bs:ValidationRqMsg"/>
+            <wsdl:output message="bs:ValidationRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <plnk:partnerLinkType name="EmployeeValidationPLType">
+        <plnk:role name="EmployeeValidationProvider" portType="bs:EmployeeValidationPort"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

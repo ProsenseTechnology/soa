@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="TagProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Tag/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+</Mediator>

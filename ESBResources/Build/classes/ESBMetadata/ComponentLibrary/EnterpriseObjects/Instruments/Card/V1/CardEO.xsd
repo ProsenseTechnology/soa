@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Card/V1"
+            xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+              schemaLocation="../../../Parties/Customer/V1/CustomerEO.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="CardType" type="com:CodeType"/>
+  <xsd:element name="CardSubType" type="com:CodeType"/>
+  <xsd:element name="CardOpenDate" type="com:DateType"/>
+  <xsd:element name="CardExpiryDate" type="com:DateType"/>
+  <xsd:element name="CardOwnership" type="com:CodeType"/>
+  <xsd:element name="AvailableCredit" type="com:AmountType"/>
+  <xsd:element name="CreditLimit" type="com:AmountType"/>
+  <xsd:element name="BlockedAmount" type="com:AmountType"/>
+  <xsd:element name="UsedAmount" type="com:AmountType"/>
+  <xsd:element name="LastBillingDate" type="com:DateType"/>
+  <xsd:element name="NextBillingDate" type="com:DateType"/>
+  <xsd:element name="CardCategory" type="com:CodeType"/>
+  <xsd:element name="CardStatus" type="com:CodeType"/>
+  <xsd:element name="RecoveryAccount" type="com:AmountType"/>
+  <xsd:element name="AvailableCash" type="com:AmountType"/>
+  <xsd:element name="CashLimit" type="com:AmountType"/>
+  <xsd:element name="TotalPaymentDue" type="com:AmountType"/>
+  <xsd:element name="TotalAmountDue" type="com:AmountType"/>
+  <xsd:element name="NextStatementDate" type="com:DateType"/>
+  <xsd:element name="LastPaymentDate" type="com:DateType"/>
+  <xsd:element name="LastPaymentAmount" type="com:AmountType"/>
+  <xsd:element name="CardIssuer" type="com:NameType"/>
+  <xsd:element name="MinPaymentDue" type="com:AmountType"/>
+  <xsd:element name="PaymentDueDate" type="com:DateType"/>
+  <xsd:element name="PastDueAmount" type="com:AmountType"/>
+  <xsd:element name="CardReissueFlag" type="com:CodeType"/>
+  <xsd:element name="UnbilledAmount" type="com:AmountType"/>
+  <xsd:element name="AutoRecoveryOption" type="com:CodeType"/>
+  <xsd:element name="ContractCurrency" type="com:CodeType"/>
+  <xsd:element name="TotalDueAmount" type="com:AmountType"/>
+  <xsd:element name="LastStatementBalance" type="com:AmountType"/>
+  <xsd:element name="RecoveryBank" type="com:CodeType"/>
+  <xsd:element name="Card" type="CardType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Card ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CardType">
+    <xsd:sequence>
+      <xsd:element ref="com:CardIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="CardType" minOccurs="0"/>
+      <xsd:element ref="CardSubType" minOccurs="0"/>
+      <xsd:element ref="custeo:Customer" minOccurs="0"/>
+      <xsd:element ref="CardOpenDate" minOccurs="0"/>
+      <xsd:element ref="CardExpiryDate" minOccurs="0"/>
+      <xsd:element ref="CardOwnership" minOccurs="0"/>
+      <xsd:element ref="AvailableCredit" minOccurs="0"/>
+      <xsd:element ref="CreditLimit" minOccurs="0"/>
+      <xsd:element ref="BlockedAmount" minOccurs="0"/>
+      <xsd:element ref="UsedAmount" minOccurs="0"/>
+      <xsd:element ref="LastBillingDate" minOccurs="0"/>
+      <xsd:element ref="NextBillingDate" minOccurs="0"/>
+      <xsd:element ref="CardCategory" minOccurs="0"/>
+      <xsd:element ref="com:Transaction" minOccurs="0"/>
+      <xsd:element ref="CardStatus" minOccurs="0"/>
+      <xsd:element ref="RecoveryAccount" minOccurs="0"/>
+      <xsd:element ref="AvailableCash" minOccurs="0"/>
+      <xsd:element ref="CashLimit" minOccurs="0"/>
+      <xsd:element ref="TotalPaymentDue" minOccurs="0"/>
+      <xsd:element ref="TotalAmountDue" minOccurs="0"/>
+      <xsd:element ref="NextStatementDate" minOccurs="0"/>
+      <xsd:element ref="LastPaymentDate" minOccurs="0"/>
+      <xsd:element ref="LastPaymentAmount" minOccurs="0"/>
+      <xsd:element ref="CardIssuer" minOccurs="0"/>
+      <xsd:element ref="MinPaymentDue" minOccurs="0"/>
+      <xsd:element ref="PaymentDueDate" minOccurs="0"/>
+      <xsd:element ref="PastDueAmount" minOccurs="0"/>
+      <xsd:element ref="CardReissueFlag" minOccurs="0"/>
+      <xsd:element ref="UnbilledAmount" minOccurs="0"/>
+      <xsd:element ref="AutoRecoveryOption" minOccurs="0"/>
+      <xsd:element ref="ContractCurrency" minOccurs="0"/>
+      <xsd:element ref="TotalDueAmount" minOccurs="0"/>
+      <xsd:element ref="LastStatementBalance" minOccurs="0"/>
+      <xsd:element ref="RecoveryBank" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="com:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Card" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Card" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Action Codes ============= -->
+  <!-- ====================================================================== -->
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="QueryCardDetailByNumber"/>
+      <xsd:enumeration value="QueryCardSummaryByNumber"/>
+      <xsd:enumeration value="CreditCard"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

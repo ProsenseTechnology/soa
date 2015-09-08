@@ -1,0 +1,359 @@
+<wsdl:definitions name="DMG_Document_Http_Adapter" targetNamespace="http://xmlns.oracle.com/ProviderService/ContentManagerProv/DMG_Document_Http_Adapter" xmlns:tns="http://xmlns.oracle.com/ProviderService/ContentManagerProv/DMG_Document_Http_Adapter" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plnk:partnerLinkType name="DMG_Document_Http_Adapter">
+        <plnk:role name="DMG_Document_Http_AdapterProvider" portType="tns:DMG_Document_Http_Adapter_ptt"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:include schemaLocation="../../ESBMetadata/ComponentLibrary/ProviderServices/ContentManager/AppMetadata/xsds/xsd0.xsd"/>
+        </xsd:schema>
+        <schema targetNamespace="http://xmlns.oracle.com/ProviderService/ContentManagerProv/DMG_Document_Http_Adapter" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="getAccountList_params">
+                <complexType>
+                    <sequence>
+                        <element name="documentId" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="countPendingDocuments_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="downloadDocument_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getDocument_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getPendingDocuments_params">
+                <complexType>
+                    <sequence>
+                        <element name="numberOfResults" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="searchDocuments_params">
+                <complexType>
+                    <sequence>
+                        <element name="document" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getUserTagList_params">
+                <complexType>
+                    <sequence>
+                        <element name="username" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="getAccountList_inputMessage">
+        <wsdl:part name="request" element="tns:getAccountList_params"/>
+    </wsdl:message>
+    <wsdl:message name="getAccountList_outputMessage">
+        <wsdl:part name="reply" element="accountListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getContextList_outputMessage">
+        <wsdl:part name="reply" element="contextListVO"/>
+    </wsdl:message>
+    <wsdl:message name="countPendingDocuments_inputMessage">
+        <wsdl:part name="request" element="tns:countPendingDocuments_params"/>
+    </wsdl:message>
+    <wsdl:message name="countPendingDocuments_outputMessage">
+        <wsdl:part name="reply" element="longVO"/>
+    </wsdl:message>
+    <wsdl:message name="createAccounts_inputMessage">
+        <wsdl:part name="request" element="accountListVO"/>
+    </wsdl:message>
+    <wsdl:message name="createAccounts_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="createDocument_inputMessage">
+        <wsdl:part name="request" element="documentVO"/>
+    </wsdl:message>
+    <wsdl:message name="createDocument_outputMessage">
+        <wsdl:part name="reply" element="longVO"/>
+    </wsdl:message>
+    <wsdl:message name="createDocumentUserTag_inputMessage">
+        <wsdl:part name="request" element="documentUserTagVO"/>
+    </wsdl:message>
+    <wsdl:message name="createDocumentUserTag_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="createUserTag_inputMessage">
+        <wsdl:part name="request" element="userTagVO"/>
+    </wsdl:message>
+    <wsdl:message name="createUserTag_outputMessage">
+        <wsdl:part name="reply" element="longVO"/>
+    </wsdl:message>
+    <wsdl:message name="getDocumentSubTypeList_outputMessage">
+        <wsdl:part name="reply" element="documentSubTypeListVO"/>
+    </wsdl:message>
+    <wsdl:message name="getDocumentTypeList_outputMessage">
+        <wsdl:part name="reply" element="documentTypeListVO"/>
+    </wsdl:message>
+    <wsdl:message name="downloadDocument_inputMessage">
+        <wsdl:part name="request" element="tns:downloadDocument_params"/>
+    </wsdl:message>
+    <wsdl:message name="downloadDocument_outputMessage">
+        <wsdl:part name="reply" element="downloadVO"/>
+    </wsdl:message>
+    <wsdl:message name="getDocument_inputMessage">
+        <wsdl:part name="request" element="tns:getDocument_params"/>
+    </wsdl:message>
+    <wsdl:message name="getDocument_outputMessage">
+        <wsdl:part name="reply" element="documentViewVO"/>
+    </wsdl:message>
+    <wsdl:message name="getPendingDocuments_inputMessage">
+        <wsdl:part name="request" element="tns:getPendingDocuments_params"/>
+    </wsdl:message>
+    <wsdl:message name="getPendingDocuments_outputMessage">
+        <wsdl:part name="reply" element="documentListVO"/>
+    </wsdl:message>
+    <wsdl:message name="Rest_EmptyMessage"/>
+    <wsdl:message name="getOriginList_outputMessage">
+        <wsdl:part name="reply" element="originListVO"/>
+    </wsdl:message>
+    <wsdl:message name="searchDocuments_inputMessage">
+        <wsdl:part name="request" element="tns:searchDocuments_params"/>
+    </wsdl:message>
+    <wsdl:message name="searchDocuments_outputMessage">
+        <wsdl:part name="reply" element="documentViewListVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateDocument_inputMessage">
+        <wsdl:part name="request" element="documentVO"/>
+    </wsdl:message>
+    <wsdl:message name="updateDocument_outputMessage">
+        <wsdl:part name="reply" element="statusVO"/>
+    </wsdl:message>
+    <wsdl:message name="getUserTagList_inputMessage">
+        <wsdl:part name="request" element="tns:getUserTagList_params"/>
+    </wsdl:message>
+    <wsdl:message name="getUserTagList_outputMessage">
+        <wsdl:part name="reply" element="userTagListVO"/>
+    </wsdl:message>
+    <wsdl:portType name="DMG_Document_Http_Adapter_ptt">
+        <wsdl:operation name="getAccountList">
+            <wsdl:input message="tns:getAccountList_inputMessage"/>
+            <wsdl:output message="tns:getAccountList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getContextList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getContextList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="countPendingDocuments">
+            <wsdl:input message="tns:countPendingDocuments_inputMessage"/>
+            <wsdl:output message="tns:countPendingDocuments_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createAccounts">
+            <wsdl:input message="tns:createAccounts_inputMessage"/>
+            <wsdl:output message="tns:createAccounts_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createDocument">
+            <wsdl:input message="tns:createDocument_inputMessage"/>
+            <wsdl:output message="tns:createDocument_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createDocumentUserTag">
+            <wsdl:input message="tns:createDocumentUserTag_inputMessage"/>
+            <wsdl:output message="tns:createDocumentUserTag_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createUserTag">
+            <wsdl:input message="tns:createUserTag_inputMessage"/>
+            <wsdl:output message="tns:createUserTag_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getDocumentSubTypeList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getDocumentSubTypeList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getDocumentTypeList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getDocumentTypeList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="downloadDocument">
+            <wsdl:input message="tns:downloadDocument_inputMessage"/>
+            <wsdl:output message="tns:downloadDocument_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getDocument">
+            <wsdl:input message="tns:getDocument_inputMessage"/>
+            <wsdl:output message="tns:getDocument_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPendingDocuments">
+            <wsdl:input message="tns:getPendingDocuments_inputMessage"/>
+            <wsdl:output message="tns:getPendingDocuments_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getOriginList">
+            <wsdl:input message="tns:Rest_EmptyMessage"/>
+            <wsdl:output message="tns:getOriginList_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchDocuments">
+            <wsdl:input message="tns:searchDocuments_inputMessage"/>
+            <wsdl:output message="tns:searchDocuments_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateDocument">
+            <wsdl:input message="tns:updateDocument_inputMessage"/>
+            <wsdl:output message="tns:updateDocument_outputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getUserTagList">
+            <wsdl:input message="tns:getUserTagList_inputMessage"/>
+            <wsdl:output message="tns:getUserTagList_outputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DMG_Document_Http_Adapter_ptt-binding" type="tns:DMG_Document_Http_Adapter_ptt">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAccountList">
+            <soap:operation soapAction="getAccountList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getContextList">
+            <soap:operation soapAction="getContextList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="countPendingDocuments">
+            <soap:operation soapAction="countPendingDocuments"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createAccounts">
+            <soap:operation soapAction="createAccounts"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createDocument">
+            <soap:operation soapAction="createDocument"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createDocumentUserTag">
+            <soap:operation soapAction="createDocumentUserTag"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createUserTag">
+            <soap:operation soapAction="createUserTag"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDocumentSubTypeList">
+            <soap:operation soapAction="getDocumentSubTypeList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDocumentTypeList">
+            <soap:operation soapAction="getDocumentTypeList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="downloadDocument">
+            <soap:operation soapAction="downloadDocument"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDocument">
+            <soap:operation soapAction="getDocument"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getPendingDocuments">
+            <soap:operation soapAction="getPendingDocuments"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getOriginList">
+            <soap:operation soapAction="getOriginList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="searchDocuments">
+            <soap:operation soapAction="searchDocuments"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateDocument">
+            <soap:operation soapAction="updateDocument"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getUserTagList">
+            <soap:operation soapAction="getUserTagList"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

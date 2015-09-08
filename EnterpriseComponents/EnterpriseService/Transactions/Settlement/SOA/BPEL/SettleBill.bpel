@@ -1,0 +1,220 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon May 11 19:36:56 EAT 2015
+  Author:  Msimango
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="SettleBill"
+               targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Settle/V1"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Settle/V1"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Settlement/V1"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns2="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Transfer/V1"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+         xmlns:ns3="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Settlement/V1"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:ns5="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Settlement/V1"
+          location="../WSDLs/Settlement.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Settlement/V1"
+          location="../Schemas/SettlementEO.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+  <import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Settlement/V1"
+          location="../WSDLs/SettlementWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"
+          ui:processWSDL="true"/>
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="Settlement_direct" partnerLinkType="ns1:SettleBill" myRole="SettlementPort"/>
+    <partnerLink name="TransferES" partnerLinkType="ns2:TransferES" partnerRole="TransferESPort"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="ns1:CreateRqMsg"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="ns1:CreateRsMsg"/>
+    <variable name="InvokeTransferESInputVariable" messageType="ns2:CreateRqMsg"/>
+    <variable name="InvokeTransferESOutputVariable" messageType="ns2:CreateRsMsg"/>
+  </variables>
+  <faultHandlers>
+    <catchAll>
+      <sequence name="FaultSequence">
+        <assign name="AssignFault">
+          <copy>
+            <from>"ESB-1002001"</from>
+            <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns4:Status/ns4:Code</to>
+          </copy>
+          <copy>
+            <from>"Failure"</from>
+            <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns4:Status/ns4:Type</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns4:Status/ns4:Text</to>
+          </copy>
+        </assign>
+        <reply name="ReplyResponse" variable="outputVariable" partnerLink="Settlement_direct"
+               portType="ns1:SettlementPort" operation="create"/>
+      </sequence>
+    </catchAll>
+  </faultHandlers>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in SettleBill.wsdl) --><receive name="ReceiveRequest" partnerLink="Settlement_direct" portType="ns1:SettlementPort" operation="create" variable="inputVariable" createInstance="yes"/>
+    <forEach parallel="no" counterName="ForEach1Counter" name="ForEachTransfer"
+             xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+      <startCounterValue>1</startCounterValue>
+      <finalCounterValue>count($inputVariable.payload/ns3:RqData/ns3:Transfer)</finalCounterValue>
+      <scope name="TransferUserScope">
+         
+         <variables>
+          <variable name="recordCounter" element="ns3:ESBMsg">
+               <from>$ForEach1Counter</from>
+            </variable>
+          <variable name="TransferStatus" element="ns3:ESBMsg"/>
+        </variables><sequence name="TransferUsersSequence">
+            <assign name="SettleBill_TransferES_Create_Rq">
+               <bpelx:annotation xmlns:bpelx="http://schemas.oracle.com/bpel/extension">
+                  <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+               </bpelx:annotation>
+               <copy>
+                  <from>ora:doXSLTransformForDoc("../Transformations/SettleBill_TransferES_Create_Rq.xsl", $inputVariable.payload, "recordCounter", $recordCounter)</from>
+                  <to variable="InvokeTransferESInputVariable" part="payload"/>
+               </copy>
+            </assign>
+            <if name="IfUserID">
+            <documentation>
+              <![CDATA[Check if user id does not exist]]>
+            </documentation>
+            <condition>not($InvokeTransferESInputVariable.payload/ns5:RqData/@actionCode !="")</condition>
+               <sequence name="UserNotFoundSequence">
+                  <assign name="AssignOutput">
+                <copy>
+                  <from>$inputVariable.payload/ns3:RqData/ns3:Transfer[number($ForEach1Counter)]/ns3:ID</from>
+                  <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns3:ID</to>
+                </copy>
+                <copy>
+                  <from>$inputVariable.payload/ns3:RqData/ns3:Transfer[number($ForEach1Counter)]/ns4:Amount</from>
+                  <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns4:Amount</to>
+                </copy>
+                <copy>
+                  <from>$inputVariable.payload/ns3:RqData/ns3:Transfer[number($ForEach1Counter)]/ns3:UserGroup</from>
+                  <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns3:UserGroup</to>
+                </copy>
+                <copy>
+                  <from>$inputVariable.payload/ns3:RqData/ns3:Transfer[number($ForEach1Counter)]/ns3:RefKey</from>
+                  <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns3:RefKey</to>
+                </copy>
+                <copy>
+                  <from>"1"</from>
+                  <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns4:Status/ns4:Code</to>
+                </copy>
+                <copy>
+                  <from>"Failure"</from>
+                  <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns4:Status/ns4:Type</to>
+                </copy>
+                <copy>
+                  <from>"User Not Found"</from>
+                  <to>$outputVariable.payload/ns3:RsData/ns3:Transfer/ns4:Status/ns4:Text</to>
+                </copy>
+              </assign>
+                  <reply name="ReplyResponse" variable="outputVariable" partnerLink="Settlement_direct"
+                         portType="ns1:SettlementPort" operation="create"/>
+                  <exit name="UserNotFoundExit"/>
+               </sequence>
+            </if>
+            
+            
+            
+         </sequence>
+      </scope>
+   </forEach>
+    <forEach parallel="no" counterName="ForEach1Counter" name="ForEachTransfer">
+      <startCounterValue>1</startCounterValue>
+      <finalCounterValue>count($inputVariable.payload/ns3:RqData/ns3:Transfer)</finalCounterValue>
+      <scope name="TransferScope">
+        <variables>
+          <variable name="recordCounter" element="ns3:ESBMsg">
+            <from>$ForEach1Counter</from>
+          </variable>
+          <variable name="TransferStatus" element="ns3:ESBMsg"/>
+        </variables>
+        <sequence name="TransferSequence">
+          <assign name="SettleBill_TransferES_Create_Rq">
+            <bpelx:annotation>
+              <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+            </bpelx:annotation>
+            <copy>
+              <from>ora:doXSLTransformForDoc("../Transformations/SettleBill_TransferES_Create_Rq.xsl", $inputVariable.payload, "recordCounter", $recordCounter)</from>
+              <to variable="InvokeTransferESInputVariable" part="payload"/>
+            </copy>
+          </assign>
+          <invoke name="InvokeTransferES" bpelx:invokeAsDetail="no" partnerLink="TransferES"
+                  portType="ns2:TransferESPort" operation="create" inputVariable="InvokeTransferESInputVariable"
+                  outputVariable="InvokeTransferESOutputVariable"/>
+          <assign name="SettleBill_TransferES_Create_Rs">
+            <bpelx:annotation>
+              <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+            </bpelx:annotation>
+            <copy>
+              <from>ora:doXSLTransformForDoc("../Transformations/SettleBill_TransferES_Create_Rs.xsl", $inputVariable.payload, "InvokeTransferESOutputVariable.payload", $InvokeTransferESOutputVariable.payload, "recordCounter", $recordCounter)</from>
+              <to variable="TransferStatus"/>
+            </copy>
+          </assign>
+          <assign name="AssignOutput">
+            <extensionAssignOperation>
+              <bpelx:insertAfter>
+                <bpelx:from>$TransferStatus/ns3:RsData/ns3:Transfer</bpelx:from>
+                <bpelx:to>$outputVariable.payload/ns3:RsData/ns3:Transfer</bpelx:to>
+              </bpelx:insertAfter>
+            </extensionAssignOperation>
+          </assign>
+        </sequence>
+      </scope>
+    </forEach>
+    <reply name="ReplyResponse" partnerLink="Settlement_direct" portType="ns1:SettlementPort" operation="create"
+           variable="outputVariable"/>
+    <!-- Generate reply to synchronous request -->
+  </sequence>
+</process>

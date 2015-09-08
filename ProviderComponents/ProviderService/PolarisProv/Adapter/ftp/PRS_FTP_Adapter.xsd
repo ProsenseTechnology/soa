@@ -1,0 +1,1124 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Adapter/ftp"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd"
+            xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Adapter/ftp" elementFormDefault="qualified"
+            attributeFormDefault="unqualified" nxsd:version="NXSD" nxsd:stream="chars" nxsd:encoding="US-ASCII">
+  <xsd:element name="HeaderLine">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                     nxsd:quotedBy='"'/>
+        <xsd:element name="FileName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+        <xsd:element name="Date" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                     nxsd:quotedBy='"'/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="TrailerLine">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                     nxsd:quotedBy='"'/>
+        <xsd:element name="NumberOfRows" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                     nxsd:quotedBy='"'/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="LoanAccountMasterFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccSubType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TotalLoanAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InterestAccrued" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="SettlementCurrency" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="LoanAccountNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="LoanCurrency" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="LoanType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="FundingAccount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PaymentFrequency" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="OriginalAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="OutstandingAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PastDueAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="LastPaymentAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="LastPaymentReceivedDate" type="xsd:string" nxsd:style="terminated"
+                           nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+              <xsd:element name="TotalNumberofInstallments" type="xsd:string" nxsd:style="terminated"
+                           nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+              <xsd:element name="InstallmentsPaid" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="LoanStartDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="LoanMaturityDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InterestRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="NextPaymentDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="NextPaymentAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PayoffAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PrincipelClosingBalance" type="xsd:string" nxsd:style="terminated"
+                           nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+              <xsd:element name="DisbursementAccount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InterestRepaymentAccount" type="xsd:string" nxsd:style="terminated"
+                           nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+              <xsd:element name="Loanstatus" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Tenure" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="LoanClosureDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ApprovedLimit" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PenaltyInterestRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PenaltiesDue" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DelinquencyStatus" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="NextPrincipalDueDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="NextInterestDueDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="NoOfDelayedPayments" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DisbursedAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="DepositAccountMasterFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CIF" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DepositAccountNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BilyetNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Currency" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Status" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CurrentPrincipalAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DepositAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="MaturityDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CurrentInterestRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BonusInterestRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InterestToDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InterestRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TenorUnit" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TenorValue" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DepositType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PostingDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="MaturityInstructions" type="xsd:string" nxsd:style="terminated"
+                           nxsd:terminatedBy="${eol}" nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AccountMasterFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AcountNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountCcy" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Branch" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="OpenDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CIFNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ProductCd" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccCategory" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="IBAN" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ClosureFlag" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ClosureDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="NoCreditStatus" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="NoDebitStatus" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DelinquencyStatus" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InactiveStatus" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CustomerMasterFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CIFNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CustName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PrimaryID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="HostSystem" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ContactPerson" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="RMName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="RMMailID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Address1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Address2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Address3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Address4" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CityTown" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CountryCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ZipCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="FaxNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PhoneNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CellNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="EmailID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BranchCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PostingBranchCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CustCategory" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CustTaxCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CustTaxID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Status" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CreditCardFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CardID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CardCcy" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BranchCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CardHolderName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="OpenDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CustID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CardAccNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CardType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ExpiryDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PrimaryFlag" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CardStatus" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Country" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="RecordType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CardCategory" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="ChequeStatusUpdateFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionRefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CoreTxnRefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="SerialNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Status" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="DemandDraftStatusUpdateFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionRefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CoreTxnRefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="SerialNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Status" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="ExchangeRateMasterFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BaseCcy" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CounterCcy" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="StartDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Quotient" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ConversionMethod" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BidRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="OfferRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="MidRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="EndDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="NEFTInwardFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="drAcct" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="tranAmt" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BankCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAcctId" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAddr1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAddr2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAddr3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo4" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo5" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo6" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Utrreferencenumber" type="xsd:string" nxsd:style="terminated"
+                           nxsd:terminatedBy="${eol}" nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="RTGSInwardFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="drAcct" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="tranAmt" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BankCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAcctId" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAddr1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAddr2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAddr3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ordInstName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ordInstAddr1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ordInstAddr2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ordInstAddr3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="pymntDetLine1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="pymntDetLine2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="pymntDetLine3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="pymntDetLine4" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo4" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo5" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="sendRecvInfo6" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="utrreferencenumber" type="xsd:string" nxsd:style="terminated"
+                           nxsd:terminatedBy="${eol}" nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="RTGSOutwardRefStatusFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+             <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+            
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TranrefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UTRNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Status" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ErrorCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ErrorMsg" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="NEFTOutwardRefStatusFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+            <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TranrefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UTRNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Status" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ErrorCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ErrorMsg" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CTSHandoffFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TranDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Sol" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Currency" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TranID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CheckNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="RoutingNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CheckDigit" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CreditAccountNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CifId" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DebitAccountNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DebitAccountName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CheckAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Status" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstrumentDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DepositSlipDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DepositSlipNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DepositBankCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DepositeChannel" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CTSFlag" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="ChequeLiquidationStatusFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DebitAccountNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstrumentNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstrumentAmount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ClearingArea" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BankShortName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BeneficiaryAccountNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountTitle" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BranchID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstrumentDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DataEntryDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ClearingDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="StatusFlag" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ReasonCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AccountEntryPostingReqFileInput">
+    <xsd:complexType></xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AccountEntryPostingHeaderLine">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                     nxsd:quotedBy='"'/>
+        <xsd:element name="Date" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+        <xsd:element name="FileReference" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                     nxsd:quotedBy='"'/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AccountEntryPostingTrailerLine">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                     nxsd:quotedBy='"'/>
+        <xsd:element name="NoOfDebitTxns" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                     nxsd:quotedBy='"'/>
+        <xsd:element name="TotAmtOfDebitTxns" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                     nxsd:quotedBy='"'/>
+        <xsd:element name="NoOfCreditTxns" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                     nxsd:quotedBy='"'/>
+        <xsd:element name="TotAmtOfCreditTxns" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                     nxsd:quotedBy='"'/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AccountEntryPostingReqFileOutputTest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:AccountEntryPostingHeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="RecordType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionRefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TxnSeqNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UserBranch" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Currency" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Amount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ValueDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TxnDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Narration1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ForceDebitFlag" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CustRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AmountLCY" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CasaGLFlag" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstrumentNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstrumentDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DealReference" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:AccountEntryPostingTrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AccountEntryPostingReqFileOutput">
+    <xsd:complexType>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded" nxsd:choiceCondition="terminated" nxsd:terminatedBy="|">
+        <xsd:element name="HeaderLine" nxsd:conditionValue="0">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Date" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="FileReference" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="DataLine" nxsd:conditionValue="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionRefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TxnSeqNumber" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UserBranch" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Currency" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Amount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ValueDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TxnDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Narration1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ForceDebitFlag" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CustRate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AmountLCY" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CasaGLFlag" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstrumentNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="InstrumentDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DealReference" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="TrailerLine" nxsd:conditionValue="2">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="NoOfDebitTxns" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TotAmtOfDebitTxns" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="NoOfCreditTxns" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TotAmtOfCreditTxns" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AccountEntryPostingRespFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionRefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BankCoreRefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ErrCd" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ErrMsg" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="RTGSOutwardReqHeaderLine">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="RecType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+        <xsd:element name="UserNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+        <xsd:element name="TxnCount" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|" nxsd:quotedBy='"'/>
+        <xsd:element name="TxnAmt" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                     nxsd:quotedBy='"'/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="RTGSOutwardReqFileInput">
+    <xsd:complexType></xsd:complexType>
+  </xsd:element>
+  <xsd:element name="RTGSOutwardReqFileOutput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:RTGSOutwardReqHeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="RecordType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="OrdBrCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="DrAcct" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="chrgAcct" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ordInstAddr1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ordInstAddr2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ordInstAddr3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="tranAmt" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAcctNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAddr1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAddr2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="benCustAddr3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="BankCode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="RemittanceInfo1" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="RemittanceInfo2" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="RemittanceInfo3" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="RemittanceInfo4" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Mobile" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Email" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionReferenceNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="PymtMode" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AverageBalanceReqFileInput">
+    <xsd:complexType></xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AverageBalanceReqFileOutput">
+    <xsd:complexType>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded" nxsd:choiceCondition="terminated" nxsd:terminatedBy="|">
+        <xsd:element name="HeaderLine" nxsd:conditionValue="H">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="FileName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="GenerationDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="FileReference" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="DataLine" nxsd:conditionValue="D">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CifID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Period" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="TrailerLine" nxsd:conditionValue="T">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="NoOfRecords" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AverageBalanceRespFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CifID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Period" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AverageBalance" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="InternalAccountValidationReqFileInput">
+    <xsd:complexType></xsd:complexType>
+  </xsd:element>
+  <xsd:element name="InternalAccountValidationReqFileOutput">
+    <xsd:complexType>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded" nxsd:choiceCondition="terminated" nxsd:terminatedBy="|">
+        <xsd:element name="HeaderLine" nxsd:conditionValue="H">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="GenerationDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="FileReference" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="DataLine" nxsd:conditionValue="D">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="TrailerLine" nxsd:conditionValue="T">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="NoOfRecords" type="xsd:int" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="InternalAccountValidationRespFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="HeaderLine">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="FileName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="GenerationDate" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="FileReference" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="UnitID" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Status" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountCcy" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Branch" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountName" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="CIFNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccountType" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="AccCategory" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="ProductCd" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="RTGSOutwardRespFileInput">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="adp:HeaderLine" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="DataLine" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="LineIdentifier" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="TransactionRefNo" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="|"
+                           nxsd:quotedBy='"'/>
+              <xsd:element name="Status" type="xsd:string" nxsd:style="terminated" nxsd:terminatedBy="${eol}"
+                           nxsd:quotedBy='"'/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element ref="adp:TrailerLine" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ESBMetadata/ComponentLibrary/RequesterServices/Misys/Transfer/V1/TransferRS"/>
+            <con:binding>
+                <con:name>TransferRSPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/RS/Misys/Transfer/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:template-overrides>
+            <con:action-override id="_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fb4">
+                <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con1:schema ref="ESBMetadata/ComponentLibrary/RequesterServices/Misys/AppMetadata/V1/Control"/>
+                    <con1:schemaElement xmlns:v1="urn:control.services.tiplus2.misys.com">v1:ServiceRequest</con1:schemaElement>
+                    <con1:location>
+                        <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./*[1]</con2:xpathText>
+                    </con1:location>
+                </con1:validate>
+            </con:action-override>
+            <con:template-branch-override id="_FlowId-N3f57fefe.4752c7fd.0.14c9676a917.N7f33">
+                <con:branch-node>
+                    <con:branch-table>
+                        <con:branch name="posting">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="MisysReq/Business/TransferES" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>create</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace contents-only="false" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:location>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./*[1]</con2:xpathText>
+                                        </con1:location>
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="MisysReq/Transformation/Transfer/xsl/MYS_TransferRS_posting_Rq"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00">
+                                    <con1:replace contents-only="false" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:location>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./*[1]</con2:xpathText>
+                                        </con1:location>
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="MisysReq/Transformation/Transfer/xsl/MYS_TransferRS_posting_Rs"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:placeholder-override id="PlaceholderID_a031ada.3e3dbc79.0.14d782cacd8.N7efa">
+                                    <con:actions>
+                                        <con1:assign varName="ConversionRate" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031aef.76022d18.0.14e05ef3756.N7fa0</con2:id>
+                                            <con1:expr>
+                                                <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ConversionRate/></con2:xqueryText>
+                                            </con1:expr>
+                                        </con1:assign>
+                                        <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031aef.76022d18.0.14e05ef3756.N7f92</con2:id>
+                                            <con1:variable>body</con1:variable>
+                                            <con1:expression>
+                                                <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./urn:ServiceRequest/urn1:BatchRequest/urn:ServiceRequest</con2:xpathText>
+                                            </con1:expression>
+                                            <con1:value-variable>var</con1:value-variable>
+                                            <con1:index-variable>Index</con1:index-variable>
+                                            <con1:total-variable>Count</con1:total-variable>
+                                            <con1:actions>
+                                                <con1:wsCallout>
+                                                    <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031aef.76022d18.0.14e05ef3756.N7fb1</con2:id>
+                                                    <con1:service ref="MisysReq/Business/CurrencyExchangeES" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                                    <con1:operation>query</con1:operation>
+                                                    <con1:request>
+                                                        <con1:body wrapped="false">QueryDealRateReq</con1:body>
+                                                    </con1:request>
+                                                    <con1:response>
+                                                        <con1:body wrapped="false">QueryDealRateRes</con1:body>
+                                                    </con1:response>
+                                                    <con1:requestTransform>
+                                                        <con1:assign varName="QueryDealRateReq">
+                                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031aef.76022d18.0.14e05ef3756.N7fa3</con2:id>
+                                                            <con1:expr>
+                                                                <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                                    <con2:resource ref="MisysReq/Transformation/Transfer/xsl/MYS_TransferRS_QueryCurrencyExchangeRate"/>
+                                                                    <con2:input>$body/*</con2:input>
+                                                                    <con2:param name="index">
+                                                                        <con2:path>data(xs:int($Index))</con2:path>
+                                                                    </con2:param>
+                                                                </con2:xsltTransform>
+                                                            </con1:expr>
+                                                        </con1:assign>
+                                                    </con1:requestTransform>
+                                                    <con1:responseTransform>
+                                                        <con1:replace varName="body" contents-only="true">
+                                                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-a031aef.76022d18.0.14e05ef3756.N7f73</con2:id>
+                                                            <con1:location>
+                                                                <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./urn:ServiceRequest/urn1:BatchRequest/urn:ServiceRequest[$Index]/urn1:Posting/urn1:PostingNarrative2</con2:xpathText>
+                                                            </con1:location>
+                                                            <con1:expr>
+                                                                <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">data($QueryDealRateRes/eo:RsData/eo:CurrencyExchange/eo:ConversionRate)</con2:xqueryText>
+                                                            </con1:expr>
+                                                        </con1:replace>
+                                                    </con1:responseTransform>
+                                                </con1:wsCallout>
+                                            </con1:actions>
+                                        </con1:foreach>
+                                    </con:actions>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031ada.N7861cb31.0.14d65d28ed6.N7f2c">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031ada.N7861cb31.0.14d65d28ed6.N7e09">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:placeholder-override id="PlaceholderID_a031ada.N7861cb31.0.14d65d28ed6.N7f2b">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="urn" namespace="urn:control.services.tiplus2.misys.com" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="urn1" namespace="urn:messages.service.ti.apps.tiplus2.misys.com" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="eo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:default-branch>
+                            <con:template-overrides/>
+                        </con:default-branch>
+                    </con:branch-table>
+                </con:branch-node>
+            </con:template-branch-override>
+            <con:placeholder-override id="PlaceholderID_a031ada.N7861cb31.0.14d65d28ed6.N7f12"/>
+            <con:placeholder-override id="PlaceholderID_a031ada.N7861cb31.0.14d65d28ed6.N7f2d">
+                <con:stage id="_StageId-a000002.N1333442c.0.14d99fdd5d2.N7f89" name="PublishToReplyQueue" xmlns:con3="http://www.bea.com/wli/sb/stages/alert/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con5="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                    <con:context>
+                        <con2:userNsDecl prefix="urn" namespace="urn:control.services.tiplus2.misys.com"/>
+                    </con:context>
+                    <con:actions>
+                        <con5:route>
+                            <con2:id>_ActionId-a000002.N1333442c.0.14d99fdd5d2.N7f88</con2:id>
+                            <con5:service ref="MisysReq/Business/MYS_Reply_jms" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                            <con5:operation>Produce_Message</con5:operation>
+                            <con5:outboundTransform>
+                                <con4:transport-headers copy-all="true">
+                                    <con2:id>_ActionId-N560191fe.60a3bad9.0.14e8652e548.N7f68</con2:id>
+                                    <con4:header-set>outbound-request</con4:header-set>
+                                    <con4:header value="expression" name="jca.jms.JMSCorrelationID">
+                                        <con2:xqueryText>data($payload/urn:RequestHeader/urn:CorrelationId)</con2:xqueryText>
+                                    </con4:header>
+                                </con4:transport-headers>
+                            </con5:outboundTransform>
+                        </con5:route>
+                    </con:actions>
+                </con:stage>
+            </con:placeholder-override>
+            <con:stage-override id="StageID_205755226734284210--7ad1d10a.13e19ccd971.-7fba">
+                <con:context>
+                    <con1:userNsDecl prefix="urn" namespace="urn:control.services.tiplus2.misys.com" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                    <con1:userNsDecl prefix="urn1" namespace="urn:messages.service.ti.apps.tiplus2.misys.com" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                </con:context>
+            </con:stage-override>
+        </con:template-overrides>
+    </con:router>
+    <con:template ref="ESBMetadata/Templates/Pipeline/RequesterPP"/>
+</con:pipelineEntry>

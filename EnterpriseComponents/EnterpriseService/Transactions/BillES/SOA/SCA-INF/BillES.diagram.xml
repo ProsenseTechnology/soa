@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
+    <dgm:gService name="BillES_direct">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="111" width="137" height="108">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="104" width="156" height="122">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="BillES_direct" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(BillESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/direct_adapter_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>create</dgm:item>
+            <dgm:item>query</dgm:item>
+            <dgm:item>update</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gReference name="EquityDirect.BillPS">
+        <dgm:body borderWidth="2" arcRad="20" X="836" Y="136" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="826" Y="129" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="EquityDirect.BillPS" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/PS/EquityDirect/Bill/V1#wsdl.interface(BillPSPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/RestAdapterService20x20px.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>getValidationObj</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gComponent name="BillRouter">
+        <dgm:body borderWidth="2" arcRad="20" X="226" Y="96" width="130" height="111">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="216" Y="89" width="150" height="127">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="BillRouter" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(BillESPort)"/>
+        <dgm:outputPort name="CreateBill.CreateBillPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(CreateBillPort)"/>
+        <dgm:outputPort name="QueryBill.QueryBillPL" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(QueryBillPort)"/>
+        <dgm:outputPort name="UpdateBill.UpdateBillPL" X="120" Y="65" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(UpdateBillPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="CreateBill">
+        <dgm:body borderWidth="2" arcRad="20" X="424" Y="26" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="414" Y="19" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="CreateBillPL" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(CreateBillPort)"/>
+        <dgm:outputPort name="BillProvRouterPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(BillESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="QueryBill">
+        <dgm:body borderWidth="2" arcRad="20" X="424" Y="121" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="414" Y="114" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="QueryBillPL" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(QueryBillPort)"/>
+        <dgm:outputPort name="BillProvRouterPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(BillESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="UpdateBill">
+        <dgm:body borderWidth="2" arcRad="20" X="424" Y="216" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="414" Y="209" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="UpdateBillPL" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(UpdateBillPort)"/>
+        <dgm:outputPort name="BillProvRouterPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(BillESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="BillProvRouter">
+        <dgm:body borderWidth="2" arcRad="20" X="638" Y="121" width="130" height="61">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="628" Y="114" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="BillProvRouter" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1#wsdl.interface(BillESPort)"/>
+        <dgm:outputPort name="EquityDirect.BillPS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/PS/EquityDirect/Bill/V1#wsdl.interface(BillPSPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gWireLink source="BillES_direct" target="BillRouter/BillRouter" width="2">
+        <dgm:gSegment X1="168" Y1="121" X2="216" Y2="121"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="BillRouter/CreateBill.CreateBillPL" target="CreateBill/CreateBillPL" width="2">
+        <dgm:gSegment X1="366" Y1="121" X2="390" Y2="121"/>
+        <dgm:gSegment X1="390" Y1="121" X2="390" Y2="51"/>
+        <dgm:gSegment X1="390" Y1="51" X2="414" Y2="51"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="BillRouter/QueryBill.QueryBillPL" target="QueryBill/QueryBillPL" width="2">
+        <dgm:gSegment X1="366" Y1="146" X2="414" Y2="146"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="BillRouter/UpdateBill.UpdateBillPL" target="UpdateBill/UpdateBillPL" width="2">
+        <dgm:gSegment X1="366" Y1="171" X2="390" Y2="171"/>
+        <dgm:gSegment X1="390" Y1="171" X2="390" Y2="241"/>
+        <dgm:gSegment X1="390" Y1="241" X2="414" Y2="241"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="CreateBill/BillProvRouterPL" target="BillProvRouter/BillProvRouter" width="2">
+        <dgm:gSegment X1="564" Y1="51" X2="604" Y2="51"/>
+        <dgm:gSegment X1="604" Y1="51" X2="604" Y2="146"/>
+        <dgm:gSegment X1="604" Y1="146" X2="628" Y2="146"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="QueryBill/BillProvRouterPL" target="BillProvRouter/BillProvRouter" width="2">
+        <dgm:gSegment X1="564" Y1="146" X2="628" Y2="146"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="UpdateBill/BillProvRouterPL" target="BillProvRouter/BillProvRouter" width="2">
+        <dgm:gSegment X1="564" Y1="241" X2="589" Y2="241"/>
+        <dgm:gSegment X1="589" Y1="241" X2="589" Y2="146"/>
+        <dgm:gSegment X1="589" Y1="146" X2="628" Y2="146"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="BillProvRouter/EquityDirect.BillPS" target="EquityDirect.BillPS" width="2">
+        <dgm:gSegment X1="778" Y1="146" X2="826" Y2="146"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+</dgm:gDiagram>

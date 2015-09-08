@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="WY4_DB_Adapter">This is a rest service of WY4_DB_Adapter</doc>
+   <grammars>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+      <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db" schemaLocation="WY4_DB_Adapter.xsd"/>
+    </schema>
+   </grammars>
+   <resources>
+      <resource path="/queryCreditCardFeed">
+         <method name="GET" soa:wsdlOperation="queryCreditCardFeed">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryCreditCardFeedOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryCreditCardFeedOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryCreditCardSummary">
+         <method name="GET" soa:wsdlOperation="queryCreditCardSummary">
+            <request>
+               <param name="cardNumber" style="query" soa:expression="$msg.payload/adp:cardNumber" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryCreditCardSummaryOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryCreditCardSummaryOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryCreditCardTransactionSummary">
+         <method name="GET" soa:wsdlOperation="queryCreditCardTransactionSummary">
+            <request>
+               <param name="cardNumber" style="query" soa:expression="$msg.payload/adp:cardNumber" default="" type="xsd:string"/>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+               <param name="endDate" style="query" soa:expression="$msg.payload/adp:endDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryCreditCardTransactionSummaryOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryCreditCardTransactionSummaryOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryCreditCardDetails">
+         <method name="GET" soa:wsdlOperation="queryCreditCardDetails">
+            <request>
+               <param name="targetNumber" style="query" soa:expression="$msg.payload/adp:targetNumber" default="" type="xsd:string"/>
+               <param name="contractNumber" style="query" soa:expression="$msg.payload/adp:contractNumber" default="" type="xsd:string"/>
+               <param name="cardNumber" style="query" soa:expression="$msg.payload/adp:cardNumber" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryCreditCardDetailsOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryCreditCardDetailsOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

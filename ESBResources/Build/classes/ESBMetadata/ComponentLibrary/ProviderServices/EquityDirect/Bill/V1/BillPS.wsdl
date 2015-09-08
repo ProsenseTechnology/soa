@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="BillPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/EquityDirect/Bill/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/EquityDirect/Bill/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Transactions/Bill/V1/BillEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="GetValidationObjRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetValidationObjRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="BillPSPort">
+        <operation name="getValidationObj">
+            <input message="ps:GetValidationObjRqMsg"/>
+            <output message="ps:GetValidationObjRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="BillPSPortBinding" type="ps:BillPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getValidationObj">
+            <soap12:operation soapAction="getValidationObj"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BillPS">
+        <port name="BillPSPort" binding="ps:BillPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

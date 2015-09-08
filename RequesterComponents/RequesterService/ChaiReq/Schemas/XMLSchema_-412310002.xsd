@@ -1,0 +1,406 @@
+<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+    <xsd:include schemaLocation="XMLSchema_1117385577.xsd"/>
+    <xsd:include schemaLocation="XMLSchema_1284956522.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= EO IDs ============= -->
+    <!-- ====================================================================== -->
+    <!-- ============= Accounts ============= -->
+    <xsd:element name="AccountID" type="IDType"/>
+    <!-- ============= Instruments ============= -->
+    <xsd:element name="CardID" type="IDType"/>
+    <xsd:element name="ChequeID" type="IDType"/>
+    <xsd:element name="ChequeBookID" type="IDType"/>
+    <!-- ============= Misc ============= -->
+    <xsd:element name="NotificationID" type="IDType"/>
+    <xsd:element name="DocumentID" type="IDType"/>
+    <xsd:element name="TagID" type="IDType"/>
+    <xsd:element name="FileID" type="IDType"/>
+    <!-- ============= Parties ============= -->
+    <xsd:element name="BillerID" type="IDType"/>
+    <xsd:element name="CustomerID" type="IDType"/>
+    <xsd:element name="EmployeeID" type="IDType"/>
+    <!-- ============= Resilience ============= -->
+    <xsd:element name="BiometricID" type="IDType"/>
+    <xsd:element name="ListOfValuesID" type="IDType"/>
+    <xsd:element name="NationalIdentityID" type="IDType"/>
+    <xsd:element name="ProjectID" type="IDType"/>
+    <xsd:element name="SignatureID" type="IDType"/>
+    <!-- ============= Transactions ============= -->
+    <xsd:element name="BillID" type="IDType"/>
+    <xsd:element name="PaymentID" type="IDType"/>
+    <xsd:element name="TransferID" type="IDType"/>
+    <xsd:element name="CurrencyExchangeID" type="IDType"/>
+    <!-- ============= Others ============= -->
+    <xsd:element name="BankID" type="IDType"/>
+    <xsd:element name="BranchID" type="IDType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= EO Identifiers ============= -->
+    <!-- ====================================================================== -->
+    <!-- ============= Others ============= -->
+    <xsd:complexType name="BranchIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="BankID" minOccurs="0"/>
+            <xsd:element ref="BankBIC" minOccurs="0"/>
+            <xsd:element ref="BranchID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="BranchIdentifier" type="BranchIdentifierType"/>
+    <!-- ============= Accounts ============= -->
+    <xsd:complexType name="AccountIdentifierType">
+        <xsd:complexContent>
+            <xsd:extension base="BranchIdentifierType">
+                <xsd:sequence>
+                    <xsd:element ref="AccountID" minOccurs="0"/>
+                    <xsd:element ref="IBAN" minOccurs="0"/>
+                    <xsd:element ref="AccountCurrency" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="AccountIdentifier" type="AccountIdentifierType"/>
+    <!-- ============= Instruments ============= -->
+    <xsd:complexType name="CardIdentifierType">
+        <xsd:complexContent>
+            <xsd:extension base="AccountIdentifierType">
+                <xsd:sequence>
+                    <xsd:element ref="CardID" minOccurs="0"/>
+                    <xsd:element ref="CardNumber" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="CardIdentifier" type="CardIdentifierType"/>
+    <xsd:complexType name="ChequeIdentifierType">
+        <xsd:complexContent>
+            <xsd:extension base="AccountIdentifierType">
+                <xsd:sequence>
+                    <xsd:element ref="ChequeID" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ChequeIdentifier" type="ChequeIdentifierType"/>
+    <xsd:complexType name="ChequeBookIdentifierType">
+        <xsd:complexContent>
+            <xsd:extension base="AccountIdentifierType">
+                <xsd:sequence>
+                    <xsd:element ref="ChequeBookID" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ChequeBookIdentifier" type="ChequeBookIdentifierType"/>
+    <!-- ============= Misc ============= -->
+    <xsd:complexType name="NotificationIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="NotificationID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="NotificationIdentifier" type="NotificationIdentifierType"/>
+    <xsd:complexType name="DocumentIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="DocumentID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="DocumentIdentifier" type="DocumentIdentifierType"/>
+    <xsd:complexType name="TagIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="TagID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="TagIdentifier" type="TagIdentifierType"/>
+    <xsd:complexType name="FileIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="FileID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="FileIdentifier" type="FileIdentifierType"/>
+    <!-- ============= Parties ============= -->
+    <xsd:complexType name="BillerIdentifierType">
+        <xsd:complexContent>
+            <xsd:extension base="AccountIdentifierType">
+                <xsd:sequence>
+                    <xsd:element ref="BillerID" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="BillerIdentifier" type="BillerIdentifierType"/>
+    <xsd:complexType name="CustomerIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="BankID" minOccurs="0"/>
+            <xsd:element ref="CustomerID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CustomerIdentifier" type="CustomerIdentifierType"/>
+    <xsd:complexType name="EmployeeIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="BankID" minOccurs="0"/>
+            <xsd:element ref="EmployeeID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EmployeeIdentifier" type="EmployeeIdentifierType"/>
+    <!-- ============= Resilience ============= -->
+    <xsd:complexType name="BiometricIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="BiometricID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="BiometricIdentifier" type="BiometricIdentifierType"/>
+    <xsd:complexType name="ListOfValuesIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="ListOfValuesID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ListOfValuesIdentifier" type="ListOfValuesIdentifierType"/>
+    <xsd:complexType name="NationalIdentityIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="NationalIdentityID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="NationalIdentityIdentifier" type="NationalIdentityIdentifierType"/>
+    <xsd:complexType name="ProjectIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="ProjectID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ProjectIdentifier" type="ProjectIdentifierType"/>
+    <xsd:complexType name="SignatureIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="SignatureID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SignatureIdentifier" type="SignatureIdentifierType"/>
+    <!-- ============= Transactions ============= -->
+    <xsd:complexType name="BillIdentifierType">
+        <xsd:complexContent>
+            <xsd:extension base="BillerIdentifierType">
+                <xsd:sequence>
+                    <xsd:element ref="BillID" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="BillIdentifier" type="BillIdentifierType"/>
+    <xsd:complexType name="PaymentIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="BankID" minOccurs="0"/>
+            <xsd:element ref="PaymentID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PaymentIdentifier" type="PaymentIdentifierType"/>
+    <xsd:complexType name="TransferIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="BankID" minOccurs="0"/>
+            <xsd:element ref="TransferID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="TransferIdentifier" type="TransferIdentifierType"/>
+    <xsd:complexType name="CurrencyExchangeIdentifierType">
+        <xsd:sequence>
+            <xsd:element ref="CurrencyExchangeID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CurrencyExchangeIdentifier" type="CurrencyExchangeIdentifierType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Simple Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="Amount" type="AmountType"/>
+    <xsd:element name="BillAmount" type="AmountType"/>
+    <xsd:element name="TotalAmount" type="AmountType"/>
+    <xsd:element name="ChargeAmount" type="AmountType"/>
+    <xsd:element name="NoOfLeaves" type="IntegerType"/>
+    <xsd:element name="PayFromAccount" type="AccountReferenceType"/>
+    <xsd:element name="PayeeAccount" type="AccountReferenceType"/>
+    <xsd:element name="PayFromMobileWallet" type="MobileWalletType"/>
+    <xsd:element name="PayeeMobileWallet" type="MobileWalletType"/>
+    <xsd:element name="ValueDate" type="DateType"/>
+    <xsd:element name="Rate" type="RateType"/>
+    <xsd:element name="Remarks" type="TextType"/>
+    <xsd:element name="BankBIC" type="CodeType"/>
+    <xsd:element name="AccountCurrency" type="CodeType"/>
+    <xsd:element name="UpdatedBy" type="IDType"/>
+    <xsd:element name="ExchangeCurrency" type="CodeType"/>
+    <xsd:element name="TagValue" type="TextType"/>
+    <xsd:element name="UserName" type="NameType"/>
+    <xsd:element name="TemplateName" type="NameType"/>
+    <xsd:element name="MobileWalletVendor" type="NameType"/>
+    <xsd:element name="EffectiveDate" type="DateType"/>
+    <xsd:element name="StartDate" type="DateType"/>
+    <xsd:element name="EndDate" type="DateType"/>
+    <xsd:element name="ItemDate" type="DateType"/>
+    <xsd:element name="OrganizationName" type="NameType"/>
+    <xsd:element name="Role" type="NameType"/>
+    <xsd:element name="ShortDescription" type="TextType"/>
+    <xsd:element name="LongDescription" type="TextType"/>
+    <xsd:element name="SupplierName" type="NameType"/>
+    <xsd:element name="InvoiceNumber" type="IDType"/>
+    <xsd:element name="CardNumber" type="IDType"/>
+    <xsd:element name="PONumber" type="IDType"/>
+    <xsd:element name="SignatureImage" type="xsd:base64Binary"/>
+    <xsd:element name="CountryCode" type="CodeType"/>
+    <xsd:simpleType name="EmailAddressType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[^@]+@[^\.]+\..+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="EmailAddress" type="EmailAddressType"/>
+    <xsd:element name="IBAN" type="IDType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Complex Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="PartyReferenceType">
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:sequence>
+                    <xsd:element ref="OrganizationName" minOccurs="0"/>
+                </xsd:sequence>
+                <xsd:sequence>
+                    <xsd:element ref="PersonName" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:choice>
+            <xsd:element ref="Address" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PartyReference" type="PartyReferenceType"/>
+    <xsd:complexType name="AccountReferenceType">
+        <xsd:sequence>
+            <xsd:element ref="AccountIdentifier" minOccurs="0"/>
+            <xsd:element ref="PartyReference" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AccountReference" type="AccountReferenceType"/>
+    <xsd:complexType name="StopPaymentInstructionType">
+        <xsd:sequence>
+            <xsd:element name="RequestDateTime" type="DateTimeType" minOccurs="0"/>
+            <xsd:element name="ReasonCode" type="CodeType" minOccurs="0"/>
+            <xsd:element name="ReasonDescription" type="TextType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="StopPaymentInstruction" type="StopPaymentInstructionType"/>
+    <xsd:complexType name="PersonNameType">
+        <xsd:sequence>
+            <xsd:element name="FullName" type="NameType" minOccurs="0"/>
+            <xsd:element name="FirstName" type="NameType" minOccurs="0"/>
+            <xsd:element name="MiddleName" type="NameType" minOccurs="0"/>
+            <xsd:element name="LastName" type="NameType" minOccurs="0"/>
+            <xsd:element name="ShortName" type="NameType" minOccurs="0"/>
+            <xsd:element name="Title" type="TextType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PersonName" type="PersonNameType"/>
+    <xsd:complexType name="IdentityDocumentType">
+        <xsd:sequence>
+            <xsd:element name="IdentityDocumentID" type="IDType"/>
+            <xsd:element name="IdentityDocumentSerialNumber" type="IDType" minOccurs="0"/>
+            <xsd:element name="IdentityDocumentType" type="CodeType" minOccurs="0"/>
+            <xsd:element name="IssueDate" type="DateType" minOccurs="0"/>
+            <xsd:element name="ExpirationDate" type="DateType" minOccurs="0"/>
+            <xsd:element name="IssuingCountry" type="CodeType" minOccurs="0"/>
+            <xsd:element name="IssuingLocation" type="TextType" minOccurs="0"/>
+            <xsd:element name="IssuingAuthority" type="TextType" minOccurs="0"/>
+            <xsd:element name="DocImage1" type="xsd:base64Binary" minOccurs="0"/>
+            <xsd:element name="DocImage2" type="xsd:base64Binary" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="IdentityDocument" type="IdentityDocumentType"/>
+    <xsd:element name="PrimaryIdentityDocument" type="IdentityDocumentType"/>
+    <xsd:complexType name="PersonType">
+        <xsd:sequence>
+            <xsd:element ref="PersonName" minOccurs="0"/>
+            <xsd:element name="BirthDate" type="DateType" minOccurs="0"/>
+            <xsd:element name="BirthCountry" type="CodeType" minOccurs="0"/>
+            <xsd:element name="BirthCityName" type="NameType" minOccurs="0"/>
+            <xsd:element name="GenderCode" type="CodeType" minOccurs="0"/>
+            <xsd:element name="Language" type="CodeType" minOccurs="0"/>
+            <xsd:element name="NativeLanguage" type="CodeType" minOccurs="0"/>
+            <xsd:element name="Nationality" type="CodeType" minOccurs="0"/>
+            <xsd:element name="MaritalStatus" type="CodeType" minOccurs="0"/>
+            <xsd:element name="MinorIndicator" type="IndicatorType" minOccurs="0"/>
+            <xsd:element name="NREIndicator" type="IndicatorType" minOccurs="0"/>
+            <xsd:element name="Occupation" type="CodeType" minOccurs="0"/>
+            <xsd:element ref="IdentityDocument" minOccurs="0"/>
+            <xsd:element ref="SignatureImage" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Person" type="PersonType"/>
+    <xsd:complexType name="CompanyType">
+        <xsd:sequence>
+            <xsd:element name="CompanyName" type="NameType" minOccurs="0"/>
+            <xsd:element name="IncorporationDate" type="DateType" minOccurs="0"/>
+            <xsd:element name="RegistrationCode" type="CodeType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Company" type="CompanyType"/>
+    <xsd:complexType name="AddressType">
+        <xsd:sequence>
+            <xsd:element name="AddressType" type="CodeType" minOccurs="0"/>
+            <xsd:element name="LineOne" type="TextType" minOccurs="0"/>
+            <xsd:element name="LineTwo" type="TextType" minOccurs="0"/>
+            <xsd:element name="LineThree" type="TextType" minOccurs="0"/>
+            <xsd:element name="LineFour" type="TextType" minOccurs="0"/>
+            <xsd:element name="CityName" type="NameType" minOccurs="0"/>
+            <xsd:element name="StateName" type="NameType" minOccurs="0"/>
+            <xsd:element name="CountyName" type="NameType" minOccurs="0"/>
+            <xsd:element name="CountryName" type="NameType" minOccurs="0"/>
+            <xsd:element name="PostalCode" type="CodeType" minOccurs="0"/>
+            <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Address" type="AddressType"/>
+    <xsd:complexType name="PhoneType">
+        <xsd:sequence>
+            <xsd:element name="PhoneType" type="CodeType" minOccurs="0"/>
+            <xsd:choice>
+                <xsd:sequence>
+                    <xsd:element name="CompleteNumber" type="TextType" minOccurs="0"/>
+                </xsd:sequence>
+                <xsd:sequence>
+                    <xsd:element name="CountryCode" type="CodeType" minOccurs="0"/>
+                    <xsd:element name="AreaCode" type="CodeType" minOccurs="0"/>
+                    <xsd:element name="LocalNumber" type="TextType" minOccurs="0"/>
+                    <xsd:element name="ExtensionNumber" type="TextType" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:choice>
+            <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Phone" type="PhoneType"/>
+    <xsd:complexType name="EmailType">
+        <xsd:sequence>
+            <xsd:element name="EmailType" type="CodeType" minOccurs="0"/>
+            <xsd:element name="EmailAddress" type="EmailAddressType" minOccurs="0"/>
+            <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Email" type="EmailType"/>
+    <xsd:complexType name="BalanceType">
+        <xsd:sequence>
+            <xsd:element name="BalanceType" type="CodeType" minOccurs="0"/>
+            <xsd:element name="BalanceAmount" type="AmountType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Balance" type="BalanceType"/>
+    <xsd:complexType name="TransactionType">
+        <xsd:sequence>
+            <xsd:element name="TransactionID" type="IDType" minOccurs="0"/>
+            <xsd:element name="TransactionType" type="CodeType" minOccurs="0"/>
+            <xsd:element name="TransactionCategory" type="CodeType" minOccurs="0"/>
+            <xsd:element name="TransactionSerialNumber" type="IDType" minOccurs="0"/>
+            <xsd:element name="TransactionDescription" type="TextType" minOccurs="0"/>
+            <xsd:element name="InstrumentReferenceNumber" type="IDType" minOccurs="0"/>
+            <xsd:element name="TransactionAmount" type="AmountType" minOccurs="0"/>
+            <xsd:element name="PostedDateTime" type="DateTimeType"/>
+            <xsd:element name="TransactionDateTime" type="DateTimeType"/>
+            <xsd:element ref="ValueDate" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Transaction" type="TransactionType"/>
+    <xsd:complexType name="MobileWalletType">
+        <xsd:sequence>
+            <xsd:element name="MobileNumber" type="IntegerType" minOccurs="0"/>
+            <xsd:element name="MobileUser" type="NameType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MobileWallet" type="MobileWalletType"/>
+</xsd:schema>

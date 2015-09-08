@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="ChaiReqTest" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="TransferRS" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://soa3internaldev.ebsafrica.com</con:endpoint></con:endpoints><con:resource name="Transfer" path="/ESB/RS/Chai/REST/Transfer"><con:settings/><con:parameters/><con:method name="CreateTransfer" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/><con:element xmlns:tran="http://soa3internaluat.ebsafrica.com/ESB/RS/Chai/REST/Transfer">tran:Fault</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://soa3internaluat.ebsafrica.com</con:endpoint><con:request>{"transfers": [
+      {
+      "user": "BICL",
+      "amount": 100,
+      "userGroup": "BROKER",
+      "transRef": "12"
+   },
+      {
+      "user": "JFL",
+      "amount": 200,
+      "userGroup": "WAREHOUSE",
+      "transRef": "12"
+   },
+      {
+      "user": "GATHUTI",
+      "amount": 300,
+      "userGroup": "GARDEN",
+      "transRef": "12"
+   }
+]}</con:request><con:originalUri>http://soa3internaluat.ebsafrica.com/ESB/RS/Chai/REST/Transfer</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="BillRS" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://soa3internaldev.ebsafrica.com</con:endpoint></con:endpoints><con:resource name="Bill" path="/ESB/RS/Chai/REST/Bill"><con:settings/><con:parameters/><con:method name="CreateBill" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:bill="http://soa3internaldev.ebsafrica.com/ESB/RS/Chai/REST/Bill">bill:Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://soa3internaldev.ebsafrica.com</con:endpoint><con:request>{
+  "source" : "CPS",
+  "user" : "CKL",
+  "ref" : "EQCKL350",
+  "amount" : 7806.60
+}</con:request><con:originalUri>http://soa3internaldev.ebsafrica.com/ESB/RS/Chai/REST/Bill</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="UpdateBill" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:bill="http://soa3internaldev.ebsafrica.com/ESB/RS/Chai/REST/Bill">bill:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://soa3internaldev.ebsafrica.com</con:endpoint><con:request>{
+  "ref" : "string"
+}</con:request><con:originalUri>http://soa3internaldev.ebsafrica.com/ESB/RS/Chai/REST/Bill</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="EmployeePS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Employee/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Employee/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Parties/Employee/V1/EmployeeEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="QueryEmployeeRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryEmployeeRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="EmployeePSPort">
+        <operation name="queryEmployee">
+            <input message="ps:QueryEmployeeRqMsg"/>
+            <output message="ps:QueryEmployeeRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="EmployeePSPortBinding" type="ps:EmployeePSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="queryEmployee">
+            <soap12:operation soapAction="queryEmployee"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="EmployeePS">
+        <port name="EmployeePSPort" binding="ps:EmployeePSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

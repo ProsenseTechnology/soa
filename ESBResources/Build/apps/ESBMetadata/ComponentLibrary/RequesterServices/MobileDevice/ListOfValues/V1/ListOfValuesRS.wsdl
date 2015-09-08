@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/ListOfValues/V1"
+             xmlns:RS="http://xmlns.equitybank.co.ke/ESB/RS/MobileDevice/ListOfValues/V1" name="ListOfValuesRS"
+             targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/MobileDevice/ListOfValues/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/ListOfValues/V1"
+                  schemaLocation="ListOfValuesRO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="QueryListOfValuesRequestMessage">
+    <part name="QueryListOfValuesRequest" element="ro:QueryListOfValuesRequestRM"/>
+  </message>
+  <message name="QueryListOfValuesResponseMessage">
+    <part name="QueryListOfValuesResponse" element="ro:QueryListOfValuesResponseRM"/>
+  </message>
+  <portType name="ListOfValuesRSPort">
+    <operation name="query">
+      <input message="RS:QueryListOfValuesRequestMessage"/>
+      <output message="RS:QueryListOfValuesResponseMessage"/>
+    </operation>
+  </portType>
+  <binding name="ListOfValuesRSPortBinding" type="RS:ListOfValuesRSPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="query">
+      <soap12:operation soapAction=""/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ListOfValuesRS">
+    <port name="ListOfValuesRSPort" binding="RS:ListOfValuesRSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

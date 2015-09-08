@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<composite name="CustomerBS" applicationName="Party" revision="1.0" label="soa_3e3f11a6-d5af-4c46-ae97-85ef4316b32c" mode="active" state="on" home="/u02/oracle/config/domains/BPMDomain/servers/wls_soa1/dc/soa_3e3f11a6-d5af-4c46-ae97-85ef4316b32c" xmlns:ui="http://xmlns.oracle.com/soa/designer/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.oracle.com/sca/1.0">
+   <import location="WSDLs/CustomerValidation.wsdl" importType="wsdl" namespace="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerValidation"/>
+   <import location="WSDLs/AccountOpenRules_DecisionService.wsdl" importType="wsdl" namespace="http://xmlns.oracle.com/AccountOpenRules/AccountOpenRules_DecisionService"/>
+   <import location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Resilience/NationalIdentity/V1/NationalIdentityES.wsdl" importType="wsdl" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/NationalIdentity/V1"/>
+   <import location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Accounts/Account/V1/AccountES.wsdl" importType="wsdl" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"/>
+   <import location="WSDLs/CustomerBSWrapper.wsdl" importType="wsdl" namespace="http://xmlns.equitybank.co.ke/ESB/BS/Party/Customer/V1"/>
+   <import namespace="http://xmlns.oracle.com/bpmn/bpmnProcess/Notifiation" location="WSDLs/Notifiation.wsdl"
+           importType="wsdl"/>
+   <import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1"
+           location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Parties/Customer/V1/CustomerES.wsdl"
+           importType="wsdl"/>
+   <import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1"
+           location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Misc/Notification/V1/NotificationES.wsdl"
+           importType="wsdl"/>
+   <service name="CustomerBS_Direct" ui:wsdlLocation="WSDLs/CustomerBSWrapper.wsdl">
+      <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/BS/Party/Customer/V1#wsdl.interface(CustomerBSPort)"/>
+      <binding.direct useSSLForCallback="false" useLocalJNDIProvider="false"/>
+   </service>
+   <service name="CustomerValidation.service" ui:wsdlLocation="WSDLs/CustomerValidation.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerValidation#wsdl.interface(CustomerValidationPortType)"/>
+      <binding.ws port="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerValidation#wsdl.endpoint(CustomerValidation.service/CustomerValidationPort)"/>
+   </service>
+   <service name="Notifiation.service" ui:wsdlLocation="WSDLs/Notifiation.wsdl">
+      <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/Notifiation#wsdl.interface(NotifiationPortType)"/>
+      <binding.ws port="http://xmlns.oracle.com/bpmn/bpmnProcess/Notifiation#wsdl.endpoint(Notifiation.service/NotifiationPort)"/>
+   </service>
+   <property name="auditLevel" many="false">Development</property>
+   <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
+   <property name="compositeID" type="xs:string" many="false">646aea9a-5374-41bc-b1c2-9e4cbf38c468</property>
+   <component name="CustomerRouter">
+      <implementation.mediator src="Mediators/CustomerRouter.mplan"/>
+      <componentType xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+         <service name="CustomerRouter" ui:wsdlLocation="WSDLs/CustomerBSWrapper.wsdl">
+            <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/BS/Party/Customer/V1#wsdl.interface(CustomerBSPort)"/>
+         </service>
+         <reference name="CustomerValidation.CustomerValidation.service" ui:wsdlLocation="WSDLs/CustomerValidation.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerValidation#wsdl.interface(CustomerValidationPortType)"/>
+         </reference>
+         <reference name="Notifiation.Notifiation.service" ui:wsdlLocation="WSDLs/Notifiation.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/Notifiation#wsdl.interface(NotifiationPortType)"/>
+         </reference>
+      </componentType>
+      <business-events/>
+   </component>
+   <component name="AccountOpenRules">
+      <implementation.decision src="AccountOpenRules.decs"/>
+      <componentType xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+         <service name="AccountOpenRules_DecisionService" ui:wsdlLocation="WSDLs/AccountOpenRules_DecisionService.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/AccountOpenRules/AccountOpenRules_DecisionService#wsdl.interface(IDecisionService)"/>
+         </service>
+      </componentType>
+      <business-events/>
+   </component>
+   <component name="CustomerValidation">
+      <implementation.bpmn src="processes/CustomerValidation.bpmn"/>
+      <componentType xmlns:ui="http://xmlns.oracle.com/soa/designer/">
+         <service name="CustomerValidation.service" ui:wsdlLocation="WSDLs/CustomerValidation.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerValidation#wsdl.interface(CustomerValidationPortType)"/>
+            <property name="bpm.generated.service.reference" type="xs:string" many="false">CustomerValidation.service</property>
+         </service>
+         <reference name="Rules.Customerbs.AccountOpenRules.DecisionService.reference" ui:wsdlLocation="WSDLs/AccountOpenRules_DecisionService.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/AccountOpenRules/AccountOpenRules_DecisionService#wsdl.interface(IDecisionService)"/>
+         </reference>
+         <reference name="Services.Externals.NationalIdentityES.reference" ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Resilience/NationalIdentity/V1/NationalIdentityES.wsdl">
+            <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/NationalIdentity/V1#wsdl.interface(NationalIdentityESPort)"/>
+         </reference>
+         <reference name="Services.Externals.AccountES.reference" ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Accounts/Account/V1/AccountES.wsdl">
+            <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1#wsdl.interface(AccountESPort)"/>
+         </reference>
+      </componentType>
+      <business-events/>
+   </component>
+   <component name="Notifiation">
+      <implementation.bpmn src="processes/Notifiation.bpmn"/>
+      <componentType>
+         <service name="Notifiation.service" ui:wsdlLocation="WSDLs/Notifiation.wsdl">
+            <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/Notifiation#wsdl.interface(NotifiationPortType)"/>
+            <property name="bpm.generated.service.reference" type="xs:string" many="false">Notifiation.service</property>
+         </service>
+         <reference name="Services.Externals.CustomerES.reference"
+                    ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Parties/Customer/V1/CustomerES.wsdl">
+            <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CustomerESPort)"/>
+         </reference>
+         <reference name="Services.Externals.NotificationES.reference"
+                    ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Misc/Notification/V1/NotificationES.wsdl">
+            <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(NotificationESPort)"/>
+         </reference>
+      </componentType>
+   </component>
+   <reference name="NationalIdentityES" ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Resilience/NationalIdentity/V1/NationalIdentityES.wsdl">
+      <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/NationalIdentity/V1#wsdl.interface(NationalIdentityESPort)"/>
+      <binding.direct address="soadirect:/Resilience/NationalIdentityES/NationalIdentityES_direct" connection-factory="oracle.soa.api.JNDIDirectConnectionFactory" useSSLForCallback="false" useLocalJNDIProvider="false">
+         <property name="java.naming.provider.url" many="false">t3://soa1host1vhn1dev.ebsafrica.com:8001</property>
+      </binding.direct>
+   </reference>
+   <reference name="AccountES" ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Accounts/Account/V1/AccountES.wsdl">
+      <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1#wsdl.interface(AccountESPort)"/>
+      <binding.direct address="soadirect:/Accounts/AccountES/AccountES_direct" connection-factory="oracle.soa.api.JNDIDirectConnectionFactory" useSSLForCallback="false" useLocalJNDIProvider="false">
+         <property name="java.naming.provider.url" many="false">t3://soa1host1vhn1dev.ebsafrica.com:8001/</property>
+      </binding.direct>
+   </reference>
+   <reference name="CustomerES"
+              ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Parties/Customer/V1/CustomerES.wsdl">
+      <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CustomerESPort)"/>
+      <binding.direct address="soadirect:/default/CustomerES!1.0/CustomerES_direct"
+                      connection-factory="oracle.soa.api.JNDIDirectConnectionFactory" useLocalJNDIProvider="false">
+         <property name="java.naming.provider.url">t3://localhost:7001/</property>
+      </binding.direct>
+   </reference>
+   <reference name="NotificationES"
+              ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Misc/Notification/V1/NotificationES.wsdl">
+      <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(NotificationESPort)"/>
+      <binding.direct address="soadirect:/default/NotificationES!1.0/NotificationES_direct"
+                      connection-factory="oracle.soa.api.JNDIDirectConnectionFactory" useLocalJNDIProvider="false">
+         <property name="java.naming.provider.url">t3://localhost:7001/</property>
+      </binding.direct>
+   </reference>
+   <wire>
+      <source.uri>CustomerValidation/Services.Externals.NationalIdentityES.reference</source.uri>
+      <target.uri>NationalIdentityES</target.uri>
+   </wire>
+   <wire>
+      <source.uri>CustomerValidation/Rules.Customerbs.AccountOpenRules.DecisionService.reference</source.uri>
+      <target.uri>AccountOpenRules/AccountOpenRules_DecisionService</target.uri>
+   </wire>
+   <wire>
+      <source.uri>CustomerRouter/CustomerValidation.CustomerValidation.service</source.uri>
+      <target.uri>CustomerValidation/CustomerValidation.service</target.uri>
+   </wire>
+   <wire>
+      <source.uri>CustomerBS_Direct</source.uri>
+      <target.uri>CustomerRouter/CustomerRouter</target.uri>
+   </wire>
+   <wire>
+      <source.uri>CustomerValidation/Services.Externals.AccountES.reference</source.uri>
+      <target.uri>AccountES</target.uri>
+   </wire>
+   <wire>
+      <source.uri>CustomerValidation.service</source.uri>
+      <target.uri>CustomerValidation/CustomerValidation.service</target.uri>
+   </wire>
+   <wire>
+      <source.uri>Notifiation/Services.Externals.CustomerES.reference</source.uri>
+      <target.uri>CustomerES</target.uri>
+   </wire>
+   <wire>
+      <source.uri>Notifiation/Services.Externals.NotificationES.reference</source.uri>
+      <target.uri>NotificationES</target.uri>
+   </wire>
+   <wire>
+      <source.uri>CustomerRouter/Notifiation.Notifiation.service</source.uri>
+      <target.uri>Notifiation/Notifiation.service</target.uri>
+   </wire>
+   <wire>
+      <source.uri>Notifiation.service</source.uri>
+      <target.uri>Notifiation/Notifiation.service</target.uri>
+   </wire>
+</composite>

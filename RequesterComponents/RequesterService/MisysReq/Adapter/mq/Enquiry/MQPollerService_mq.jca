@@ -1,0 +1,10 @@
+<adapter-config name="MQPollerService" adapter="mq" wsdlLocation="MQPollerService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/MQ/MQAdapter"/>
+  <endpoint-activation portType="ENQUIRY_ptt" operation="ENQUIRY" UITransmissionPrimitive="Dequeue">
+    <activation-spec className="oracle.tip.adapter.mq.inbound.ActivationSpecImpl">
+      <property name="QueueName" value="TIPLUS2.BO.ENQUIRY"/>
+    </activation-spec>
+  </endpoint-activation>
+
+</adapter-config>

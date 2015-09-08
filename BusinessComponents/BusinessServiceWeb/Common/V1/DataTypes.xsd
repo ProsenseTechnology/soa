@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/BusinessObjects/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/BusinessObjects/Common/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:complexType name="Amount_Type">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="currencyCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="BinaryObject_Type">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:base64Binary">
+        <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="Code_Type">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Date_Type">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateTime_Type">
+    <xsd:restriction base="xsd:dateTime"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Duration_Type">
+    <xsd:restriction base="xsd:duration"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Identifier_Type">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Indicator_Type">
+    <xsd:restriction base="xsd:boolean">
+      <xsd:pattern value="false"/>
+      <xsd:pattern value="true"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Integer_Type">
+    <xsd:restriction base="xsd:integer"/>
+  </xsd:simpleType>
+  <xsd:element name="Integer_Type" type="Integer_Type"/>
+  <xsd:complexType name="Measure_Type">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="Name_Type">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="languageCode" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="Numeric_Type">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Percent_Type">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:complexType name="Quantity_Type">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="Rate_Type">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="Text_Type">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:normalizedString">
+        <xsd:attribute name="languageCode" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="String_Type">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:element name="String_Type" type="String_Type"/>
+  <xsd:simpleType name="URI_Type">
+    <xsd:restriction base="xsd:anyURI"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Year_Type">
+    <xsd:annotation>
+      <xsd:documentation>
+The Fiscal Year starting month. Values are: 1=January, 2=February, 3=March, 4=April, 5=May, 6=June, 7=July, 8=August, 9=September, 10=October, 11=November, 12=December.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:integer">
+      <xsd:enumeration value="1"/>
+      <xsd:enumeration value="2"/>
+      <xsd:enumeration value="3"/>
+      <xsd:enumeration value="4"/>
+      <xsd:enumeration value="5"/>
+      <xsd:enumeration value="6"/>
+      <xsd:enumeration value="7"/>
+      <xsd:enumeration value="8"/>
+      <xsd:enumeration value="9"/>
+      <xsd:enumeration value="10"/>
+      <xsd:enumeration value="11"/>
+      <xsd:enumeration value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Float_Type">
+    <xsd:restriction base="xsd:float"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Time_Type">
+    <xsd:restriction base="xsd:time"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Month_Type">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="01"/>
+      <xsd:pattern value="02"/>
+      <xsd:pattern value="03"/>
+      <xsd:pattern value="04"/>
+      <xsd:pattern value="05"/>
+      <xsd:pattern value="06"/>
+      <xsd:pattern value="07"/>
+      <xsd:pattern value="08"/>
+      <xsd:pattern value="09"/>
+      <xsd:pattern value="10"/>
+      <xsd:pattern value="11"/>
+      <xsd:pattern value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthDay_Type">
+    <xsd:restriction base="xsd:gMonthDay"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="AnyDateTimePointPrecisionCode_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:enumeration value="Year"/>
+      <xsd:enumeration value="YearMonth"/>
+      <xsd:enumeration value="Date"/>
+      <xsd:enumeration value="DateTime"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="AnyDateTimePointBase_Type">
+    <xsd:union memberTypes="xsd:gYear xsd:gYearMonth xsd:date xsd:dateTime"/>
+  </xsd:simpleType>
+  <xsd:complexType name="AnyDateTimePoint_Type">
+    <xsd:simpleContent>
+      <xsd:extension base="AnyDateTimePointBase_Type">
+        <xsd:attribute name="PrecisionCode" type="AnyDateTimePointPrecisionCode_Type" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="PositiveInteger_Type">
+    <xsd:restriction base="xsd:positiveInteger"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NonNegativeInteger_Type">
+    <xsd:restriction base="xsd:nonNegativeInteger">
+      <xsd:minInclusive value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!-- 12 November 2014 -->
+  <xsd:simpleType name="Long_Type">
+    <xsd:annotation>
+      <xsd:documentation>Long is an integer value, which may be positive, negative, or zero, with values ranging from -2147483648 to 2147483647.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:long"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="OpenEnum">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="80"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ClosedEnum">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="80"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!-- Added by Mustaque - Start -->
+  <xsd:simpleType name="HexBinary_Type">
+    <xsd:restriction base="xsd:hexBinary">
+      <xsd:maxLength value="16"/>
+      <xsd:pattern value="[0-9A-F]+"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!--xsd:simpleType name="StatusCode_Type">
+    <xsd:restriction base="Long_Type"/>
+  </xsd:simpleType-->
+  <!--Prabhat-->
+  <!--xsd:simpleType name="StatusDesc_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType-->
+  <!--xsd:simpleType name="ServerStatusCode_Type">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="20"/>
+    </xsd:restriction>
+  </xsd:simpleType-->
+  <xsd:simpleType name="AvailDt_Type">
+    <xsd:restriction base="DateTime_Type"/>
+  </xsd:simpleType>
+  <xsd:element name="AvailDt" type="AvailDt_Type"/>
+  <!--xsd:simpleType name="ExpDt_Type">
+    <xsd:restriction base="DateTime_Type"/>
+  </xsd:simpleType-->
+  <xsd:simpleType name="Memo_Type">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Boolean">
+    <xsd:annotation>
+      <xsd:documentation>Boolean indicates a logical True or False condition.  The physical representation of Boolean data is specified by each implementation specification corresponding to this message specification.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="0"/>
+      <xsd:enumeration value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="Binary">
+    <xsd:annotation>
+      <xsd:documentation>The Binary data type is a compound type consisting of threee logical elements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ContentType" type="OpenEnum"/>
+      <xsd:element name="BinLength" type="Long_Type"/>
+      <xsd:element name="BinData" type="BinaryObject_Type"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="DateTime">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{6})?((-|\+)[0-9]{2}:[0-9]{2})?)?)?"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!-- Added by Mustaque - End -->
+  <xsd:simpleType name="PmtStatusCode_Type">
+    <xsd:restriction base="ClosedEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Count_Type">
+    <xsd:restriction base="Long_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="SelRangeDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NC">
+    <xsd:annotation>
+      <xsd:documentation>Elements of type Narrow Character are elements of character data type with the additional restriction that the only allowable characters are those contained within the ISO Latin-1 character set.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+</xsd:schema>

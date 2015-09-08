@@ -1,0 +1,37 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions name="SignatureES" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Signature/V1"
+                  xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Signature/V1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Signature/V1"
+                 location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Resilience/Signature/V1/SignatureES.wsdl"/>
+    <wsdl:portType name="CreateSignaturePort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:CreateRqMsg"/>
+            <wsdl:output message="es:CreateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="QuerySignaturePort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:QueryRqMsg"/>
+            <wsdl:output message="es:QueryRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="UpdateSignaturePort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:UpdateRqMsg"/>
+            <wsdl:output message="es:UpdateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <plnk:partnerLinkType name="CreateSignaturePLType">
+        <plnk:role name="CreateSignatureProvider" portType="es:CreateSignaturePort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="QuerySignaturePLType">
+        <plnk:role name="QuerySignatureProvider" portType="es:QuerySignaturePort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="UpdateSignaturePLType">
+        <plnk:role name="UpdateSignatureProvider" portType="es:UpdateSignaturePort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="SignatureProvRouterPLType">
+        <plnk:role name="SignatureESProvider" portType="es:SignatureESPort"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

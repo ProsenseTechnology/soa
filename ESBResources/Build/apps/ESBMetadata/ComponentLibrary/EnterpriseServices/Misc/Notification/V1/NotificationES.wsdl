@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="NotificationES" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Notification/V1" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Notification/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Misc/Notification/V1/NotificationEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="SendSmsRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="SendSmsRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="SendEmailRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="SendEmailRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ReadEmailRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ReadEmailRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="NotificationESPort">
+        <operation name="sendSms">
+            <input message="es:SendSmsRqMsg"/>
+            <output message="es:SendSmsRsMsg"/>
+        </operation>
+        <operation name="sendEmail">
+            <input message="es:SendEmailRqMsg"/>
+            <output message="es:SendEmailRsMsg"/>
+        </operation>
+        <operation name="readEmail">
+            <input message="es:ReadEmailRqMsg"/>
+            <output message="es:ReadEmailRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="NotificationESPortBinding" type="es:NotificationESPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="sendSms">
+            <soap12:operation soapAction="sendSms"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="sendEmail">
+            <soap12:operation soapAction="sendEmail"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="readEmail">
+            <soap12:operation soapAction="rendEmail"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="NotificationES">
+        <port name="NotificationESPort" binding="es:NotificationESPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

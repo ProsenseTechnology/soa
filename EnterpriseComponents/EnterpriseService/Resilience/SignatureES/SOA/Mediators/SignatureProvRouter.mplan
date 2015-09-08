@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="SignatureProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Signature/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Finacle.SignaturePS.signatureAdd">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "CreateSignature"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"/>
+               </assign>
+               <invoke reference="Finacle.SignaturePS" operation="signatureAdd">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false"/>
+</Mediator>

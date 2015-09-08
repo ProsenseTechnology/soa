@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ESBMetadata/ComponentLibrary/ProviderServices/Finacle/Signature/V1/SignaturePS"/>
+            <con:binding>
+                <con:name>SignaturePSPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Signature/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:template-overrides>
+            <con:action-override id="_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fb4">
+                <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con1:schema ref="ESBMetadata/ComponentLibrary/EnterpriseObjects/Resilience/Signature/V1/SignatureEO"/>
+                    <con1:schemaElement xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1">v1:ESBMsg</con1:schemaElement>
+                </con1:validate>
+            </con:action-override>
+            <con:template-branch-override id="_FlowId-N3f57fefe.4752c7fd.0.14c9676a917.N7f33">
+                <con:branch-node>
+                    <con:branch-table>
+                        <con:branch name="signatureAdd">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="FinacleProv/Business/FIN_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation passThrough="true"/>
+                                    </con1:route>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34">
+                                    <con1:replace contents-only="true" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:location>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
+                                        </con1:location>
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="FinacleProv/Transformation/Signature/xsl/FIN_SignaturePS_signatureAdd_Rq"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                                <con2:param name="date">
+                                                    <con2:path>fn:current-dateTime()</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00">
+                                    <con1:replace xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:location>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
+                                        </con1:location>
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="FinacleProv/Transformation/Signature/xsl/FIN_SignaturePS_signatureAdd_Rs"/>
+                                                <con2:input>$body/*[1]</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:replace>
+                                </con:action-override>
+                                <con:route-node-override id="8373459945003585959--35d6eb2d.13e13554d53.-7ff9">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:route-node-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:default-branch/>
+                    </con:branch-table>
+                </con:branch-node>
+            </con:template-branch-override>
+        </con:template-overrides>
+    </con:router>
+    <con:template ref="ESBMetadata/Templates/Pipeline/ProviderPP"/>
+</con:pipelineEntry>

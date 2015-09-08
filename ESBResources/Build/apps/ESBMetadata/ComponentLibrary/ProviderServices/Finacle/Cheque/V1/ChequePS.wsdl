@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="ChequePS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Cheque/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Cheque/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Cheque/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Cheque/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Instruments/Cheque/V1/ChequeEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="StopChkAddRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="StopChkAddRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ChqStatusInqRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="ChqStatusInqRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryChequeUpdateStatusRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryChequeUpdateStatusRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+     <message name="QueryChequeDetailsRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryChequeDetailsRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+     <message name="QueryLiquidationChequeStatusRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryLiquidationChequeStatusRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="ChequePSPort">
+        <operation name="stopChkAdd">
+            <input message="ps:StopChkAddRqMsg"/>
+            <output message="ps:StopChkAddRsMsg"/>
+        </operation>
+        <operation name="chqStatusInq">
+            <input message="ps:ChqStatusInqRqMsg"/>
+            <output message="ps:ChqStatusInqRsMsg"/>
+        </operation>
+        <operation name="queryChequeUpdateStatus">
+            <input message="ps:QueryChequeUpdateStatusRqMsg"/>
+            <output message="ps:QueryChequeUpdateStatusRsMsg"/>
+        </operation>
+         <operation name="queryChequeDetails">
+            <input message="ps:QueryChequeDetailsRqMsg"/>
+            <output message="ps:QueryChequeDetailsRsMsg"/>
+        </operation>
+         <operation name="queryLiquidationChequeStatus">
+            <input message="ps:QueryLiquidationChequeStatusRqMsg"/>
+            <output message="ps:QueryLiquidationChequeStatusRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="ChequePSPortBinding" type="ps:ChequePSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="stopChkAdd">
+            <soap12:operation soapAction="stopChkAdd"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="chqStatusInq">
+            <soap12:operation soapAction="chqStatusInq"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryChequeUpdateStatus">
+            <soap12:operation soapAction="queryChequeUpdateStatus"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+         <operation name="queryChequeDetails">
+            <soap12:operation soapAction="queryChequeDetails"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+         <operation name="queryLiquidationChequeStatus">
+            <soap12:operation soapAction="queryLiquidationChequeStatus"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ChequePS">
+        <port name="ChequePSPort" binding="ps:ChequePSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

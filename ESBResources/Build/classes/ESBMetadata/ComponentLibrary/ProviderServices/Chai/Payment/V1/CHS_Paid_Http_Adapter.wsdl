@@ -1,0 +1,34 @@
+<wsdl:definitions name="CHS_Paid_Http_Adapter" targetNamespace="http://xmlns.oracle.com/EqpgwProviderService/ChaiPaidProv/CHS_Paid_Http_Adapter" xmlns:tns="http://xmlns.oracle.com/EqpgwProviderService/ChaiPaidProv/CHS_Paid_Http_Adapter" xmlns:inp1="http://xmlns.equitybank.co.ke/ESB/PS/Chai/Payment/V1" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plnk:partnerLinkType name="CHS_Paid_Http_Adapter">
+        <plnk:role name="CHS_Paid_Http_AdapterProvider" portType="tns:CHS_Paid_Http_Adapter_ptt"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Chai/Payment/V1" schemaLocation="CHS_Paid_Http_Adapter_Prov.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ChaiPayment_inputMessage">
+        <wsdl:part name="request" element="inp1:Request"/>
+    </wsdl:message>
+    <wsdl:message name="ChaiPayment_outputMessage">
+        <wsdl:part name="reply" element="inp1:Response"/>
+    </wsdl:message>
+    <wsdl:portType name="CHS_Paid_Http_Adapter_ptt">
+        <wsdl:operation name="ChaiPayment">
+            <wsdl:input message="tns:ChaiPayment_inputMessage"/>
+            <wsdl:output message="tns:ChaiPayment_outputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CHS_Paid_Http_Adapter_ptt-binding" type="tns:CHS_Paid_Http_Adapter_ptt">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ChaiPayment">
+            <soap:operation soapAction="ChaiPayment"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

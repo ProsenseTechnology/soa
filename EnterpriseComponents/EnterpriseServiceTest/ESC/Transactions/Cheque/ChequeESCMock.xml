@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="ChequeESCMock" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ChequeESCPortBinding" type="wsdl" bindingName="{http://xmlns.equitybank.co.ke/EnterpriseComponents/ESC/Transactions/Cheque/V1}ChequeESCPortBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/SVN_soa/SOAResources/SOAMetaData/ComponentLibrary/EnterpriseComponents/ESC/Transactions/Cheque/V1/ChequeESC.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/SVN_soa/SOAResources/SOAMetaData/ComponentLibrary/EnterpriseComponents/ESC/Transactions/Cheque/V1/ChequeESC.wsdl"><con:part><con:url>file:/D:/SVN_soa/SOAResources/SOAMetaData/ComponentLibrary/EnterpriseComponents/ESC/Transactions/Cheque/V1/ChequeESC.wsdl</con:url><con:content><![CDATA[<definitions name="ChequeESC" targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/ESC/Transactions/Cheque/V1" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:em="http://xmlns.equitybank.co.ke/EM/Transactions/Cheque/V1" xmlns:esc="http://xmlns.equitybank.co.ke/EnterpriseComponents/ESC/Transactions/Cheque/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/EM/Transactions/Cheque/V1" schemaLocation="../../../../EM/Transactions/Cheque/V1/ChequeEM.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="QueryChequeStatusRequestMessage">
+    <part name="QueryChequeStatusRequest" element="em:QueryChequeStatusRequestEM"/>
+  </message>
+  <message name="QueryChequeStatusResponseMessage">
+    <part name="QueryChequeStatusResponse" element="em:QueryChequeStatusResponseEM"/>
+  </message>
+  <message name="StopChequeRequestMessage">
+    <part name="StopChequeRequest" element="em:StopChequeRequestEM"/>
+  </message>
+  <message name="StopChequeResponseMessage">
+    <part name="StopChequeResponse" element="em:StopChequeResponseEM"/>
+  </message>
+  <portType name="ChequeESCPort">
+    <operation name="queryStatus">
+      <input message="esc:QueryChequeStatusRequestMessage"/>
+      <output message="esc:QueryChequeStatusResponseMessage"/>
+    </operation>
+    <operation name="stop">
+      <input message="esc:StopChequeRequestMessage"/>
+      <output message="esc:StopChequeResponseMessage"/>
+    </operation>
+  </portType>
+  <binding name="ChequeESCPortBinding" type="esc:ChequeESCPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="queryStatus">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="stop">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ChequeESC">
+    <port name="ChequeESCPort" binding="esc:ChequeESCPortBinding">
+      <soap:address location=""/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EM\Transactions\Cheque\V1\ChequeEM.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EM/Transactions/Cheque/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EM/Transactions/Cheque/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:accteo="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1" xmlns:chequeeo="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Transactions/Cheque/V1" xmlns:chequebookeo="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Instruments/ChequeBook/V1" xmlns:chequestopreasoneo="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Reference/ChequeReference/ChequeStopReasonEO/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" schemaLocation="../../../../EO/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Transactions/Cheque/V1" schemaLocation="../../../../EO/Transactions/Cheque/V1/ChequeEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Transactions/ChequeBook/V1" schemaLocation="../../../../EO/Instruments/ChequeBook/V1/ChequeBookEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Reference/ChequeReference/ChequeStopReasonEO/V1" schemaLocation="../../../../EO/Reference/ChequeReference/ChequeStopReason/V1/ChequeStopReasonEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1" schemaLocation="../../../../EO/Accounts/Account/V1/AccountEO.xsd"/>
+  <xsd:complexType name="ChequeEMType">
+    <xsd:complexContent>
+      <xsd:extension base="chequeeo:ChequeEOType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <!--======================================================================-->
+  <!--============= Query Cheque Status Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="QueryChequeStatusRequestEMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:EMType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="QueryChequeStatusRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="QueryChequeStatusRequestEM" type="QueryChequeStatusRequestEMType"/>
+  <xsd:complexType name="QueryChequeStatusRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="chequebookeo:ChequeBookIdentifier"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--xsd:complexType name="QueryChequeStatusRequestType">
+        <xsd:sequence>
+            <xsd:element ref="chequeeo:ChequeID" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="QueryChequeStatusRequest" type="QueryChequeStatusRequestType"/-->
+  <!--======================================================================-->
+  <!--============= Query Cheque Status Response =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="QueryChequeStatusResponseEMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:EMType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="QueryChequeStatusResponseDataAreaType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="QueryChequeStatusResponseEM" type="QueryChequeStatusResponseEMType"/>
+  <xsd:complexType name="QueryChequeStatusResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="chequeeo:ChequeStatus"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--xsd:complexType name="QueryChequeStatusResponseType">
+        <xsd:sequence>
+            <xsd:element ref="chequeeo:ChequeID" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="QueryChequeStatusResponse" type="QueryChequeStatusResponseType"/-->
+  <!--======================================================================-->
+  <!--============= Stop Cheque Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="StopChequeRequestEMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:EMType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="StopChequeRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="StopChequeRequestEM" type="StopChequeRequestEMType"/>
+  <xsd:complexType name="StopChequeRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="chequebookeo:ChequeBookIdentifier"/>
+      <xsd:element ref="chequestopreasoneo:ChequeStopReasonCode"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--xsd:complexType name="StopChequeRequestType">
+        <xsd:sequence>
+            <xsd:element ref="chequeeo:ChequeID" minOccurs="0"/>
+            <xsd:element ref="com:Account" minOccurs="0"/>
+            <xsd:element ref="com:StopPaymentInstruction" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="StopChequeRequest" type="StopChequeRequestType"/-->
+  <!--======================================================================-->
+  <!--============= Stop Cheque Response  =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="StopChequeResponseEMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:EMType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="StopChequeResponseDataAreaType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="StopChequeResponseEM" type="StopChequeResponseEMType"/>
+  <xsd:complexType name="StopChequeResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="com:Status"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--xsd:complexType name="StopChequeResponseType">
+        <xsd:sequence>
+            <xsd:element ref="chequeeo:ChequeID" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="StopChequeResponse" type="StopChequeResponseType"/-->
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EO\Common\V1\CommonComponents.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1">
+  <xsd:include schemaLocation="CodeLists.xsd"/>
+  <xsd:include schemaLocation="Meta.xsd"/>
+  <xsd:complexType name="IdentificationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="IdentifierType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Identification" type="com:IdentificationType"/>
+  <xsd:complexType name="StatusType">
+    <xsd:sequence>
+      <xsd:element name="Code" type="CodeType" minOccurs="0"/>
+      <xsd:element name="EffectiveDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="Description" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Status" type="StatusType"/>
+  <xsd:complexType name="PreferenceType">
+    <xsd:sequence>
+      <xsd:element name="PriorityRanking" type="NumericType" minOccurs="0"/>
+      <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Preference" type="PreferenceType"/>
+  <xsd:complexType name="StopPaymentInstructionType">
+    <xsd:sequence>
+      <xsd:element name="RequestDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="ReasonCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="ReasonDescription" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="StopPaymentInstruction" type="StopPaymentInstructionType"/>
+  <xsd:complexType name="AddressType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="FormatCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="LineOne" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineTwo" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineThree" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineFour" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CityName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="StateName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CountyName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CountryCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="PostalCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Address" type="AddressType"/>
+  <xsd:complexType name="AddressCommunicationType">
+    <xsd:sequence>
+      <xsd:element ref="Address" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AddressCommunication" type="AddressCommunicationType"/>
+  <xsd:complexType name="PhoneCommunicationType">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="CompleteNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element name="CountryCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="AreaCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="LocalNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ExtensionNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PhoneCommunication" type="PhoneCommunicationType"/>
+  <xsd:complexType name="EmailCommunicationType">
+    <xsd:sequence>
+      <xsd:element name="URI" type="URIType" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EmailCommunication" type="EmailCommunicationType"/>
+  <xsd:complexType name="ContactType">
+    <xsd:sequence>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Contact" type="ContactType"/>
+  <xsd:complexType name="PersonNameType">
+    <xsd:sequence>
+      <xsd:element name="FullName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="FirstName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="MiddleName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LastName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="Title" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonName" type="PersonNameType"/>
+  <xsd:complexType name="LocationType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="Address" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Location" type="LocationType"/>
+  <xsd:complexType name="IdentityDocumentType">
+    <xsd:sequence>
+      <xsd:element name="NumberID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssueDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="ExpirationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="IssuingCountryCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingStateCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingLocation" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IssuingAuthority" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="IdentityDocument" type="IdentityDocumentType"/>
+  <xsd:complexType name="PersonType">
+    <xsd:sequence>
+      <xsd:element name="BirthDateTime" type="com:DateTimeType" minOccurs="0"/>
+      <xsd:element name="BirthCountryCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="BirthCityName" type="com:NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="PreferredCommunicationLanguageCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="GenderCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="IdentityDocument" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Person" type="PersonType"/>
+  <xsd:complexType name="OrganizationType">
+    <xsd:sequence>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IncorporationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="RegistrationCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Organization" type="OrganizationType"/>
+  <xsd:complexType name="PartyType">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref="Person" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="Organization" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element ref="Location" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="AddressCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="PhoneCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="EmailCommunication" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Party" type="PartyType"/>
+  <xsd:complexType name="PersonPartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PersonPartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonPartyReference" type="PersonPartyReferenceType"/>
+  <xsd:complexType name="PartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="OrganizationName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="PersonName" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PartyReference" type="PartyReferenceType"/>
+  <xsd:element name="AccountHolder" type="PartyReferenceType"/>
+  <xsd:complexType name="BankType">
+    <xsd:sequence>
+      <xsd:element name="BankID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="SWIFTCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Bank" type="BankType"/>
+  <xsd:complexType name="BankBranchType">
+    <xsd:sequence>
+      <xsd:element name="BankBranchID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BankBranch" type="BankBranchType"/>
+  <xsd:element name="AccountID" type="com:IdentifierType"/>
+  <xsd:complexType name="AccountType">
+    <xsd:sequence>
+      <xsd:element ref="AccountID" minOccurs="0"/>
+      <xsd:element ref="AccountHolder" minOccurs="0"/>
+      <xsd:element ref="Bank" minOccurs="0"/>
+      <xsd:element ref="BankBranch" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Account" type="AccountType"/>
+  <xsd:element name="PayeeAccount" type="AccountType"/>
+  <xsd:element name="PayFromAccount" type="AccountType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EO\Common\V1\CodeLists.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1">
+  <xsd:include schemaLocation="DataTypes.xsd"/>
+  <xsd:simpleType name="LanguageCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ImplementationCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="BPEL"/>
+      <xsd:enumeration value="MEDIATOR"/>
+      <xsd:enumeration value="BPMN"/>
+      <xsd:enumeration value="ESB"/>
+      <xsd:enumeration value="Other"/>
+      <xsd:enumeration value="JAVA"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SortDirectionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ASC"/>
+      <xsd:enumeration value="DESC"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LogicalOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="AND"/>
+      <xsd:enumeration value="OR"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="QueryOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="EQUALS"/>
+      <xsd:enumeration value="NOT_EQUALS"/>
+      <xsd:enumeration value="GREATER_THAN"/>
+      <xsd:enumeration value="GREATER_THAN_EQUALS"/>
+      <xsd:enumeration value="LESS_THAN"/>
+      <xsd:enumeration value="LESS_THAN_EQUALS"/>
+      <xsd:enumeration value="CONTAINS"/>
+      <xsd:enumeration value="DOES_NOT_CONTAIN"/>
+      <xsd:enumeration value="LIKE"/>
+      <xsd:enumeration value="NOT_LIKE"/>
+      <xsd:enumeration value="LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="NOT_LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="IS_BLANK"/>
+      <xsd:enumeration value="IS_NOT_BLANK"/>
+      <xsd:enumeration value="BETWEEN"/>
+      <xsd:enumeration value="NOT_BETWEEN"/>
+      <xsd:enumeration value="IN"/>
+      <xsd:enumeration value="NOT_IN"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ResponseCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ID"/>
+      <xsd:enumeration value="OBJECT"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATE"/>
+      <xsd:enumeration value="READ"/>
+      <xsd:enumeration value="READSTATUS"/>
+      <xsd:enumeration value="UPDATE"/>
+      <xsd:enumeration value="DELETE"/>
+      <xsd:enumeration value="SYNC"/>
+      <xsd:enumeration value="CANCEL"/>
+      <xsd:enumeration value="STOP"/>
+      <xsd:enumeration value="VALIDATE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BusinessScopeCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DebugLevelCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Low"/>
+      <xsd:enumeration value="Medium"/>
+      <xsd:enumeration value="High"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SyncActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATEUPDATE"/>
+      <xsd:enumeration value="CREATEREPLACE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EO\Common\V1\DataTypes.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1">
+  <xsd:complexType name="AmountType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="currencyCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="BinaryObjectType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:base64Binary">
+        <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="CodeType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateType">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateTimeType">
+    <xsd:restriction base="xsd:dateTime"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DurationType">
+    <xsd:restriction base="xsd:duration"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IdentifierType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IndicatorType">
+    <xsd:restriction base="xsd:boolean">
+      <xsd:pattern value="false"/>
+      <xsd:pattern value="true"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="IntegerType">
+    <xsd:restriction base="xsd:integer"/>
+  </xsd:simpleType>
+  <xsd:complexType name="MeasureType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="NameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NumericType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PercentType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:complexType name="QuantityType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="RateType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="baseValue" type="xsd:decimal" use="optional"/>
+        <xsd:attribute name="baseUnitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="TextType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="StringType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="URIType">
+    <xsd:restriction base="xsd:anyURI"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="YearType">
+    <xsd:restriction base="xsd:gYear"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="TimeType">
+    <xsd:restriction base="xsd:time"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="01"/>
+      <xsd:pattern value="02"/>
+      <xsd:pattern value="03"/>
+      <xsd:pattern value="04"/>
+      <xsd:pattern value="05"/>
+      <xsd:pattern value="06"/>
+      <xsd:pattern value="07"/>
+      <xsd:pattern value="08"/>
+      <xsd:pattern value="09"/>
+      <xsd:pattern value="10"/>
+      <xsd:pattern value="11"/>
+      <xsd:pattern value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthDayType">
+    <xsd:restriction base="xsd:gMonthDay"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PositiveIntegerType">
+    <xsd:restriction base="xsd:positiveInteger"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NonNegativeIntegerType">
+    <xsd:restriction base="xsd:nonNegativeInteger">
+      <xsd:minInclusive value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EO\Common\V1\Meta.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1">
+  <xsd:include schemaLocation="CommonComponents.xsd"/>
+  <xsd:complexType name="EMType">
+    <xsd:sequence>
+      <xsd:element ref="com:EMHeader"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EM" type="com:EMType"/>
+  <xsd:complexType name="EMHeaderType">
+    <xsd:sequence>
+      <xsd:element name="EMID" type="com:IdentifierType" minOccurs="0"/>
+      <xsd:element name="ActionCode" type="com:ActionCodeType" minOccurs="0"/>
+      <xsd:element name="CreationDateTime" type="com:DateTimeType" minOccurs="0"/>
+      <xsd:element name="CreatedBy" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="InstanceID" type="com:IdentifierType" minOccurs="0"/>
+      <xsd:element ref="com:SenderApplication" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EMHeader" type="com:EMHeaderType"/>
+  <xsd:complexType name="SenderApplicationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="com:IdentifierType" minOccurs="0"/>
+      <xsd:element name="Version" type="com:StringType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SenderApplication" type="com:SenderApplicationType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EO\Transactions\Cheque\V1\ChequeEO.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Transactions/Cheque/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Transactions/Cheque/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:acct="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1" schemaLocation="../../../Accounts/Account/V1/AccountEO.xsd"/>
+  <xsd:element name="ChequeID" type="com:IdentifierType"/>
+  <xsd:element name="Memo" type="com:TextType"/>
+  <xsd:element name="IssueDate" type="com:DateType"/>
+  <xsd:element name="Amount" type="com:AmountType"/>
+  <xsd:element name="ChequeStatus" type="com:CodeType"/>
+  <xsd:complexType name="ChequeIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="acct:AccountIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="ChequeID"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ChequeIdentifier" type="ChequeIdentifierType"/>
+  <xsd:complexType name="ChequeEOType">
+    <xsd:sequence>
+      <xsd:element ref="ChequeIdentifier" minOccurs="0"/>
+      <xsd:element ref="Memo" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="IssueDate" minOccurs="0"/>
+      <xsd:element name="Amount" minOccurs="0"/>
+      <xsd:element ref="ChequeStatus" minOccurs="0"/>
+      <xsd:element ref="com:PayFromAccount" minOccurs="0"/>
+      <xsd:element ref="com:PayeeAccount" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="com:ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:element name="ChequeEO" type="ChequeEOType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EO\Accounts\Account\V1\AccountEO.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:bank="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Entities/Bank/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Entities/Bank/V1" schemaLocation="../../../Entities/Bank/V1/BankEO.xsd"/>
+  <xsd:element name="AccountID" type="com:IdentifierType"/>
+  <xsd:element name="AccountHolder" type="com:PartyReferenceType"/>
+  <xsd:element name="CurrencyCode" type="com:CodeType"/>
+  <xsd:element name="TypeCode" type="com:CodeType"/>
+  <xsd:element name="SubTypeCode" type="com:CodeType"/>
+  <xsd:element name="AvailableBalanceAmount" type="com:AmountType"/>
+  <xsd:element name="BalanceAmount" type="com:AmountType"/>
+  <xsd:element name="UnclearedBalanceAmount" type="com:AmountType"/>
+  <xsd:element name="BlockedBalanceAmount" type="com:AmountType"/>
+  <xsd:complexType name="AccountIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="bank:BankIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="AccountID"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AccountIdentifier" type="AccountIdentifierType"/>
+  <xsd:complexType name="AccountEOType">
+    <xsd:sequence>
+      <xsd:element ref="AccountIdentifier" minOccurs="0"/>
+      <xsd:element ref="AccountHolder" minOccurs="0"/>
+      <xsd:element ref="CurrencyCode" minOccurs="0"/>
+      <xsd:element ref="TypeCode" minOccurs="0"/>
+      <xsd:element ref="SubTypeCode" minOccurs="0"/>
+      <xsd:element ref="AvailableBalanceAmount" minOccurs="0"/>
+      <xsd:element ref="BalanceAmount" minOccurs="0"/>
+      <xsd:element ref="UnclearedBalanceAmount" minOccurs="0"/>
+      <xsd:element ref="BlockedBalanceAmount" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--xsd:complexType name="AccountEOType">
+    <xsd:complexContent>
+      <xsd:extension base="com:AccountType">
+        <xsd:sequence>
+          <xsd:element ref="CurrencyCode" minOccurs="0"/>
+          <xsd:element ref="TypeCode" minOccurs="0"/>
+          <xsd:element ref="SubTypeCode" minOccurs="0"/>
+          <xsd:element ref="AvailableBalanceAmount" minOccurs="0"/>
+          <xsd:element ref="BalanceAmount" minOccurs="0"/>
+          <xsd:element ref="UnclearedBalanceAmount" minOccurs="0"/>
+          <xsd:element ref="BlockedBalanceAmount" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType-->
+  <xsd:element name="AccountEO" type="AccountEOType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EO\Entities\Bank\V1\BankEO.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Entities/Bank/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Entities/Bank/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <xsd:element name="BankID" type="com:IdentifierType"/>
+  <xsd:element name="BankName" type="com:NameType"/>
+  <xsd:element name="SWIFTCode" type="com:CodeType"/>
+  <xsd:complexType name="BankIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="BankID"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BankIdentifier" type="BankIdentifierType"/>
+  <xsd:complexType name="BankEOType">
+    <xsd:sequence>
+      <xsd:element ref="BankIdentifier" minOccurs="0"/>
+      <xsd:element ref="BankName" minOccurs="0"/>
+      <xsd:element ref="SWIFTCode" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BankEO" type="BankEOType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EO\Instruments\ChequeBook\V1\ChequeBookEO.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Instruments/ChequeBook/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Instruments/ChequeBook/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:acct="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1" schemaLocation="../../../Accounts/Account/V1/AccountEO.xsd"/>
+  <xsd:element name="NumberOfLeaves" type="com:NumericType"/>
+  <xsd:element name="BeginChequeNumber" type="com:NumericType"/>
+  <xsd:element name="EndChequeNumber" type="com:NumericType"/>
+  <xsd:complexType name="ChequeBookIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="acct:AccountIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="BeginChequeNumber" minOccurs="1" maxOccurs="1"/>
+          <xsd:element ref="EndChequeNumber" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ChequeBookIdentifier" type="ChequeBookIdentifierType"/>
+  <xsd:complexType name="ChequeBookEOType">
+    <xsd:sequence>
+      <xsd:element ref="ChequeBookIdentifier" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="NumberOfLeaves" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="com:ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:element name="ChequeBookEO" type="ChequeBookEOType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\SVN_soa\SOAResources\SOAMetaData\ComponentLibrary\EnterpriseComponents\EO\Reference\ChequeReference\ChequeStopReason\V1\ChequeStopReasonEO.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Reference/ChequeReference/ChequeStopReasonEO/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Reference/ChequeReference/ChequeStopReasonEO/V1" xmlns:com="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" schemaLocation="../../../../Common/V1/CommonComponents.xsd"/>
+  <xsd:element name="ChequeStopReasonCode" type="com:IdentifierType"/>
+  <xsd:element name="ChequeStopReasonDescription" type="com:TextType"/>
+  <xsd:complexType name="ChequeStopReasonEOType">
+    <xsd:sequence>
+      <xsd:element ref="ChequeStopReasonCode" minOccurs="0"/>
+      <xsd:element ref="ChequeStopReasonDescription" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="com:ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:element name="ChequeStopReasonEO" type="ChequeStopReasonEOType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8088/ESC/Transactions/Cheque</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="queryStatus" bindingOperationName="queryStatus" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="SuccessRequest"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/ESC/Transactions/Cheque</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/EM/Transactions/Cheque/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Instruments/ChequeBook/V1" xmlns:v13="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Entities/Bank/V1" xmlns:v14="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:QueryChequeStatusRequestEM>
+        <v11:EMHeader>
+            <!--Optional:-->
+            <v11:EMID>REQ1234</v11:EMID>
+            <!--Optional:-->
+            <v11:CreationDateTime>2015-04-15T22:12:02</v11:CreationDateTime>
+           
+            <v11:SenderApplication>
+               <!--Optional:-->
+               <v11:ID>FI</v11:ID>
+            </v11:SenderApplication>
+         </v11:EMHeader>
+         <v1:DataArea>
+            <v12:ChequeBookIdentifier>
+               <v13:BankID>54</v13:BankID>
+               <v14:AccountID>0170191533451</v14:AccountID>
+               <v12:BeginChequeNumber>1</v12:BeginChequeNumber>
+               <v12:EndChequeNumber>10</v12:EndChequeNumber>
+            </v12:ChequeBookIdentifier>
+         </v1:DataArea>
+      </v1:QueryChequeStatusRequestEM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/EnterpriseComponents/ESC/Transactions/Cheque/V1/ChequeESCPort/queryStatusRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="stop" bindingOperationName="stop" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="SuccessRequest"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/ESC/Transactions/Cheque</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/EM/Transactions/Cheque/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Instruments/ChequeBook/V1" xmlns:v13="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Entities/Bank/V1" xmlns:v14="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Accounts/Account/V1" xmlns:v15="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Reference/ChequeReference/ChequeStopReasonEO/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:StopChequeRequestEM>
+        <v11:EMHeader>
+            <!--Optional:-->
+            <v11:EMID>REQ1234</v11:EMID>
+            <!--Optional:-->
+            <v11:CreationDateTime>2015-04-15T22:12:02</v11:CreationDateTime>
+           
+            <v11:SenderApplication>
+               <!--Optional:-->
+               <v11:ID>FI</v11:ID>
+            </v11:SenderApplication>
+         </v11:EMHeader>
+         <v1:DataArea>
+            <v12:ChequeBookIdentifier>
+               <v13:BankID>54</v13:BankID>
+               <v14:AccountID>0170191533451</v14:AccountID>
+               <v12:BeginChequeNumber>1</v12:BeginChequeNumber>
+               <v12:EndChequeNumber>10</v12:EndChequeNumber>
+            </v12:ChequeBookIdentifier>
+            <v15:ChequeStopReasonCode>DELIV</v15:ChequeStopReasonCode>
+         </v1:DataArea>
+      </v1:StopChequeRequestEM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/EnterpriseComponents/ESC/Transactions/Cheque/V1/ChequeESCPort/stopRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8088" path="/ESC/Transactions/Cheque" host="localhost" name="ChequeESCMockSoap" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="queryStatus" interface="ChequeESCPortBinding" operation="queryStatus"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="SuccessResponse" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/EM/Transactions/Cheque/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Transactions/Cheque/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:QueryChequeStatusResponseEM>
+        <v11:EMHeader>
+            <!--Optional:-->
+            <v11:EMID>REQ1234</v11:EMID>
+            <!--Optional:-->
+            <v11:CreationDateTime>2015-04-15T22:12:02</v11:CreationDateTime>
+           
+            <v11:SenderApplication>
+               <!--Optional:-->
+               <v11:ID>FI</v11:ID>
+            </v11:SenderApplication>
+         </v11:EMHeader>
+         <!--Optional:-->
+         <v1:DataArea>
+            <v12:ChequeStatus>PPUSCUTDDR</v12:ChequeStatus>
+         </v1:DataArea>
+      </v1:QueryChequeStatusResponseEM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/EnterpriseComponents/ESC/Transactions/Cheque/V1/ChequeESCPort/queryStatusResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="stop" interface="ChequeESCPortBinding" operation="stop"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="SuccessResponse" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/EM/Transactions/Cheque/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EnterpriseComponents/EO/Common/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:StopChequeResponseEM>
+         <v11:EMHeader>
+            <!--Optional:-->
+            <v11:EMID>REQ1234</v11:EMID>
+            <!--Optional:-->
+            <v11:CreationDateTime>2015-04-15T22:12:02</v11:CreationDateTime>
+           
+            <v11:SenderApplication>
+               <!--Optional:-->
+               <v11:ID>FI</v11:ID>
+            </v11:SenderApplication>
+         </v11:EMHeader>
+         <!--Optional:-->
+         <v1:DataArea>
+            <v11:Status>
+               <!--Optional:-->
+               <v11:Code>SUCCESS</v11:Code>
+               
+            </v11:Status>
+         </v1:DataArea>
+      </v1:StopChequeResponseEM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/EnterpriseComponents/ESC/Transactions/Cheque/V1/ChequeESCPort/stopResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

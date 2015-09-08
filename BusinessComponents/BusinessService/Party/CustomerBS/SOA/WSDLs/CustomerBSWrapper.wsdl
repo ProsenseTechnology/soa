@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="CustomerBS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/Party/Customer/V1" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:bs="http://xmlns.equitybank.co.ke/ESB/BS/Party/Customer/V1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/BS/Party/Customer/V1" location="oramds:/apps/ESBMetadata/ComponentLibrary/BusinessServices/Party/Customer/V1/CustomerBS.wsdl"/>
+   <wsdl:portType name="CustomerValidationPort">
+      <wsdl:operation name="initiate">
+         <wsdl:input message="bs:ValidationRqMsg"/>
+         <wsdl:output message="bs:ValidationRsMsg"/>
+      </wsdl:operation>
+      <wsdl:operation name="notification">
+         <wsdl:input message="bs:NotificationRqMsg"/>
+         <wsdl:output message="bs:NotificationRsMsg"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <plnk:partnerLinkType name="CustomerValidationPLType">
+      <plnk:role name="CustomerValidationProvider" portType="bs:CustomerValidationPort"/>
+   </plnk:partnerLinkType>
+</wsdl:definitions>

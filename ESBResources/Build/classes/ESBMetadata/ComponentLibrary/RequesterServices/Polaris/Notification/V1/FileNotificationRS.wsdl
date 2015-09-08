@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="FileNotificationRS"
+             targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/FileNotification/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/FileNotification/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/FileNotification/V1"
+                  schemaLocation="FileNotificationRO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="GetFileNotifyRqMsg">
+    <part name="payload" element="rs:ESBMsg"/>
+  </message>
+  <message name="GetFileNotifyRsMsg">
+    <part name="payload" element="rs:ESBMsg"/>
+  </message>
+  <portType name="FileNotificationRSPort">
+    <operation name="getFileNotify">
+      <input message="rs:GetFileNotifyRqMsg"/>
+      <output message="rs:GetFileNotifyRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="FileNotificationRSPortBinding" type="rs:FileNotificationRSPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="getFileNotify">
+      <soap:operation soapAction="getFileNotify"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="FileNotificationRS">
+    <port name="FileNotificationRSPort" binding="rs:FileNotificationRSPortBinding">
+      <soap:address location=""/>
+    </port>
+  </service>
+</definitions>

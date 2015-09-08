@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="ChargeType" type="com:CodeType"/>
+  <xsd:element name="ChargeFrequency" type="com:StringType"/>
+  <xsd:element name="ReferenceNumber" type="com:IDType"/>
+  <xsd:element name="ChargeOption" type="com:StringType"/>
+  <xsd:element name="CreatedBy" type="com:StringType"/>
+  <xsd:element name="CreateDate" type="com:DateType"/>
+  <xsd:element name="UpdatedBy" type="com:StringType"/>
+  <xsd:element name="LastUpdated" type="com:DateType"/>
+  <xsd:element name="DiscountPercentage" type="com:NumericType"/>
+  <xsd:element name="LastRunBy" type="com:StringType"/>
+  <xsd:element name="LastRunDate" type="com:DateTimeType"/>
+  <xsd:element name="NextRunDate" type="com:DateTimeType"/>
+  <xsd:element name="WaiveChargesIndicator" type="com:StringType"/>
+  <xsd:element name="Charge" type="ChargeType"/>
+  <xsd:element name="ApprovedBy" type="com:StringType"/>
+  <xsd:element name="ApprovedStatus" type="com:StringType"/>
+  <xsd:element name="ChargeStatus" type="com:StringType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Charge ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ChargeType">
+    <xsd:sequence>
+      <xsd:element ref="com:ChargeIdentifier" minOccurs="0"/>
+      <xsd:element ref="com:CustomerID" minOccurs="0"/>
+      <xsd:element ref="ReferenceNumber" minOccurs="0"/>
+      <xsd:element ref="ChargeType" minOccurs="0"/>
+      <xsd:element ref="ChargeFrequency" minOccurs="0"/>
+      <xsd:element ref="ChargeOption" minOccurs="0"/>
+      <xsd:element ref="CreatedBy" minOccurs="0"/>
+      <xsd:element ref="CreateDate" minOccurs="0"/>
+      <xsd:element ref="UpdatedBy" minOccurs="0"/>
+      <xsd:element ref="LastUpdated" minOccurs="0"/>
+      <xsd:element ref="DiscountPercentage" minOccurs="0"/>
+      <xsd:element ref="LastRunBy" minOccurs="0"/>
+      <xsd:element ref="LastRunDate" minOccurs="0"/>
+      <xsd:element ref="NextRunDate" minOccurs="0"/>
+      <xsd:element ref="com:ChargeAmount" minOccurs="0"/>
+      <xsd:element ref="com:Remarks" minOccurs="0"/>
+      <xsd:element name="LookupType" type="com:StringType" minOccurs="0"/>
+      <xsd:element ref="ApprovedBy" minOccurs="0"/>
+      <xsd:element ref="ApprovedStatus" minOccurs="0"/>
+      <xsd:element ref="WaiveChargesIndicator" minOccurs="0"/>
+      <xsd:element ref="ChargeStatus" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="com:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Charge" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Charge" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Action Codes ============= -->
+  <!-- ====================================================================== -->
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="GetCharges"/>
+      <xsd:enumeration value="GetAccountChargesbyChargeIDAndAcc"/>
+      <xsd:enumeration value="GetAccountChargesbyAccountID"/>
+      <xsd:enumeration value="UpdateAccountCharges"/>
+      <xsd:enumeration value="UpdateChargeMaster"/>
+      <xsd:enumeration value="CreateChargeMaster"/>
+      <xsd:enumeration value="CreateAccountCharges"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

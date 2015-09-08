@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="BillRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Bill/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Bill/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Bill/V1" schemaLocation="BillRO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="QueryStatusRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryStatusRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <portType name="BillRSPort">
+        <operation name="queryStatus">
+            <input message="rs:QueryStatusRqMsg"/>
+            <output message="rs:QueryStatusRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="BillRSPortBinding" type="rs:BillRSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="queryStatus">
+            <soap:operation soapAction="queryStatus"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BillRS">
+        <port name="BillRSPort" binding="rs:BillRSPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="CustomerPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Customer/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Customer/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Parties/Customer/V1/CustomerEO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="RetCustAddRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="RetCustAddRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="VerifyCustomerDetailsRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="VerifyCustomerDetailsRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="GetCustomerDataRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="GetCustomerDataRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CustOnboardUpdRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CustOnboardUpdRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CustOnboardRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CustOnboardRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryCustomerMasterRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryCustomerMasterRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryClientEmailRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryClientEmailRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="AccountInqByCustIdRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="AccountInqByCustIdRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <portType name="CustomerPSPort">
+    <operation name="retCustAdd">
+      <input message="ps:RetCustAddRqMsg"/>
+      <output message="ps:RetCustAddRsMsg"/>
+    </operation>
+    <operation name="verifyCustomerDetails">
+      <input message="ps:VerifyCustomerDetailsRqMsg"/>
+      <output message="ps:VerifyCustomerDetailsRsMsg"/>
+    </operation>
+    <operation name="getCustomerData">
+      <input message="ps:GetCustomerDataRqMsg"/>
+      <output message="ps:GetCustomerDataRsMsg"/>
+    </operation>
+    <operation name="custOnboardUpd">
+      <input message="ps:CustOnboardUpdRqMsg"/>
+      <output message="ps:CustOnboardUpdRsMsg"/>
+    </operation>
+    <operation name="custOnboard">
+      <input message="ps:CustOnboardRqMsg"/>
+      <output message="ps:CustOnboardRsMsg"/>
+    </operation>
+    <operation name="queryCustomerMaster">
+      <input message="ps:QueryCustomerMasterRqMsg"/>
+      <output message="ps:QueryCustomerMasterRsMsg"/>
+    </operation>
+     <operation name="queryClientEmail">
+      <input message="ps:QueryClientEmailRqMsg"/>
+      <output message="ps:QueryClientEmailRsMsg"/>
+    </operation>
+    <operation name="accountInqByCustId">
+      <input message="ps:AccountInqByCustIdRqMsg"/>
+      <output message="ps:AccountInqByCustIdRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="CustomerPSPortBinding" type="ps:CustomerPSPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="retCustAdd">
+      <soap12:operation soapAction="retCustAdd"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="verifyCustomerDetails">
+      <soap12:operation soapAction="verifyCustomerDetails"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCustomerData">
+      <soap12:operation soapAction="getCustomerData"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="custOnboardUpd">
+      <soap12:operation soapAction="custOnboardUpd"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="custOnboard">
+      <soap12:operation soapAction="custOnboard"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="queryCustomerMaster">
+      <soap12:operation soapAction="queryCustomerMaster"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+     <operation name="queryClientEmail">
+      <soap12:operation soapAction="queryClientEmail"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="accountInqByCustId">
+      <soap12:operation soapAction="accountInqByCustId"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="CustomerPS">
+    <port name="CustomerPSPort" binding="ps:CustomerPSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

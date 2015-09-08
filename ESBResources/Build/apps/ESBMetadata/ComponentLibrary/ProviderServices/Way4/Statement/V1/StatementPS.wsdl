@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="StatementPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Statement/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Statement/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Statement/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Statement/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Transactions/Statement/V1/StatementEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="QueryCreditCardTransactionSummaryRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryCreditCardTransactionSummaryRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="StatementPSPort">
+        <operation name="queryCreditCardTransactionSummary">
+            <input message="ps:QueryCreditCardTransactionSummaryRqMsg"/>
+            <output message="ps:QueryCreditCardTransactionSummaryRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="StatementPSPortBinding" type="ps:StatementPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="queryCreditCardTransactionSummary">
+            <soap12:operation soapAction="queryCreditCardTransactionSummary"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="StatementPS">
+        <port name="StatementPSPort" binding="ps:StatementPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

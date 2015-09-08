@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="AccountPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Experian/Account/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Experian/Account/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Accounts/Account/V1/AccountEO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="LoanQueryRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="LoanQueryRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateLoanAccountRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateLoanAccountRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <portType name="AccountPSPort">
+    <operation name="queryLoanLimit">
+      <input message="ps:LoanQueryRqMsg"/>
+      <output message="ps:LoanQueryRsMsg"/>
+    </operation>
+    <operation name="createLoanAccount">
+      <input message="ps:CreateLoanAccountRqMsg"/>
+      <output message="ps:CreateLoanAccountRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="AccountPSPortBinding" type="ps:AccountPSPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="queryLoanLimit">
+      <soap12:operation soapAction="queryLoanLimit"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="createLoanAccount">
+      <soap12:operation soapAction="createLoanAccount"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="AccountPS">
+    <port name="AccountPSPort" binding="ps:AccountPSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

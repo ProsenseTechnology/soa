@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
+    <dgm:gService name="NotificationES_direct">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="162" width="137" height="96">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="155" width="156" height="110">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="NotificationES_direct" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(NotificationESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/direct_adapter_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>sendSms</dgm:item>
+            <dgm:item>sendEmail</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gReference name="NotificationService">
+        <dgm:body borderWidth="2" arcRad="20" X="836" Y="26" width="136" height="168">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="826" Y="19" width="156" height="182">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="NotificationService" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>sendIMNotification</dgm:item>
+            <dgm:item>sendFaxNotification</dgm:item>
+            <dgm:item>sendVoiceNotification</dgm:item>
+            <dgm:item>sendSMSNotification</dgm:item>
+            <dgm:item>sendPagerNotification</dgm:item>
+            <dgm:item>sendURINotification</dgm:item>
+            <dgm:item>sendEmailNotification</dgm:item>
+            <dgm:item>sendNotificationToUser</dgm:item>
+            <dgm:item>sendNotificationToGroup</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="Safaricom.NotificationPS">
+        <dgm:body borderWidth="2" arcRad="20" X="836" Y="228" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="826" Y="221" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="Safaricom.NotificationPS" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/PS/Safaricom/Notification/V1#wsdl.interface(NotificationPSPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/RestAdapterService20x20px.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>sendSms</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gComponent name="NotificationRouter">
+        <dgm:body borderWidth="2" arcRad="20" X="226" Y="147" width="130" height="86">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="216" Y="140" width="150" height="102">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="NotificationRouter" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(NotificationESPort)"/>
+        <dgm:outputPort name="SendSms.sendSms" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(SMSNotificationPort)"/>
+        <dgm:outputPort name="SendEmail.sendEmail" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(EMAILNotificationPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="SendSms">
+        <dgm:body borderWidth="2" arcRad="20" X="424" Y="112" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="414" Y="105" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="SendSmsPL" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(SMSNotificationPort)"/>
+        <dgm:outputPort name="NotificationProvRouterPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(NotificationESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="SendEmail">
+        <dgm:body borderWidth="2" arcRad="20" X="424" Y="207" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="414" Y="200" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="SendEmailPL" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(EMAILNotificationPort)"/>
+        <dgm:outputPort name="NotificationProvRouterPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(NotificationESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="NotificationProvRouter">
+        <dgm:body borderWidth="2" arcRad="20" X="638" Y="147" width="130" height="86">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="628" Y="140" width="150" height="102">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="NotificationProvRouter" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1#wsdl.interface(NotificationESPort)"/>
+        <dgm:outputPort name="NotificationService" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
+        <dgm:outputPort name="Safaricom.NotificationPS" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/PS/Safaricom/Notification/V1#wsdl.interface(NotificationPSPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gWireLink source="NotificationES_direct" target="NotificationRouter/NotificationRouter" width="2">
+        <dgm:gSegment X1="168" Y1="172" X2="216" Y2="172"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="NotificationRouter/SendSms.sendSms" target="SendSms/SendSmsPL" width="2">
+        <dgm:gSegment X1="366" Y1="172" X2="390" Y2="172"/>
+        <dgm:gSegment X1="390" Y1="172" X2="390" Y2="137"/>
+        <dgm:gSegment X1="390" Y1="137" X2="414" Y2="137"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="NotificationRouter/SendEmail.sendEmail" target="SendEmail/SendEmailPL" width="2">
+        <dgm:gSegment X1="366" Y1="197" X2="390" Y2="197"/>
+        <dgm:gSegment X1="390" Y1="197" X2="390" Y2="232"/>
+        <dgm:gSegment X1="390" Y1="232" X2="414" Y2="232"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="SendSms/NotificationProvRouterPL" target="NotificationProvRouter/NotificationProvRouter" width="2">
+        <dgm:gSegment X1="564" Y1="137" X2="604" Y2="137"/>
+        <dgm:gSegment X1="604" Y1="137" X2="604" Y2="172"/>
+        <dgm:gSegment X1="604" Y1="172" X2="628" Y2="172"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="NotificationProvRouter/NotificationService" target="NotificationService" width="2">
+        <dgm:gSegment X1="778" Y1="172" X2="802" Y2="172"/>
+        <dgm:gSegment X1="802" Y1="172" X2="802" Y2="36"/>
+        <dgm:gSegment X1="802" Y1="36" X2="826" Y2="36"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="SendEmail/NotificationProvRouterPL" target="NotificationProvRouter/NotificationProvRouter" width="2">
+        <dgm:gSegment X1="564" Y1="232" X2="589" Y2="232"/>
+        <dgm:gSegment X1="589" Y1="232" X2="589" Y2="172"/>
+        <dgm:gSegment X1="589" Y1="172" X2="628" Y2="172"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="NotificationProvRouter/Safaricom.NotificationPS" target="Safaricom.NotificationPS" width="2">
+        <dgm:gSegment X1="778" Y1="197" X2="802" Y2="197"/>
+        <dgm:gSegment X1="802" Y1="197" X2="802" Y2="238"/>
+        <dgm:gSegment X1="802" Y1="238" X2="826" Y2="238"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+</dgm:gDiagram>

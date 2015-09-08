@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ESBMetadata/ComponentLibrary/EnterpriseServices/Instruments/Cheque/V1/ChequeES"/>
+            <con:binding>
+                <con:name>ChequeESPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/ES/Instruments/Cheque/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:template-overrides>
+            <con:action-override id="_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fb4">
+                <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con1:schema ref="ESBMetadata/ComponentLibrary/EnterpriseObjects/Instruments/Cheque/V1/ChequeEO"/>
+                    <con1:schemaElement xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Cheque/V1">v1:ESBMsg</con1:schemaElement>
+                </con1:validate>
+            </con:action-override>
+            <con:template-branch-override id="_FlowId-N3f57fefe.4752c7fd.0.14c9676a917.N7f33">
+                <con:branch-node>
+                    <con:branch-table>
+                        <con:branch name="create">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="InstrumentsESCon/Business/ChequeES" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation passThrough="true"/>
+                                    </con1:route>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="query">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="InstrumentsESCon/Business/ChequeES" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>create</con1:operation>
+                                    </con1:route>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="update">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:action-override id="_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1">
+                                    <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con1:service ref="InstrumentsESCon/Business/ChequeES" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation passThrough="true"/>
+                                    </con1:route>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:default-branch/>
+                    </con:branch-table>
+                </con:branch-node>
+            </con:template-branch-override>
+        </con:template-overrides>
+    </con:router>
+    <con:template ref="ESBMetadata/Templates/Pipeline/EnterprisePP"/>
+</con:pipelineEntry>

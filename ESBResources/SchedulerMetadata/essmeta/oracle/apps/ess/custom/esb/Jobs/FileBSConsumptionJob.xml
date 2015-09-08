@@ -1,0 +1,23 @@
+<?xml version = '1.0'?>
+<job-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="FileBSConsumptionJob"
+                job-type="/oracle/as/ess/core/JobType/OnewayWebserviceJobType.xml" xmlns="http://xmlns.oracle.com/scheduler">
+    <description/>
+    <display-name>FileBSConsumptionJob</display-name>
+    <parameter-list>
+        <parameter name="SYS_EXT_wsServiceName" data-type="string" read-only="true">FileBSPortBindingSoapQSService</parameter>
+        <parameter name="SYS_EXT_invokeMessage" data-type="string">&lt;v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                                                                   xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"&gt;
+                                                                   &lt;v1:Source&gt;ESS&lt;/v1:Source&gt;
+                                                                   &lt;v1:MsgType&gt;Business&lt;/v1:MsgType&gt;
+                                                                   &lt;v1:Service&gt;FileBS&lt;/v1:Service&gt;
+                                                                   &lt;v11:RqData actionCode="${ESS_REQ:ActionCode}"/&gt;
+                                                                   &lt;/v11:ESBMsg&gt;</parameter>
+        <parameter name="SYS_EXT_wsWsdlUrl" data-type="string" read-only="true">/ESB/BS/BackOffice/SOAP/File?WSDL</parameter>
+        <parameter name="SYS_EXT_wsPortName" data-type="string" read-only="true">FileBSPortBindingSoapQSPort</parameter>
+        <parameter name="SYS_effectiveApplication" data-type="string">EssNativeHostingApp</parameter>
+        <parameter name="SYS_EXT_wsOperationName" data-type="string" read-only="true">consumption</parameter>
+        <parameter name="SYS_externalJobType" data-type="string" read-only="true">OSB</parameter>
+        <parameter name="SYS_EXT_wsWsdlBaseUrl" data-type="string" read-only="true">http://soa2host1vhn2dev.ebsafrica.com:8011</parameter>
+        <parameter name="ActionCode" data-type="string"/>
+    </parameter-list>
+</job-definition>

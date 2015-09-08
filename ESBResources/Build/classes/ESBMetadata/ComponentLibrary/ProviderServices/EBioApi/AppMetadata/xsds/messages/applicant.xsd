@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           elementFormDefault="qualified">
+ 
+        <xs:complexType name="request_applicant">
+            <xs:sequence>
+                <xs:element name="afis_id" minOccurs="0" type="xs:string"/>
+                <xs:element ref="biometric_data"/>
+            </xs:sequence>
+        </xs:complexType>
+    
+        <xs:complexType name="response_applicant">
+            <xs:sequence>
+                <xs:element name="afis_id" minOccurs="0" type="xs:string"/>
+                <xs:element ref="biometric_data"/>
+            </xs:sequence>
+        </xs:complexType>
+    
+        <xs:complexType name="identification_candidate">
+            <xs:sequence>
+                <xs:element name="afis_id" type="xs:string"/>
+                <xs:element ref="biometric_data" minOccurs="0"/>
+                <xs:element ref="identification_result"/>
+            </xs:sequence>
+        </xs:complexType>
+        
+    <xs:element name="identification_result">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="score">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="20000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="matching_fingers_count" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:simpleType name="templateFormat">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="ICS"/>
+            <xs:enumeration value="IDKitUser"/>
+            <xs:enumeration value="ISO"/>
+            <xs:enumeration value="ANSI"/>
+            <xs:enumeration value="ISO_PLUS"/>
+            <xs:enumeration value="ANSI_PLUS"/>
+            <xs:enumeration value="ISO_CC"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="imageFormat">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="BMP"/>
+            <xs:enumeration value="PNG"/>
+            <xs:enumeration value="JPG"/>
+            <xs:enumeration value="GIF"/>
+            <xs:enumeration value="TIF"/>
+            <xs:enumeration value="WSQ"/>
+            <xs:enumeration value="JPEG2K"/>
+            <xs:enumeration value="ISO+UNCOMPRESSED"/>
+            <xs:enumeration value="ISO+UNCOMPRESSED_BIT_PACKED"/>
+            <xs:enumeration value="ISO+WSQ"/>
+            <xs:enumeration value="ISO+JPG"/>
+            <xs:enumeration value="ISO+JPEG2K"/>
+            <xs:enumeration value="ISO+PNG"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="response_content">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fingerprint_template" type="xs:boolean" minOccurs="0"/>
+                <xs:element name="fingerprint_quality" type="xs:boolean" minOccurs="0"/>  <!-- Return the proprietary IDKit quality -->
+                <xs:element name="fingerprint_quality_nfiq" type="xs:boolean" minOccurs="0"/>  <!-- Return the standardized NFIQ quality -->
+                <xs:element name="return_images" type="xs:boolean" minOccurs="0"/>
+                <xs:element name="return_slap_images" type="xs:boolean" minOccurs="0"/>
+                <xs:element name="image_format" minOccurs="0" type="imageFormat" default="PNG"/>
+                <xs:element name="wsq_bitrate" minOccurs="0" default="125">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                            <xs:maxInclusive value="500"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="jpeg2k_compression_ratio" minOccurs="0" default="15">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="template_format" type="templateFormat" minOccurs="0"/>
+                <xs:element name="max_minutia_count" type="xs:int" minOccurs="0"/>
+                <xs:element name="primary_sort_order" type="sortOrder" minOccurs="0"/>
+                <xs:element name="secondary_sort_order" type="sortOrder" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="sortOrder">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="X_ASC"/>
+            <xs:enumeration value="X_DESC"/>
+            <xs:enumeration value="Y_ASC"/>
+            <xs:enumeration value="Y_DESC"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="biometric_data">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="photo" minOccurs="0"/>
+                <xs:element ref="signature" minOccurs="0"/>
+                <xs:element ref="irises" minOccurs="0"/>
+                <xs:element ref="fingerprints" minOccurs="0"/>
+                <xs:element name="tags" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="tag" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="name" type="xs:string"/>
+                                        <xs:element name="value" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="custom_data" minOccurs="0" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="photo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="face">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element ref="image"/>
+                            <xs:element ref="missing"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="no_hand" minOccurs="0">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element ref="image"/>
+                            <xs:element ref="missing"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="image">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="resolution_dpi" type="xs:int" minOccurs="0"/>
+                <xs:element name="capture_device" minOccurs="0" type="xs:string"/>
+                <xs:element name="format" minOccurs="0" type="imageFormat"/>
+                <xs:element name="data" type="xs:base64Binary"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+ 
+    <xs:element name="missing">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="reason_code" type="xs:string"/>
+                <xs:element name="reason_text" minOccurs="0" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+ 
+    <xs:element name="signature">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="image"/>
+                <xs:element ref="missing"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="irisPosition">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="Left"/>
+            <xs:enumeration value="Right"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="irises">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="iris" minOccurs="2" maxOccurs="2">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="position" type="irisPosition"/>
+                            <xs:choice>
+                                <xs:sequence>
+                                    <xs:element name="quality" minOccurs="0">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="0"/>
+                                                <xs:maxInclusive value="100"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element ref="image"/>
+                                </xs:sequence>
+                                <xs:element ref="missing"/>
+                            </xs:choice>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+ 
+    <xs:element name="template">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="format" minOccurs="0" type="templateFormat"/>
+                <xs:element name="data" type="xs:base64Binary"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+ 
+    <xs:element name="fingerprints">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="template" minOccurs="0"/>
+                <xs:element ref="fingerprint" minOccurs="0" maxOccurs="unbounded"/>  <!-- JAXB/Validator ma nejaky problem s maxOccurs="10"; takisto, klient moze poslat viac odtlackov pre kazdy prst... -->
+                <xs:element ref="slap" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="fingerPositionXml">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="UnknownFinger"/>
+            <xs:enumeration value="RightThumb"/>
+            <xs:enumeration value="RightIndex"/>
+            <xs:enumeration value="RightMiddle"/>
+            <xs:enumeration value="RightRing"/>
+            <xs:enumeration value="RightLittle"/>
+            <xs:enumeration value="LeftThumb"/>
+            <xs:enumeration value="LeftIndex"/>
+            <xs:enumeration value="LeftMiddle"/>
+            <xs:enumeration value="LeftRing"/>
+            <xs:enumeration value="LeftLittle"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="position" default="UnknownFinger">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="fingerPositionXml">
+                    <xs:attribute name="index" type="xs:int" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="slap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="positions">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="position" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="image" minOccurs="0"/>
+                <xs:element name="forced" minOccurs="0" type="xs:boolean"/>
+                <xs:element name="min_fingerprint_count" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="4"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="max_rotation" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="45"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>    
+    </xs:element>
+    <xs:element name="fingerprint">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="position"/>
+                <xs:choice>
+                    <xs:sequence>
+                        <xs:element name="fingerprint_quality" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="nfiq" minOccurs="0">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="1"/>
+                                                <xs:maxInclusive value="5"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="idkit" minOccurs="0">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="0"/>
+                                                <xs:maxInclusive value="100"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element ref="image" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:element ref="missing"/>
+                </xs:choice>
+                <xs:element name="index" minOccurs="0" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

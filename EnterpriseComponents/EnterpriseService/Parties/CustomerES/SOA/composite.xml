@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<composite name="CustomerES" revision="1.0" label="2015-02-25_17-30-24_935" mode="active" state="on" xmlns="http://xmlns.oracle.com/sca/1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+           xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy" xmlns:ui="http://xmlns.oracle.com/soa/designer/"
+           xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
+    <import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1" location="WSDLs/CustomerESWrapper.wsdl" importType="wsdl"/>
+    <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Customer/V1"
+            location="oramds:/apps/ESBMetadata/ComponentLibrary/ProviderServices/Finacle/Customer/V1/CustomerPS.wsdl" importType="wsdl"/>
+     <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Customer/V1"
+            location="oramds:/apps/ESBMetadata/ComponentLibrary/ProviderServices/Polaris/Customer/V1/CustomerPS.wsdl"
+            importType="wsdl"/>
+    <service name="CustomerES_direct" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+        <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CustomerESPort)"/>
+        <binding.direct/>
+    </service>
+    <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
+    <property name="compositeID" type="xs:string" many="false">CustomerESV1</property>
+    <component name="CustomerRouter">
+        <implementation.mediator src="Mediators/CustomerRouter.mplan"/>
+        <componentType>
+            <service name="CustomerRouter" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CustomerESPort)"/>
+            </service>
+            <reference name="CreateCustomer.CreateCustomerPL" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CreateCustomerPort)"/>
+            </reference>
+            <reference name="QueryCustomer.QueryCustomerPL" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(QueryCustomerPort)"/>
+            </reference>
+            <reference name="UpdateCustomer.UpdateCustomerPL" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(UpdateCustomerPort)"/>
+            </reference>
+        </componentType>
+    </component>
+    <component name="CreateCustomer" version="2.0">
+        <implementation.bpel src="BPEL/CreateCustomer.bpel"/>
+        <componentType>
+            <service name="CreateCustomerPL" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CreateCustomerPort)"/>
+            </service>
+            <reference name="CustomerProvRouterPL" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CustomerESPort)"/>
+            </reference>
+        </componentType>
+        <property name="bpel.config.transaction" type="xs:string" many="false">requiresNew</property>
+    </component>
+    <component name="QueryCustomer" version="2.0">
+        <implementation.bpel src="BPEL/QueryCustomer.bpel"/>
+        <componentType>
+            <service name="QueryCustomerPL" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(QueryCustomerPort)"/>
+            </service>
+            <reference name="CustomerProvRouterPL" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CustomerESPort)"/>
+            </reference>
+        </componentType>
+        <property name="bpel.config.transaction" type="xs:string" many="false">requiresNew</property>
+    </component>
+    <component name="UpdateCustomer" version="2.0">
+        <implementation.bpel src="BPEL/UpdateCustomer.bpel"/>
+        <componentType>
+            <service name="UpdateCustomerPL" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(UpdateCustomerPort)"/>
+            </service>
+            <reference name="CustomerProvRouterPL" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CustomerESPort)"/>
+            </reference>
+        </componentType>
+        <property name="bpel.config.transaction" type="xs:string" many="false">requiresNew</property>
+    </component>
+    <component name="CustomerProvRouter">
+        <implementation.mediator src="Mediators/CustomerProvRouter.mplan"/>
+        <componentType>
+            <service name="CustomerProvRouter" ui:wsdlLocation="WSDLs/CustomerESWrapper.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Customer/V1#wsdl.interface(CustomerESPort)"/>
+            </service>
+            <reference name="Finacle.CustomerPS"
+                       ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/ProviderServices/Finacle/Customer/V1/CustomerPS.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Customer/V1#wsdl.interface(CustomerPSPort)"/>
+            </reference>
+            <reference name="Polaris.CustomerPS"
+                       ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/ProviderServices/Polaris/Customer/V1/CustomerPS.wsdl">
+                <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Customer/V1#wsdl.interface(CustomerPSPort)"/>
+            </reference>
+        </componentType>
+    </component>
+    <reference name="Finacle.CustomerPS" ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/ProviderServices/Finacle/Customer/V1/CustomerPS.wsdl">
+        <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Customer/V1#wsdl.interface(CustomerPSPort)"/>
+        <binding.rest config="oramds:/apps/ESBMetadata/ComponentLibrary/ProviderServices/Finacle/Customer/V1/CustomerPS.wadl"
+                      location="http://soa3host1vhn2dev.ebsafrica.com:8011/ESB/PS/Finacle/REST/Customer"/>
+    </reference>
+     <reference name="Polaris.CustomerPS" ui:wsdlLocation="oramds:/apps/ESBMetadata/ComponentLibrary/ProviderServices/Polaris/Customer/V1/CustomerPS.wsdl">
+        <interface.wsdl interface="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Customer/V1#wsdl.interface(CustomerPSPort)"/>
+        <binding.rest config="oramds:/apps/ESBMetadata/ComponentLibrary/ProviderServices/Polaris/Customer/V1/CustomerPS.wadl"
+                      location="http://soa3host1vhn2dev.ebsafrica.com:8011/ESB/PS/Polaris/REST/Customer"/>
+    </reference>
+    <wire>
+        <source.uri>CustomerES_direct</source.uri>
+        <target.uri>CustomerRouter/CustomerRouter</target.uri>
+    </wire>
+    <wire>
+        <source.uri>CustomerRouter/CreateCustomer.CreateCustomerPL</source.uri>
+        <target.uri>CreateCustomer/CreateCustomerPL</target.uri>
+    </wire>
+    <wire>
+        <source.uri>CustomerRouter/QueryCustomer.QueryCustomerPL</source.uri>
+        <target.uri>QueryCustomer/QueryCustomerPL</target.uri>
+    </wire>
+    <wire>
+        <source.uri>CustomerRouter/UpdateCustomer.UpdateCustomerPL</source.uri>
+        <target.uri>UpdateCustomer/UpdateCustomerPL</target.uri>
+    </wire>
+    <wire>
+        <source.uri>CreateCustomer/CustomerProvRouterPL</source.uri>
+        <target.uri>CustomerProvRouter/CustomerProvRouter</target.uri>
+    </wire>
+    <wire>
+        <source.uri>QueryCustomer/CustomerProvRouterPL</source.uri>
+        <target.uri>CustomerProvRouter/CustomerProvRouter</target.uri>
+    </wire>
+    <wire>
+        <source.uri>UpdateCustomer/CustomerProvRouterPL</source.uri>
+        <target.uri>CustomerProvRouter/CustomerProvRouter</target.uri>
+    </wire>
+    <wire>
+        <source.uri>CustomerProvRouter/Finacle.CustomerPS</source.uri>
+        <target.uri>Finacle.CustomerPS</target.uri>
+    </wire>
+    <wire>
+        <source.uri>CustomerProvRouter/Polaris.CustomerPS</source.uri>
+        <target.uri>Polaris.CustomerPS</target.uri>
+    </wire>
+</composite>

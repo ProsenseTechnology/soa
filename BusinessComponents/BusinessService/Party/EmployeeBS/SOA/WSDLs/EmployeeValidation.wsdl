@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--########################################################################################-->
+<!--####                                                                                ####-->
+<!--####          THIS IS AN AUTO GENERATED FILE. PLEASE DO NOT MANUALLY MODIFY         ####-->
+<!--#### CHANGES TO THIS FILE MAY PRODUCE UNEXPECTED BEHAVIOR AND WOULD BE OVERWRITTEN  ####-->
+<!--####                                                                                ####-->
+<!--########################################################################################-->
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/EmployeeValidation" xmlns:tns6="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1"  xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/EmployeeValidation"  xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" >
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/EmployeeValidation">
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Parties/Employee/V1/EmployeeEO.xsd"/>
+            <xsd:element name="validation">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="tns6:ESBMsg"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="validationResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="tns6:ESBMsg"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="validation">
+        <wsdl:part name="parameters" element="tns:validation"/>
+    </wsdl:message>
+    <wsdl:message name="validationResponse">
+        <wsdl:part name="parameters" element="tns:validationResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="EmployeeValidationPortType">
+        <wsdl:operation name="validation">
+            <wsdl:input message="tns:validation"/>
+            <wsdl:output message="tns:validationResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <plnk:partnerLinkType name="EmployeeValidationPortTypePartnerLinkType">
+        <plnk:role name="EmployeeValidationPortTypeProvider">
+            <plnk:portType name="tns:EmployeeValidationPortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

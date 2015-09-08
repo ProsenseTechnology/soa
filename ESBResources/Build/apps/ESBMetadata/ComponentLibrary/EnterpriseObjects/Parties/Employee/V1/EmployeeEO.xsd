@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1"
+            xmlns:bio="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1"
+            xmlns:id="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" 
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1" elementFormDefault="qualified">
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" schemaLocation="../../../Resilience/Biometric/V1/BiometricEO.xsd"/>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1" schemaLocation="../../../Resilience/NationalIdentity/V1/NationalIdentityEO.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="EmployeeType" type="com:CodeType"/>
+    <xsd:element name="EmployeeStatus" type="com:CodeType"/>
+    <xsd:element name="Employee" type="EmployeeType"/>	
+  <xsd:element name="WorkClass" type="com:StringType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Employee ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="EmployeeType">
+        <xsd:sequence>
+            <xsd:element ref="com:EmployeeIdentifier" minOccurs="0"/>
+            <xsd:element ref="WorkClass" minOccurs="0"/>
+            <xsd:element ref="com:FinUserID" minOccurs="0"/>			
+	    <xsd:choice>
+                <xsd:element ref="com:Person" minOccurs="0"/>
+                <xsd:element ref="com:Company" minOccurs="0"/>
+            </xsd:choice>
+            <xsd:element ref="EmployeeType" minOccurs="0"/>
+	    <xsd:element ref="com:Address" minOccurs="0"/>
+            <xsd:element ref="com:Phone" minOccurs="0"/>
+            <xsd:element ref="com:Email" minOccurs="0"/>
+	    <xsd:element ref="bio:Biometric" minOccurs="0"/>
+            <xsd:element ref="EmployeeStatus" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="Employee" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="Employee" minOccurs="0"/>
+            <xsd:element ref="id:NationalIdentity" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="QueryEmployeeStatus"/>
+            <xsd:enumeration value="UpdateEmployeeStatus"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

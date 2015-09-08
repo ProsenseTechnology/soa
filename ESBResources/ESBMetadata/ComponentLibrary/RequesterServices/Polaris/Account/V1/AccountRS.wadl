@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Account/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="AccountRS_rest">AccountRS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Account/V1" schemaLocation="AccountRO.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/querySummary">
+            <method name="POST" soa:wsdlOperation="querySummary">
+                <request>
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/queryDetail">
+            <method name="POST" soa:wsdlOperation="queryDetail">
+                <request>
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/queryStatus">
+            <method name="POST" soa:wsdlOperation="queryStatus">
+                <request>
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/queryBalance">
+            <method name="POST" soa:wsdlOperation="queryBalance">
+                <request>
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="rs:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

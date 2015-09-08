@@ -1,0 +1,70 @@
+<dvm name="TARGET_FILENAME" xmlns="http://xmlns.oracle.com/dvm">
+  <description/>
+  <columns>
+    <column name="Target"/>
+    <column name="Key"/>
+    <column name="Value"/>
+  </columns>
+  <rows>
+    <row>
+      <cell>Polaris</cell>
+      <cell>CustomerMaster</cell>
+      <cell>CUST_FEED</cell>
+    </row>
+    <row>
+      <cell>Polaris</cell>
+      <cell>AccountMaster</cell>
+      <cell>ACCT_FEED</cell>
+    </row>
+    <row>
+      <cell>Polaris</cell>
+      <cell>ExchangeRateMaster</cell>
+      <cell>EXRATE_FEED</cell>
+    </row>
+    <row>
+      <cell>Polaris</cell>
+      <cell>DepositAccountMaster</cell>
+      <cell>DEPOSIT_FEED</cell>
+    </row>
+    <row>
+      <cell>Polaris</cell>
+      <cell>DemandDraftStatusUpdate</cell>
+      <cell>INSTRUMENT_STAT_FEED</cell>
+    </row>
+    <row>
+      <cell>Polaris</cell>
+      <cell>ChequeStatusUpdate</cell>
+      <cell>INSTRUMENT_STAT_FEED</cell>
+    </row>
+    <row>
+      <cell>Polaris</cell>
+      <cell>LoanAccountMaster</cell>
+      <cell>LOAN_FEED</cell>
+    </row>
+    <row>
+      <cell>Polaris</cell>
+      <cell>NEFTInward</cell>
+      <cell>INWRD_NEFT_ FEED</cell>
+    </row>
+      <row>
+      <cell>Polaris</cell>
+      <cell>RTGSInward</cell>
+      <cell>INWRD_RTGS_FEED</cell>
+    </row>
+     <row>
+      <cell>Polaris</cell>
+      <cell>NEFTOutwardRefStatus</cell>
+      <cell>OUTWRD_NEFT_REF_FEED</cell>
+    </row>
+     <row>
+      <cell>Polaris</cell>
+      <cell>RTGSOutwardRefStatus</cell>
+      <cell>OUTWRD_RTGS_REF_FEED</cell>
+    </row>
+     <row>
+      <cell>Polaris</cell>
+      <cell>AccountEntryPostingFile</cell>
+      <cell>AC_ENTRY_RESP_FEED</cell>
+    </row>
+  </rows>
+</dvm>

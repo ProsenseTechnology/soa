@@ -1,0 +1,315 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<process name="CreateAccount" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+         xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:ns2="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+         xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1"
+         xmlns:ns3="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1">
+  <import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+          location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Common/V1/Meta.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+          
+  <import ui:processWSDL="true" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Accounts/Account/V1"
+          location="../WSDLs/AccountESWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <partnerLinks>
+    <partnerLink name="CreateAccountPL" partnerLinkType="es:CreateAccountPLType" myRole="CreateAccountProvider"/>
+    <partnerLink name="AccountProvRouterPL" partnerLinkType="es:AccountProvRouterPLType"
+                 partnerRole="AccountESProvider"/>
+  </partnerLinks>
+  <variables>
+    <variable name="RequestVariable" messageType="es:CreateRqMsg"/>
+    <variable name="ResponseVariable" messageType="es:CreateRsMsg"/>
+    <variable name="CreateSignatureProvRequest" messageType="es:CreateRqMsg"/>
+    <variable name="CreateSignatureProvResponse" messageType="es:CreateRsMsg"/>
+    <variable name="CreateAccountProvRequest" messageType="es:CreateRqMsg"/>
+    <variable name="CreateAccountProvResponse" messageType="es:CreateRsMsg"/>
+    <variable name="vStatus" type="com:StatusType"/>
+  </variables>
+  <faultHandlers>
+    <catchAll>
+      <sequence name="FaultSequence">
+        <assign name="AssignFault">
+          <copy>
+            <from>"ESB-1002001"</from>
+            <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Code</to>
+          </copy>
+          <copy>
+            <from>"Failure"</from>
+            <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Type</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Text</to>
+          </copy>
+        </assign>
+        <reply name="ReplyResponse" partnerLink="CreateAccountPL" portType="es:CreateAccountPort" operation="execute"
+               variable="ResponseVariable"/>
+      </sequence>
+    </catchAll>
+  </faultHandlers>
+  <sequence name="MainSequence">
+    <receive name="ReceiveRequest" partnerLink="CreateAccountPL" portType="es:CreateAccountPort" operation="execute"
+             variable="RequestVariable" createInstance="yes"/>
+    <if name="IfCreateLoanAccount">
+      <documentation>
+        <![CDATA[CreateLoanAccount]]>
+      </documentation>
+      <condition>xp20:compare($RequestVariable.payload/eo:RqData/@actionCode,"CreateLoanAccount")=0</condition>
+      <sequence name="Sequence1">
+        <assign name="AssignAccontProvReq">
+          <copy>
+            <from>$RequestVariable.payload</from>
+            <to>$CreateAccountProvRequest.payload</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeAccountProv" partnerLink="AccountProvRouterPL" portType="es:AccountESPort"
+                operation="create" inputVariable="CreateAccountProvRequest" outputVariable="CreateAccountProvResponse"
+                xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+                xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable" bpelx:invokeAsDetail="no"/>
+        <assign name="AssignResponse">
+          <copy>
+            <from>$CreateAccountProvResponse.payload</from>
+            <to>$ResponseVariable.payload</to>
+          </copy>
+        </assign>
+      </sequence>
+      <elseif>
+        <documentation>
+          <![CDATA[CreateAccount]]>
+        </documentation>
+        <condition>xp20:compare($RequestVariable.payload/eo:RqData/@actionCode,"CreateSBAccount")=0  or xp20:compare($RequestVariable.payload/eo:RqData/@actionCode,"CreateCAAccount")=0</condition>
+        <sequence>
+          <assign name="AssignInitialStatus">
+            <copy>
+              <from>'ESB-00'</from>
+              <to>$vStatus/com:Code</to>
+            </copy>
+            <copy>
+              <from>"Success"</from>
+              <to>$vStatus/com:Type</to>
+            </copy>
+          </assign>
+          <forEach parallel="no" counterName="Count" name="ForEachLoop">
+            <startCounterValue>1</startCounterValue>
+            <finalCounterValue>count($RequestVariable.payload/eo:RqData/eo:Account)</finalCounterValue>
+            <scope name="Scope1">
+              <sequence>
+                <assign name="Assign1">
+                  <copy>
+                    <from>$RequestVariable.payload/eo:RqData/eo:Account[$Count]</from>
+                    <to>$CreateAccountProvRequest.payload/eo:RqData/eo:Account</to>
+                  </copy>
+                  <copy>
+                    <from>concat($RequestVariable.payload/com:MsgID,$Count)</from>
+                    <to>$CreateAccountProvRequest.payload/com:MsgID</to>
+                  </copy>
+                  <copy>
+                    <from>$RequestVariable.payload/com:Source</from>
+                    <to>$CreateAccountProvRequest.payload/com:Source</to>
+                  </copy>
+                  <copy>
+                    <from>$RequestVariable.payload/com:MsgType</from>
+                    <to>$CreateAccountProvRequest.payload/com:MsgType</to>
+                  </copy>
+                  <copy>
+                    <from>$RequestVariable.payload/com:Service</from>
+                    <to>$CreateAccountProvRequest.payload/com:Service</to>
+                  </copy>
+                  <copy>
+                    <from>concat('Create',$RequestVariable.payload/eo:RqData/eo:Account[$Count]/eo:AccountType/text(),'ccount')</from>
+                    <to>$CreateAccountProvRequest.payload/eo:RqData/@actionCode</to>
+                  </copy>
+                </assign>
+                <invoke name="InvokeAccountProv" partnerLink="AccountProvRouterPL" portType="es:AccountESPort"
+                        operation="create" inputVariable="CreateAccountProvRequest"
+                        outputVariable="CreateAccountProvResponse" bpelx:invokeAsDetail="no"/>
+                <if name="IfAccountCreationfailed">
+                  <documentation>
+                    <![CDATA[If Account Creation failed]]>
+                  </documentation>
+                  <condition>string($CreateAccountProvResponse.payload/eo:RsData/eo:Account/com:AccountIdentifier/com:AccountID)='' or string($CreateAccountProvResponse.payload/eo:RsData/com:Status/com:Code)!='ESB-00'</condition>
+                  <assign name="AssignErrorStatus">
+                    <copy>
+                      <from>$CreateAccountProvResponse.payload/eo:RsData/com:Status/com:Type</from>
+                      <to>$vStatus/com:Type</to>
+                    </copy>
+                    <copy>
+                      <from>concat(string($CreateAccountProvResponse.payload/eo:RsData/com:Status/com:Text),'  ,  ',string($vStatus/com:Text))</from>
+                      <to>$vStatus/com:Text</to>
+                    </copy>
+                    <copy>
+                      <from>$CreateAccountProvResponse.payload/eo:RsData/com:Status/com:Code</from>
+                      <to>$vStatus/com:Code</to>
+                    </copy>
+                  </assign>
+                  <else>
+                    <documentation>
+                      <![CDATA[Accoutn Creation is success]]>
+                    </documentation>
+                    <sequence>
+                      <assign name="AssignSignature" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                        <copy ignoreMissingFromData="yes">
+                          <from>$CreateAccountProvResponse.payload/eo:RsData/eo:Account/com:AccountIdentifier/com:AccountID</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/eo:Account/com:AccountIdentifier/com:AccountID</to>
+                        </copy>
+                        <copy>
+                          <from>concat($RequestVariable.payload/com:MsgID,$Count,'1')</from>
+                          <to>$CreateSignatureProvRequest.payload/com:MsgID</to>
+                        </copy>
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/com:Source</from>
+                          <to>$CreateSignatureProvRequest.payload/com:Source</to>
+                        </copy>
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/com:MsgType</from>
+                          <to>$CreateSignatureProvRequest.payload/com:MsgType</to>
+                        </copy>
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/com:Service</from>
+                          <to>$CreateSignatureProvRequest.payload/com:Service</to>
+                        </copy>
+                        <copy ignoreMissingFromData="yes">
+                          <from>"CreateSignature"</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/@actionCode</to>
+                        </copy>
+                        <copy ignoreMissingFromData="yes">
+                          <from>$RequestVariable.payload/eo:RqData/eo:Account[$Count]/ns2:Customer/com:Person/com:SignatureImage</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/eo:Account/ns2:Customer/com:Person/com:SignatureImage</to>
+                        </copy>
+                        <copy ignoreMissingFromData="yes">
+                          <from>$RequestVariable.payload/eo:RqData/eo:Account[$Count]/ns2:Customer/com:Person/com:FaceImage</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/eo:Account/ns2:Customer/com:Person/com:IdentityDocument/com:DocImage1</to>
+                        </copy>
+                      </assign>
+                      <invoke name="InvokeAccountProv" bpelx:invokeAsDetail="no" partnerLink="AccountProvRouterPL"
+                              portType="es:AccountESPort" operation="create" inputVariable="CreateSignatureProvRequest"
+                              outputVariable="CreateSignatureProvResponse"/>
+                      <assign name="AssignSignature" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                        <copy ignoreMissingFromData="yes">
+                          <from>$CreateAccountProvResponse.payload/eo:RsData/eo:Account/com:AccountIdentifier/com:AccountID</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/eo:Account/com:AccountIdentifier/com:AccountID</to>
+                        </copy>
+                        <copy>
+                          <from>concat($RequestVariable.payload/com:MsgID,$Count,'2')</from>
+                          <to>$CreateSignatureProvRequest.payload/com:MsgID</to>
+                        </copy>
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/com:Source</from>
+                          <to>$CreateSignatureProvRequest.payload/com:Source</to>
+                        </copy>
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/com:MsgType</from>
+                          <to>$CreateSignatureProvRequest.payload/com:MsgType</to>
+                        </copy>
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/com:Service</from>
+                          <to>$CreateSignatureProvRequest.payload/com:Service</to>
+                        </copy>
+                        <copy ignoreMissingFromData="yes">
+                          <from>"CreateSignature"</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/@actionCode</to>
+                        </copy>
+                        <copy ignoreMissingFromData="yes">
+                          <from>$RequestVariable.payload/eo:RqData/eo:Account[$Count]/ns2:Customer/com:Person/com:SignatureImage</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/eo:Account/ns2:Customer/com:Person/com:SignatureImage</to>
+                        </copy>
+                        <copy ignoreMissingFromData="yes">
+                          <from>$RequestVariable.payload/eo:RqData/eo:Account[$Count]/ns2:Customer/com:Person/com:IdentityDocument/com:DocImage1</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/eo:Account/ns2:Customer/com:Person/com:IdentityDocument/com:DocImage1</to>
+                        </copy>
+                      </assign>
+                      <invoke name="InvokeAccountProv" bpelx:invokeAsDetail="no" partnerLink="AccountProvRouterPL"
+                              portType="es:AccountESPort" operation="create" inputVariable="CreateSignatureProvRequest"
+                              outputVariable="CreateSignatureProvResponse"
+                              xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+                              xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+                      <assign name="AssignSignature" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/eo:RsData/eo:Account/com:AccountIdentifier/com:AccountID</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/eo:Account/com:AccountIdentifier/com:AccountID</to>
+                        </copy>
+                        <copy>
+                          <from>concat($RequestVariable.payload/com:MsgID,$Count,'3')</from>
+                          <to>$CreateSignatureProvRequest.payload/com:MsgID</to>
+                        </copy>
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/com:Source</from>
+                          <to>$CreateSignatureProvRequest.payload/com:Source</to>
+                        </copy>
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/com:MsgType</from>
+                          <to>$CreateSignatureProvRequest.payload/com:MsgType</to>
+                        </copy>
+                        <copy>
+                          <from>$CreateAccountProvResponse.payload/com:Service</from>
+                          <to>$CreateSignatureProvRequest.payload/com:Service</to>
+                        </copy>
+                        <copy>
+                          <from>"CreateSignature"</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/@actionCode</to>
+                        </copy>
+                        <copy>
+                          <from>$RequestVariable.payload/eo:RqData/eo:Account[$Count]/ns2:Customer/com:Person/com:SignatureImage</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/eo:Account/ns2:Customer/com:Person/com:SignatureImage</to>
+                        </copy>
+                        <copy>
+                          <from>$RequestVariable.payload/eo:RqData/eo:Account[$Count]/ns2:Customer/com:Person/com:IdentityDocument/com:DocImage2</from>
+                          <to>$CreateSignatureProvRequest.payload/eo:RqData/eo:Account/ns2:Customer/com:Person/com:IdentityDocument/com:DocImage1</to>
+                        </copy>
+                      </assign>
+                      <invoke name="InvokeAccountProv" bpelx:invokeAsDetail="no" partnerLink="AccountProvRouterPL"
+                              portType="es:AccountESPort" operation="create" inputVariable="CreateSignatureProvRequest"
+                              outputVariable="CreateSignatureProvResponse"
+                              xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+                              xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+                    </sequence>
+                  </else>
+                </if>
+                <assign name="TransformationResponse">
+                  <bpelx:annotation>
+                    <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+                  </bpelx:annotation>
+                  <copy>
+                    <from>ora:doXSLTransformForDoc("../Transformations/TransformationResponse.xsl", $CreateAccountProvResponse.payload, "RequestVariable.payload", $RequestVariable.payload, "ResponseVariable.payload", $ResponseVariable.payload)</from>
+                    <to variable="ResponseVariable" part="payload"/>
+                  </copy>
+                </assign>
+                <assign name="AssignStatus">
+                  <copy>
+                    <from>$vStatus</from>
+                    <to>$ResponseVariable.payload/eo:RsData/com:Status</to>
+                  </copy>
+                </assign>
+              </sequence>
+            </scope>
+          </forEach>
+        </sequence>
+      </elseif>
+      <else>
+        <sequence name="Sequence3">
+          <invoke name="InvokeAccountProv" bpelx:invokeAsDetail="no" partnerLink="AccountProvRouterPL"
+                  portType="es:AccountESPort" operation="create" inputVariable="RequestVariable"
+                  outputVariable="ResponseVariable"/>
+        </sequence>
+      </else>
+    </if>
+    <reply name="ReplyResponse" partnerLink="CreateAccountPL" portType="es:CreateAccountPort" operation="execute"
+           variable="ResponseVariable"/>
+  </sequence>
+</process>

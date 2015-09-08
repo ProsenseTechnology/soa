@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="FilePS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/File/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/File/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Misc/File/V1/FileEO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="TransferFileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="TransferFileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <portType name="FilePSPort">
+    <operation name="transferFile">
+      <input message="ps:TransferFileRqMsg"/>
+      <output message="ps:TransferFileRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="FilePSPortBinding" type="ps:FilePSPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="transferFile">
+      <soap12:operation soapAction="transferFile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="FilePS">
+    <port name="FilePSPort" binding="ps:FilePSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

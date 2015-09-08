@@ -1,0 +1,27 @@
+2015-04-24 05:33:25.809/2.250 Oracle Coherence 12.1.3.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/Deepak/Work/OracleBPM121300/products/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2015-04-24 05:33:25.918/2.359 Oracle Coherence 12.1.3.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/Deepak/Work/OracleBPM121300/products/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
+2015-04-24 05:33:25.919/2.360 Oracle Coherence 12.1.3.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
+2015-04-24 05:33:25.924/2.365 Oracle Coherence 12.1.3.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2015-04-24 05:33:25.925/2.366 Oracle Coherence 12.1.3.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2015-04-24 05:33:25.927/2.368 Oracle Coherence 12.1.3.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.3.0.0 Build 52031
+ Grid Edition: Development mode
+Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
+
+2015-04-24 05:33:26.104/2.545 Oracle Coherence GE 12.1.3.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
+Apr 24, 2015 5:33:26 AM oracle.adf.share.ADFContext getCurrent
+WARNING: Automatically initializing a DefaultContext for getCurrent.
+Caller should ensure that a DefaultContext is proper for this use.
+Memory leaks and/or unexpected behaviour may occur if the automatic initialization is performed improperly.
+This message may be avoided by performing initADFContext before using getCurrent().
+For more information please enable logging for oracle.adf.share.ADFContext at FINEST level.
+Apr 24, 2015 5:33:26 AM oracle.adf.share.config.ADFConfigFactory findOrCreateADFConfig
+INFO: Resource META-INF/adf-config.xml not found on the classpath.
+Apr 24, 2015 5:33:26 AM oracle.adf.share.config.ADFConfigFactory findOrCreateADFConfig
+INFO: A default implementation of ADFConfig is being created for application. This can lead to unexpected results in some cases. Please add a basic META-INF/adf-config.xml to your classpath to avoid functional errors.
+2015-04-24 05:33:27.033/3.474 Oracle Coherence GE 12.1.3.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
+Apr 24, 2015 5:33:28 AM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+INFO: XMLSchema incremental build enabled.
+Apr 24, 2015 5:33:28 AM oracle.integration.platform.blocks.PlatformConfigurationProvider getPlatformConfigurationProvider
+WARNING: JRF is unable to determine the current application server platform.

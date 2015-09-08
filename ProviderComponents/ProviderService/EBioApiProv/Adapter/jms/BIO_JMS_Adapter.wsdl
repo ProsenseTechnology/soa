@@ -1,0 +1,27 @@
+<wsdl:definitions name="BIO_JMS_Adapter" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/jms/ProviderService/EBioApiProv/BIO_JMS_Adapter" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/jms/ProviderService/EBioApiProv/BIO_JMS_Adapter" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:msg_out="http://www.innovatrics.com/afismq/schema/message/afismqrequest" xmlns:msg_in="http://www.innovatrics.com/afismq/schema/message/afismqresponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <plt:partnerLinkType name="validate_plt">
+    <plt:role name="validate_role">
+      <plt:portType name="tns:validate_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+        <import namespace="http://www.innovatrics.com/afismq/schema/message/afismqrequest" schemaLocation="../../../ESBMetadata/ComponentLibrary/ProviderServices/EBioApi/AppMetadata/xsds/messages/afismqrequest.xsd"/>
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+        <import namespace="http://www.innovatrics.com/afismq/schema/message/afismqresponse" schemaLocation="../../../ESBMetadata/ComponentLibrary/ProviderServices/EBioApi/AppMetadata/xsds/messages/afismqresponse.xsd"/>
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="validate_msg_out">
+        <wsdl:part name="message" element="msg_out:message"/>
+    </wsdl:message>
+    <wsdl:message name="validate_msg_in">
+        <wsdl:part name="message" element="msg_in:message"/>
+    </wsdl:message>
+    <wsdl:portType name="validate_ptt">
+        <wsdl:operation name="validate">
+            <wsdl:input message="tns:validate_msg_out"/>
+            <wsdl:output message="tns:validate_msg_in"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

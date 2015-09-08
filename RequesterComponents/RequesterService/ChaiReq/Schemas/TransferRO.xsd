@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:cs="http://xmlns.equitybank.co.ke/ESB/RS/Chai/TransferRO/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Chai/TransferRO/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:element name="ESBMsg" type="cs:ESBMsgType"/>
+  <xsd:complexType name="ESBMsgType">
+    <xsd:sequence>
+    <xsd:element name="transfers" type="cs:TransfersType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TransfersType">
+    <xsd:sequence>
+      <xsd:element name="user" type="xsd:string"/>
+      <xsd:element name="amount" type="xsd:double"/>
+      <xsd:element name="userGroup" type="xsd:string"/>
+      <xsd:element name="transRef" type="xsd:string"/>
+      <xsd:element name="statusCode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="statusText" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

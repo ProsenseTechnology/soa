@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Source createdBy="weblogic" description="PolarisOSBSource" id="so_PolarisOSBSource" lastModifiedBy="weblogic" listening="false" name="PolarisOSBSource" xmlns="http://xmlns.oracle.com/mft/source">
+   <SourceType>
+      <SourceTargetCategory xmlns="http://xmlns.oracle.com/mft/category">
+         <Technology>
+            <TechnologyBinding secure="false" type="WS" xmlns="http://xmlns.oracle.com/mft/binding">
+               <WS action="http://xmlns.oracle.com/fmw/mft/soap/mftSubmit" port="MFTServicePort" service="MFTService" type="internal" url="PolarisOSBSource"/>
+            </TechnologyBinding>
+         </Technology>
+      </SourceTargetCategory>
+   </SourceType>
+</Source>

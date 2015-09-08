@@ -1,0 +1,37 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions name="DemandDraftES" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Instruments/DemandDraft/V1"
+                  xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Instruments/DemandDraft/V1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Instruments/DemandDraft/V1"
+                 location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Instruments/DemandDraft/V1/DemandDraftES.wsdl"/>
+    <wsdl:portType name="CreateDemandDraftPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:CreateRqMsg"/>
+            <wsdl:output message="es:CreateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="QueryDemandDraftPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:QueryRqMsg"/>
+            <wsdl:output message="es:QueryRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="UpdateDemandDraftPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:UpdateRqMsg"/>
+            <wsdl:output message="es:UpdateRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <plnk:partnerLinkType name="CreateDemandDraftPLType">
+        <plnk:role name="CreateDemandDraftProvider" portType="es:CreateDemandDraftPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="QueryDemandDraftPLType">
+        <plnk:role name="QueryDemandDraftProvider" portType="es:QueryDemandDraftPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="UpdateDemandDraftPLType">
+        <plnk:role name="UpdateDemandDraftProvider" portType="es:UpdateDemandDraftPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="DemandDraftProvRouterPLType">
+        <plnk:role name="DemandDraftESProvider" portType="es:DemandDraftESPort"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

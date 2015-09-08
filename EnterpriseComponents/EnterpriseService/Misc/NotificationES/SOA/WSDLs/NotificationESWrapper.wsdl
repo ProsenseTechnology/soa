@@ -1,0 +1,28 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions name="NotificationES" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1"
+                  xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1"
+                 location="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseServices/Misc/Notification/V1/NotificationES.wsdl"/>
+    <wsdl:portType name="SMSNotificationPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:SendSmsRqMsg"/>
+            <wsdl:output message="es:SendSmsRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="EMAILNotificationPort">
+        <wsdl:operation name="execute">
+            <wsdl:input message="es:SendEmailRqMsg"/>
+            <wsdl:output message="es:SendEmailRsMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <plnk:partnerLinkType name="SendSms">
+        <plnk:role name="SMSNotificationPort" portType="es:SMSNotificationPort"/>
+    </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="SendEmail">
+        <plnk:role name="EMAILNotificationPort" portType="es:EMAILNotificationPort"/>
+    </plnk:partnerLinkType>
+        <plnk:partnerLinkType name="NotificationProvRouter.NotificationProvRouter">
+        <plnk:role name="NotificationESPort" portType="es:NotificationESPort"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Customer/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Customer/V1" elementFormDefault="qualified">
+    <!-- ====================================================================== -->
+    <!-- ============= CustomerValidation Request ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="CustomerValidationRequestRMType">
+        <xsd:sequence>
+		<xsd:element name="MsgID" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Idnr" type="xsd:string"/>
+            <xsd:element name="IDSerialNr" type="xsd:string"/>
+            <xsd:element name="DateofIssue" type="xsd:date"/>
+            <xsd:element name="FullNames" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CustomerValidationRequestRM" type="CustomerValidationRequestRMType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= CustomerValidation Response ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="CustomerValidationResponseRMType">
+        <xsd:sequence>
+      <xsd:element name="MsgID" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Idnr" type="xsd:string"/>
+            <xsd:element name="IDSerialNr" type="xsd:string"/>
+            <xsd:element name="IDType" type="xsd:date"/>
+            <xsd:element name="ValidID" type="xsd:string"/>
+            <xsd:element name="CustomerID" type="xsd:string"/>
+            <xsd:element name="FirstName" type="xsd:string"/>
+            <xsd:element name="LastName" type="xsd:string"/>
+            <xsd:element name="DOB" type="xsd:dateTime"/>
+            <xsd:element name="ExistingCustomer" type="xsd:string"/>
+            <xsd:element name="ValidationComment" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CustomerValidationResponseRM" type="CustomerValidationResponseRMType"/>
+</xsd:schema>

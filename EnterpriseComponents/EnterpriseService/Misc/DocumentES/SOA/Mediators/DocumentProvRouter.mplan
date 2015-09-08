@@ -1,0 +1,150 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="DocumentProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Document/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="DocumentPS.createDocument">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "CreateDocument"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+               </assign>
+               <invoke reference="DocumentPS" operation="createDocument">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="DocumentPS.createAccount">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "CreateAccount"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+               </assign>
+               <invoke reference="DocumentPS" operation="createAccount">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="DocumentPS.countPendingDocument">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "QueryCountPendingDocumentById"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg" xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+               </assign>
+               <invoke reference="DocumentPS" operation="countPendingDocument">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="DocumentPS.getDocument">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "QueryDocumentByID"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg" xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+               </assign>
+               <invoke reference="DocumentPS" operation="getDocument">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="DocumentPS.getPendingDocument">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "QueryPendingDocumentByID"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg" xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+               </assign>
+               <invoke reference="DocumentPS" operation="getPendingDocument">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="DocumentPS.getAccountList">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = "QueryAccountListByID"</expression>
+            </condition>
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+               </assign>
+               <invoke reference="DocumentPS" operation="getAccountList">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="DocumentPS.updateDocument">
+            <action>
+               <assign>
+                  <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                        xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+               </assign>
+               <invoke reference="DocumentPS" operation="updateDocument">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.payload/eo:ESBMsg" target="$out.payload/eo:ESBMsg"
+                              xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+</Mediator>

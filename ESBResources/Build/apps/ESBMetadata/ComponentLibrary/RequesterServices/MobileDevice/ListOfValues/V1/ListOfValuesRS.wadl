@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/ListOfValues/V1" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="ListOfValuesRS">ListOfValuesRS</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/ListOfValues/V1" schemaLocation="ListOfValuesRO.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/query">
+         <method name="GET" soa:wsdlOperation="query">
+            <request>
+               <param name="ListName" style="query" soa:expression="$msg.QueryListOfValuesRequest/ns0:ListName" default="ALL" type="xsd:string"/>
+               
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:QueryListOfValuesResponseRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/ListOfValues/V1"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

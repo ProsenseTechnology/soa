@@ -1,0 +1,147 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<process name="CreateBiometric" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Biometric/V1"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer" xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Biometric/V1"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:ess="http://xmlns.oracle.com/scheduler" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+         xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1"
+         xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1">
+    <import ui:processWSDL="true" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Biometric/V1" location="../WSDLs/BiometricESWrapper.wsdl"
+            importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="CreateBiometricPL" partnerLinkType="es:CreateBiometricPLType" myRole="CreateBiometricProvider"/>
+        <partnerLink name="BiometricProvRouterPL" partnerLinkType="es:BiometricProvRouterPLType" partnerRole="BiometricESProvider"/>
+    </partnerLinks>
+    <variables>
+        <variable name="RequestVariable" messageType="es:CreateRqMsg"/>
+        <variable name="ResponseVariable" messageType="es:CreateRsMsg"/>
+        <variable name="Inv_BioProv_InputVar" messageType="es:CreateRqMsg"/>
+        <variable name="Inv_BioProv_OutputVar" messageType="es:CreateRsMsg"/>
+        <variable name="Inv_BioProvQuery_InputVar" messageType="es:QueryRqMsg"/>
+        <variable name="Inv_BioProvQuery_OutputVar" messageType="es:QueryRsMsg"/>
+    </variables>
+    <faultHandlers>
+        <catchAll>
+            <sequence name="FaultSequence">
+                <assign name="AssignFault">
+                    <copy>
+                        <from>"ESB-1002001"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Code</to>
+                    </copy>
+                    <copy>
+                        <from>"Failure"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Type</to>
+                    </copy>
+                    <copy>
+                        <from>ora:getFaultAsString()</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Text</to>
+                    </copy>
+                </assign>
+                <reply name="ReplyResponse" partnerLink="CreateBiometricPL" portType="es:CreateBiometricPort" operation="execute" variable="ResponseVariable"/>
+            </sequence>
+        </catchAll>
+    </faultHandlers>
+    <sequence name="MainSequence">
+        <receive name="ReceiveRequest" partnerLink="CreateBiometricPL" portType="es:CreateBiometricPort" operation="execute" variable="RequestVariable"
+                 createInstance="yes"/>
+        <assign name="AssignRequest">
+            <copy>
+                <from>$RequestVariable.payload</from>
+                <to>$Inv_BioProvQuery_InputVar.payload</to>
+            </copy>
+            <copy>
+                <from variable="RequestVariable"/>
+                <to variable="Inv_BioProv_InputVar"/>
+            </copy>
+            <copy>
+                <from>"ValidateBioImage"</from>
+                <to>$Inv_BioProvQuery_InputVar.payload/eo:RqData/@actionCode</to>
+            </copy>
+        </assign>
+        <invoke name="SearchImgForMatchInBiometric" partnerLink="BiometricProvRouterPL"
+                portType="es:BiometricESPort" operation="query"
+                outputVariable="Inv_BioProvQuery_OutputVar" bpelx:invokeAsDetail="no"
+                inputVariable="Inv_BioProvQuery_InputVar"/>
+        <if name="IfImageExists">
+            <documentation>
+                <![CDATA[ImageAlreadyExisitng]]>
+            </documentation>
+            <condition>$Inv_BioProvQuery_OutputVar.payload/eo:RsData/eo:Biometric/com:BiometricIdentifier/com:BiometricID!=""</condition>
+            <sequence>
+                <assign name="AssignErrorResponse">
+                    <copy>
+                        <from>"ESB-100"</from>
+                        <to>$Inv_BioProv_OutputVar.payload/eo:RsData/com:Status/com:Code</to>
+                    </copy>
+                    <copy>
+                        <from>"Failure"</from>
+                        <to>$Inv_BioProv_OutputVar.payload/eo:RsData/com:Status/com:Type</to>
+                    </copy>
+                    <copy>
+                        <from>"Biometric Image Already Exisits"</from>
+                        <to>$Inv_BioProv_OutputVar.payload/eo:RsData/com:Status/com:Text</to>
+                    </copy>
+                </assign>
+                <empty name="DoNothing"/>
+            </sequence>
+            <else>
+                <documentation>
+                    <![CDATA[ImageDoesn'tExist]]>
+                </documentation>
+                <sequence name="Sequence1">
+                    <assign name="AssignActionCode">
+                        <copy>
+                            <from>"EnrollBioImage"</from>
+                            <to>$Inv_BioProv_InputVar.payload/eo:RqData/@actionCode</to>
+                        </copy>
+                    </assign>
+                    <invoke name="SaveImageInBiometric" partnerLink="BiometricProvRouterPL"
+                            portType="es:BiometricESPort" operation="create" inputVariable="Inv_BioProv_InputVar"
+                            outputVariable="Inv_BioProv_OutputVar" bpelx:invokeAsDetail="no"/>
+                    <if name="IfImageSaved">
+                        <documentation>
+                            <![CDATA[Bio Image Saved]]>
+                        </documentation>
+                        <condition>$Inv_BioProv_OutputVar.payload/eo:RsData/eo:Biometric/com:BiometricIdentifier/com:BiometricID!=""</condition>
+                        <sequence>
+                            <assign name="AssignImageId">
+                                <copy>
+                                    <from>$Inv_BioProv_OutputVar.payload/eo:RsData/eo:Biometric/com:BiometricIdentifier/com:BiometricID</from>
+                                    <to>$Inv_BioProv_InputVar.payload/eo:RqData/eo:Biometric/com:BiometricIdentifier/com:BiometricID</to>
+                                </copy>
+                                <copy>
+                                    <from>"EnrollCIFWithImageId"</from>
+                                    <to>$Inv_BioProv_InputVar.payload/eo:RqData/@actionCode</to>
+                                </copy>
+                            </assign>
+                            <invoke name="EnrollCIFWithImageId" partnerLink="BiometricProvRouterPL"
+                                    portType="es:BiometricESPort" operation="create"
+                                    inputVariable="Inv_BioProv_InputVar" outputVariable="Inv_BioProv_OutputVar"
+                                    bpelx:invokeAsDetail="no"/>
+                        </sequence>
+                        <else>
+                            <documentation>
+                                <![CDATA[Bio Image Not saved]]>
+                            </documentation>
+                            <empty name="DoNothing" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+                        </else>
+                    </if>
+                </sequence>
+            </else>
+        </if>
+        <assign name="AssignResponse">
+            <copy>
+                <from variable="Inv_BioProv_OutputVar"/>
+                <to variable="ResponseVariable"/>
+            </copy>
+        </assign>
+        <reply name="ReplyResponse" partnerLink="CreateBiometricPL" portType="es:CreateBiometricPort" operation="execute" variable="ResponseVariable"/>
+    </sequence>
+</process>

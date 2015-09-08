@@ -1,0 +1,540 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"
+           xmlns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db" elementFormDefault="qualified"
+           attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- ====================================================================== -->
+  <!-- ============= Employee ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryEmployeeInput" type="QueryEmployeeInputType"/>
+  <xs:complexType name="QueryEmployeeInputType">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="QueryEmployeeOutputCollection" type="QueryEmployeeOutputCollectionType"/>
+  <xs:complexType name="QueryEmployeeOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryEmployeeOutput" type="QueryEmployeeOutputType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryEmployeeOutputType">
+    <xs:sequence>
+      <xs:element name="EmpName" type="xs:string" nillable="true"/>
+      <xs:element name="EmpId" type="xs:string" nillable="true"/>
+      <xs:element name="EmailId" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Customer Master Interface ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryCustomerMasterInput" type="QueryCustomerMasterInputType"/>
+  <xs:complexType name="QueryCustomerMasterInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryCustomerMasterOutputCollection" type="QueryCustomerMasterOutputCollectionType"/>
+  <xs:complexType name="QueryCustomerMasterOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryCustomerMasterOutput" type="QueryCustomerMasterOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryCustomerMasterOutputType">
+    <xs:sequence>
+      <xs:element name="BankId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CustomerId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CustName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="PrimaryID" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="RMName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Address1" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Address2" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Address3" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CityTown" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CountryCode" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ZipCode" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="PhoneNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CellNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="EmailID" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BranchCode" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Account Master Interface ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryAccountMasterInput" type="QueryAccountMasterInputType"/>
+  <xs:complexType name="QueryAccountMasterInputType">
+    <xs:sequence>
+      <xs:element name="changeDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryAccountMasterOutputCollection" type="QueryAccountMasterOutputCollectionType"/>
+  <xs:complexType name="QueryAccountMasterOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryAccountMasterOutput" type="QueryAccountMasterOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryAccountMasterOutputType">
+    <xs:sequence>
+      <xs:element name="BankId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AcountNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccountCcy" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Branch" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccountName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="OpenDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CustomerId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccountType" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ProductCd" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccCategory" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ClosureFlag" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ClosureDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InactiveStatus" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Deposit Account Master Interface ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryDepositAccountMasterInput" type="QueryDepositAccountMasterInputType"/>
+  <xs:complexType name="QueryDepositAccountMasterInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryDepositAccountMasterOutputCollection" type="QueryDepositAccountMasterOutputCollectionType"/>
+  <xs:complexType name="QueryDepositAccountMasterOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryDepositAccountMasterOutput" type="QueryDepositAccountMasterOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryDepositAccountMasterOutputType">
+    <xs:sequence>
+      <xs:element name="BankId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CustomerId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="DepositAccountNumber" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BilyetNumber" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Currency" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CurrentPrincipalAmount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="DepositAmount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="MaturityDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CurrentInterestRate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InterestToDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InterestRate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TenorValue" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="PostingDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="MaturityInstructions" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Instrument - Cheque Update Status  ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryChequeUpdateStatusInput" type="QueryChequeUpdateStatusInputType"/>
+  <xs:complexType name="QueryChequeUpdateStatusInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryChequeUpdateStatusOutputCollection" type="QueryChequeUpdateStatusOutputCollectionType"/>
+  <xs:complexType name="QueryChequeUpdateStatusOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryChequeUpdateStatusOutput" type="QueryChequeUpdateStatusOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryChequeUpdateStatusOutputType">
+    <xs:sequence>
+      <xs:element name="BankId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TransactionRefNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CoreTxnRefNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccountNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InstNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Instrument - DD Update Status  ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryDDUpdateStatusInput" type="QueryDDUpdateStatusInputType"/>
+  <xs:complexType name="QueryDDUpdateStatusInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryDDUpdateStatusOutputCollection" type="QueryDDUpdateStatusOutputCollectionType"/>
+  <xs:complexType name="QueryDDUpdateStatusOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryDDUpdateStatusOutput" type="QueryDDUpdateStatusOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryDDUpdateStatusOutputType">
+    <xs:sequence>
+      <xs:element name="BankId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TransactionRefNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CoreTxnRefNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccountNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InstNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Exchange Rate Interface ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryExchangeRateInput" type="QueryExchangeRateInputType"/>
+  <xs:complexType name="QueryExchangeRateInputType">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="QueryExchangeRateOutputCollection" type="QueryExchangeRateOutputCollectionType"/>
+  <xs:complexType name="QueryExchangeRateOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryExchangeRateOutput" type="QueryExchangeRateOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryExchangeRateOutputType">
+    <xs:sequence>
+      <xs:element name="BankId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BaseCcy" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CounterCcy" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="StartDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BidRate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="OfferRate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="MidRate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LastDate" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Loan Account Master  ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryLoanAccountMasterInput" type="QueryLoanAccountMasterInputType"/>
+  <xs:complexType name="QueryLoanAccountMasterInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryLoanAccountMasterOutputCollection" type="QueryLoanAccountMasterOutputCollectionType"/>
+  <xs:complexType name="QueryLoanAccountMasterOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryLoanAccountMasterFeedOutput" type="QueryLoanAccountMasterOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryLoanAccountMasterOutputType">
+    <xs:sequence>
+      <xs:element name="UnitId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccType" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccSubType" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TotalLoanAmount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InterestAccrued" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="SettlementCurrency" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LoanAccountNumber" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LoanCurrency" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LoanAccountName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LoanType" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="FundingAccount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="PaymentFrequency" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="OriginalAmount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="OutStandingAmount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="PastDueAmount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LastPaymentAmount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LastPaymentReceivedDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TotalNumberofInstallments" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InstallmentsPaid" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LoanStartDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LoanMaturityDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InterestRate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="NextPaymentDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="DisbursementAccount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InterestRepaymentAccount" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Loanstatus" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Tenure" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="LoanClosureDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ApprovedLimit" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="DelinquencyStatus" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="NextPrincipalDueDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="NextInterestDueDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="NoofDelayedPayments" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="DisbursedAmount" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= RTGS Outward Ref Status  ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryRTGSOutwardRefStatusInput" type="QueryRTGSOutwardRefStatusInputType"/>
+  <xs:complexType name="QueryRTGSOutwardRefStatusInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryRTGSOutwardRefStatusOutputCollection" type="QueryRTGSOutwardRefStatusOutputCollectionType"/>
+  <xs:complexType name="QueryRTGSOutwardRefStatusOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryRTGSOutwardRefStatusOutput" type="QueryRTGSOutwardRefStatusOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryRTGSOutwardRefStatusOutputType">
+    <xs:sequence>
+      <xs:element name="BankId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TranRefNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="UTRNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= NEFT Outward Ref Status  ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryNEFTOutwardRefStatusInput" type="QueryNEFTOutwardRefStatusInputType"/>
+  <xs:complexType name="QueryNEFTOutwardRefStatusInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryNEFTOutwardRefStatusOutputCollection" type="QueryNEFTOutwardRefStatusOutputCollectionType"/>
+  <xs:complexType name="QueryNEFTOutwardRefStatusOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryNEFTOutwardRefStatusOutput" type="QueryNEFTOutwardRefStatusOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryNEFTOutwardRefStatusOutputType">
+    <xs:sequence>
+      <xs:element name="BankId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TranRefNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="UTRNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Create NEFT Inward ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="CreateNEFTInwardInput" type="CreateNEFTInwardInputType"/>
+  <xs:complexType name="CreateNEFTInwardInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateNEFTInwardOutputCollection" type="CreateNEFTInwardOutputCollectionType"/>
+  <xs:complexType name="CreateNEFTInwardOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="CreateNEFTInwardOutput" type="CreateNEFTInwardOutputType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreateNEFTInwardOutputType">
+    <xs:sequence>
+      <xs:element name="UnitId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="DrAcct" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Address" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TranAmt" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BankCode" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BenAcctId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BenCustName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="UniqueTransactionRefNo" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Create RTGS Inward ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="CreateRTGSInwardInput" type="CreateRTGSInwardInputType"/>
+  <xs:complexType name="CreateRTGSInwardInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="endDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateRTGSInwardOutputCollection" type="CreateRTGSInwardOutputCollectionType"/>
+  <xs:complexType name="CreateRTGSInwardOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="CreateRTGSInwardOutput" type="CreateRTGSInwardOutputType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreateRTGSInwardOutputType">
+    <xs:sequence>
+      <xs:element name="UnitId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="DrAcct" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TranAmt" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BankCode" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BenCustAcctId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BenCustName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BenCustAddr1" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BenCustAddr2" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="OrdInstAddr1" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="SendRecvInfo1" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="UniqueTransactionRefNo" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= CTS Handoff - Query Cheque Details ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryChequeDetailsInput" type="QueryChequeDetailsInputType"/>
+  <xs:complexType name="QueryChequeDetailsInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryChequeDetailsOutputCollection" type="QueryChequeDetailsOutputCollectionType"/>
+  <xs:complexType name="QueryChequeDetailsOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryChequeDetailsOutput" type="QueryChequeDetailsOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryChequeDetailsOutputType">
+    <xs:sequence>
+      <xs:element name="EntryDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="SolId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AmountTCY" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TranId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InstNum" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="RoutingNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="PartTranType" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ForAcctId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CustId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="PayingAcctId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="FreeText3" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InstAmt" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="SetRelRegStat" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ValueDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="DepositSlipDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="DepositSlipNo" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Liquidation - Cheque Status  ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryLiquidationChequeStatusInput" type="QueryLiquidationChequeStatusInputType"/>
+  <xs:complexType name="QueryLiquidationChequeStatusInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryLiquidationChequeStatusOutputCollection"
+              type="QueryLiquidationChequeStatusOutputCollectionType"/>
+  <xs:complexType name="QueryLiquidationChequeStatusOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryLiquidationChequeStatusOutput" type="QueryLiquidationChequeStatusOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryLiquidationChequeStatusOutputType">
+    <xs:sequence>
+      <xs:element name="PayingAcctId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InstNum" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="InstAmt" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BankShortName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ForAcctId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AcctName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="SolId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ValueDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="EntryDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="StatusInd" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="RejCode1" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="TranId" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Account Inquiry By Customer ID  ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="AccountInqByCustIdInput" type="AccountInqByCustIdInputType"/>
+  <xs:complexType name="AccountInqByCustIdInputType">
+    <xs:sequence>
+      <xs:element name="customerIDTBA" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="customerIDCRM" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountInqByCustIdOutputCollection" type="AccountInqByCustIdOutputCollectionType"/>
+  <xs:complexType name="AccountInqByCustIdOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="AccountInqByCustIdOutput" type="AccountInqByCustIdOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccountInqByCustIdOutputType">
+    <xs:sequence>
+      <xs:element name="BankId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccountNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccountCcy" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Branch" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccountName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="OpenDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CIFNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccountType" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ProductCd" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="AccCategory" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ClosureFlag" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ClosureDate" type="xs:string" minOccurs="0" nillable="true"/>  
+      <xs:element name="InactiveStatus" type="xs:string" minOccurs="0" nillable="true"/>  
+      <xs:element name="BankId_1" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CifNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CustName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="PrimaryID" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="RMName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Address1" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Address2" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Address3" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CityTown" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CountryCode" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ZipCode" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="PhoneNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CellNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="EmailID" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BranchCode" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CustCategory" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Average Balance ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryAverageBalanceInput" type="QueryAverageBalanceInputType"/>
+  <xs:complexType name="QueryAverageBalanceInputType">
+    <xs:sequence>
+      <xs:element name="cifId" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="eodDate" type="xs:string" minOccurs="0" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryAverageBalanceOutputCollection" type="QueryAverageBalanceOutputCollectionType"/>
+  <xs:complexType name="QueryAverageBalanceOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryAverageBalanceOutput" type="QueryAverageBalanceOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryAverageBalanceOutputType">
+    <xs:sequence>
+      <xs:element name="CifId" type="xs:string" nillable="true"/>
+      <xs:element name="Period" type="xs:string" nillable="true"/>
+      <xs:element name="AverageBalance" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= QueryClientEmail ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryClientEmailInput" type="QueryClientEmailInputType"/>
+   <xs:complexType name="QueryClientEmailInputType">
+      <xs:sequence>
+         <xs:element name="payRefNum" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="QueryClientEmailOutputCollection" type="QueryClientEmailOutputCollectionType"/>
+   <xs:complexType name="QueryClientEmailOutputCollectionType">
+      <xs:sequence>
+         <xs:element name="QueryClientEmailOutput" type="QueryClientEmailOutputType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="QueryClientEmailOutputType">
+      <xs:sequence>
+         <xs:element name="CustomerName" type="xs:string" nillable="true"/>
+         <xs:element name="AccountNumber" type="xs:string" nillable="true"/>
+         <xs:element name="Email" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:rcom="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:include schemaLocation="DataTypes.xsd"/>
+  <xsd:include schemaLocation="Meta.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Simple Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="Amount" type="AmountType"/>
+  <xsd:element name="BillAmount" type="AmountType"/>
+  <xsd:element name="TotalAmount" type="AmountType"/>
+  <xsd:element name="ChargeAmount" type="AmountType"/>
+  <xsd:element name="Rate" type="RateType"/>
+  <xsd:element name="AccountClosureFlag" type="com:CodeType"/>
+  <xsd:element name="ClosureFlag" type="com:CodeType"/>
+  <xsd:element name="ClosureDate" type="com:DateType"/>
+  <xsd:element name="NoCreditStatus" type="com:CodeType"/>
+  <xsd:element name="NoDebitStatus" type="com:CodeType"/>
+  <xsd:element name="DelinquencyStatus" type="com:CodeType"/>
+  <xsd:element name="FuncCode" type="com:CodeType"/>
+  <xsd:element name="DeliveryMode" type="com:StringType"/>
+  <xsd:element name="CollectorName" type="com:NameType"/>
+  <xsd:element name="PayFromAccount" type="PayFromAccountType"/>
+  <xsd:element name="PayeeAccount" type="PayeeAccountType"/>
+  <xsd:element name="CollectorID" type="com:IDType"/>
+  <xsd:element name="BranchName" type="com:NameType"/>
+  <xsd:element name="DeliveryAddress" type="com:NameType"/>
+  <xsd:element name="BeginChequeNumber" type="com:IntegerType"/>
+  <xsd:element name="EndChequeNumber" type="com:IntegerType"/>
+  <xsd:element name="CustomerTaxID" type="com:IDType"/>
+  <xsd:element name="CustomerTaxCode" type="com:CodeType"/>
+  <xsd:element name="CustomerStatus" type="com:CodeType"/>
+  <xsd:element name="PostingBranchID" type="com:StringType"/>
+  <xsd:element name="HostSystem" type="com:StringType"/>
+  <xsd:element name="BillPaymentIdentifier" type="BillPaymentIdentifierType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Complex Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="BillPaymentIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="com:BillerID" minOccurs="0"/>
+      <xsd:element ref="com:BillID" minOccurs="0"/>
+      <xsd:element name="BillPaymentStatus" type="com:StringType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TransferIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="com:TransactionReferenceNumber" minOccurs="0"/>
+      <xsd:element ref="com:TransferID" minOccurs="0"/>
+      <xsd:element name="TransferCurrency" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="TransactionDate" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="ValueDate" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="TransferAmount" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="DebitAmount" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="ConversionRate1" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element ref="com:AccountID" minOccurs="0"/>
+      <xsd:element name="OrderingCustomerAccount" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="BeneficiaryBankBIC" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="BeneficiaryBankAddress1" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="BeneficiaryBankAddress2" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="BeneficiaryBankAddress3" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="BeneficiaryAccount" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="BeneficiaryName" type="com:NameType" minOccurs="0"/>
+      <xsd:element name="RemittanceInfo" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="ChargeType" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="ChargeDebitAccountNumber" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="ChargeGLAccountOUR" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="IntermediaryBankBIC" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="DealReference" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="DealRate" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="DealDate" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="OurCorrespBankCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="OurCorrespBrCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="OurCorrespBrBIC" type="com:CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PaymentType">
+    <xsd:sequence>
+      <xsd:element name="PaymentType" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="BillPaymentIdentifier" type="BillPaymentIdentifierType" minOccurs="0"/>
+      <xsd:element ref="rcom:BillAmount" minOccurs="0"/>
+      <xsd:element ref="rcom:TotalAmount" minOccurs="0"/>
+      <xsd:element ref="rcom:ChargeAmount" minOccurs="0"/>
+      <xsd:element ref="com:PersonName" minOccurs="0"/>
+      <xsd:element ref="com:Remarks" minOccurs="0"/>
+      <xsd:element ref="rcom:PayFromAccount" minOccurs="0"/>
+      <xsd:element ref="rcom:PayeeAccount" minOccurs="0"/>
+      <xsd:element ref="com:ValType" minOccurs="0"/>
+      <xsd:element name="TransactionParticulars" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="ChargeEventID" type="com:IDType" minOccurs="0"/>
+      <xsd:element ref="com:BranchName" minOccurs="0"/>
+      <xsd:element ref="com:DealerCode" minOccurs="0"/>
+      <xsd:element name="FinacleUserID" type="com:StringType" minOccurs="0"/>
+      <xsd:element ref="com:PayMethod" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BalanceListType">
+    <xsd:sequence>
+      <xsd:element name="CurrentBalance" type="AmountType" minOccurs="0"/>
+      <xsd:element name="AvailableBalance" type="AmountType" minOccurs="0"/>
+      <xsd:element name="OverdraftLimit" type="AmountType" minOccurs="0"/>
+      <xsd:element name="AvailableOverdraftLimit" type="AmountType" minOccurs="0"/>
+      <xsd:element name="LedgerBalance" type="AmountType" minOccurs="0"/>
+      <xsd:element name="UnclearBalance" type="AmountType" minOccurs="0"/>
+      <xsd:element name="TransactionBalance" type="AmountType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BalanceList" type="BalanceListType"/>
+  <xsd:complexType name="TransactionType">
+    <xsd:sequence>
+      <xsd:element ref="com:BankID"/>
+      <xsd:element ref="com:CardNumber"/>
+      <xsd:element name="TransactionSerialNumber" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="TransactionDateTime" type="com:StringType"/>
+      <xsd:element name="TransactionDescription" type="com:TextType" minOccurs="0"/>
+      <xsd:element name="TransactionType" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="TransactionAmount" type="AmountType" minOccurs="0"/>
+      <xsd:element name="TransactionCategory" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="InstrumentReferenceNumber" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="PostedDateTime" type="com:DateTimeType"/>
+      <xsd:element name="TransactionBalance" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="TransactionID" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="ValueDate" type="com:StringType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PayFromAccountType">
+    <xsd:sequence>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="com:AccountID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PayeeAccountType">
+    <xsd:sequence>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="com:AccountID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Transaction" type="TransactionType"/>
+</xsd:schema>

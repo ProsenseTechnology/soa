@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="BiometricProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Biometric/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="EBioApi.BiometricPS.enroll">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode="EnrollBioImage"</expression>
+            </condition>
+            <action>
+               <invoke reference="EBioApi.BiometricPS" operation="enroll">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="EBioApi.BiometricPS.enrollCIFWithImageId">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode="EnrollCIFWithImageId"</expression>
+            </condition>
+            <action>
+               <invoke reference="EBioApi.BiometricPS" operation="enrollCIFWithImageId">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="EBioApi.BiometricPS.validate">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode="ValidateBioImage"</expression>
+            </condition>
+            <action>
+               <invoke reference="EBioApi.BiometricPS" operation="validate">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="sequential" name="EBioApi.BiometricPS.validateImageId">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode="ValidateImageIdForCIF"</expression>
+            </condition>
+            <action>
+               <invoke reference="EBioApi.BiometricPS" operation="validateImageId">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="EBioApi.BiometricPS.verify">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode="VerifyBioImage"</expression>
+            </condition>
+            <action>
+               <invoke reference="EBioApi.BiometricPS" operation="verify">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+</Mediator>

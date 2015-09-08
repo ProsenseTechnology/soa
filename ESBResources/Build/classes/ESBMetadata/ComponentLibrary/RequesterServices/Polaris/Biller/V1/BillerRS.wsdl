@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="BillerRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Biller/V1" 
+xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Biller/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Biller/V1" schemaLocation="BillerRO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="QueryRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryByBankIDRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryByBankIDRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <portType name="BillerRSPort">
+        <operation name="query">
+            <input message="rs:QueryRqMsg"/>
+            <output message="rs:QueryRsMsg"/>
+        </operation>
+        <operation name="queryByBankID">
+            <input message="rs:QueryByBankIDRqMsg"/>
+            <output message="rs:QueryByBankIDRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="BillerRSPortBinding" type="rs:BillerRSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="query">
+            <soap:operation soapAction="query" />
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryByBankID">
+            <soap:operation soapAction="queryByBankID"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BillerRS">
+        <port name="BillerRSPort" binding="rs:BillerRSPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

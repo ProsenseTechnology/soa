@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/CurrencyExchange/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:rcom="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/CurrencyExchange/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+              schemaLocation="../../Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+              schemaLocation="../../../../EnterpriseObjects/Transactions/CurrencyExchange/V1/CurrencyExchangeEO.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="ConversionRate" type="rcom:AmountType"/>
+  <xsd:element name="CurrencyExchange" type="CurrencyExchangeType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= CurrencyExchange ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CurrencyExchangeType">
+    <xsd:sequence>
+      <xsd:element ref="com:CurrencyExchangeIdentifier" minOccurs="0"/>
+      <xsd:element ref="com:CustomerID" minOccurs="0"/>
+      <xsd:element name="CurrencyExchangeID" type="com:IDType" minOccurs="0"/>
+      <xsd:element ref="ConversionRate" minOccurs="0"/>
+      <xsd:element name="DealDate" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="DealCurrency" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="DealCurrencyTo" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="DealBookingAmount" type="xsd:decimal" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="rcom:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="CurrencyExchange" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="CurrencyExchange" minOccurs="0"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

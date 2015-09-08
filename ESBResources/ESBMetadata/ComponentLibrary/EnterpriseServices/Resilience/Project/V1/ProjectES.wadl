@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="ProjectES_rest">ProjectES REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Resilience/Project/V1/ProjectEO.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/create">
+            <method name="POST" soa:wsdlOperation="create">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/query">
+            <method name="POST" soa:wsdlOperation="query">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/update">
+            <method name="POST" soa:wsdlOperation="update">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

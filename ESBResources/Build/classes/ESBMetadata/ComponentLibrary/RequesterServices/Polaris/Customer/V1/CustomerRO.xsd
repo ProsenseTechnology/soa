@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Customer/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:rcom="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            xmlns:accteo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+            xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Customer/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+              schemaLocation="../../Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+              schemaLocation="../../../../EnterpriseObjects/Parties/Customer/V1/CustomerEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+              schemaLocation="../../../../EnterpriseObjects/Accounts/Account/V1/AccountEO.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="Customer" type="CustomerType"/>
+  <xsd:element name="AccountName" type="com:NameType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Customer ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CustomerType">
+    <xsd:sequence>
+      <xsd:element ref="com:CustomerIdentifier" minOccurs="0"/>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="com:CustomerID" minOccurs="0"/>
+      <xsd:element ref="com:AccountIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Person" minOccurs="0"/>
+      <xsd:element name="IdentityDocumentID" type="com:IDType" minOccurs="0"/>
+      <xsd:element ref="eo:HostSystem" minOccurs="0"/>
+      <xsd:element name="RelationshipManagerName" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="RelationshipManagerEmailID" type="com:StringType" minOccurs="0"/>
+      <xsd:element ref="com:Address" minOccurs="0"/>
+      <xsd:element ref="com:Phone" minOccurs="0"/>
+      <xsd:element ref="com:Email" minOccurs="0"/>
+      <xsd:element ref="com:BranchID" minOccurs="0"/>
+      <xsd:element ref="rcom:PostingBranchID" minOccurs="0"/>
+      <xsd:element name="CustomerType" type="com:CodeType" minOccurs="0"/>
+      <xsd:element ref="rcom:CustomerTaxCode" minOccurs="0"/>
+      <xsd:element ref="rcom:CustomerTaxID" minOccurs="0"/>
+      <xsd:element ref="rcom:CustomerStatus" minOccurs="0"/>
+      <xsd:element name="Account" type="AccountType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Company" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AccountType">
+    <xsd:sequence>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="com:AccountID" minOccurs="0"/>
+      <xsd:element ref="com:AccountCurrency" minOccurs="0"/>
+      <xsd:element ref="com:BranchID" minOccurs="0"/>
+      <xsd:element ref="AccountName" minOccurs="0"/>
+      <xsd:element ref="accteo:AccountOpenDate" minOccurs="0"/>
+      <xsd:element ref="com:CustomerID" minOccurs="0"/>
+      <xsd:element ref="accteo:AccountType" minOccurs="0"/>
+      <xsd:element ref="accteo:AccountSubType" minOccurs="0"/>
+      <xsd:element ref="accteo:AccountOwnership" minOccurs="0"/>
+      <xsd:element ref="com:IBAN" minOccurs="0"/>
+      <xsd:element ref="rcom:ClosureFlag" minOccurs="0"/>
+      <xsd:element ref="rcom:ClosureDate" minOccurs="0"/>
+      <xsd:element ref="rcom:NoCreditStatus" minOccurs="0"/>
+      <xsd:element ref="rcom:NoDebitStatus" minOccurs="0"/>
+      <xsd:element ref="rcom:DelinquencyStatus" minOccurs="0"/>
+      <xsd:element ref="accteo:AccountStatus" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="rcom:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Customer" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Customer" minOccurs="0"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

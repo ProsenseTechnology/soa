@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Signature/V1"
+            xmlns:acc="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" schemaLocation="../../../Accounts/Account/V1/AccountEO.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="SignatureType" type="com:CodeType"/>
+    <xsd:element name="SignatureStatus" type="com:CodeType"/>
+    <xsd:element name="Signature" type="SignatureType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Signature ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="SignatureType">
+        <xsd:sequence>
+            <xsd:element ref="com:SignatureIdentifier" minOccurs="0"/>
+            <xsd:element ref="SignatureType" minOccurs="0"/>
+            <xsd:element ref="SignatureStatus" minOccurs="0"/>
+            <xsd:element ref="acc:Account" minOccurs="0" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="Signature" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="Signature" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="QueryStatus"/>
+            <xsd:enumeration value="CreateSignature"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

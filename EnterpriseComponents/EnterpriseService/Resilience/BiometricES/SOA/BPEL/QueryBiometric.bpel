@@ -1,0 +1,158 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<process name="QueryBiometric" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Biometric/V1"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer" xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Biometric/V1"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:ess="http://xmlns.oracle.com/scheduler" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+         xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1"
+         xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Employee/V1">
+    <import ui:processWSDL="true" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Biometric/V1" location="../WSDLs/BiometricESWrapper.wsdl"
+            importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="QueryBiometricPL" partnerLinkType="es:QueryBiometricPLType" myRole="QueryBiometricProvider"/>
+        <partnerLink name="BiometricProvRouterPL" partnerLinkType="es:BiometricProvRouterPLType" partnerRole="BiometricESProvider"/>
+    </partnerLinks>
+    <variables>
+        <variable name="RequestVariable" messageType="es:QueryRqMsg"/>
+        <variable name="ResponseVariable" messageType="es:QueryRsMsg"/>
+        <variable name="Inv_BioProv_InputVar" messageType="es:QueryRqMsg"/>
+        <variable name="Inv_BioProv_OutputVar" messageType="es:QueryRsMsg"/>
+    </variables>
+    <faultHandlers>
+        <catchAll>
+            <sequence name="FaultSequence">
+                <assign name="AssignFault">
+                    <copy>
+                        <from>"ESB-1002001"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Code</to>
+                    </copy>
+                    <copy>
+                        <from>"Failure"</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Type</to>
+                    </copy>
+                    <copy>
+                        <from>ora:getFaultAsString()</from>
+                        <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Text</to>
+                    </copy>
+                </assign>
+                <reply name="ReplyResponse" partnerLink="QueryBiometricPL" portType="es:QueryBiometricPort" operation="execute" variable="ResponseVariable"/>
+            </sequence>
+        </catchAll>
+    </faultHandlers>
+    <sequence name="MainSequence">
+        <receive name="ReceiveRequest" partnerLink="QueryBiometricPL" portType="es:QueryBiometricPort" operation="execute" variable="RequestVariable"
+                 createInstance="yes"/>
+        <if name="If1">
+            <documentation>
+                <![CDATA[BiometricImage]]>
+            </documentation>
+            <condition>$RequestVariable.payload/eo:RqData/eo:Biometric/eo:BiometricImage/com:FingerPrints/com:ImageL1 != ""</condition>
+            <sequence name="Sequence2">
+                <assign name="AssignRequest">
+                    <copy>
+                        <from variable="RequestVariable"/>
+                        <to variable="Inv_BioProv_InputVar"/>
+                    </copy>
+                    <copy>
+                        <from>"ValidateBioImage"</from>
+                        <to>$Inv_BioProv_InputVar.payload/eo:RqData/@actionCode</to>
+                    </copy>
+                </assign>
+                <invoke partnerLink="BiometricProvRouterPL" portType="es:BiometricESPort" operation="query"
+                        inputVariable="Inv_BioProv_InputVar" outputVariable="Inv_BioProv_OutputVar"
+                        name="SearchImgForMatchInBiometric" bpelx:invokeAsDetail="no"/>
+                <if name="IfImageSearch">
+                    <documentation>
+                        <![CDATA[ImageFound]]>
+                    </documentation>
+                    <condition>$Inv_BioProv_OutputVar.payload/eo:RsData/eo:Biometric/com:BiometricIdentifier/com:BiometricID!=""</condition>
+                    <sequence>
+                        <assign name="AssignBioImageId">
+                            <copy>
+                                <from>"ValidateImageIdForCIF"</from>
+                                <to>$Inv_BioProv_InputVar.payload/eo:RqData/@actionCode</to>
+                            </copy>
+                            <copy>
+                                <from>$Inv_BioProv_OutputVar.payload/eo:RsData/eo:Biometric/com:BiometricIdentifier/com:BiometricID</from>
+                                <to>$Inv_BioProv_InputVar.payload/eo:RqData/eo:Biometric/com:BiometricIdentifier/com:BiometricID</to>
+                            </copy>
+                        </assign>
+                        <invoke name="QueryCIFWithImageId" partnerLink="BiometricProvRouterPL"
+                                portType="es:BiometricESPort" operation="query" inputVariable="Inv_BioProv_InputVar"
+                                outputVariable="Inv_BioProv_OutputVar" bpelx:invokeAsDetail="no"/>
+                    </sequence>
+                    <else>
+                        <documentation>
+                            <![CDATA[ImageNotFound]]>
+                        </documentation>
+                        <empty name="DoNothing"/>
+                    </else>
+                </if>
+                <assign name="AssignResponse">
+                    <copy>
+                        <from variable="Inv_BioProv_OutputVar"/>
+                        <to variable="ResponseVariable"/>
+                    </copy>
+                </assign>
+            </sequence>
+            <else>
+                <documentation>
+                    <![CDATA[BiometricuUserPin]]>
+                </documentation>
+                <sequence name="Sequence1">
+                    <if name="If2">
+                        <documentation>
+                            <![CDATA[ValidUser]]>
+                        </documentation>
+                        <condition>(dvm:lookupValue("oramds:/apps/ESBMetadata/DVM/AGENT_CIF_DETAILS.dvm","CIF",$RequestVariable.payload/eo:RqData/eo:Biometric/com:BiometricUserIdentifier/com:BiometricUserID,"PIN","") = $RequestVariable.payload/eo:RqData/eo:Biometric/com:BiometricUserIdentifier/com:BiometricUserPin)</condition>
+                        <assign name="SetResponse">
+                            <copy>
+                                <from>dvm:lookupValue("oramds:/apps/ESBMetadata/DVM/AGENT_CIF_DETAILS.dvm","CIF",$RequestVariable.payload/eo:RqData/eo:Biometric/com:CustomerIdentifier/com:CustomerID,"AGENTID","")</from>
+                                <to>$ResponseVariable.payload/eo:RsData/eo:Biometric/ns1:Employee/com:FinUserID</to>
+                            </copy>
+                            <copy>
+                                <from>"900"</from>
+                                <to>$ResponseVariable.payload/eo:RsData/eo:Biometric/ns1:Employee/ns1:WorkClass</to>
+                            </copy>
+                            <copy>
+                                <from>dvm:lookupValue("oramds:/apps/ESBMetadata/DVM/AGENT_CIF_DETAILS.dvm","CIF",$RequestVariable.payload/eo:RqData/eo:Biometric/com:CustomerIdentifier/com:CustomerID,"BANKID","")</from>
+                                <to>$ResponseVariable.payload/eo:RsData/eo:Biometric/com:CustomerIdentifier/com:BankID</to>
+                            </copy>
+                            <copy>
+                                <from>dvm:lookupValue("oramds:/apps/ESBMetadata/DVM/AGENT_CIF_DETAILS.dvm","CIF",$RequestVariable.payload/eo:RqData/eo:Biometric/com:CustomerIdentifier/com:CustomerID,"BRANCHID","")</from>
+                                <to>$ResponseVariable.payload/eo:RsData/eo:Biometric/com:CustomerIdentifier/com:BranchID</to>
+                            </copy>
+                            <copy>
+                                <from>"SUCCESS"</from>
+                                <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Code</to>
+                            </copy>
+                        </assign>
+                        <else>
+                            <documentation>
+                                <![CDATA[InvalidUser]]>
+                            </documentation>
+                            <assign name="SetResponse">
+                                <copy>
+                                    <from>"FAILURE"</from>
+                                    <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Code</to>
+                                </copy>
+                                <copy>
+                                    <from>"Invalid User"</from>
+                                    <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Text</to>
+                                </copy>
+                            </assign>
+                        </else>
+                    </if>
+                </sequence>
+            </else>
+        </if>
+        <reply name="ReplyResponse" partnerLink="QueryBiometricPL" portType="es:QueryBiometricPort" operation="execute" variable="ResponseVariable"/>
+    </sequence>
+</process>

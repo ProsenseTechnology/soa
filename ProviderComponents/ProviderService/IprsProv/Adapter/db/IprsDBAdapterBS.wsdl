@@ -1,0 +1,24 @@
+<wsdl:definitions name="IprsDBAdapterBS" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProviderService/IprsProv/IprsDBAdapterBS" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ProviderService/IprsProv/IprsDBAdapterBS" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/IprsDBAdapterBS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <plt:partnerLinkType name="IprsDBAdapterBS_plt">
+    <plt:role name="IprsDBAdapterBS_role">
+      <plt:portType name="tns:IprsDBAdapterBS_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/IprsDBAdapterBS" schemaLocation="IprsDBAdapterBS.xsd"/>
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="IprsDBAdapterBSSelect_inputParameters">
+        <wsdl:part name="IprsDBAdapterBSSelect_inputParameters" element="top:IprsDBAdapterBSSelect_idInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="HumanCollection_msg">
+        <wsdl:part name="HumanCollection" element="top:HumanCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="IprsDBAdapterBS_ptt">
+        <wsdl:operation name="IprsDBAdapterBSSelect">
+            <wsdl:input message="tns:IprsDBAdapterBSSelect_inputParameters"/>
+            <wsdl:output message="tns:HumanCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified"
+            xmlns:fileo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+              schemaLocation="../../../Misc/File/V1/FileEO.xsd"/>              
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="TransferType" type="com:CodeType"/>
+  <xsd:element name="TransactionType" type="com:CodeType"/>
+  <xsd:element name="PurposeCode" type="com:CodeType"/>
+  <xsd:element name="ChargeEventID" type="com:CodeType"/>
+  <xsd:element name="ChargeOption" type="com:CodeType"/>
+  <xsd:element name="WaiveChargesIndicator" type="com:IndicatorType"/>
+  <xsd:element name="TransferOrderType" type="com:CodeType"/>
+  <xsd:element name="TransferSubType" type="com:CodeType"/>
+  <xsd:element name="TransactionParticulars" type="com:TextType"/>
+  <xsd:element name="TransactionSerialNumber" type="com:IDType"/>
+  <xsd:element name="BeneficiaryName" type="com:NameType"/>
+  <xsd:element name="DebitValueDate" type="com:DateType"/>
+  <xsd:element name="DebitExecutionDate" type="com:DateType"/>
+  <xsd:element name="CreditValueDate" type="com:DateType"/>
+  <xsd:element name="CreditExecutionDate" type="com:DateType"/>
+  <xsd:element name="InstructedAmount" type="com:AmountType"/>
+  <xsd:element name="TransferReferenceNumber" type="com:IDType"/>
+  <xsd:element name="IntermediaryIndicator" type="com:IndicatorType"/>
+  <xsd:element name="IntermediaryAccount" type="com:AccountReferenceType"/>
+  <xsd:element name="sendRecvInfo1" type="com:TextType"/>
+  <xsd:element name="AutoVerify" type="com:TextType"/>
+  <xsd:element name="POType" type="com:StringType"/>
+  <xsd:element name="RelatedReferenceNumber" type="com:StringType"/>
+  <xsd:element name="RequestExecutionDate" type="com:DateType"/>
+  <xsd:element name="AWIAddressIndicator" type="com:TextType"/>
+  <xsd:element name="RemitInfo" type="com:StringType"/>
+  <xsd:element name="RateCode" type="com:CodeType"/>
+  <xsd:element name="TransferStatus" type="com:CodeType"/>
+  <xsd:element name="Transfer" type="TransferType"/>
+  <xsd:element name="PickUpLocation" type="com:StringType"/>
+  <xsd:element name="PickUpPoint" type="com:StringType"/>
+  <xsd:element name="PickUpDate" type="com:TimeType"/>
+  <xsd:element name="PickUpTime" type="com:TimeType"/>
+  <xsd:element name="DepositSlipNumber" type="com:StringType"/>
+  <xsd:element name="DepositSlipDate" type="com:DateType"/>
+  <xsd:element name="NumberOfInstallment" type="com:StringType"/>
+  <xsd:element name="CurrencyCode" type="com:CodeType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Transfer ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="TransferType">
+    <xsd:sequence>
+      <xsd:element ref="fileo:File" minOccurs="0"/>
+      <xsd:element ref="com:TransferIdentifier" minOccurs="0"/>
+      <xsd:element ref="TransferType" minOccurs="0"/>
+      <xsd:element ref="PurposeCode" minOccurs="0"/>
+      <xsd:element ref="ChargeEventID" minOccurs="0"/>
+      <xsd:element ref="ChargeOption" minOccurs="0"/>
+      <xsd:element ref="WaiveChargesIndicator" minOccurs="0"/>
+      <xsd:element ref="TransferOrderType" minOccurs="0"/>
+      <xsd:element ref="TransferSubType" minOccurs="0"/>
+      <xsd:element ref="TransactionParticulars" minOccurs="0"/>
+      <xsd:element ref="com:TransactionReferenceNumber" minOccurs="0"/>
+      <xsd:element ref="TransactionSerialNumber" minOccurs="0"/>
+      <xsd:element ref="com:Amount" minOccurs="0"/>
+      <xsd:element ref="InstructedAmount" minOccurs="0"/>
+      <xsd:element ref="com:ChargeAmount" minOccurs="0"/>
+      <xsd:element ref="com:ValueDate" minOccurs="0"/>
+      <xsd:element ref="DebitValueDate" minOccurs="0"/>
+      <xsd:element ref="DebitExecutionDate" minOccurs="0"/>
+      <xsd:element ref="CreditValueDate" minOccurs="0"/>
+      <xsd:element ref="CreditExecutionDate" minOccurs="0"/>
+      <xsd:element ref="com:Rate" minOccurs="0"/>
+      <xsd:element ref="com:Remarks" minOccurs="0"/>
+      <xsd:element ref="BeneficiaryName" minOccurs="0"/>
+      <xsd:element ref="TransferReferenceNumber" minOccurs="0"/>
+      <xsd:element ref="com:CoreTxnRefNo" minOccurs="0"/>
+      <xsd:element ref="sendRecvInfo1" minOccurs="0"/>
+      <xsd:element ref="AutoVerify" minOccurs="0"/>
+      <xsd:element ref="POType" minOccurs="0"/>
+      <xsd:element ref="RelatedReferenceNumber" minOccurs="0"/>
+      <xsd:element ref="RequestExecutionDate" minOccurs="0"/>
+      <xsd:element ref="AWIAddressIndicator" minOccurs="0"/>
+      <xsd:element ref="RemitInfo" minOccurs="0"/>
+      <xsd:element ref="RateCode" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref="com:PayFromAccount" minOccurs="0"/>
+          <xsd:element ref="com:PayeeAccount" minOccurs="0"/>
+          <xsd:element ref="com:CountryCode" minOccurs="0"/>
+          <xsd:element ref="IntermediaryIndicator" minOccurs="0"/>
+          <xsd:element ref="IntermediaryAccount" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="com:Transaction" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="com:MobileWalletVendor" minOccurs="0"/>
+          <xsd:element ref="com:PayFromMobileWallet" minOccurs="0"/>
+          <xsd:element ref="com:PayeeMobileWallet" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element ref="TransactionType" minOccurs="0"/>
+      <xsd:element ref="TransferStatus" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="com:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Transfer" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Transfer" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Action Codes ============= -->
+  <!-- ====================================================================== -->
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CreateMobileWalletTransfer"/>
+      <xsd:enumeration value="CreateRetailIntraBankTransfer"/>
+      <xsd:enumeration value="CreateRtgsTransfer"/>
+      <xsd:enumeration value="CreateSwiftTransfer"/>
+      <xsd:enumeration value="NEFTInward"/>
+      <xsd:enumeration value="RTGSInward"/>
+      <xsd:enumeration value="NEFTOutwardRefStatus"/>
+      <xsd:enumeration value="RTGSOutwardRefStatus"/>
+      <xsd:enumeration value="AccountEntryPosting"/>
+      <xsd:enumeration value="AccountEntryPostingFile"/>
+      <xsd:enumeration value="RTGSOutwardReq"/>
+      <xsd:enumeration value="RTGSOutwardReqFile"/>
+      <xsd:enumeration value="QueryMobileWalletTransferByID"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

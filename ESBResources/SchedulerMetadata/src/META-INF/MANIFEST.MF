@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+essclientapi-Specification-Version: 12
+Extension-List: essruntime essclientapi
+Weblogic-Application-Version: 3.0
+essclientapi-Extension-Name: oracle.ess.client.api
+essruntime-Extension-Name: oracle.ess.runtime
+essruntime-Specification-Version: 12
+

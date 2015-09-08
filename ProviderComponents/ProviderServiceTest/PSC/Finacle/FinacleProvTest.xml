@@ -1,0 +1,3128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="FinacleProvTest" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CustomerPSCPortBinding" type="wsdl" bindingName="{http://xmlns.equitybank.co.ke/PSC/Finacle/Customer/V1}CustomerPSCPortBinding" soapVersion="1_1" anonymous="optional" definition="http://10.1.25.52:8011/PSC/Finacle/Customer?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.1.25.52:8011/PSC/Finacle/Customer?wsdl"><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Customer?wsdl</con:url><con:content><![CDATA[<WL5G3N0:definitions name="CustomerPSC" targetNamespace="http://xmlns.equitybank.co.ke/PSC/Finacle/Customer/V1" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" xmlns:WL5G3N2="http://xmlns.equitybank.co.ke/PSC/Finacle/Customer/V1" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:pm="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" xmlns:psc="http://xmlns.equitybank.co.ke/PSC/Finacle/Customer/V1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FProviderComponents%2FPM%2FFinacle%2FCustomer%2FV1%2FCustomerPM"/>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="RetCustAddRequestMessage">
+    <WL5G3N0:part element="WL5G3N1:RetCustAddRequestPM" name="RetCustAddRequest"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="RetCustAddResponseMessage">
+    <WL5G3N0:part element="WL5G3N1:RetCustAddResponsePM" name="RetCustAddResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="VerifyCustomerDetailsRequestMessage">
+    <WL5G3N0:part element="WL5G3N1:VerifyCustomerDetailsRequestPM" name="VerifyCustomerDetailsRequest"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="VerifyCustomerDetailsResponseMessage">
+    <WL5G3N0:part element="WL5G3N1:VerifyCustomerDetailsResponsePM" name="VerifyCustomerDetailsResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="GetCustomerDataRequestMessage">
+    <WL5G3N0:part element="WL5G3N1:GetCustomerDataRequestPM" name="GetCustomerDataRequest"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="GetCustomerDataResponseMessage">
+    <WL5G3N0:part element="WL5G3N1:GetCustomerDataResponsePM" name="GetCustomerDataResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="CustomerPSCPort">
+    <WL5G3N0:operation name="retCustAdd">
+      <WL5G3N0:input message="WL5G3N2:RetCustAddRequestMessage"/>
+      <WL5G3N0:output message="WL5G3N2:RetCustAddResponseMessage"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="verifyCustomerDetails">
+      <WL5G3N0:input message="WL5G3N2:VerifyCustomerDetailsRequestMessage"/>
+      <WL5G3N0:output message="WL5G3N2:VerifyCustomerDetailsResponseMessage"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="getCustomerData">
+      <WL5G3N0:input message="WL5G3N2:GetCustomerDataRequestMessage"/>
+      <WL5G3N0:output message="WL5G3N2:GetCustomerDataResponseMessage"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="CustomerPSCPortBinding" type="WL5G3N2:CustomerPSCPort">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="retCustAdd">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="verifyCustomerDetails">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="getCustomerData">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="CustomerPSCPortBindingQSService">
+    <WL5G3N0:documentation>OSB Service</WL5G3N0:documentation>
+    <WL5G3N0:port binding="WL5G3N2:CustomerPSCPortBinding" name="CustomerPSCPortBindingQSPort">
+      <WL5G3N3:address location="http://10.1.25.52:8011/PSC/Finacle/Customer"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FProviderComponents%2FPM%2FFinacle%2FCustomer%2FV1%2FCustomerPM</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:eo="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Common/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FParties%2FCustomer%2FV1%2FCustomerEO"/>
+  <!--======================================================================-->
+  <!--============= RetCustAdd Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="RetCustAddRequestPMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="RetCustAddRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RetCustAddRequestPM" type="RetCustAddRequestPMType"/>
+  <xsd:complexType name="RetCustAddRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="RetCustAddRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RetCustAddRequestType">
+    <xsd:sequence>
+      <xsd:element ref="eo:CustomerEO" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RetCustAddRequest" type="RetCustAddRequestType"/>
+  <!--======================================================================-->
+  <!--============= RetCustAdd Response =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="RetCustAddResponsePMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="RetCustAddResponseDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="RetCustAddResponsePM" type="RetCustAddResponsePMType"/>
+  <xsd:complexType name="RetCustAddResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="RetCustAddResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RetCustAddResponseType">
+    <xsd:sequence>
+      <xsd:element ref="com:Identification" minOccurs="0"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RetCustAddResponse" type="RetCustAddResponseType"/>
+  <!--======================================================================-->
+  <!--============= VerifyCustomerDetails Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="VerifyCustomerDetailsRequestPMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="VerifyCustomerDetailsRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="VerifyCustomerDetailsRequestPM" type="VerifyCustomerDetailsRequestPMType"/>
+  <xsd:complexType name="VerifyCustomerDetailsRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="VerifyCustomerDetailsRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="VerifyCustomerDetailsRequestType">
+    <xsd:sequence>
+      <xsd:element ref="eo:CustomerEO" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="VerifyCustomerDetailsRequest" type="VerifyCustomerDetailsRequestType"/>
+  <!--======================================================================-->
+  <!--============= VerifyCustomerDetails Response =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="VerifyCustomerDetailsResponsePMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="VerifyCustomerDetailsResponseDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="VerifyCustomerDetailsResponsePM" type="VerifyCustomerDetailsResponsePMType"/>
+  <xsd:complexType name="VerifyCustomerDetailsResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="VerifyCustomerDetailsResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="VerifyCustomerDetailsResponseType">
+    <xsd:sequence>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="VerifyCustomerDetailsResponse" type="VerifyCustomerDetailsResponseType"/>
+  <!--======================================================================-->
+  <!--============= GetCustomerData Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="GetCustomerDataRequestPMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="GetCustomerDataRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="GetCustomerDataRequestPM" type="GetCustomerDataRequestPMType"/>
+  <xsd:complexType name="GetCustomerDataRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="GetCustomerDataRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetCustomerDataRequestType">
+    <xsd:sequence>
+      <xsd:element ref="com:Identification" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetCustomerDataRequest" type="GetCustomerDataRequestType"/>
+  <!--======================================================================-->
+  <!--============= GetCustomerData Response =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="GetCustomerDataResponsePMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="GetCustomerDataResponseDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="GetCustomerDataResponsePM" type="GetCustomerDataResponsePMType"/>
+  <xsd:complexType name="GetCustomerDataResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="GetCustomerDataResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetCustomerDataResponseType">
+    <xsd:sequence>
+      <xsd:element ref="eo:CustomerEO" minOccurs="0"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetCustomerDataResponse" type="GetCustomerDataResponseType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCodeLists"/>
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FMeta"/>
+  <xsd:complexType name="BiometricDetailsType">
+    <xsd:sequence>
+      <xsd:element ref="com:Identification" minOccurs="0"/>
+      <xsd:element name="BioImage" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Image1" type="xsd:base64Binary" minOccurs="0"/>
+            <xsd:element name="Image2" type="xsd:base64Binary" minOccurs="0"/>
+            <xsd:element name="Image3" type="xsd:base64Binary" minOccurs="0"/>
+            <xsd:element name="Image4" type="xsd:base64Binary" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ref="com:Bank" minOccurs="0"/>
+      <xsd:element ref="com:BankBranch" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BiometricDetails" type="com:BiometricDetailsType"/>
+  <xsd:complexType name="IdentificationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="IdentifierType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Identification" type="com:IdentificationType"/>
+  <xsd:complexType name="StatusType">
+    <xsd:sequence>
+      <xsd:element name="Code" type="CodeType" minOccurs="0"/>
+      <xsd:element name="EffectiveDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="Description" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Status" type="StatusType"/>
+  <xsd:complexType name="PreferenceType">
+    <xsd:sequence>
+      <xsd:element name="PriorityRanking" type="NumericType" minOccurs="0"/>
+      <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Preference" type="PreferenceType"/>
+  <xsd:complexType name="StopPaymentInstructionType">
+    <xsd:sequence>
+      <xsd:element name="RequestDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="ReasonCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="ReasonDescription" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CountryCode" type="CodeType"/>
+  <xsd:element name="StopPaymentInstruction" type="StopPaymentInstructionType"/>
+  <xsd:complexType name="AddressType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="FormatCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="LineOne" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineTwo" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineThree" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineFour" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CityName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="StateName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CountyName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="CountryCode" minOccurs="0"/>
+      <xsd:element name="PostalCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Address" type="AddressType"/>
+  <xsd:complexType name="AddressCommunicationType">
+    <xsd:sequence>
+      <xsd:element ref="Address" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AddressCommunication" type="AddressCommunicationType"/>
+  <xsd:complexType name="PhoneCommunicationType">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="CompleteNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element name="CountryCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="AreaCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="LocalNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ExtensionNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PhoneCommunication" type="PhoneCommunicationType"/>
+  <xsd:complexType name="EmailCommunicationType">
+    <xsd:sequence>
+      <xsd:element name="URI" type="URIType" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EmailCommunication" type="EmailCommunicationType"/>
+  <xsd:complexType name="ContactType">
+    <xsd:sequence>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Contact" type="ContactType"/>
+  <xsd:complexType name="PersonNameType">
+    <xsd:sequence>
+      <xsd:element name="FullName" type="NameType" minOccurs="0"/>
+      <xsd:element name="FirstName" type="NameType" minOccurs="0"/>
+      <xsd:element name="MiddleName" type="NameType" minOccurs="0"/>
+      <xsd:element name="LastName" type="NameType" minOccurs="0"/>
+      <xsd:element name="Title" type="TextType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonName" type="PersonNameType"/>
+  <xsd:complexType name="LocationType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0"/>
+      <xsd:element ref="Address" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Location" type="LocationType"/>
+  <xsd:complexType name="IdentityDocumentType">
+    <xsd:sequence>
+      <xsd:element name="NumberID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssueDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="ExpirationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="IssuingCountryCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingStateCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingLocation" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IssuingAuthority" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="DocImage1" type="xsd:base64Binary" minOccurs="0"/>
+      <xsd:element name="DocImage2" type="xsd:base64Binary" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="IdentityDocument" type="IdentityDocumentType"/>
+  <xsd:complexType name="SignatureType">
+    <xsd:sequence>
+      <xsd:element name="SignImage" minOccurs="0" type="xsd:base64Binary"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Signature" type="SignatureType"/>
+  <xsd:complexType name="PersonType">
+    <xsd:sequence>
+      <xsd:element name="BirthDateTime" type="com:DateTimeType" minOccurs="0"/>
+      <xsd:element name="BirthCountryCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="BirthCityName" type="com:NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="PreferredCommunicationLanguageCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="GenderCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="IdentityDocument" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="Signature" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Person" type="PersonType"/>
+  <xsd:complexType name="OrganizationType">
+    <xsd:sequence>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IncorporationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="RegistrationCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Organization" type="OrganizationType"/>
+  <xsd:complexType name="PartyType">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref="Person" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="Organization" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element ref="AddressCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="PhoneCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="EmailCommunication" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Party" type="PartyType"/>
+  <xsd:complexType name="PersonPartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PersonPartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonPartyReference" type="PersonPartyReferenceType"/>
+  <xsd:complexType name="PartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="OrganizationName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="PersonName" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PartyReference" type="PartyReferenceType"/>
+  <xsd:element name="AccountHolder" type="PartyReferenceType"/>
+  <xsd:complexType name="BankType">
+    <xsd:sequence>
+      <xsd:element name="BankID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0"/>
+      <xsd:element name="SWIFTCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Bank" type="BankType"/>
+  <xsd:complexType name="BankBranchType">
+    <xsd:sequence>
+      <xsd:element name="BankBranchID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BankBranch" type="BankBranchType"/>
+  <xsd:element name="AccountID" type="com:IdentifierType"/>
+  <xsd:complexType name="AccountType">
+    <xsd:sequence>
+      <xsd:element ref="AccountID" minOccurs="0"/>
+      <xsd:element ref="AccountHolder" minOccurs="0"/>
+      <xsd:element ref="Bank" minOccurs="0"/>
+      <xsd:element ref="BankBranch" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Account" type="AccountType"/>
+  <xsd:element name="PayeeAccount" type="AccountType"/>
+  <xsd:element name="PayFromAccount" type="AccountType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCodeLists</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FDataTypes"/>
+  <xsd:simpleType name="LanguageCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ImplementationCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="BPEL"/>
+      <xsd:enumeration value="MEDIATOR"/>
+      <xsd:enumeration value="BPMN"/>
+      <xsd:enumeration value="ESB"/>
+      <xsd:enumeration value="Other"/>
+      <xsd:enumeration value="JAVA"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SortDirectionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ASC"/>
+      <xsd:enumeration value="DESC"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LogicalOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="AND"/>
+      <xsd:enumeration value="OR"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="QueryOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="EQUALS"/>
+      <xsd:enumeration value="NOT_EQUALS"/>
+      <xsd:enumeration value="GREATER_THAN"/>
+      <xsd:enumeration value="GREATER_THAN_EQUALS"/>
+      <xsd:enumeration value="LESS_THAN"/>
+      <xsd:enumeration value="LESS_THAN_EQUALS"/>
+      <xsd:enumeration value="CONTAINS"/>
+      <xsd:enumeration value="DOES_NOT_CONTAIN"/>
+      <xsd:enumeration value="LIKE"/>
+      <xsd:enumeration value="NOT_LIKE"/>
+      <xsd:enumeration value="LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="NOT_LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="IS_BLANK"/>
+      <xsd:enumeration value="IS_NOT_BLANK"/>
+      <xsd:enumeration value="BETWEEN"/>
+      <xsd:enumeration value="NOT_BETWEEN"/>
+      <xsd:enumeration value="IN"/>
+      <xsd:enumeration value="NOT_IN"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ResponseCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ID"/>
+      <xsd:enumeration value="OBJECT"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATE"/>
+      <xsd:enumeration value="READ"/>
+      <xsd:enumeration value="READSTATUS"/>
+      <xsd:enumeration value="UPDATE"/>
+      <xsd:enumeration value="DELETE"/>
+      <xsd:enumeration value="SYNC"/>
+      <xsd:enumeration value="CANCEL"/>
+      <xsd:enumeration value="STOP"/>
+      <xsd:enumeration value="VALIDATE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BusinessScopeCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DebugLevelCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Low"/>
+      <xsd:enumeration value="Medium"/>
+      <xsd:enumeration value="High"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SyncActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATEUPDATE"/>
+      <xsd:enumeration value="CREATEREPLACE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FDataTypes</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:complexType name="AmountType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="currencyCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="BinaryObjectType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:base64Binary">
+        <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="CodeType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateType">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateTimeType">
+    <xsd:restriction base="xsd:dateTime"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DurationType">
+    <xsd:restriction base="xsd:duration"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IdentifierType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IndicatorType">
+    <xsd:restriction base="xsd:boolean">
+      <xsd:pattern value="false"/>
+      <xsd:pattern value="true"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="IntegerType">
+    <xsd:restriction base="xsd:integer"/>
+  </xsd:simpleType>
+  <xsd:complexType name="MeasureType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="NameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NumericType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PercentType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:complexType name="QuantityType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="RateType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="baseValue" type="xsd:decimal" use="optional"/>
+        <xsd:attribute name="baseUnitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="TextType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="StringType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="URIType">
+    <xsd:restriction base="xsd:anyURI"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="YearType">
+    <xsd:restriction base="xsd:gYear"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="TimeType">
+    <xsd:restriction base="xsd:time"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="01"/>
+      <xsd:pattern value="02"/>
+      <xsd:pattern value="03"/>
+      <xsd:pattern value="04"/>
+      <xsd:pattern value="05"/>
+      <xsd:pattern value="06"/>
+      <xsd:pattern value="07"/>
+      <xsd:pattern value="08"/>
+      <xsd:pattern value="09"/>
+      <xsd:pattern value="10"/>
+      <xsd:pattern value="11"/>
+      <xsd:pattern value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthDayType">
+    <xsd:restriction base="xsd:gMonthDay"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PositiveIntegerType">
+    <xsd:restriction base="xsd:positiveInteger"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NonNegativeIntegerType">
+    <xsd:restriction base="xsd:nonNegativeInteger">
+      <xsd:minInclusive value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FMeta</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:complexType name="MessageType">
+    <xsd:sequence>
+      <xsd:element ref="com:MessageHeader"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Message" type="com:MessageType"/>
+  <xsd:complexType name="MessageHeaderType">
+    <xsd:sequence>
+      <xsd:element name="MessageID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CreatedBy" type="com:StringType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="com:SenderApplication" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="MessageHeader" type="com:MessageHeaderType"/>
+  <xsd:complexType name="SenderApplicationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Version" type="com:StringType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SenderApplication" type="com:SenderApplicationType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FParties%2FCustomer%2FV1%2FCustomerEO</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Common/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Customer?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:complexType name="CustomerEOType">
+    <xsd:complexContent>
+      <xsd:extension base="com:PartyType">
+        <xsd:sequence>
+          <xsd:element name="LevelCode" type="com:CodeType" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="com:ActionCodeType" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CustomerEO" type="CustomerEOType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Customer</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="getCustomerData" bindingOperationName="getCustomerData" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Customer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:GetCustomerDataRequestPM>
+         <v11:MessageHeader>
+            <!--Optional:-->
+            <v11:MessageID>?</v11:MessageID>
+            <!--Optional:-->
+            <v11:ActionCode>?</v11:ActionCode>
+            <!--Optional:-->
+            <v11:CreationDateTime>?</v11:CreationDateTime>
+            <!--Optional:-->
+            <v11:CreatedBy>?</v11:CreatedBy>
+            <!--Optional:-->
+            <v11:InstanceID>?</v11:InstanceID>
+            <!--Optional:-->
+            <v11:SenderApplication>
+               <!--Optional:-->
+               <v11:ID>?</v11:ID>
+               <!--Optional:-->
+               <v11:Version>?</v11:Version>
+            </v11:SenderApplication>
+         </v11:MessageHeader>
+         <v1:DataArea>
+            <v1:GetCustomerDataRequest>
+               <!--Optional:-->
+               <v12:CustomerEO actionCode="?">
+                  <!--Optional:-->
+                  <v11:PartyID>?</v11:PartyID>
+                  <!--You have a CHOICE of the next 2 items at this level-->
+                  <!--Optional:-->
+                  <v11:Person>
+                     <!--Optional:-->
+                     <v11:BirthDateTime>?</v11:BirthDateTime>
+                     <!--Optional:-->
+                     <v11:BirthCountryCode>?</v11:BirthCountryCode>
+                     <!--Zero or more repetitions:-->
+                     <v11:BirthCityName>?</v11:BirthCityName>
+                     <!--Optional:-->
+                     <v11:PreferredCommunicationLanguageCode>?</v11:PreferredCommunicationLanguageCode>
+                     <!--Optional:-->
+                     <v11:GenderCode>?</v11:GenderCode>
+                     <!--Zero or more repetitions:-->
+                     <v11:PersonName>
+                        <!--Optional:-->
+                        <v11:FullName>?</v11:FullName>
+                        <!--Optional:-->
+                        <v11:FirstName>?</v11:FirstName>
+                        <!--Optional:-->
+                        <v11:MiddleName>?</v11:MiddleName>
+                        <!--Optional:-->
+                        <v11:LastName>?</v11:LastName>
+                        <!--Optional:-->
+                        <v11:Title>?</v11:Title>
+                     </v11:PersonName>
+                     <!--Zero or more repetitions:-->
+                     <v11:IdentityDocument>
+                        <!--Optional:-->
+                        <v11:NumberID>?</v11:NumberID>
+                        <!--Optional:-->
+                        <v11:TypeCode>?</v11:TypeCode>
+                        <!--Optional:-->
+                        <v11:IssueDate>?</v11:IssueDate>
+                        <!--Optional:-->
+                        <v11:ExpirationDate>?</v11:ExpirationDate>
+                        <!--Optional:-->
+                        <v11:IssuingCountryCode>?</v11:IssuingCountryCode>
+                        <!--Optional:-->
+                        <v11:IssuingStateCode>?</v11:IssuingStateCode>
+                        <!--Zero or more repetitions:-->
+                        <v11:IssuingLocation>?</v11:IssuingLocation>
+                        <!--Zero or more repetitions:-->
+                        <v11:IssuingAuthority>?</v11:IssuingAuthority>
+                     </v11:IdentityDocument>
+                  </v11:Person>
+                  <!--Optional:-->
+                  <v11:Organization>
+                     <!--Zero or more repetitions:-->
+                     <v11:Name>?</v11:Name>
+                     <!--Optional:-->
+                     <v11:IncorporationDate>?</v11:IncorporationDate>
+                     <!--Optional:-->
+                     <v11:TypeCode>?</v11:TypeCode>
+                     <!--Optional:-->
+                     <v11:RegistrationCode>?</v11:RegistrationCode>
+                  </v11:Organization>
+                  <!--Zero or more repetitions:-->
+                  <v11:AddressCommunication>
+                     <!--Optional:-->
+                     <v11:Address>
+                        <!--Optional:-->
+                        <v11:TypeCode>?</v11:TypeCode>
+                        <!--Optional:-->
+                        <v11:FormatCode>?</v11:FormatCode>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineOne>?</v11:LineOne>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineTwo>?</v11:LineTwo>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineThree>?</v11:LineThree>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineFour>?</v11:LineFour>
+                        <!--Zero or more repetitions:-->
+                        <v11:CityName>?</v11:CityName>
+                        <!--Zero or more repetitions:-->
+                        <v11:StateName>?</v11:StateName>
+                        <!--Zero or more repetitions:-->
+                        <v11:CountyName>?</v11:CountyName>
+                        <!--Optional:-->
+                        <v11:CountryCode>?</v11:CountryCode>
+                        <!--Optional:-->
+                        <v11:PostalCode>?</v11:PostalCode>
+                        <!--Optional:-->
+                        <v11:Preference>
+                           <!--Optional:-->
+                           <v11:PriorityRanking>?</v11:PriorityRanking>
+                           <!--Optional:-->
+                           <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                        </v11:Preference>
+                     </v11:Address>
+                     <!--Optional:-->
+                     <v11:UseCode>?</v11:UseCode>
+                     <!--Optional:-->
+                     <v11:Preference>
+                        <!--Optional:-->
+                        <v11:PriorityRanking>?</v11:PriorityRanking>
+                        <!--Optional:-->
+                        <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                     </v11:Preference>
+                  </v11:AddressCommunication>
+                  <!--Zero or more repetitions:-->
+                  <v11:PhoneCommunication>
+                     <!--You have a CHOICE of the next 2 items at this level-->
+                     <!--Zero or more repetitions:-->
+                     <v11:CompleteNumber>?</v11:CompleteNumber>
+                     <!--Optional:-->
+                     <v11:CountryCode>?</v11:CountryCode>
+                     <!--Optional:-->
+                     <v11:AreaCode>?</v11:AreaCode>
+                     <!--Zero or more repetitions:-->
+                     <v11:LocalNumber>?</v11:LocalNumber>
+                     <!--Zero or more repetitions:-->
+                     <v11:ExtensionNumber>?</v11:ExtensionNumber>
+                     <!--Optional:-->
+                     <v11:UseCode>?</v11:UseCode>
+                     <!--Optional:-->
+                     <v11:Preference>
+                        <!--Optional:-->
+                        <v11:PriorityRanking>?</v11:PriorityRanking>
+                        <!--Optional:-->
+                        <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                     </v11:Preference>
+                  </v11:PhoneCommunication>
+                  <!--Zero or more repetitions:-->
+                  <v11:EmailCommunication>
+                     <!--Optional:-->
+                     <v11:URI>?</v11:URI>
+                     <!--Optional:-->
+                     <v11:UseCode>?</v11:UseCode>
+                     <!--Optional:-->
+                     <v11:Preference>
+                        <!--Optional:-->
+                        <v11:PriorityRanking>?</v11:PriorityRanking>
+                        <!--Optional:-->
+                        <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                     </v11:Preference>
+                  </v11:EmailCommunication>
+                  <!--Optional:-->
+                  <v12:LevelCode>?</v12:LevelCode>
+               </v12:CustomerEO>
+            </v1:GetCustomerDataRequest>
+         </v1:DataArea>
+      </v1:GetCustomerDataRequestPM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/PSC/Finacle/Customer/V1/CustomerPSCPort/getCustomerDataRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="retCustAdd" bindingOperationName="retCustAdd" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Customer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+     <v11:RetCustAddRequestPM xmlns:v1="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v11="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1">
+    <v1:MessageHeader>
+        <!--Optional:-->
+        <v1:MessageID>${subString(=System.currentTimeMillis() + ((int)(Math.random()*1000)),8)}</v1:MessageID>
+        <!--Optional:-->
+        <v1:CreatedBy>DK02595</v1:CreatedBy>
+        <!--Optional:-->
+        <v1:SenderApplication>
+            <!--Optional:-->
+            <v1:ID>string</v1:ID>
+            <!--Optional:-->
+            <v1:Version>string</v1:Version>
+        </v1:SenderApplication>
+    </v1:MessageHeader>
+    <v11:DataArea>
+        <v11:RetCustAddRequest>
+            <!--Optional:-->
+            <v12:CustomerEO actionCode="CANCEL">
+                <!--Optional:-->
+                <v1:PartyID>string</v1:PartyID>
+                <!--You have a CHOICE of the next 2 items at this level-->
+                <!--Optional:-->
+                <v1:Person>
+                    <!--Optional:-->
+                    <v1:BirthDateTime>1980-03-05T00:00:00.000</v1:BirthDateTime>
+                    <!--Optional:-->
+                    <v1:BirthCountryCode>string</v1:BirthCountryCode>
+                    <!--Zero or more repetitions:-->
+                    <v1:BirthCityName>string</v1:BirthCityName>
+                    <!--Optional:-->
+                    <v1:PreferredCommunicationLanguageCode>USA (English)</v1:PreferredCommunicationLanguageCode>
+                    <!--Optional:-->
+                    <v1:GenderCode>M</v1:GenderCode>
+                    <!--Zero or more repetitions:-->
+                    <v1:PersonName>
+                        <!--Optional:-->
+                        <v1:FullName>JANE NDIRANGU</v1:FullName>
+                        <!--Optional:-->
+                        <v1:FirstName>JANE</v1:FirstName>
+                        <!--Optional:-->
+                        <v1:MiddleName>M</v1:MiddleName>
+                        <!--Optional:-->
+                        <v1:LastName>NDIRANGU</v1:LastName>
+                        <!--Optional:-->
+                        <v1:Title>MR</v1:Title>
+                    </v1:PersonName>
+                    <!--Zero or more repetitions:-->
+                    <v1:IdentityDocument>
+                        <!--Optional:-->
+                        <v1:NumberID>MW${=System.currentTimeMillis()}</v1:NumberID>
+                        <!--Optional:-->
+                        <v1:TypeCode>DOC03</v1:TypeCode>
+                        <!--Optional:-->
+                        <v1:IssueDate>2014-09-11T11:09:51.000</v1:IssueDate>
+                        <!--Optional:-->
+                        <v1:ExpirationDate>2018-11-01+03:00</v1:ExpirationDate>
+                        <!--Optional:-->
+                        <v1:IssuingCountryCode>KE</v1:IssuingCountryCode>
+                        <!--Optional:-->
+                        <v1:IssuingStateCode>string</v1:IssuingStateCode>
+                        <!--Zero or more repetitions:-->
+                        <v1:IssuingLocation>223</v1:IssuingLocation>
+                        <!--Zero or more repetitions:-->
+                        <v1:IssuingAuthority>string</v1:IssuingAuthority>
+                        <!--Optional:-->
+                        <v1:DocImage1>dHVyYmluZQ==</v1:DocImage1>
+                        <!--Optional:-->
+                        <v1:DocImage2>Y2lyY3Vt</v1:DocImage2>
+                    </v1:IdentityDocument>
+                    <!--Optional:-->
+                    <v1:Signature>
+                        <!--Optional:-->
+                        <v1:SignImage>cmVnZW1xdWU=</v1:SignImage>
+                    </v1:Signature>
+                </v1:Person>
+                <!--Optional:-->
+                <!--Zero or more repetitions:-->
+                <v1:AddressCommunication>
+                    <!--Optional:-->
+                    <v1:Address>
+                        <!--Optional:-->
+                        <v1:TypeCode>Mailing</v1:TypeCode>
+                        <!--Optional:-->
+                        <v1:FormatCode>string</v1:FormatCode>
+                        <!--Zero or more repetitions:-->
+                        <v1:LineOne>314</v1:LineOne>
+                        <!--Zero or more repetitions:-->
+                        <v1:LineTwo>314</v1:LineTwo>
+                        <!--Zero or more repetitions:-->
+                        <v1:LineThree>314</v1:LineThree>
+                        <!--Zero or more repetitions:-->
+                        <v1:LineFour>string</v1:LineFour>
+                        <!--Zero or more repetitions:-->
+                        <v1:CityName>223</v1:CityName>
+                        <!--Zero or more repetitions:-->
+                        <v1:StateName>KEN</v1:StateName>
+                        <!--Zero or more repetitions:-->
+                        <v1:CountyName>KE</v1:CountyName>
+                        <!--Optional:-->
+                        <v1:CountryCode>string</v1:CountryCode>
+                        <!--Optional:-->
+                        <v1:PostalCode>00100</v1:PostalCode>
+                        <!--Optional:-->
+                        <v1:Preference>
+                            <!--Optional:-->
+                            <v1:PriorityRanking>1000.00</v1:PriorityRanking>
+                            <!--Optional:-->
+                            <v1:PreferredIndicator>Y</v1:PreferredIndicator>
+                        </v1:Preference>
+                    </v1:Address>
+                    <!--Optional:-->
+                    <v1:UseCode>string</v1:UseCode>
+                    <!--Optional:-->
+                    <v1:Preference>
+                        <!--Optional:-->
+                        <v1:PriorityRanking>1000.00</v1:PriorityRanking>
+                        <!--Optional:-->
+                        <v1:PreferredIndicator>false</v1:PreferredIndicator>
+                    </v1:Preference>
+                </v1:AddressCommunication>
+                <!--Zero or more repetitions:-->
+                <v1:PhoneCommunication>
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <!--Zero or more repetitions:-->
+                    <v1:CompleteNumber>string</v1:CompleteNumber>
+                    <!--Optional:-->
+                    <v1:CountryCode>254</v1:CountryCode>
+                    <!--Optional:-->
+                    <v1:AreaCode>string</v1:AreaCode>
+                    <!--Zero or more repetitions:-->
+                    <v1:LocalNumber>724326360</v1:LocalNumber>
+                    <!--Zero or more repetitions:-->
+                    <v1:ExtensionNumber>string</v1:ExtensionNumber>
+                    <!--Optional:-->
+                    <v1:UseCode>string</v1:UseCode>
+                    <!--Optional:-->
+                    <v1:Preference>
+                        <!--Optional:-->
+                        <v1:PriorityRanking>1000.00</v1:PriorityRanking>
+                        <!--Optional:-->
+                        <v1:PreferredIndicator>Y</v1:PreferredIndicator>
+                    </v1:Preference>
+                </v1:PhoneCommunication>
+                <!--Zero or more repetitions:-->
+                <v1:EmailCommunication>
+                    <!--Optional:-->
+                    <v1:URI>http://www.test.com/iovis/flammato</v1:URI>
+                    <!--Optional:-->
+                    <v1:UseCode>string</v1:UseCode>
+                    <!--Optional:-->
+                    <v1:Preference>
+                        <!--Optional:-->
+                        <v1:PriorityRanking>1000.00</v1:PriorityRanking>
+                        <!--Optional:-->
+                        <v1:PreferredIndicator>true</v1:PreferredIndicator>
+                    </v1:Preference>
+                </v1:EmailCommunication>
+                <!--Optional:-->
+                <v12:LevelCode>string</v12:LevelCode>
+            </v12:CustomerEO>
+        </v11:RetCustAddRequest>
+    </v11:DataArea>
+</v11:RetCustAddRequestPM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/PSC/Finacle/Customer/V1/CustomerPSCPort/retCustAddRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Customer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:RetCustAddRequestPM>
+         <v11:MessageHeader>
+            <!--Optional:-->
+        <v1:MessageID>${subString(=System.currentTimeMillis() + ((int)(Math.random()*1000)),8)}</v1:MessageID>
+            <!--Optional:-->
+            <v11:ActionCode>?</v11:ActionCode>
+            <!--Optional:-->
+            <v11:CreationDateTime>?</v11:CreationDateTime>
+            <!--Optional:-->
+            <v11:CreatedBy>DK02595</v11:CreatedBy>
+            <!--Optional:-->
+            <v11:InstanceID>?</v11:InstanceID>
+            <!--Optional:-->
+            <v11:SenderApplication>
+               <!--Optional:-->
+               <v11:ID>?</v11:ID>
+               <!--Optional:-->
+               <v11:Version>?</v11:Version>
+            </v11:SenderApplication>
+         </v11:MessageHeader>
+         <v1:DataArea>
+            <v1:RetCustAddRequest>
+               <v12:CustomerEO actionCode="CANCEL">
+                <!--Optional:-->
+                <v1:PartyID>string</v1:PartyID>
+                <!--You have a CHOICE of the next 2 items at this level-->
+                <!--Optional:-->
+                <v1:Person>
+                    <!--Optional:-->
+                    <v1:BirthDateTime>1980-03-05T00:00:00.000</v1:BirthDateTime>
+                    <!--Optional:-->
+                    <v1:BirthCountryCode>string</v1:BirthCountryCode>
+                    <!--Zero or more repetitions:-->
+                    <v1:BirthCityName>string</v1:BirthCityName>
+                    <!--Optional:-->
+                    <v1:PreferredCommunicationLanguageCode>USA (English)</v1:PreferredCommunicationLanguageCode>
+                    <!--Optional:-->
+                    <v1:GenderCode>M</v1:GenderCode>
+                    <!--Zero or more repetitions:-->
+                    <v1:PersonName>
+                        <!--Optional:-->
+                        <v1:FullName>JANE NDIRANGU</v1:FullName>
+                        <!--Optional:-->
+                        <v1:FirstName>JANE</v1:FirstName>
+                        <!--Optional:-->
+                        <v1:MiddleName>M</v1:MiddleName>
+                        <!--Optional:-->
+                        <v1:LastName>NDIRANGU</v1:LastName>
+                        <!--Optional:-->
+                        <v1:Title>MR</v1:Title>
+                    </v1:PersonName>
+                    <!--Zero or more repetitions:-->
+                    <v1:IdentityDocument>
+                        <!--Optional:-->
+                        <v1:NumberID>MW${=System.currentTimeMillis()}</v1:NumberID>
+                        <!--Optional:-->
+                        <v1:TypeCode>DOC03</v1:TypeCode>
+                        <!--Optional:-->
+                        <v1:IssueDate>2014-09-11T11:09:51.000</v1:IssueDate>
+                        <!--Optional:-->
+                        <v1:ExpirationDate>2018-11-01+03:00</v1:ExpirationDate>
+                        <!--Optional:-->
+                        <v1:IssuingCountryCode>KE</v1:IssuingCountryCode>
+                        <!--Optional:-->
+                        <v1:IssuingStateCode>string</v1:IssuingStateCode>
+                        <!--Zero or more repetitions:-->
+                        <v1:IssuingLocation>223</v1:IssuingLocation>
+                        <!--Zero or more repetitions:-->
+                        <v1:IssuingAuthority>string</v1:IssuingAuthority>
+                        <!--Optional:-->
+                        <v1:DocImage1>dHVyYmluZQ==</v1:DocImage1>
+                        <!--Optional:-->
+                        <v1:DocImage2>Y2lyY3Vt</v1:DocImage2>
+                    </v1:IdentityDocument>
+                    <!--Optional:-->
+                    <v1:Signature>
+                        <!--Optional:-->
+                        <v1:SignImage>cmVnZW1xdWU=</v1:SignImage>
+                    </v1:Signature>
+                </v1:Person>
+                <!--Optional:-->
+                <!--Zero or more repetitions:-->
+                <v1:AddressCommunication>
+                    <!--Optional:-->
+                    <v1:Address>
+                        <!--Optional:-->
+                        <v1:TypeCode>Mailing</v1:TypeCode>
+                        <!--Optional:-->
+                        <v1:FormatCode>string</v1:FormatCode>
+                        <!--Zero or more repetitions:-->
+                        <v1:LineOne>314</v1:LineOne>
+                        <!--Zero or more repetitions:-->
+                        <v1:LineTwo>314</v1:LineTwo>
+                        <!--Zero or more repetitions:-->
+                        <v1:LineThree>314</v1:LineThree>
+                        <!--Zero or more repetitions:-->
+                        <v1:LineFour>string</v1:LineFour>
+                        <!--Zero or more repetitions:-->
+                        <v1:CityName>223</v1:CityName>
+                        <!--Zero or more repetitions:-->
+                        <v1:StateName>KEN</v1:StateName>
+                        <!--Zero or more repetitions:-->
+                        <v1:CountyName>KE</v1:CountyName>
+                        <!--Optional:-->
+                        <v1:CountryCode>string</v1:CountryCode>
+                        <!--Optional:-->
+                        <v1:PostalCode>00100</v1:PostalCode>
+                        <!--Optional:-->
+                        <v1:Preference>
+                            <!--Optional:-->
+                            <v1:PriorityRanking>1000.00</v1:PriorityRanking>
+                            <!--Optional:-->
+                            <v1:PreferredIndicator>Y</v1:PreferredIndicator>
+                        </v1:Preference>
+                    </v1:Address>
+                    <!--Optional:-->
+                    <v1:UseCode>string</v1:UseCode>
+                    <!--Optional:-->
+                    <v1:Preference>
+                        <!--Optional:-->
+                        <v1:PriorityRanking>1000.00</v1:PriorityRanking>
+                        <!--Optional:-->
+                        <v1:PreferredIndicator>false</v1:PreferredIndicator>
+                    </v1:Preference>
+                </v1:AddressCommunication>
+                <!--Zero or more repetitions:-->
+                <v1:PhoneCommunication>
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <!--Zero or more repetitions:-->
+                    <v1:CompleteNumber>string</v1:CompleteNumber>
+                    <!--Optional:-->
+                    <v1:CountryCode>254</v1:CountryCode>
+                    <!--Optional:-->
+                    <v1:AreaCode>string</v1:AreaCode>
+                    <!--Zero or more repetitions:-->
+                    <v1:LocalNumber>724326360</v1:LocalNumber>
+                    <!--Zero or more repetitions:-->
+                    <v1:ExtensionNumber>string</v1:ExtensionNumber>
+                    <!--Optional:-->
+                    <v1:UseCode>string</v1:UseCode>
+                    <!--Optional:-->
+                    <v1:Preference>
+                        <!--Optional:-->
+                        <v1:PriorityRanking>1000.00</v1:PriorityRanking>
+                        <!--Optional:-->
+                        <v1:PreferredIndicator>Y</v1:PreferredIndicator>
+                    </v1:Preference>
+                </v1:PhoneCommunication>
+                <!--Zero or more repetitions:-->
+                <v1:EmailCommunication>
+                    <!--Optional:-->
+                    <v1:URI>http://www.test.com/iovis/flammato</v1:URI>
+                    <!--Optional:-->
+                    <v1:UseCode>string</v1:UseCode>
+                    <!--Optional:-->
+                    <v1:Preference>
+                        <!--Optional:-->
+                        <v1:PriorityRanking>1000.00</v1:PriorityRanking>
+                        <!--Optional:-->
+                        <v1:PreferredIndicator>true</v1:PreferredIndicator>
+                    </v1:Preference>
+                </v1:EmailCommunication>
+                <!--Optional:-->
+                <v12:LevelCode>string</v12:LevelCode>
+            </v12:CustomerEO>
+            </v1:RetCustAddRequest>
+         </v1:DataArea>
+      </v1:RetCustAddRequestPM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/PSC/Finacle/Customer/V1/CustomerPSCPort/retCustAddRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="verifyCustomerDetails" bindingOperationName="verifyCustomerDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Customer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:VerifyCustomerDetailsRequestPM>
+         <v11:MessageHeader>
+            <!--Optional:-->
+            <v11:MessageID>?</v11:MessageID>
+            <!--Optional:-->
+            <v11:ActionCode>?</v11:ActionCode>
+            <!--Optional:-->
+            <v11:CreationDateTime>?</v11:CreationDateTime>
+            <!--Optional:-->
+            <v11:CreatedBy>?</v11:CreatedBy>
+            <!--Optional:-->
+            <v11:InstanceID>?</v11:InstanceID>
+            <!--Optional:-->
+            <v11:SenderApplication>
+               <!--Optional:-->
+               <v11:ID>?</v11:ID>
+               <!--Optional:-->
+               <v11:Version>?</v11:Version>
+            </v11:SenderApplication>
+         </v11:MessageHeader>
+         <v1:DataArea>
+            <v1:VerifyCustomerDetailsRequest>
+               <!--Optional:-->
+               <v12:CustomerEO actionCode="?">
+                  <!--Optional:-->
+                  <v11:PartyID>54309392891</v11:PartyID>
+                  <!--You have a CHOICE of the next 2 items at this level-->
+                  <!--Optional:-->
+                  <v11:Person>
+                     <!--Optional:-->
+                     <v11:BirthDateTime>?</v11:BirthDateTime>
+                     <!--Optional:-->
+                     <v11:BirthCountryCode>?</v11:BirthCountryCode>
+                     <!--Zero or more repetitions:-->
+                     <v11:BirthCityName>?</v11:BirthCityName>
+                     <!--Optional:-->
+                     <v11:PreferredCommunicationLanguageCode>?</v11:PreferredCommunicationLanguageCode>
+                     <!--Optional:-->
+                     <v11:GenderCode>?</v11:GenderCode>
+                     <!--Zero or more repetitions:-->
+                     <v11:PersonName>
+                        <!--Optional:-->
+                        <v11:FullName>?</v11:FullName>
+                        <!--Optional:-->
+                        <v11:FirstName>?</v11:FirstName>
+                        <!--Optional:-->
+                        <v11:MiddleName>?</v11:MiddleName>
+                        <!--Optional:-->
+                        <v11:LastName>?</v11:LastName>
+                        <!--Optional:-->
+                        <v11:Title>?</v11:Title>
+                     </v11:PersonName>
+                     <!--Zero or more repetitions:-->
+                     <v11:IdentityDocument>
+                        <!--Optional:-->
+                        <v11:NumberID>?</v11:NumberID>
+                        <!--Optional:-->
+                        <v11:TypeCode>?</v11:TypeCode>
+                        <!--Optional:-->
+                        <v11:IssueDate>?</v11:IssueDate>
+                        <!--Optional:-->
+                        <v11:ExpirationDate>?</v11:ExpirationDate>
+                        <!--Optional:-->
+                        <v11:IssuingCountryCode>?</v11:IssuingCountryCode>
+                        <!--Optional:-->
+                        <v11:IssuingStateCode>?</v11:IssuingStateCode>
+                        <!--Zero or more repetitions:-->
+                        <v11:IssuingLocation>?</v11:IssuingLocation>
+                        <!--Zero or more repetitions:-->
+                        <v11:IssuingAuthority>?</v11:IssuingAuthority>
+                     </v11:IdentityDocument>
+                  </v11:Person>
+                  <!--Optional:-->
+                  <v11:Organization>
+                     <!--Zero or more repetitions:-->
+                     <v11:Name>?</v11:Name>
+                     <!--Optional:-->
+                     <v11:IncorporationDate>?</v11:IncorporationDate>
+                     <!--Optional:-->
+                     <v11:TypeCode>?</v11:TypeCode>
+                     <!--Optional:-->
+                     <v11:RegistrationCode>?</v11:RegistrationCode>
+                  </v11:Organization>
+                  <!--Zero or more repetitions:-->
+                  <v11:AddressCommunication>
+                     <!--Optional:-->
+                     <v11:Address>
+                        <!--Optional:-->
+                        <v11:TypeCode>?</v11:TypeCode>
+                        <!--Optional:-->
+                        <v11:FormatCode>?</v11:FormatCode>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineOne>?</v11:LineOne>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineTwo>?</v11:LineTwo>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineThree>?</v11:LineThree>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineFour>?</v11:LineFour>
+                        <!--Zero or more repetitions:-->
+                        <v11:CityName>?</v11:CityName>
+                        <!--Zero or more repetitions:-->
+                        <v11:StateName>?</v11:StateName>
+                        <!--Zero or more repetitions:-->
+                        <v11:CountyName>?</v11:CountyName>
+                        <!--Optional:-->
+                        <v11:CountryCode>?</v11:CountryCode>
+                        <!--Optional:-->
+                        <v11:PostalCode>?</v11:PostalCode>
+                        <!--Optional:-->
+                        <v11:Preference>
+                           <!--Optional:-->
+                           <v11:PriorityRanking>?</v11:PriorityRanking>
+                           <!--Optional:-->
+                           <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                        </v11:Preference>
+                     </v11:Address>
+                     <!--Optional:-->
+                     <v11:UseCode>?</v11:UseCode>
+                     <!--Optional:-->
+                     <v11:Preference>
+                        <!--Optional:-->
+                        <v11:PriorityRanking>?</v11:PriorityRanking>
+                        <!--Optional:-->
+                        <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                     </v11:Preference>
+                  </v11:AddressCommunication>
+                  <!--Zero or more repetitions:-->
+                  <v11:PhoneCommunication>
+                     <!--You have a CHOICE of the next 2 items at this level-->
+                     <!--Zero or more repetitions:-->
+                     <v11:CompleteNumber>?</v11:CompleteNumber>
+                     <!--Optional:-->
+                     <v11:CountryCode>?</v11:CountryCode>
+                     <!--Optional:-->
+                     <v11:AreaCode>?</v11:AreaCode>
+                     <!--Zero or more repetitions:-->
+                     <v11:LocalNumber>?</v11:LocalNumber>
+                     <!--Zero or more repetitions:-->
+                     <v11:ExtensionNumber>?</v11:ExtensionNumber>
+                     <!--Optional:-->
+                     <v11:UseCode>?</v11:UseCode>
+                     <!--Optional:-->
+                     <v11:Preference>
+                        <!--Optional:-->
+                        <v11:PriorityRanking>?</v11:PriorityRanking>
+                        <!--Optional:-->
+                        <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                     </v11:Preference>
+                  </v11:PhoneCommunication>
+                  <!--Zero or more repetitions:-->
+                  <v11:EmailCommunication>
+                     <!--Optional:-->
+                     <v11:URI>?</v11:URI>
+                     <!--Optional:-->
+                     <v11:UseCode>?</v11:UseCode>
+                     <!--Optional:-->
+                     <v11:Preference>
+                        <!--Optional:-->
+                        <v11:PriorityRanking>?</v11:PriorityRanking>
+                        <!--Optional:-->
+                        <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                     </v11:Preference>
+                  </v11:EmailCommunication>
+                  <!--Optional:-->
+                  <v12:LevelCode>?</v12:LevelCode>
+               </v12:CustomerEO>
+            </v1:VerifyCustomerDetailsRequest>
+         </v1:DataArea>
+      </v1:VerifyCustomerDetailsRequestPM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/PSC/Finacle/Customer/V1/CustomerPSCPort/verifyCustomerDetailsRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Customer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/PM/Finacle/Customer/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Parties/Customer/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v1:VerifyCustomerDetailsRequestPM>
+         <v11:MessageHeader>
+            <!--Optional:-->
+            <v11:MessageID>?</v11:MessageID>
+            <!--Optional:-->
+            <v11:CreatedBy>?</v11:CreatedBy>
+            <!--Optional:-->
+            <v11:SenderApplication>
+               <!--Optional:-->
+               <v11:ID>?</v11:ID>
+               <!--Optional:-->
+               <v11:Version>?</v11:Version>
+            </v11:SenderApplication>
+         </v11:MessageHeader>
+         <v1:DataArea>
+            <v1:VerifyCustomerDetailsRequest>
+               <!--Optional:-->
+               <v12:CustomerEO actionCode="?">
+                  <!--Optional:-->
+                  <v11:PartyID>?</v11:PartyID>
+                  <!--You have a CHOICE of the next 2 items at this level-->
+                  <!--Optional:-->
+                  <v11:Person>
+                     <!--Optional:-->
+                     <v11:BirthDateTime>?</v11:BirthDateTime>
+                     <!--Optional:-->
+                     <v11:BirthCountryCode>?</v11:BirthCountryCode>
+                     <!--Zero or more repetitions:-->
+                     <v11:BirthCityName>?</v11:BirthCityName>
+                     <!--Optional:-->
+                     <v11:PreferredCommunicationLanguageCode>?</v11:PreferredCommunicationLanguageCode>
+                     <!--Optional:-->
+                     <v11:GenderCode>?</v11:GenderCode>
+                     <!--Zero or more repetitions:-->
+                     <v11:PersonName>
+                        <!--Optional:-->
+                        <v11:FullName>?</v11:FullName>
+                        <!--Optional:-->
+                        <v11:FirstName>?</v11:FirstName>
+                        <!--Optional:-->
+                        <v11:MiddleName>?</v11:MiddleName>
+                        <!--Optional:-->
+                        <v11:LastName>?</v11:LastName>
+                        <!--Optional:-->
+                        <v11:Title>?</v11:Title>
+                     </v11:PersonName>
+                     <!--Zero or more repetitions:-->
+                     <v11:IdentityDocument>
+                        <!--Optional:-->
+                        <v11:NumberID>?</v11:NumberID>
+                        <!--Optional:-->
+                        <v11:TypeCode>?</v11:TypeCode>
+                        <!--Optional:-->
+                        <v11:IssueDate>?</v11:IssueDate>
+                        <!--Optional:-->
+                        <v11:ExpirationDate>?</v11:ExpirationDate>
+                        <!--Optional:-->
+                        <v11:IssuingCountryCode>?</v11:IssuingCountryCode>
+                        <!--Optional:-->
+                        <v11:IssuingStateCode>?</v11:IssuingStateCode>
+                        <!--Zero or more repetitions:-->
+                        <v11:IssuingLocation>?</v11:IssuingLocation>
+                        <!--Zero or more repetitions:-->
+                        <v11:IssuingAuthority>?</v11:IssuingAuthority>
+                        <!--Optional:-->
+                        <v11:DocImage1>cid:1393144428533</v11:DocImage1>
+                        <!--Optional:-->
+                        <v11:DocImage2>cid:757327864914</v11:DocImage2>
+                     </v11:IdentityDocument>
+                     <!--Optional:-->
+                     <v11:Signature>
+                        <!--Optional:-->
+                        <v11:SignImage>cid:77179848098</v11:SignImage>
+                     </v11:Signature>
+                  </v11:Person>
+                  <!--Optional:-->
+                  <v11:Organization>
+                     <!--Zero or more repetitions:-->
+                     <v11:Name>?</v11:Name>
+                     <!--Optional:-->
+                     <v11:IncorporationDate>?</v11:IncorporationDate>
+                     <!--Optional:-->
+                     <v11:TypeCode>?</v11:TypeCode>
+                     <!--Optional:-->
+                     <v11:RegistrationCode>?</v11:RegistrationCode>
+                  </v11:Organization>
+                  <!--Zero or more repetitions:-->
+                  <v11:AddressCommunication>
+                     <!--Optional:-->
+                     <v11:Address>
+                        <!--Optional:-->
+                        <v11:TypeCode>?</v11:TypeCode>
+                        <!--Optional:-->
+                        <v11:FormatCode>?</v11:FormatCode>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineOne>?</v11:LineOne>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineTwo>?</v11:LineTwo>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineThree>?</v11:LineThree>
+                        <!--Zero or more repetitions:-->
+                        <v11:LineFour>?</v11:LineFour>
+                        <!--Zero or more repetitions:-->
+                        <v11:CityName>?</v11:CityName>
+                        <!--Zero or more repetitions:-->
+                        <v11:StateName>?</v11:StateName>
+                        <!--Zero or more repetitions:-->
+                        <v11:CountyName>?</v11:CountyName>
+                        <!--Optional:-->
+                        <v11:CountryCode>?</v11:CountryCode>
+                        <!--Optional:-->
+                        <v11:PostalCode>?</v11:PostalCode>
+                        <!--Optional:-->
+                        <v11:Preference>
+                           <!--Optional:-->
+                           <v11:PriorityRanking>?</v11:PriorityRanking>
+                           <!--Optional:-->
+                           <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                        </v11:Preference>
+                     </v11:Address>
+                     <!--Optional:-->
+                     <v11:UseCode>?</v11:UseCode>
+                     <!--Optional:-->
+                     <v11:Preference>
+                        <!--Optional:-->
+                        <v11:PriorityRanking>?</v11:PriorityRanking>
+                        <!--Optional:-->
+                        <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                     </v11:Preference>
+                  </v11:AddressCommunication>
+                  <!--Zero or more repetitions:-->
+                  <v11:PhoneCommunication>
+                     <!--You have a CHOICE of the next 2 items at this level-->
+                     <!--Zero or more repetitions:-->
+                     <v11:CompleteNumber>?</v11:CompleteNumber>
+                     <!--Optional:-->
+                     <v11:CountryCode>?</v11:CountryCode>
+                     <!--Optional:-->
+                     <v11:AreaCode>?</v11:AreaCode>
+                     <!--Zero or more repetitions:-->
+                     <v11:LocalNumber>?</v11:LocalNumber>
+                     <!--Zero or more repetitions:-->
+                     <v11:ExtensionNumber>?</v11:ExtensionNumber>
+                     <!--Optional:-->
+                     <v11:UseCode>?</v11:UseCode>
+                     <!--Optional:-->
+                     <v11:Preference>
+                        <!--Optional:-->
+                        <v11:PriorityRanking>?</v11:PriorityRanking>
+                        <!--Optional:-->
+                        <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                     </v11:Preference>
+                  </v11:PhoneCommunication>
+                  <!--Zero or more repetitions:-->
+                  <v11:EmailCommunication>
+                     <!--Optional:-->
+                     <v11:URI>?</v11:URI>
+                     <!--Optional:-->
+                     <v11:UseCode>?</v11:UseCode>
+                     <!--Optional:-->
+                     <v11:Preference>
+                        <!--Optional:-->
+                        <v11:PriorityRanking>?</v11:PriorityRanking>
+                        <!--Optional:-->
+                        <v11:PreferredIndicator>?</v11:PreferredIndicator>
+                     </v11:Preference>
+                  </v11:EmailCommunication>
+                  <!--Optional:-->
+                  <v12:LevelCode>?</v12:LevelCode>
+               </v12:CustomerEO>
+            </v1:VerifyCustomerDetailsRequest>
+         </v1:DataArea>
+      </v1:VerifyCustomerDetailsRequestPM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/PSC/Finacle/Customer/V1/CustomerPSCPort/verifyCustomerDetailsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AccountPSC" type="wsdl" bindingName="{http://xmlns.equitybank.co.ke/PSC/Finacle/Account/V1}AccountPSCPortBinding" soapVersion="1_1" anonymous="optional" definition="http://10.1.25.52:8011/PSC/Finacle/Account?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.1.25.52:8011/PSC/Finacle/Account?wsdl"><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Account?wsdl</con:url><con:content><![CDATA[<WL5G3N0:definitions name="AccountPSC" targetNamespace="http://xmlns.equitybank.co.ke/PSC/Finacle/Account/V1" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://xmlns.equitybank.co.ke/PM/Finacle/Account/V1" xmlns:WL5G3N2="http://xmlns.equitybank.co.ke/PSC/Finacle/Account/V1" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:pm="http://xmlns.equitybank.co.ke/PM/Finacle/Account/V1" xmlns:psc="http://xmlns.equitybank.co.ke/PSC/Finacle/Account/V1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/PM/Finacle/Account/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FProviderComponents%2FPM%2FFinacle%2FAccount%2FV1%2FAccountPM"/>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="SBAcctAddCustomRequestMessage">
+    <WL5G3N0:part element="WL5G3N1:SBAcctAddCustomRequestPM" name="SBAcctAddCustomRequest"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="SBAcctAddCustomResponseMessage">
+    <WL5G3N0:part element="WL5G3N1:SBAcctAddCustomResponsePM" name="SBAcctAddCustomResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="CustAcctInquiryRequestMessage">
+    <WL5G3N0:part element="WL5G3N1:CustAcctInquiryRequestPM" name="CustAcctInquiryRequest"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="CustAcctInquiryResponseMessage">
+    <WL5G3N0:part element="WL5G3N1:CustAcctInquiryResponsePM" name="CustAcctInquiryResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="AccountPSCPort">
+    <WL5G3N0:operation name="sbAcctAddCustom">
+      <WL5G3N0:input message="WL5G3N2:SBAcctAddCustomRequestMessage"/>
+      <WL5G3N0:output message="WL5G3N2:SBAcctAddCustomResponseMessage"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="custAcctInquiry">
+      <WL5G3N0:input message="WL5G3N2:CustAcctInquiryRequestMessage"/>
+      <WL5G3N0:output message="WL5G3N2:CustAcctInquiryResponseMessage"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="AccountPSCPortBinding" type="WL5G3N2:AccountPSCPort">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="sbAcctAddCustom">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="custAcctInquiry">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="AccountPSCPortBindingQSService">
+    <WL5G3N0:documentation>OSB Service</WL5G3N0:documentation>
+    <WL5G3N0:port binding="WL5G3N2:AccountPSCPortBinding" name="AccountPSCPortBindingQSPort">
+      <WL5G3N3:address location="http://10.1.25.52:8011/PSC/Finacle/Account"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FProviderComponents%2FPM%2FFinacle%2FAccount%2FV1%2FAccountPM</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/PM/Finacle/Account/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/PM/Finacle/Account/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:eo="http://xmlns.equitybank.co.ke/EO/Accounts/Account/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Common/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Accounts/Account/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FAccounts%2FAccount%2FV1%2FAccountEO"/>
+  <!--======================================================================-->
+  <!--============= SBAcctAddCustom Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="SBAcctAddCustomRequestPMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="SBAcctAddCustomRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SBAcctAddCustomRequestPM" type="SBAcctAddCustomRequestPMType"/>
+  <xsd:complexType name="SBAcctAddCustomRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="SBAcctAddCustomRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SBAcctAddCustomRequestType">
+    <xsd:sequence>
+      <xsd:element ref="eo:AccountEO" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SBAcctAddCustomRequest" type="SBAcctAddCustomRequestType"/>
+  <!--======================================================================-->
+  <!--============= SBAcctAddCustom Response =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="SBAcctAddCustomResponsePMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="SBAcctAddCustomResponseDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SBAcctAddCustomResponsePM" type="SBAcctAddCustomResponsePMType"/>
+  <xsd:complexType name="SBAcctAddCustomResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="SBAcctAddCustomResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SBAcctAddCustomResponseType">
+    <xsd:sequence>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SBAcctAddCustomResponse" type="SBAcctAddCustomResponseType"/>
+  <!--======================================================================-->
+  <!--============= CustAcctInquiry Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="CustAcctInquiryRequestPMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="CustAcctInquiryRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CustAcctInquiryRequestPM" type="CustAcctInquiryRequestPMType"/>
+  <xsd:complexType name="CustAcctInquiryRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="CustAcctInquiryRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CustAcctInquiryRequestType">
+    <xsd:sequence>
+      <xsd:element ref="eo:AccountEO" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CustAcctInquiryRequest" type="CustAcctInquiryRequestType"/>
+  <!--======================================================================-->
+  <!--============= CustAcctInquiry Response =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="CustAcctInquiryResponsePMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="CustAcctInquiryResponseDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CustAcctInquiryResponsePM" type="CustAcctInquiryResponsePMType"/>
+  <xsd:complexType name="CustAcctInquiryResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="CustAcctInquiryResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CustAcctInquiryResponseType">
+    <xsd:sequence>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CustAcctInquiryResponse" type="CustAcctInquiryResponseType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCodeLists"/>
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FMeta"/>
+  <xsd:complexType name="BiometricDetailsType">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:complexType name="IdentificationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="IdentifierType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Identification" type="com:IdentificationType"/>
+  <xsd:complexType name="StatusType">
+    <xsd:sequence>
+      <xsd:element name="Code" type="CodeType" minOccurs="0"/>
+      <xsd:element name="EffectiveDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="Description" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Status" type="StatusType"/>
+  <xsd:complexType name="PreferenceType">
+    <xsd:sequence>
+      <xsd:element name="PriorityRanking" type="NumericType" minOccurs="0"/>
+      <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Preference" type="PreferenceType"/>
+  <xsd:complexType name="StopPaymentInstructionType">
+    <xsd:sequence>
+      <xsd:element name="RequestDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="ReasonCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="ReasonDescription" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CountryCode" type="CodeType"/>
+  <xsd:element name="StopPaymentInstruction" type="StopPaymentInstructionType"/>
+  <xsd:complexType name="AddressType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="FormatCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="LineOne" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineTwo" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineThree" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineFour" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CityName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="StateName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CountyName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="CountryCode" minOccurs="0"/>
+      <xsd:element name="PostalCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Address" type="AddressType"/>
+  <xsd:complexType name="AddressCommunicationType">
+    <xsd:sequence>
+      <xsd:element ref="Address" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AddressCommunication" type="AddressCommunicationType"/>
+  <xsd:complexType name="PhoneCommunicationType">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="CompleteNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element name="CountryCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="AreaCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="LocalNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ExtensionNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PhoneCommunication" type="PhoneCommunicationType"/>
+  <xsd:complexType name="EmailCommunicationType">
+    <xsd:sequence>
+      <xsd:element name="URI" type="URIType" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EmailCommunication" type="EmailCommunicationType"/>
+  <xsd:complexType name="ContactType">
+    <xsd:sequence>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Contact" type="ContactType"/>
+  <xsd:complexType name="PersonNameType">
+    <xsd:sequence>
+      <xsd:element name="FullName" type="NameType" minOccurs="0"/>
+      <xsd:element name="FirstName" type="NameType" minOccurs="0"/>
+      <xsd:element name="MiddleName" type="NameType" minOccurs="0"/>
+      <xsd:element name="LastName" type="NameType" minOccurs="0"/>
+      <xsd:element name="Title" type="TextType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonName" type="PersonNameType"/>
+  <xsd:complexType name="LocationType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0"/>
+      <xsd:element ref="Address" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Location" type="LocationType"/>
+  <xsd:complexType name="IdentityDocumentType">
+    <xsd:sequence>
+      <xsd:element name="NumberID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssueDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="ExpirationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="IssuingCountryCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingStateCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingLocation" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IssuingAuthority" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="IdentityDocument" type="IdentityDocumentType"/>
+  <xsd:complexType name="SignatureType">
+    <xsd:sequence>
+      <xsd:element name="SignImage" minOccurs="0" type="xsd:base64Binary"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Signature" type="SignatureType"/>
+  <xsd:complexType name="PersonType">
+    <xsd:sequence>
+      <xsd:element name="BirthDateTime" type="com:DateTimeType" minOccurs="0"/>
+      <xsd:element name="BirthCountryCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="BirthCityName" type="com:NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="PreferredCommunicationLanguageCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="GenderCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="IdentityDocument" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Person" type="PersonType"/>
+  <xsd:complexType name="OrganizationType">
+    <xsd:sequence>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IncorporationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="RegistrationCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Organization" type="OrganizationType"/>
+  <xsd:complexType name="PartyType">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref="Person" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="Organization" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element ref="AddressCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="PhoneCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="EmailCommunication" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Party" type="PartyType"/>
+  <xsd:complexType name="PersonPartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PersonPartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonPartyReference" type="PersonPartyReferenceType"/>
+  <xsd:complexType name="PartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="OrganizationName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="PersonName" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PartyReference" type="PartyReferenceType"/>
+  <xsd:element name="AccountHolder" type="PartyReferenceType"/>
+  <xsd:complexType name="BankType">
+    <xsd:sequence>
+      <xsd:element name="BankID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0"/>
+      <xsd:element name="SWIFTCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Bank" type="BankType"/>
+  <xsd:complexType name="BankBranchType">
+    <xsd:sequence>
+      <xsd:element name="BankBranchID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BankBranch" type="BankBranchType"/>
+  <xsd:element name="AccountID" type="com:IdentifierType"/>
+  <xsd:complexType name="AccountType">
+    <xsd:sequence>
+      <xsd:element ref="AccountID" minOccurs="0"/>
+      <xsd:element ref="AccountHolder" minOccurs="0"/>
+      <xsd:element ref="Bank" minOccurs="0"/>
+      <xsd:element ref="BankBranch" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Account" type="AccountType"/>
+  <xsd:element name="PayeeAccount" type="AccountType"/>
+  <xsd:element name="PayFromAccount" type="AccountType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCodeLists</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FDataTypes"/>
+  <xsd:simpleType name="LanguageCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ImplementationCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="BPEL"/>
+      <xsd:enumeration value="MEDIATOR"/>
+      <xsd:enumeration value="BPMN"/>
+      <xsd:enumeration value="ESB"/>
+      <xsd:enumeration value="Other"/>
+      <xsd:enumeration value="JAVA"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SortDirectionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ASC"/>
+      <xsd:enumeration value="DESC"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LogicalOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="AND"/>
+      <xsd:enumeration value="OR"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="QueryOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="EQUALS"/>
+      <xsd:enumeration value="NOT_EQUALS"/>
+      <xsd:enumeration value="GREATER_THAN"/>
+      <xsd:enumeration value="GREATER_THAN_EQUALS"/>
+      <xsd:enumeration value="LESS_THAN"/>
+      <xsd:enumeration value="LESS_THAN_EQUALS"/>
+      <xsd:enumeration value="CONTAINS"/>
+      <xsd:enumeration value="DOES_NOT_CONTAIN"/>
+      <xsd:enumeration value="LIKE"/>
+      <xsd:enumeration value="NOT_LIKE"/>
+      <xsd:enumeration value="LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="NOT_LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="IS_BLANK"/>
+      <xsd:enumeration value="IS_NOT_BLANK"/>
+      <xsd:enumeration value="BETWEEN"/>
+      <xsd:enumeration value="NOT_BETWEEN"/>
+      <xsd:enumeration value="IN"/>
+      <xsd:enumeration value="NOT_IN"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ResponseCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ID"/>
+      <xsd:enumeration value="OBJECT"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATE"/>
+      <xsd:enumeration value="READ"/>
+      <xsd:enumeration value="READSTATUS"/>
+      <xsd:enumeration value="UPDATE"/>
+      <xsd:enumeration value="DELETE"/>
+      <xsd:enumeration value="SYNC"/>
+      <xsd:enumeration value="CANCEL"/>
+      <xsd:enumeration value="STOP"/>
+      <xsd:enumeration value="VALIDATE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BusinessScopeCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DebugLevelCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Low"/>
+      <xsd:enumeration value="Medium"/>
+      <xsd:enumeration value="High"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SyncActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATEUPDATE"/>
+      <xsd:enumeration value="CREATEREPLACE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FDataTypes</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:complexType name="AmountType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="currencyCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="BinaryObjectType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:base64Binary">
+        <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="CodeType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateType">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateTimeType">
+    <xsd:restriction base="xsd:dateTime"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DurationType">
+    <xsd:restriction base="xsd:duration"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IdentifierType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IndicatorType">
+    <xsd:restriction base="xsd:boolean">
+      <xsd:pattern value="false"/>
+      <xsd:pattern value="true"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="IntegerType">
+    <xsd:restriction base="xsd:integer"/>
+  </xsd:simpleType>
+  <xsd:complexType name="MeasureType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="NameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NumericType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PercentType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:complexType name="QuantityType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="RateType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="baseValue" type="xsd:decimal" use="optional"/>
+        <xsd:attribute name="baseUnitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="TextType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="StringType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="URIType">
+    <xsd:restriction base="xsd:anyURI"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="YearType">
+    <xsd:restriction base="xsd:gYear"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="TimeType">
+    <xsd:restriction base="xsd:time"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="01"/>
+      <xsd:pattern value="02"/>
+      <xsd:pattern value="03"/>
+      <xsd:pattern value="04"/>
+      <xsd:pattern value="05"/>
+      <xsd:pattern value="06"/>
+      <xsd:pattern value="07"/>
+      <xsd:pattern value="08"/>
+      <xsd:pattern value="09"/>
+      <xsd:pattern value="10"/>
+      <xsd:pattern value="11"/>
+      <xsd:pattern value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthDayType">
+    <xsd:restriction base="xsd:gMonthDay"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PositiveIntegerType">
+    <xsd:restriction base="xsd:positiveInteger"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NonNegativeIntegerType">
+    <xsd:restriction base="xsd:nonNegativeInteger">
+      <xsd:minInclusive value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FMeta</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:complexType name="MessageType">
+    <xsd:sequence>
+      <xsd:element ref="com:MessageHeader"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Message" type="com:MessageType"/>
+  <xsd:complexType name="MessageHeaderType">
+    <xsd:sequence>
+      <xsd:element name="MessageID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ActionCode" type="com:ActionCodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CreationDateTime" type="com:DateTimeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CreatedBy" type="com:StringType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="InstanceID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="com:SenderApplication" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="MessageHeader" type="com:MessageHeaderType"/>
+  <xsd:complexType name="SenderApplicationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Version" type="com:StringType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SenderApplication" type="com:SenderApplicationType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FAccounts%2FAccount%2FV1%2FAccountEO</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Accounts/Account/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EO/Accounts/Account/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:bank="http://xmlns.equitybank.co.ke/EO/Entities/Bank/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Common/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Account?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:element name="AccountID" type="com:IdentifierType"/>
+  <xsd:element name="AccountHolder" type="com:PartyReferenceType"/>
+  <xsd:element name="CurrencyCode" type="com:CodeType"/>
+  <xsd:element name="TypeCode" type="com:CodeType"/>
+  <xsd:element name="SubTypeCode" type="com:CodeType"/>
+  <xsd:element name="AvailableBalanceAmount" type="com:AmountType"/>
+  <xsd:element name="BalanceAmount" type="com:AmountType"/>
+  <xsd:element name="UnclearedBalanceAmount" type="com:AmountType"/>
+  <xsd:element name="BlockedBalanceAmount" type="com:AmountType"/>
+  <xsd:complexType name="AccountEOType">
+    <xsd:complexContent>
+      <xsd:extension base="com:AccountType">
+        <xsd:sequence>
+          <xsd:element ref="CurrencyCode" minOccurs="0"/>
+          <xsd:element ref="TypeCode" minOccurs="0"/>
+          <xsd:element ref="SubTypeCode" minOccurs="0"/>
+          <xsd:element ref="AvailableBalanceAmount" minOccurs="0"/>
+          <xsd:element ref="BalanceAmount" minOccurs="0"/>
+          <xsd:element ref="UnclearedBalanceAmount" minOccurs="0"/>
+          <xsd:element ref="BlockedBalanceAmount" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AccountEO" type="AccountEOType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Account</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="custAcctInquiry" bindingOperationName="custAcctInquiry" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Account</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/PM/Finacle/Account/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Accounts/Account/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v11:CustAcctInquiryRequestPM xmlns:v1="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v11="http://xmlns.equitybank.co.ke/PM/Finacle/Account/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Accounts/Account/V1" xmlns:v13="http://xmlns.equitybank.co.ke/EO/Resilience/IdentityDocument/V1">
+    <v1:MessageHeader>
+        <!--Optional:-->
+        <v1:MessageID>string</v1:MessageID>
+        <!--Optional:-->
+        <v1:CreatedBy>SM01534</v1:CreatedBy>
+        <!--Optional:-->
+        <v1:SenderApplication>
+            <!--Optional:-->
+            <v1:ID>string</v1:ID>
+            <!--Optional:-->
+            <v1:Version>string</v1:Version>
+        </v1:SenderApplication>
+    </v1:MessageHeader>
+    <v11:DataArea>
+        <v11:CustAcctInquiryRequest>
+            <!--Optional:-->
+            <v12:AccountEO>
+                <!--Optional:-->
+                <v1:AccountID>string</v1:AccountID>
+                <!--Optional:-->
+                <v1:AccountHolder>
+                    <!--Optional:-->
+                    <v1:PartyID>string</v1:PartyID>
+                    <!--Optional:-->
+                    <v1:Signature>
+                        <!--Optional:-->
+                        <v1:SignImage>ZQ==</v1:SignImage>
+                    </v1:Signature>
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <!--Zero or more repetitions:-->
+                    <v1:OrganizationName>string</v1:OrganizationName>
+                    <!--Optional:-->
+                    <v1:PersonName>
+                        <!--Optional:-->
+                        <v1:FullName>string</v1:FullName>
+                        <!--Optional:-->
+                        <v1:FirstName>string</v1:FirstName>
+                        <!--Optional:-->
+                        <v1:MiddleName>string</v1:MiddleName>
+                        <!--Optional:-->
+                        <v1:LastName>string</v1:LastName>
+                        <!--Optional:-->
+                        <v1:Title>string</v1:Title>
+                    </v1:PersonName>
+                </v1:AccountHolder>
+                <!--Optional:-->
+                <v1:Bank>
+                    <!--Optional:-->
+                    <v1:BankID>54</v1:BankID>
+                    <!--Optional:-->
+                    <v1:Name>string</v1:Name>
+                    <!--Optional:-->
+                    <v1:SWIFTCode>string</v1:SWIFTCode>
+                </v1:Bank>
+                <!--Optional:-->
+                <v1:BankBranch>
+                    <!--Optional:-->
+                    <v1:BankBranchID>string</v1:BankBranchID>
+                    <!--Zero or more repetitions:-->
+                    <v1:Name>string</v1:Name>
+                </v1:BankBranch>
+                <!--Optional:-->
+                <v12:CurrencyCode>string</v12:CurrencyCode>
+                <!--Optional:-->
+                <v12:AccountTypeList>
+                    <!--Zero or more repetitions:-->
+                    <v12:AccountType>
+                        <!--Optional:-->
+                        <v12:TypeCode>string</v12:TypeCode>
+                        <!--Optional:-->
+                        <v12:SubTypeCode>string</v12:SubTypeCode>
+                    </v12:AccountType>
+                </v12:AccountTypeList>
+                <!--Optional:-->
+                <v12:AvailableBalanceAmount currencyCode="string">1000.00</v12:AvailableBalanceAmount>
+                <!--Optional:-->
+                <v12:BalanceAmount currencyCode="string">1000.00</v12:BalanceAmount>
+                <!--Optional:-->
+                <v12:UnclearedBalanceAmount currencyCode="string">1000.00</v12:UnclearedBalanceAmount>
+                <!--Optional:-->
+                <v12:BlockedBalanceAmount currencyCode="string">1000.00</v12:BlockedBalanceAmount>
+            </v12:AccountEO>
+            <!--Optional:-->
+            <v13:IdentityDocumentEO>
+                <!--Optional:-->
+                <v1:PersonName>
+                    <!--Optional:-->
+                    <v1:FullName>string</v1:FullName>
+                    <!--Optional:-->
+                    <v1:FirstName>string</v1:FirstName>
+                    <!--Optional:-->
+                    <v1:MiddleName>string</v1:MiddleName>
+                    <!--Optional:-->
+                    <v1:LastName>string</v1:LastName>
+                    <!--Optional:-->
+                    <v1:Title>string</v1:Title>
+                </v1:PersonName>
+                <!--Optional:-->
+                <v1:IdentityDocument>
+                    <!--Optional:-->
+                    <v1:NumberID>21592534</v1:NumberID>
+                    <!--Optional:-->
+                    <v1:TypeCode>string</v1:TypeCode>
+                    <!--Optional:-->
+                    <v1:IssueDate>2007-10-26</v1:IssueDate>
+                    <!--Optional:-->
+                    <v1:ExpirationDate>2004-02-14</v1:ExpirationDate>
+                    <!--Optional:-->
+                    <v1:IssuingCountryCode>string</v1:IssuingCountryCode>
+                    <!--Optional:-->
+                    <v1:IssuingStateCode>string</v1:IssuingStateCode>
+                    <!--Zero or more repetitions:-->
+                    <v1:IssuingLocation>string</v1:IssuingLocation>
+                    <!--Zero or more repetitions:-->
+                    <v1:IssuingAuthority>string</v1:IssuingAuthority>
+                    <!--Optional:-->
+                    <v1:DocImage1>dmVycmFudHF1ZQ==</v1:DocImage1>
+                    <!--Optional:-->
+                    <v1:DocImage2>dGVtcGVyYXQ=</v1:DocImage2>
+                </v1:IdentityDocument>
+            </v13:IdentityDocumentEO>
+        </v11:CustAcctInquiryRequest>
+    </v11:DataArea>
+</v11:CustAcctInquiryRequestPM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/PSC/Finacle/Account/V1/AccountPSCPort/custAcctInquiryRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="sbAcctAddCustom" bindingOperationName="sbAcctAddCustom" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Account</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/PM/Finacle/Account/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Accounts/Account/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+     <v11:SBAcctAddCustomRequestPM xmlns:v1="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v11="http://xmlns.equitybank.co.ke/PM/Finacle/Account/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Accounts/Account/V1">
+    <v1:MessageHeader>
+        <!--Optional:-->
+        <v1:MessageID>string</v1:MessageID>
+        <!--Optional:-->
+        <v1:CreatedBy>string</v1:CreatedBy>
+        <!--Optional:-->
+        <v1:SenderApplication>
+            <!--Optional:-->
+            <v1:ID>string</v1:ID>
+            <!--Optional:-->
+            <v1:Version>string</v1:Version>
+        </v1:SenderApplication>
+    </v1:MessageHeader>
+    <v11:DataArea>
+        <v11:SBAcctAddCustomRequest>
+            <!--Optional:-->
+            <v12:AccountEO>
+                <!--Optional:-->
+                <v1:AccountID>string</v1:AccountID>
+                <!--Optional:-->
+                <v1:AccountHolder>
+                    <!--Optional:-->
+                    <v1:PartyID>54309392891</v1:PartyID>
+                    <!--Optional:-->
+                    <v1:Signature>
+                        <!--Optional:-->
+                        <v1:SignImage>ZQ==</v1:SignImage>
+                    </v1:Signature>
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <!--Zero or more repetitions:-->
+                    <v1:OrganizationName>string</v1:OrganizationName>
+                    <!--Optional:-->
+                    <v1:PersonName>
+                        <!--Optional:-->
+                        <v1:FullName>JANE NDIRANGU</v1:FullName>
+                        <!--Optional:-->
+                        <v1:FirstName>JANE </v1:FirstName>
+                        <!--Optional:-->
+                        <v1:MiddleName>M</v1:MiddleName>
+                        <!--Optional:-->
+                        <v1:LastName>NDIRANGU</v1:LastName>
+                        <!--Optional:-->
+                        <v1:Title>MR</v1:Title>
+                    </v1:PersonName>
+                </v1:AccountHolder>
+                <!--Optional:-->
+                <v1:Bank>
+                    <!--Optional:-->
+                    <v1:BankID>54</v1:BankID>
+                    <!--Optional:-->
+                    <v1:Name>string</v1:Name>
+                    <!--Optional:-->
+                    <v1:SWIFTCode>string</v1:SWIFTCode>
+                </v1:Bank>
+                <!--Optional:-->
+                <v1:BankBranch>
+                    <!--Optional:-->
+                    <v1:BankBranchID>078</v1:BankBranchID>
+                    <!--Zero or more repetitions:-->
+                    <v1:Name>string</v1:Name>
+                </v1:BankBranch>
+                <!--Optional:-->
+                <v12:CurrencyCode>KES</v12:CurrencyCode>
+                <!--Optional:-->
+                <v12:AccountTypeList>
+                    <!--Zero or more repetitions:-->
+                    <v12:AccountType>
+                        <!--Optional:-->
+                        <v12:TypeCode>SB100</v12:TypeCode>
+                        <!--Optional:-->
+                        <v12:SubTypeCode>SBA</v12:SubTypeCode>
+                    </v12:AccountType>
+                    <v12:AccountType>
+                        <!--Optional:-->
+                        <v12:TypeCode>SB100</v12:TypeCode>
+                        <!--Optional:-->
+                        <v12:SubTypeCode>SBA</v12:SubTypeCode>
+                    </v12:AccountType>
+                    <v12:AccountType>
+                        <!--Optional:-->
+                        <v12:TypeCode>SB103</v12:TypeCode>
+                        <!--Optional:-->
+                        <v12:SubTypeCode>SBA</v12:SubTypeCode>
+                    </v12:AccountType>
+                    <v12:AccountType>
+                        <!--Optional:-->
+                        <v12:TypeCode>SB123</v12:TypeCode>
+                        <!--Optional:-->
+                        <v12:SubTypeCode>SBA</v12:SubTypeCode>
+                    </v12:AccountType>
+                </v12:AccountTypeList>
+                <!--Optional:-->
+                <v12:AvailableBalanceAmount currencyCode="string">1000.00</v12:AvailableBalanceAmount>
+                <!--Optional:-->
+                <v12:BalanceAmount currencyCode="string">1000.00</v12:BalanceAmount>
+                <!--Optional:-->
+                <v12:UnclearedBalanceAmount currencyCode="string">1000.00</v12:UnclearedBalanceAmount>
+                <!--Optional:-->
+                <v12:BlockedBalanceAmount currencyCode="string">1000.00</v12:BlockedBalanceAmount>
+            </v12:AccountEO>
+        </v11:SBAcctAddCustomRequest>
+    </v11:DataArea>
+</v11:SBAcctAddCustomRequestPM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/PSC/Finacle/Account/V1/AccountPSCPort/sbAcctAddCustomRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SignaturePSC" type="wsdl" bindingName="{http://xmlns.equitybank.co.ke/PSC/Finacle/Signature/V1}SignaturePSCPortBinding" soapVersion="1_1" anonymous="optional" definition="http://10.1.25.52:8011/PSC/Finacle/Signature?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.1.25.52:8011/PSC/Finacle/Signature?wsdl"><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Signature?wsdl</con:url><con:content><![CDATA[<WL5G3N0:definitions name="SignaturePSC" targetNamespace="http://xmlns.equitybank.co.ke/PSC/Finacle/Signature/V1" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://xmlns.equitybank.co.ke/PM/Finacle/Signature/V1" xmlns:WL5G3N2="http://xmlns.equitybank.co.ke/PSC/Finacle/Signature/V1" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:pm="http://xmlns.equitybank.co.ke/PM/Finacle/Signature/V1" xmlns:psc="http://xmlns.equitybank.co.ke/PSC/Finacle/Signature/V1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/PM/Finacle/Signature/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FProviderComponents%2FPM%2FFinacle%2FSignature%2FV1%2FSignaturePM"/>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="SignatureAddRequestMessage">
+    <WL5G3N0:part element="WL5G3N1:SignatureAddRequestPM" name="SignatureAddRequest"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="SignatureAddResponseMessage">
+    <WL5G3N0:part element="WL5G3N1:SignatureAddResponsePM" name="SignatureAddResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="SignaturePSCPort">
+    <WL5G3N0:operation name="signatureAdd">
+      <WL5G3N0:input message="WL5G3N2:SignatureAddRequestMessage"/>
+      <WL5G3N0:output message="WL5G3N2:SignatureAddResponseMessage"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="SignaturePSCPortBinding" type="WL5G3N2:SignaturePSCPort">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="signatureAdd">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="SignaturePSCPortBindingQSService">
+    <WL5G3N0:documentation>OSB Service</WL5G3N0:documentation>
+    <WL5G3N0:port binding="WL5G3N2:SignaturePSCPortBinding" name="SignaturePSCPortBindingQSPort">
+      <WL5G3N3:address location="http://10.1.25.52:8011/PSC/Finacle/Signature"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FProviderComponents%2FPM%2FFinacle%2FSignature%2FV1%2FSignaturePM</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/PM/Finacle/Signature/V1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/PM/Finacle/Signature/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:eo="http://xmlns.equitybank.co.ke/EO/Resilience/Signature/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Common/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Resilience/Signature/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FResilience%2FSignature%2FV1%2FSignatureEO"/>
+  <!--======================================================================-->
+  <!--============= SignatureAdd Request =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="SignatureAddRequestPMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="SignatureAddRequestDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SignatureAddRequestPM" type="SignatureAddRequestPMType"/>
+  <xsd:complexType name="SignatureAddRequestDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="SignatureAddRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SignatureAddRequestType">
+    <xsd:sequence>
+      <xsd:element ref="eo:SignatureEO" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SignatureAddRequest" type="SignatureAddRequestType"/>
+  <!--======================================================================-->
+  <!--============= SignatureAdd Response =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="SignatureAddResponsePMType">
+    <xsd:complexContent>
+      <xsd:extension base="com:MessageType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="SignatureAddResponseDataAreaType"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SignatureAddResponsePM" type="SignatureAddResponsePMType"/>
+  <xsd:complexType name="SignatureAddResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="SignatureAddResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SignatureAddResponseType">
+    <xsd:sequence>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SignatureAddResponse" type="SignatureAddResponseType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCodeLists"/>
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FMeta"/>
+  <xsd:complexType name="BiometricDetailsType">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:complexType name="IdentificationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="IdentifierType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Identification" type="com:IdentificationType"/>
+  <xsd:complexType name="StatusType">
+    <xsd:sequence>
+      <xsd:element name="Code" type="CodeType" minOccurs="0"/>
+      <xsd:element name="EffectiveDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="Description" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Status" type="StatusType"/>
+  <xsd:complexType name="PreferenceType">
+    <xsd:sequence>
+      <xsd:element name="PriorityRanking" type="NumericType" minOccurs="0"/>
+      <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Preference" type="PreferenceType"/>
+  <xsd:complexType name="StopPaymentInstructionType">
+    <xsd:sequence>
+      <xsd:element name="RequestDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="ReasonCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="ReasonDescription" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CountryCode" type="CodeType"/>
+  <xsd:element name="StopPaymentInstruction" type="StopPaymentInstructionType"/>
+  <xsd:complexType name="AddressType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="FormatCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="LineOne" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineTwo" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineThree" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LineFour" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CityName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="StateName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CountyName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="CountryCode" minOccurs="0"/>
+      <xsd:element name="PostalCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Address" type="AddressType"/>
+  <xsd:complexType name="AddressCommunicationType">
+    <xsd:sequence>
+      <xsd:element ref="Address" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AddressCommunication" type="AddressCommunicationType"/>
+  <xsd:complexType name="PhoneCommunicationType">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="CompleteNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element name="CountryCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="AreaCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="LocalNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="ExtensionNumber" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PhoneCommunication" type="PhoneCommunicationType"/>
+  <xsd:complexType name="EmailCommunicationType">
+    <xsd:sequence>
+      <xsd:element name="URI" type="URIType" minOccurs="0"/>
+      <xsd:element name="UseCode" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Preference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EmailCommunication" type="EmailCommunicationType"/>
+  <xsd:complexType name="ContactType">
+    <xsd:sequence>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Contact" type="ContactType"/>
+  <xsd:complexType name="PersonNameType">
+    <xsd:sequence>
+      <xsd:element name="FullName" type="NameType" minOccurs="0"/>
+      <xsd:element name="FirstName" type="NameType" minOccurs="0"/>
+      <xsd:element name="MiddleName" type="NameType" minOccurs="0"/>
+      <xsd:element name="LastName" type="NameType" minOccurs="0"/>
+      <xsd:element name="Title" type="TextType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonName" type="PersonNameType"/>
+  <xsd:complexType name="LocationType">
+    <xsd:sequence>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0"/>
+      <xsd:element ref="Address" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Location" type="LocationType"/>
+  <xsd:complexType name="IdentityDocumentType">
+    <xsd:sequence>
+      <xsd:element name="NumberID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssueDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="ExpirationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="IssuingCountryCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingStateCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingLocation" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IssuingAuthority" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="IdentityDocument" type="IdentityDocumentType"/>
+  <xsd:complexType name="SignatureType">
+    <xsd:sequence>
+      <xsd:element name="SignImage" minOccurs="0" type="xsd:base64Binary"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Signature" type="SignatureType"/>
+  <xsd:complexType name="PersonType">
+    <xsd:sequence>
+      <xsd:element name="BirthDateTime" type="com:DateTimeType" minOccurs="0"/>
+      <xsd:element name="BirthCountryCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="BirthCityName" type="com:NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="PreferredCommunicationLanguageCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="GenderCode" type="com:CodeType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="IdentityDocument" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Person" type="PersonType"/>
+  <xsd:complexType name="OrganizationType">
+    <xsd:sequence>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="IncorporationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="TypeCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="RegistrationCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Organization" type="OrganizationType"/>
+  <xsd:complexType name="PartyType">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref="Person" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="Organization" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element ref="AddressCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="PhoneCommunication" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="EmailCommunication" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Party" type="PartyType"/>
+  <xsd:complexType name="PersonPartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PersonPartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonPartyReference" type="PersonPartyReferenceType"/>
+  <xsd:complexType name="PartyReferenceType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="PartyID" type="IdentifierType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="OrganizationName" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="PersonName" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PartyReference" type="PartyReferenceType"/>
+  <xsd:element name="AccountHolder" type="PartyReferenceType"/>
+  <xsd:complexType name="BankType">
+    <xsd:sequence>
+      <xsd:element name="BankID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0"/>
+      <xsd:element name="SWIFTCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Bank" type="BankType"/>
+  <xsd:complexType name="BankBranchType">
+    <xsd:sequence>
+      <xsd:element name="BankBranchID" type="IdentifierType" minOccurs="0"/>
+      <xsd:element name="Name" type="NameType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BankBranch" type="BankBranchType"/>
+  <xsd:element name="AccountID" type="com:IdentifierType"/>
+  <xsd:complexType name="AccountType">
+    <xsd:sequence>
+      <xsd:element ref="AccountID" minOccurs="0"/>
+      <xsd:element ref="AccountHolder" minOccurs="0"/>
+      <xsd:element ref="Bank" minOccurs="0"/>
+      <xsd:element ref="BankBranch" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Account" type="AccountType"/>
+  <xsd:element name="PayeeAccount" type="AccountType"/>
+  <xsd:element name="PayFromAccount" type="AccountType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCodeLists</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FDataTypes"/>
+  <xsd:simpleType name="LanguageCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ImplementationCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="BPEL"/>
+      <xsd:enumeration value="MEDIATOR"/>
+      <xsd:enumeration value="BPMN"/>
+      <xsd:enumeration value="ESB"/>
+      <xsd:enumeration value="Other"/>
+      <xsd:enumeration value="JAVA"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SortDirectionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ASC"/>
+      <xsd:enumeration value="DESC"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LogicalOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="AND"/>
+      <xsd:enumeration value="OR"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="QueryOperatorCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="EQUALS"/>
+      <xsd:enumeration value="NOT_EQUALS"/>
+      <xsd:enumeration value="GREATER_THAN"/>
+      <xsd:enumeration value="GREATER_THAN_EQUALS"/>
+      <xsd:enumeration value="LESS_THAN"/>
+      <xsd:enumeration value="LESS_THAN_EQUALS"/>
+      <xsd:enumeration value="CONTAINS"/>
+      <xsd:enumeration value="DOES_NOT_CONTAIN"/>
+      <xsd:enumeration value="LIKE"/>
+      <xsd:enumeration value="NOT_LIKE"/>
+      <xsd:enumeration value="LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="NOT_LIKE_IGNORE_CASE"/>
+      <xsd:enumeration value="IS_BLANK"/>
+      <xsd:enumeration value="IS_NOT_BLANK"/>
+      <xsd:enumeration value="BETWEEN"/>
+      <xsd:enumeration value="NOT_BETWEEN"/>
+      <xsd:enumeration value="IN"/>
+      <xsd:enumeration value="NOT_IN"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ResponseCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="ID"/>
+      <xsd:enumeration value="OBJECT"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATE"/>
+      <xsd:enumeration value="READ"/>
+      <xsd:enumeration value="READSTATUS"/>
+      <xsd:enumeration value="UPDATE"/>
+      <xsd:enumeration value="DELETE"/>
+      <xsd:enumeration value="SYNC"/>
+      <xsd:enumeration value="CANCEL"/>
+      <xsd:enumeration value="STOP"/>
+      <xsd:enumeration value="VALIDATE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BusinessScopeCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DebugLevelCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Low"/>
+      <xsd:enumeration value="Medium"/>
+      <xsd:enumeration value="High"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SyncActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="CREATEUPDATE"/>
+      <xsd:enumeration value="CREATEREPLACE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FDataTypes</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:complexType name="AmountType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="currencyCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="BinaryObjectType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:base64Binary">
+        <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="CodeType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateType">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateTimeType">
+    <xsd:restriction base="xsd:dateTime"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DurationType">
+    <xsd:restriction base="xsd:duration"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IdentifierType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IndicatorType">
+    <xsd:restriction base="xsd:boolean">
+      <xsd:pattern value="false"/>
+      <xsd:pattern value="true"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="IntegerType">
+    <xsd:restriction base="xsd:integer"/>
+  </xsd:simpleType>
+  <xsd:complexType name="MeasureType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="NameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NumericType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PercentType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:complexType name="QuantityType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="RateType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="baseValue" type="xsd:decimal" use="optional"/>
+        <xsd:attribute name="baseUnitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="TextType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="StringType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="URIType">
+    <xsd:restriction base="xsd:anyURI"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="YearType">
+    <xsd:restriction base="xsd:gYear"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="TimeType">
+    <xsd:restriction base="xsd:time"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="01"/>
+      <xsd:pattern value="02"/>
+      <xsd:pattern value="03"/>
+      <xsd:pattern value="04"/>
+      <xsd:pattern value="05"/>
+      <xsd:pattern value="06"/>
+      <xsd:pattern value="07"/>
+      <xsd:pattern value="08"/>
+      <xsd:pattern value="09"/>
+      <xsd:pattern value="10"/>
+      <xsd:pattern value="11"/>
+      <xsd:pattern value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthDayType">
+    <xsd:restriction base="xsd:gMonthDay"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PositiveIntegerType">
+    <xsd:restriction base="xsd:positiveInteger"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NonNegativeIntegerType">
+    <xsd:restriction base="xsd:nonNegativeInteger">
+      <xsd:minInclusive value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FMeta</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:include schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:complexType name="MessageType">
+    <xsd:sequence>
+      <xsd:element ref="com:MessageHeader"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Message" type="com:MessageType"/>
+  <xsd:complexType name="MessageHeaderType">
+    <xsd:sequence>
+      <xsd:element name="MessageID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ActionCode" type="com:ActionCodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CreationDateTime" type="com:DateTimeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="CreatedBy" type="com:StringType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="InstanceID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="com:SenderApplication" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="MessageHeader" type="com:MessageHeaderType"/>
+  <xsd:complexType name="SenderApplicationType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="com:IdentifierType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Version" type="com:StringType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SenderApplication" type="com:SenderApplicationType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FResilience%2FSignature%2FV1%2FSignatureEO</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/EO/Resilience/Signature/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/EO/Resilience/Signature/V1" xmlns:com="http://xmlns.equitybank.co.ke/EO/Common/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/EO/Common/V1" schemaLocation="http://10.1.25.52:8011/PSC/Finacle/Signature?SCHEMA%2FESBMetadata%2FComponentLibrary%2FEnterpriseComponents%2FEO%2FCommon%2FV1%2FCommonComponents"/>
+  <xsd:complexType name="SignatureEOType">
+    <xsd:sequence>
+      <xsd:element ref="com:Identification" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SignatureEO" type="SignatureEOType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Signature</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="signatureAdd" bindingOperationName="signatureAdd" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.1.25.52:8011/PSC/Finacle/Signature</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://xmlns.equitybank.co.ke/PM/Finacle/Signature/V1" xmlns:v11="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Resilience/Signature/V1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v11:SignatureAddRequestPM xmlns:v1="http://xmlns.equitybank.co.ke/EO/Common/V1" xmlns:v11="http://xmlns.equitybank.co.ke/PM/Finacle/Signature/V1" xmlns:v12="http://xmlns.equitybank.co.ke/EO/Resilience/Signature/V1">
+    <v1:MessageHeader>
+        <!--Optional:-->
+        <v1:MessageID>string</v1:MessageID>
+        <!--Optional:-->
+        <v1:CreatedBy>string</v1:CreatedBy>
+        <!--Optional:-->
+        <v1:SenderApplication>
+            <!--Optional:-->
+            <v1:ID>string</v1:ID>
+            <!--Optional:-->
+            <v1:Version>string</v1:Version>
+        </v1:SenderApplication>
+    </v1:MessageHeader>
+    <v11:DataArea>
+        <v11:SignatureAddRequest>
+            <!--Optional:-->
+            <v12:SignatureEO>
+                <!--Optional:-->
+                <v1:AccountID>0150190289170</v1:AccountID>
+                <!--Optional:-->
+                <v1:Signature>
+                    <!--Optional:-->
+                    <v1:SignImage>/9j/4AAQSkZJRgABAQEAZABkAAD/4Q14aHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hw
+YWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1w
+bWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNC4y
+LjItYzA2MyA1My4zNTI2MjQsIDIwMDgvMDcvMzAtMTg6MTI6MTggICAgICAgICI+DQoJPHJkZjpS
+REYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMj
+Ij4NCgkJPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJs
+Lm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczp4bXBSaWdodHM9Imh0dHA6Ly9ucy5hZG9iZS5j
+b20veGFwLzEuMC9yaWdodHMvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20v
+cGhvdG9zaG9wLzEuMC8iIHhtbG5zOklwdGM0eG1wQ29yZT0iaHR0cDovL2lwdGMub3JnL3N0ZC9J
+cHRjNHhtcENvcmUvMS4wL3htbG5zLyIgeG1wUmlnaHRzOk1hcmtlZD0iVHJ1ZSIgeG1wUmlnaHRz
+OldlYlN0YXRlbWVudD0iIiBwaG90b3Nob3A6QXV0aG9yc1Bvc2l0aW9uPSIiPg0KCQkJPGRjOnJp
+Z2h0cz4NCgkJCQk8cmRmOkFsdD4NCgkJCQkJPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5U
+YWx2aW5kZXIgQ2hvaGFuPC9yZGY6bGk+DQoJCQkJPC9yZGY6QWx0Pg0KCQkJPC9kYzpyaWdodHM+
+DQoJCQk8ZGM6Y3JlYXRvcj4NCgkJCQk8cmRmOlNlcT4NCgkJCQkJPHJkZjpsaT5UYWx2aW5kZXIg
+Q2hvaGFuPC9yZGY6bGk+DQoJCQkJPC9yZGY6U2VxPg0KCQkJPC9kYzpjcmVhdG9yPg0KCQkJPGRj
+OnRpdGxlPg0KCQkJCTxyZGY6QWx0Pg0KCQkJCQk8cmRmOmxpIHhtbDpsYW5nPSJ4LWRlZmF1bHQi
+Lz4NCgkJCQk8L3JkZjpBbHQ+DQoJCQk8L2RjOnRpdGxlPg0KCQkJPHhtcFJpZ2h0czpVc2FnZVRl
+cm1zPg0KCQkJCTxyZGY6QWx0Pg0KCQkJCQk8cmRmOmxpIHhtbDpsYW5nPSJ4LWRlZmF1bHQiLz4N
+CgkJCQk8L3JkZjpBbHQ+DQoJCQk8L3htcFJpZ2h0czpVc2FnZVRlcm1zPg0KCQkJPElwdGM0eG1w
+Q29yZTpDcmVhdG9yQ29udGFjdEluZm8gSXB0YzR4bXBDb3JlOkNpQWRyRXh0YWRyPSIiIElwdGM0
+eG1wQ29yZTpDaUFkckNpdHk9IiIgSXB0YzR4bXBDb3JlOkNpQWRyUmVnaW9uPSIiIElwdGM0eG1w
+Q29yZTpDaUFkclBjb2RlPSIiIElwdGM0eG1wQ29yZTpDaUFkckN0cnk9IiIgSXB0YzR4bXBDb3Jl
+OkNpVGVsV29yaz0iIiBJcHRjNHhtcENvcmU6Q2lFbWFpbFdvcms9IiIgSXB0YzR4bXBDb3JlOkNp
+VXJsV29yaz0iIi8+DQoJCTwvcmRmOkRlc2NyaXB0aW9uPg0KCTwvcmRmOlJERj4NCjwveDp4bXBt
+ZXRhPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAK
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw/eHBhY2tldCBlbmQ9J3cnPz7/2wBDAAIB
+AQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0M
+DgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAz/wAARCABDAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAA
+AAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEI
+I0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlq
+c3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW
+19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL
+/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLR
+ChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOE
+hYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn
+6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD8Y/B2i+cV+WvYvAnhrGw7a5X4deE5r141hhaSRuFU
+fxfSvoLw1+zr47stIF9B4V1O6h2+YoUJ5hXA/gLBu/TGeRxXDO72PSpygtyx4T0RYUT5VHQ16Boc
+KQhfmXj07Vzfh/S7q01DTbfV9J1TSvtFwkDxz27RvkkZUZGN2On1r6S8G/s3eFviR4PFxodxdXU0
+0scMkU2oJG1j8z5mLDpuAChGIBJXODweflfU6faQtdanB+CfCWueOfEFtpuj2Ek91cMFVXPlrgn7
+2T2xzxnjNejJ+y/errtnpuo+LPDdvNfRzybYJPO8tYmCMScgcOyKc7cFh1r3b9lX45+C7RtS8N+I
+odL0XxlNa3FvDZW1nMiQ28ChXzfOoSZ1KjLqQhx8tXPCPwP+Fvi79m7wOPGnhWz8E6Lpd8bEWepy
+yRTx3hJi2SSYAkWbHO4EOWXGTtpcr6ke2T2Pii9+G+uDS7rVLGFta0Wx1WTRZtQtseWLhSBggncu
+dygE9yB3GcmHwfq2p6q1lb6fcSXkMTzSRKvMaqcHd6DPHPevu7w18MtQ+Dvgz41eG4/DE3iC6h1S
+ObTrDzkKanbzWyRw7d6iNSFiBdRkDHJyc18ufGKTWfh8YYdStrXTLfxNqCaJJf6Xd3E0b3cXlSoZ
+EdmIUqzjCncrRnJZQK1jTI+sX0PHr+/jsNMWaZhhiVA9T6UN8MPEniPw4NWtvDusyaay7hcLaPsY
+eoOOV5HI45r7H+AH7F/geWW1v9ShfU/ENqPIu7K4fzEhck5fZ23ZBB9McDmveNU1qzX4i2nhdoLc
+JJF5kjKoCnPAQDoQBjnt0renT5tEYVq3L0Pxr+IPg6a38xZYykndSOleFfEXw+YzJla/SH/gon8G
+LT4bfEmbT7VbeNJj9ohijUbhGwByx69cgD2NfDfxT8N7UkOOtLVOw7qUbnzNq2l7b5uKK6XXdH26
+lJxRW1zn5UfXf/BP3w7Y+JPi7pen3gVlyZ1V13KxQE49j0P4Gv0H0X4hv4W+IGn6TFbyMt5ceV5Z
+jLEAdcfQAn3wRxX5h/s+ePpPhj4+0PXo5DD/AGbcpLIR3j6SKfYoWFfpZ8ZPH+lQHw/4g8M+XfX0
+V1BeRbMHfGcZIP8AdKk57ZP0rGLVtR1IvnVj6iuvBGi22ljUvEVjayRTRB4rhoswqwXC5PO1iOM9
+COOSK+U/22bPRfAv7POmeH9S8ReF/DuuQ6zb6zeaaGSMara+YcKqAruxxjjqNoI619ja14j0jXvg
++LvUbyxtLSeJWczBTGx67X3YCk9ia+H/AAbqHwhu/id8TPFHxsjGreKtMuQNDEdpObS3sY4ysK2q
+N8s0g27mALNkA44yc6es9TSV4wPVvi58a9D8V/Fr4d+A7PS11Cx+JmgXN5ZzNEZIWaLYWiI27cMM
+qwyBlhnHyq17Qvsem6hreh+KrW7msdJLsbeaRI08RJ5iR2khY/xRxyGEvGfnWcqymVFB8b+H/wDw
+Ug+Bvjrx78N9G1LQ/iHoMfgfVYtd0fXLgWyPp8ckJjlE0RfzRaTwSbZECFVCq4KoqsPtj9qH4XWH
+g/xnd6xazzT6drmkxsywLuSF4nZw0e0HAbcN4Gd6ogG3GT2SoOKvJWOVVLu0Xc848Q61Zat8d9Cu
+LW5e8s/7Zku7XcZ2mjSPRLS0nS4U/ICryBNwLEmdk4ZGr5I8VL4mjvfjt4Pj0u/1ax8D6pYXOmXE
+VqsknnXUPmrAisFDPwdxBbAZc5CpX2J8DbyP4iaz4Lklt9slteFZZCgLvG5MpZeefmWFjnhdi/8A
+Avj/APbR/wCCnPjT4W/tMeNNB+F+m/D/AE/wnPr81lf39xaJqF1repIqWzzTBZ1dFHlJEMJjEIOS
+CVXbD4d1NIK9kZ1KnJrJnU/sHftJahoWqata/Epb3Q/GkjPeW0OrQG0lv7MDMZjLf6zGGAABIAyQ
+BjHrut/GfTdQ+Pvhm6hljEOoROWu9y7WwMn5hkKoG7gc/N9M/L9x8XNT/aL+F3w71X4hfD+z199c
+1IDSr7R2mdUkDPHKgyS0ahomyXKxkpnBFcfL8V9S0bXLzRYtLfQ9L8JX8yaFZNukmlsw2Syhslsb
+Fxk/MASAByePlcJ3R3KUZx5Zbnp37fet/wDCWfHjVbpZ0uLeKCGCJg2dxCZb8ie9fGfxasP3Mny+
+te+eNvE761P9udxI2oRhppG+Ys3rnouc5x157DFeL/FqIPDIfWs7++Vy2jZnzP4gs8apJRVvxFF/
+xNZKK2OV7nV2spi0CRlz5iIWQg4II5Ffo7+z54ssV+G/hMzfvVmsoVNtEm2RnwDtTjJZSeBx1696
+/ODw3H/aNmsaswbjBUjI+lfpZ+yJ+z/qWs/Ae88TR3S3WsQ6ZINIUxhhbSFPlkPGPM6gEZ685NZd
+LHRK10z1dtK1v4n+HtSsL3TbfVND0cl4bfV2exhEhT7jkDcR8ykEDKljzxxw3w6+BkXw88KyeEfD
+Wj+EdO/ty9kn1S21C/umg1O1aLY0KPKTKBhyoMbLgsWBwCp6T/gnj8MvFh8XrY+KvFeo69a3Mkl4
+La9w2xlUh484HCs0bAMCcNjPBxY/4KL/ALJWk+OPix4Jhj1q48PalqEy20dzHJJgsJFMUZIPAYkg
+n0+lRGTi9NipRT0b1Pnq6/4J2aPd3kk118Wmj0iZJrayiuLM3lxBIyGJUE25EOF2gvlF+TiEnG36
+n+An7RV9rX7Hvh2S60T/AIRGw0YXWmaZpksgkeCyEsiWgJfDbRFsXBHAQEY6HoP2uv2U7HxN+ypq
+ULwpJqGm2rXEEqfupFuMk7gfujkk8ggV4p4D+BPiLw//AME+7O+1K+uLjWjIJGlyZGjwwyFDZAYN
+uGANp44IroljKlZXm9jGNGFN+4t2LoX7UN74B8UwzJeX1xHb3guN8kwby95+77Kc4xgAHpgGuBPw
+Z8AfEb4z+Nm+IXg/Vr7Ul1J9X0nVNB1RrWO9sJmLZeNW+Zo2cRyGFhIMRtjLMxw/iv8ACXxprNwv
+g/SPLj8UwtBctJDbGJJYCpLyyuzOEVNpJVVLOxjAZcll9m8N/s+fFG1+Bem29xo3h/SV8P3f9o6d
+qMUpsr2Pccy4jWJ4z5oLZVhglznB6EakqTun+JcqcZK25oaN8BPC/wAdhb6L5d/a6Dpen29npmnW
+F0bKy0q1i5V0Kv8AMVyx3OVbJZsMWzXmPjD4YQ+MXuNJ+HEct9oemxSQrrc7rLC0KHbJELpiZJ2l
+k3EuWwAuVJBGdAeH4PiR4qjsdN1SPVLC7cW2pLIZbRgjYMivHGiqzEAgj5VGCuQK9p1Hxl4V/Zk8
+LWvh610XWbpZslUt7N2tbfPQM7BYY4wOwyFAHFV8Wxy3aep8Iax4c1C2kuLRbKPSW0n5J4/MaRTt
+6AEgZ9hjPcjHJ84+KN15tmxz1X86+kfiyfFHivUdW1a9ji0vQXkC6XatAgndSTuZsc7D1GQOMH2H
+zD8ZbhrVpI22ZXuDnP1OTWMoWZ0xnzRPBfEkn/E2koqj4hvM6pJyKK0MWtTuvg9YSay8e1G+box+
+X9en6Gvuz4Kftx+Jvgp4aXTNJ0XS5LVYPKi893bHyYBPY/Nz+nvXwT8MvFb26Rosm0EgHA6CvfvB
+Pi6COxVXbzMjGWNZybWx0RjF/Ed94M+NfxI0r46Q+OLTxhc2+qW7uY7cwL9hVHxvTyh2ODyTkZOC
+OMbnxP8A2jfib8Svippeva14p0+8j0+YTRabFCbaJSuSAzD5sbjkc5965XS7yEncsmzec4XvWkyQ
+vLlf4hgluax9pO+5t7Kl1R6r46/4KD/Ebx/4YuNA1zTtPm0G6JF5HpkoE80Aj/1QDfdyx++DkAHg
+5rpPGn/BTXwXrXwCs9Fm0HWtFsfD/wC81Cwmt4/9JjXOUiYvtZ5Oi57kdDXg1xYssySqsbLHyMGu
+P8aWfn3JkK+ZEW3mJl3YIqo1WtJLQzlh47wdmfZS/tXf8KT8M6B408QeHYU1Xxbc2toLSOYO6Rty
+I/Nx+8IUMc4UHb0Wvoj4nftN+EPiRb6L4NmupbTUvGCLBHaElJRE4+Zj3UBeM+pr84fC3xH0X4t+
+DoPBvjeNpIbK6ivNIvmYlbeaMkrG4BG1SC65Ujhscda9W+LvhyLx/wDtEeFfixpfiqxsfAHhPTVt
+tbmmk8xrWSByxUDGS3O0kf3cdxXT7ONRcyfqee6k6c+WfyPpr4yfs4+Hfgn4S/tLRLKw0l9H2myi
+iiCGVwOAxHLA8ZHcCvm74sfEe1+PXiJrfUvH0uk2Olxhp9K06VoZrVgPmMzvmMDuPlJxz2Ir334q
+aTpf7UPwbt/GV9qDXeg6OJJdPjIeON2jBBlZW2nPGPmHAz618A6jZX/xG8WXRihmuodf1MLZ2cUZ
+VrnaAiuw/i3YyAeAB7VhTrKlJqS+R1+ydZJx3O++Lnxo8K23hCHT9Bury6itQI7WWTfMJBwdwdsb
+geu8bgexwK+ZfHOqw6+7SXDB/M5AZscfQV698Rvgd421nUmjg8Maj5iny32LucnYHCgZ5O0g4HYM
+eitjy3xZ+z/8QJJLizi8H6ybi1iEzoYgJBGcgOFJyV+U8jI/MUvaSm+Zo39lGmrJnkOrLp9vfMv2
+e1/4EmT+dFc34sW88P8AiO8sb+GazvrOVobiCZSkkMikhlYHoQaK2sYXKvgm8kXy8O3avYvBV/MW
+jXzGxjNFFKW447o9O8NXsrR8yNxjFdRp93I68u1FFc63NuhvW0rKBz2/xqvrSK8O4qM464ooohsO
+W5534jH2a4/d/LuPOO9dLYa1dXP7DPxr02SZms9NW2e2jPWEySxSPhvvYLc4JwO2BRRXVgfia8mc
+mYJcifmj3LW/FepaF+xf8P8ARbW8mh0vULS0muYM5WZmtElYsTycuSxGcV4x4wbbaaevZgxPH+ya
+KK4cZ/HZ3YD+EeN+MZ3fUpCWOSvPvzXlfjWZh5nzd8/jRRW1Mmt1PN7+dxdN81FFFdiOE//Z</v1:SignImage>
+                </v1:Signature>
+            </v12:SignatureEO>
+        </v11:SignatureAddRequest>
+    </v11:DataArea>
+</v11:SignatureAddRequestPM>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.equitybank.co.ke/PSC/Finacle/Signature/V1/SignaturePSCPort/signatureAddRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

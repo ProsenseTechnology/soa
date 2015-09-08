@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="FilePS_rest">FilePS REST Service</doc>
+  <grammars>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Misc/File/V1/FileEO.xsd"/>
+    </xsd:schema>
+  </grammars>
+  <resources>
+    <resource path="/fileNotify">
+      <method name="POST" soa:wsdlOperation="fileNotify">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/transferFile">
+            <method name="POST" soa:wsdlOperation="transferFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+  </resources>
+</application>

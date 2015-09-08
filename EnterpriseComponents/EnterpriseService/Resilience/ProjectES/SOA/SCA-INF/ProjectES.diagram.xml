@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
+    <dgm:gService name="ProjectES_direct">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="111" width="137" height="108">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="104" width="156" height="122">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="ProjectES_direct" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(ProjectESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/direct_adapter_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>create</dgm:item>
+            <dgm:item>query</dgm:item>
+            <dgm:item>update</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gReference name="EBiz.ProjectPS">
+        <dgm:body borderWidth="2" arcRad="20" X="851" Y="32" width="136" height="108">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="841" Y="25" width="156" height="122">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="EBiz.ProjectPS" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Project/V1#wsdl.interface(ProjectPSPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/RestAdapterService20x20px.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>createProject</dgm:item>
+            <dgm:item>queryProjectCost</dgm:item>
+            <dgm:item>updateProject</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="Daptiv.ProjectPS">
+        <dgm:body borderWidth="2" arcRad="20" X="851" Y="174" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="841" Y="167" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="Daptiv.ProjectPS" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/Project/V1#wsdl.interface(ProjectPSPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/RestAdapterService20x20px.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>createProjectCostFile</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gComponent name="ProjectRouter">
+        <dgm:body borderWidth="2" arcRad="20" X="226" Y="96" width="130" height="111">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="216" Y="89" width="150" height="127">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="ProjectRouter" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(ProjectESPort)"/>
+        <dgm:outputPort name="CreateProject.CreateProjectPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(CreateProjectPort)"/>
+        <dgm:outputPort name="QueryProject.QueryProjectPL" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(QueryProjectPort)"/>
+        <dgm:outputPort name="UpdateProject.UpdateProjectPL" X="120" Y="65" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(UpdateProjectPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="CreateProject">
+        <dgm:body borderWidth="2" arcRad="20" X="424" Y="26" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="414" Y="19" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="CreateProjectPL" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(CreateProjectPort)"/>
+        <dgm:outputPort name="ProjectProvRouterPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(ProjectESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="QueryProject">
+        <dgm:body borderWidth="2" arcRad="20" X="424" Y="121" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="414" Y="114" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="QueryProjectPL" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(QueryProjectPort)"/>
+        <dgm:outputPort name="ProjectProvRouterPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(ProjectESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="UpdateProject">
+        <dgm:body borderWidth="2" arcRad="20" X="424" Y="216" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="414" Y="209" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="UpdateProjectPL" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(UpdateProjectPort)"/>
+        <dgm:outputPort name="ProjectProvRouterPL" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(ProjectESPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="ProjectProvRouter">
+        <dgm:body borderWidth="2" arcRad="20" X="653" Y="108" width="130" height="86">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="643" Y="101" width="150" height="102">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="ProjectProvRouter" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/ES/Resilience/Project/V1#wsdl.interface(ProjectESPort)"/>
+        <dgm:outputPort name="EBiz.ProjectPS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Project/V1#wsdl.interface(ProjectPSPort)"/>
+        <dgm:outputPort name="Daptiv.ProjectPS" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/Project/V1#wsdl.interface(ProjectPSPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gWireLink source="ProjectES_direct" target="ProjectRouter/ProjectRouter" width="2">
+        <dgm:gSegment X1="168" Y1="121" X2="216" Y2="121"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ProjectRouter/CreateProject.CreateProjectPL" target="CreateProject/CreateProjectPL" width="2">
+        <dgm:gSegment X1="366" Y1="121" X2="390" Y2="121"/>
+        <dgm:gSegment X1="390" Y1="121" X2="390" Y2="51"/>
+        <dgm:gSegment X1="390" Y1="51" X2="414" Y2="51"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ProjectRouter/QueryProject.QueryProjectPL" target="QueryProject/QueryProjectPL" width="2">
+        <dgm:gSegment X1="366" Y1="146" X2="414" Y2="146"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ProjectRouter/UpdateProject.UpdateProjectPL" target="UpdateProject/UpdateProjectPL" width="2">
+        <dgm:gSegment X1="366" Y1="171" X2="390" Y2="171"/>
+        <dgm:gSegment X1="390" Y1="171" X2="390" Y2="241"/>
+        <dgm:gSegment X1="390" Y1="241" X2="414" Y2="241"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="CreateProject/ProjectProvRouterPL" target="ProjectProvRouter/ProjectProvRouter" width="2">
+        <dgm:gSegment X1="564" Y1="51" X2="619" Y2="51"/>
+        <dgm:gSegment X1="619" Y1="51" X2="619" Y2="133"/>
+        <dgm:gSegment X1="619" Y1="133" X2="643" Y2="133"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="QueryProject/ProjectProvRouterPL" target="ProjectProvRouter/ProjectProvRouter" width="2">
+        <dgm:gSegment X1="564" Y1="146" X2="589" Y2="146"/>
+        <dgm:gSegment X1="589" Y1="146" X2="589" Y2="133"/>
+        <dgm:gSegment X1="589" Y1="133" X2="643" Y2="133"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="UpdateProject/ProjectProvRouterPL" target="ProjectProvRouter/ProjectProvRouter" width="2">
+        <dgm:gSegment X1="564" Y1="241" X2="604" Y2="241"/>
+        <dgm:gSegment X1="604" Y1="241" X2="604" Y2="133"/>
+        <dgm:gSegment X1="604" Y1="133" X2="643" Y2="133"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ProjectProvRouter/EBiz.ProjectPS" target="EBiz.ProjectPS" width="2">
+        <dgm:gSegment X1="793" Y1="133" X2="817" Y2="133"/>
+        <dgm:gSegment X1="817" Y1="133" X2="817" Y2="42"/>
+        <dgm:gSegment X1="817" Y1="42" X2="841" Y2="42"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ProjectProvRouter/Daptiv.ProjectPS" target="Daptiv.ProjectPS" width="2">
+        <dgm:gSegment X1="793" Y1="158" X2="817" Y2="158"/>
+        <dgm:gSegment X1="817" Y1="158" X2="817" Y2="184"/>
+        <dgm:gSegment X1="817" Y1="184" X2="841" Y2="184"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+</dgm:gDiagram>

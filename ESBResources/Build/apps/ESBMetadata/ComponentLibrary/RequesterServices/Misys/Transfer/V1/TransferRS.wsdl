@@ -1,0 +1,40 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<definitions name="TransferRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Misys/Transfer/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ro="urn:control.services.tiplus2.misys.com"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Misys/Transfer/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="urn:messages.service.ti.apps.tiplus2.misys.com" schemaLocation="../../AppMetadata/V1/Messages.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="PostingRqMsg">
+        <part name="payload" element="ro:ServiceRequest"/>
+    </message>
+    <message name="PostingRsMsg">
+        <part name="payload" element="ro:ServiceResponse"/>
+    </message>
+    <portType name="TransferRSPort">
+        <operation name="posting">
+            <input message="rs:PostingRqMsg"/>
+            <output message="rs:PostingRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="TransferRSPortBinding" type="rs:TransferRSPort">
+        <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="posting">
+            <soap12:operation soapAction="posting"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="TransferRS">
+        <port name="TransferRSPort" binding="rs:TransferRSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

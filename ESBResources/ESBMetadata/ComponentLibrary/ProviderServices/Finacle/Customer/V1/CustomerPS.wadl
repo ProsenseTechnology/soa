@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="CustomerPS_rest">CustomerPS REST Service</doc>
+  <grammars>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Parties/Customer/V1/CustomerEO.xsd"/>
+    </xsd:schema>
+  </grammars>
+  <resources>
+    <resource path="/retCustAdd">
+      <method name="POST" soa:wsdlOperation="retCustAdd">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/verifyCustomerDetails">
+      <method name="POST" soa:wsdlOperation="verifyCustomerDetails">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getCustomerData">
+      <method name="POST" soa:wsdlOperation="getCustomerData">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/custOnboardUpd">
+      <method name="POST" soa:wsdlOperation="custOnboardUpd">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/custOnboard">
+      <method name="POST" soa:wsdlOperation="custOnboard">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/queryCustomerMaster">
+      <method name="POST" soa:wsdlOperation="queryCustomerMaster">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/accountInqByCustId">
+      <method name="POST" soa:wsdlOperation="accountInqByCustId">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/queryClientEmail">
+      <method name="POST" soa:wsdlOperation="queryClientEmail">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

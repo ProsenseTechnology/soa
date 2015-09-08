@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="AccountPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Account/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Account/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Accounts/Account/V1/AccountEO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="CAAcctAddRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CAAcctAddRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="SBAcctAddCustomRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="SBAcctAddCustomRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="SBAcctAddRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="SBAcctAddRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CustAcctInquiryRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CustAcctInquiryRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="VirtualAcctTestRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="VirtualAcctTestRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="BalInqRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="BalInqRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryAccountMasterRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryAccountMasterRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryDepositAccountMasterRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryDepositAccountMasterRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryLoanAccountMasterRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryLoanAccountMasterRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryAverageBalanceRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryAverageBalanceRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <portType name="AccountPSPort">
+	<operation name="caAcctAdd">
+      <input message="ps:CAAcctAddRqMsg"/>
+      <output message="ps:CAAcctAddRsMsg"/>
+    </operation>
+    <operation name="sbAcctAddCustom">
+      <input message="ps:SBAcctAddCustomRqMsg"/>
+      <output message="ps:SBAcctAddCustomRsMsg"/>
+    </operation>
+    <operation name="sbAcctAdd">
+      <input message="ps:SBAcctAddRqMsg"/>
+      <output message="ps:SBAcctAddRsMsg"/>
+    </operation>
+    <operation name="custAcctInquiry">
+      <input message="ps:CustAcctInquiryRqMsg"/>
+      <output message="ps:CustAcctInquiryRsMsg"/>
+    </operation>
+    <operation name="virtualAcctTest">
+      <input message="ps:VirtualAcctTestRqMsg"/>
+      <output message="ps:VirtualAcctTestRsMsg"/>
+    </operation>
+    <operation name="balInq">
+      <input message="ps:BalInqRqMsg"/>
+      <output message="ps:BalInqRsMsg"/>
+    </operation>
+    <operation name="queryAccountMaster">
+      <input message="ps:QueryAccountMasterRqMsg"/>
+      <output message="ps:QueryAccountMasterRsMsg"/>
+    </operation>
+    <operation name="queryDepositAccountMaster">
+      <input message="ps:QueryDepositAccountMasterRqMsg"/>
+      <output message="ps:QueryDepositAccountMasterRsMsg"/>
+    </operation>
+    <operation name="queryLoanAccountMaster">
+      <input message="ps:QueryLoanAccountMasterRqMsg"/>
+      <output message="ps:QueryLoanAccountMasterRsMsg"/>
+    </operation>
+    <operation name="queryAverageBalance">
+      <input message="ps:QueryAverageBalanceRqMsg"/>
+      <output message="ps:QueryAverageBalanceRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="AccountPSPortBinding" type="ps:AccountPSPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+	<operation name="caAcctAdd">
+      <soap12:operation soapAction="caAcctAdd"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="sbAcctAddCustom">
+      <soap12:operation soapAction="sbAcctAddCustom"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="sbAcctAdd">
+      <soap12:operation soapAction="sbAcctAdd"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="custAcctInquiry">
+      <soap12:operation soapAction="custAcctInquiry"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="virtualAcctTest">
+      <soap12:operation soapAction="virtualAcctTest"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="balInq">
+      <soap12:operation soapAction="balInq"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="queryAccountMaster">
+      <soap12:operation soapAction="queryAccountMaster"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="queryDepositAccountMaster">
+      <soap12:operation soapAction="queryDepositAccountMaster"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="queryLoanAccountMaster">
+      <soap12:operation soapAction="queryLoanAccountMaster"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="queryAverageBalance">
+      <soap12:operation soapAction="queryAverageBalance"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="AccountPS">
+    <port name="AccountPSPort" binding="ps:AccountPSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

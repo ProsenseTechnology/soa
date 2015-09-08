@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/IprsDBAdapterBS" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/IprsDBAdapterBS" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="HumanCollection" type="HumanCollection"/>
+   <xs:complexType name="HumanCollection">
+      <xs:sequence>
+         <xs:element name="Human" type="Human" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Human">
+      <xs:sequence>
+         <xs:element name="rid" type="xs:decimal"/>
+         <xs:element name="pid" type="xs:decimal" minOccurs="0"/>
+         <xs:element name="pin" type="string15" minOccurs="0" nillable="true"/>
+         <xs:element name="name" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="surn" type="string240" minOccurs="0" nillable="true"/>
+         <xs:element name="lastName" type="string240" minOccurs="0" nillable="true"/>
+         <xs:element name="sex" type="string1" minOccurs="0" nillable="true"/>
+         <xs:element name="yearBirth" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="monthBirth" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="dayBirth" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="dateBirth" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="yearDeath" type="string4" minOccurs="0" nillable="true"/>
+         <xs:element name="monthDeath" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="dayDeath" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="ethnic" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="clan" type="string240" minOccurs="0" nillable="true"/>
+         <xs:element name="family" type="string240" minOccurs="0" nillable="true"/>
+         <xs:element name="adrrefBirth" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="adrrefLive" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="adrrefDeath" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="oPid" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="citiz" type="xs:int" minOccurs="0" nillable="true"/>
+         <xs:element name="finger01" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="finger02" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="finger03" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="finger04" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="finger05" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="finger06" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="finger07" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="finger08" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="finger09" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="finger10" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="fingerMain" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="photo" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="signature" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="dataScan" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="dateCreated" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="dateModified" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="modifiedBy" type="string30" minOccurs="0" nillable="true"/>
+         <xs:element name="createdBy" type="string30" minOccurs="0" nillable="true"/>
+         <xs:element name="occup" type="string100" minOccurs="0" nillable="true"/>
+         <xs:element name="dateDeath" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="wsqConverted" type="xs:decimal" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="IprsDBAdapterBSSelect_idInputParameters" type="IprsDBAdapterBSSelect_id"/>
+   <xs:complexType name="IprsDBAdapterBSSelect_id">
+      <xs:sequence>
+         <xs:element name="id" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string15">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="15"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string240">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="240"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string1">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="1"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string4">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="4"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string30">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="30"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string100">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="100"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="ESBPortalProvTest" soapui-version="5.0.0-m-SNAPSHOT" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="ChargePS_rest" type="rest" basePath="" definitionUrl="file:/C:/jdeveloper/mywork/Equity%20SVN%20Code/EQUITY_SVN_18JUNE2015/EQUITY_SVN_22APR2015/soa/trunk/ProviderComponents/ProviderService/ESBMetadata/ComponentLibrary/ProviderServices/ESBPortal/Charge/V1/ChargePS.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/jdeveloper/mywork/Equity%20SVN%20Code/EQUITY_SVN_18JUNE2015/EQUITY_SVN_22APR2015/soa/trunk/ProviderComponents/ProviderService/ESBMetadata/ComponentLibrary/ProviderServices/ESBPortal/Charge/V1/ChargePS.wadl"><con:part><con:url>file:/C:/jdeveloper/mywork/Equity%20SVN%20Code/EQUITY_SVN_18JUNE2015/EQUITY_SVN_22APR2015/soa/trunk/ProviderComponents/ProviderService/ESBMetadata/ComponentLibrary/ProviderServices/ESBPortal/Charge/V1/ChargePS.wadl</con:url><con:content><![CDATA[<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:tns="http://xmlns.oracle.com/ProviderService/ESBPortalProv/ChargePSC" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="ChargePS_rest">RestService</doc>
+  <grammars>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" schemaLocation="../../../../EnterpriseObjects/Transactions/Charge/V1/ChargeEO.xsd"/>
+    </xsd:schema>
+    <schema targetNamespace="http://xmlns.oracle.com/ProviderService/ESBPortalProv/ChargePSC" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"/>
+  </grammars>
+  <resources>
+    <resource path="/getAccountChargesList">
+      <method name="POST" soa:wsdlOperation="getAccountChargesList">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getAccountCharges">
+      <method name="POST" soa:wsdlOperation="getAccountCharges">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getChargeMasterList">
+      <method name="GET" soa:wsdlOperation="getChargeMasterList">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getChargeMaster">
+      <method name="POST" soa:wsdlOperation="getChargeMaster">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>]]></con:content><con:type>http://wadl.dev.java.net/2009/02</con:type></con:part><con:part><con:url>file:\C:\jdeveloper\mywork\Equity%20SVN%20Code\EQUITY_SVN_18JUNE2015\EQUITY_SVN_22APR2015\soa\trunk\ProviderComponents\ProviderService\ESBMetadata\ComponentLibrary\EnterpriseObjects\Transactions\Charge\V1\ChargeEO.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <!--======================================================================-->
+  <!--============= Referenced Elements =============-->
+  <!--======================================================================-->
+  <xsd:element name="ChargeType" type="com:CodeType"/>
+  <xsd:element name="ChargeFrequency" type="com:StringType"/>
+  <xsd:element name="ChargeOption" type="com:StringType"/>
+  <xsd:element name="CreatedBy" type="com:StringType"/>
+  <xsd:element name="CreateDate" type="com:DateType"/>
+  <xsd:element name="UpdatedBy" type="com:StringType"/>
+  <xsd:element name="LastUpdated" type="com:DateType"/>
+  <xsd:element name="WaiveChargesIndicator" type="com:StringType"/>
+  <xsd:element name="Charge" type="ChargeType"/>
+  <!--======================================================================-->
+  <!--============= Charge =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="ChargeType">
+    <xsd:sequence>
+      <xsd:element ref="com:ChargeIdentifier" minOccurs="0"/>
+      <xsd:element ref="ChargeType" minOccurs="0"/>
+      <xsd:element ref="ChargeFrequency" minOccurs="0"/>
+      <xsd:element ref="ChargeOption" minOccurs="0"/>
+      <xsd:element ref="CreatedBy" minOccurs="0"/>
+      <xsd:element ref="CreateDate" minOccurs="0"/>
+      <xsd:element ref="UpdatedBy" minOccurs="0"/>
+      <xsd:element ref="LastUpdated" minOccurs="0"/>
+      <xsd:element ref="WaiveChargesIndicator" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--======================================================================-->
+  <!--============= ESB Message =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="com:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Charge" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Charge" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!--======================================================================-->
+  <!--============= Action Codes =============-->
+  <!--======================================================================-->
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="GetCharges"/>
+      <xsd:enumeration value="GetAccountChargesbyChargeIDAndAcc"/>
+      <xsd:enumeration value="GetAccountChargesbyAccountID"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\jdeveloper\mywork\Equity%20SVN%20Code\EQUITY_SVN_18JUNE2015\EQUITY_SVN_22APR2015\soa\trunk\ProviderComponents\ProviderService\ESBMetadata\ComponentLibrary\EnterpriseObjects\Common\V1\CommonComponents.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+  <xsd:include schemaLocation="CodeLists.xsd"/>
+  <xsd:include schemaLocation="Meta.xsd"/>
+  <!--======================================================================-->
+  <!--============= EO IDs =============-->
+  <!--======================================================================-->
+  <!--============= Accounts =============-->
+  <xsd:element name="AccountID" type="IDType"/>
+  <xsd:element name="AccountType" type="CodeType"/>
+  <xsd:element name="AccountSubType" type="CodeType"/>
+  <!--============= Instruments =============-->
+  <xsd:element name="CardID" type="IDType"/>
+  <xsd:element name="ChequeID" type="IDType"/>
+  <xsd:element name="ChequeBookID" type="IDType"/>
+  <xsd:element name="DemandDraftID" type="IDType"/>
+  <!--============= Misc =============-->
+  <xsd:element name="NotificationID" type="IDType"/>
+  <xsd:element name="DocumentID" type="IDType"/>
+  <xsd:element name="TagID" type="IDType"/>
+  <xsd:element name="FileID" type="IDType"/>
+  <!--============= Parties =============-->
+  <xsd:element name="BillerID" type="IDType"/>
+  <xsd:element name="CustomerID" type="IDType"/>
+  <xsd:element name="EmployeeID" type="IDType"/>
+  <xsd:element name="ValType" type="CodeType"/>
+  <!--============= Resilience =============-->
+  <xsd:element name="BiometricID" type="IDType"/>
+  <xsd:element name="BiometricUserID" type="IDType"/>
+  <xsd:element name="BiometricUserPin" type="StringType"/>
+  <xsd:element name="ListOfValuesID" type="IDType"/>
+  <xsd:element name="NationalIdentityID" type="IDType"/>
+  <xsd:element name="ProjectID" type="IDType"/>
+  <xsd:element name="ProjectNumber" type="IDType"/>
+  <xsd:element name="SignatureID" type="IDType"/>
+  <!--============= Transactions =============-->
+  <xsd:element name="BillID" type="IDType"/>
+  <xsd:element name="PaymentID" type="IDType"/>
+  <xsd:element name="TransferID" type="IDType"/>
+  <xsd:element name="CurrencyExchangeID" type="IDType"/>
+  <xsd:element name="UserID" type="IDType"/>
+  <!--============= Charges =============-->
+  <xsd:element name="ChargeID" type="IDType"/>
+  <!--============= Others =============-->
+  <xsd:element name="BankID" type="IDType"/>
+  <xsd:element name="BranchID" type="IDType"/>
+  <!--======================================================================-->
+  <!--============= EO Identifiers =============-->
+  <!--======================================================================-->
+  <!--============= Others =============-->
+  <xsd:complexType name="BranchIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="BankID" minOccurs="0"/>
+      <xsd:element ref="BankBIC" minOccurs="0"/>
+      <xsd:element ref="BranchID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BranchIdentifier" type="BranchIdentifierType"/>
+  <!--============= Accounts =============-->
+  <xsd:complexType name="AccountIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="BranchIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="AccountID" minOccurs="0"/>
+          <xsd:element ref="IBAN" minOccurs="0"/>
+          <xsd:element ref="AccountCurrency" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AccountIdentifier" type="AccountIdentifierType"/>
+  <!--============= Instruments =============-->
+  <xsd:complexType name="CardIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="AccountIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="CardID" minOccurs="0"/>
+          <xsd:element ref="CardNumber" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CardIdentifier" type="CardIdentifierType"/>
+  <xsd:complexType name="ChequeIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="AccountIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="ChequeID" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ChequeIdentifier" type="ChequeIdentifierType"/>
+  <xsd:complexType name="ChequeBookIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="AccountIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="ChequeBookID" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ChequeBookIdentifier" type="ChequeBookIdentifierType"/>
+  <xsd:complexType name="DemandDraftIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="AccountIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="DemandDraftID" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="DemandDraftIdentifier" type="DemandDraftIdentifierType"/>
+  <!--============= Misc =============-->
+  <xsd:complexType name="NotificationIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="NotificationID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="NotificationIdentifier" type="NotificationIdentifierType"/>
+  <xsd:complexType name="DocumentIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="DocumentID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DocumentIdentifier" type="DocumentIdentifierType"/>
+  <xsd:complexType name="TagIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="TagID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="TagIdentifier" type="TagIdentifierType"/>
+  <xsd:complexType name="FileIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="FileID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="FileIdentifier" type="FileIdentifierType"/>
+  <!--============= Parties =============-->
+  <xsd:complexType name="BillerIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="AccountIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="BillerID" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="BillerIdentifier" type="BillerIdentifierType"/>
+  <xsd:complexType name="CustomerIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="BankID" minOccurs="0"/>
+      <xsd:element ref="CustomerID" minOccurs="0"/>
+      <xsd:element ref="BranchID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CustomerIdentifier" type="CustomerIdentifierType"/>
+  <xsd:complexType name="EmployeeIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="BankID" minOccurs="0"/>
+      <xsd:element ref="BranchID" minOccurs="0"/>
+      <xsd:element ref="EmployeeID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EmployeeIdentifier" type="EmployeeIdentifierType"/>
+  <!--============= Resilience =============-->
+  <xsd:complexType name="BiometricIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="BiometricID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BiometricIdentifier" type="BiometricIdentifierType"/>
+  <xsd:complexType name="BiometricUserIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="BiometricUserID" minOccurs="0"/>
+      <xsd:element ref="BiometricUserPin" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BiometricUserIdentifier" type="BiometricUserIdentifierType"/>
+  <xsd:complexType name="ListOfValuesIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="ListOfValuesID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ListOfValuesIdentifier" type="ListOfValuesIdentifierType"/>
+  <xsd:complexType name="NationalIdentityIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="NationalIdentityID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="NationalIdentityIdentifier" type="NationalIdentityIdentifierType"/>
+  <xsd:complexType name="ProjectIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="ProjectID" minOccurs="0"/>
+      <xsd:element ref="ProjectNumber" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ProjectIdentifier" type="ProjectIdentifierType"/>
+  <xsd:complexType name="SignatureIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="SignatureID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SignatureIdentifier" type="SignatureIdentifierType"/>
+  <!--============= Transactions =============-->
+  <xsd:complexType name="BillIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="BillerIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="BillID" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="BillIdentifier" type="BillIdentifierType"/>
+  <xsd:complexType name="PaymentIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="BankID" minOccurs="0"/>
+      <xsd:element ref="PaymentID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PaymentIdentifier" type="PaymentIdentifierType"/>
+  <xsd:complexType name="TransferIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="BankID" minOccurs="0"/>
+      <xsd:element ref="TransferID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="TransferIdentifier" type="TransferIdentifierType"/>
+  <xsd:complexType name="CurrencyExchangeIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="CurrencyExchangeID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CurrencyExchangeIdentifier" type="CurrencyExchangeIdentifierType"/>
+  <!--============= Charges =============-->
+  <xsd:complexType name="ChargeIdentifierType">
+    <xsd:complexContent>
+      <xsd:extension base="AccountIdentifierType">
+        <xsd:sequence>
+          <xsd:element ref="ChargeID" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ChargeIdentifier" type="ChargeIdentifierType"/>
+  <!--======================================================================-->
+  <!--============= Simple Referenced Elements =============-->
+  <!--======================================================================-->
+  <xsd:element name="Amount" type="AmountType"/>
+  <xsd:element name="BillAmount" type="AmountType"/>
+  <xsd:element name="TotalAmount" type="AmountType"/>
+  <xsd:element name="ChargeAmount" type="AmountType"/>
+  <xsd:element name="NoOfLeaves" type="IntegerType"/>
+  <xsd:element name="PayFromAccount" type="AccountReferenceType"/>
+  <xsd:element name="PayeeAccount" type="AccountReferenceType"/>
+  <xsd:element name="PayFromMobileWallet" type="MobileWalletType"/>
+  <xsd:element name="PayeeMobileWallet" type="MobileWalletType"/>
+  <xsd:element name="ValueDate" type="DateType"/>
+  <xsd:element name="Rate" type="RateType"/>
+  <xsd:element name="Remarks" type="TextType"/>
+  <xsd:element name="BankBIC" type="CodeType"/>
+  <xsd:element name="AccountCurrency" type="CodeType"/>
+  <xsd:element name="UpdatedBy" type="IDType"/>
+  <xsd:element name="ExchangeCurrency" type="CodeType"/>
+  <xsd:element name="TagValue" type="TextType"/>
+  <xsd:element name="UserName" type="NameType"/>
+  <xsd:element name="TemplateName" type="NameType"/>
+  <xsd:element name="MobileWalletVendor" type="NameType"/>
+  <xsd:element name="EffectiveDate" type="DateType"/>
+  <xsd:element name="StartDate" type="DateType"/>
+  <xsd:element name="EndDate" type="DateType"/>
+  <xsd:element name="ItemDate" type="DateType"/>
+  <xsd:element name="OrganizationName" type="NameType"/>
+  <xsd:element name="Role" type="NameType"/>
+  <xsd:element name="ShortDescription" type="TextType"/>
+  <xsd:element name="LongDescription" type="TextType"/>
+  <xsd:element name="SupplierName" type="NameType"/>
+  <xsd:element name="InvoiceNumber" type="IDType"/>
+  <xsd:element name="CardNumber" type="IDType"/>
+  <xsd:element name="PONumber" type="IDType"/>
+  <xsd:element name="FaceImage" type="BinaryObjectType_toRemove"/>
+  <xsd:element name="SignatureImage" type="BinaryObjectType_toRemove"/>
+  <xsd:element name="CountryCode" type="CodeType"/>
+  <xsd:element name="BillRef" type="TextType"/>
+  <xsd:element name="TransactionReferenceNumber" type="IDType"/>
+  <xsd:element name="BranchName" type="StringType"/>
+  <xsd:element name="DealerCode" type="CodeType"/>
+  <xsd:element name="DealerName" type="NameType"/>
+  <xsd:element name="PayMethod" type="StringType"/>
+  <xsd:element name="TransactionDateTime" type="DateTimeType"/>
+  <xsd:element name="CoreTxnRefNo" type="IDType"/>
+  <xsd:element name="TicketNumber" type="StringType"/>
+  <xsd:simpleType name="EmailAddressType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[^@]+@[^\.]+\..+"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="EmailAddress" type="EmailAddressType"/>
+  <xsd:simpleType name="AttachmentPathType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:element name="AttachmentPath" type="AttachmentPathType"/>
+  <xsd:element name="IBAN" type="IDType"/>
+  <xsd:element name="RelationshipManagerName" type="NameType"/>
+  <xsd:element name="RelationshipManagerEmailID" type="EmailAddressType"/>
+  <xsd:element name="BankName" type="StringType"/>
+  <xsd:element name="NomineeRegistrationNumber" type="StringType"/>
+  <xsd:element name="NomineeName" type="StringType"/>
+  <xsd:element name="NomineeMinorIndicator" type="TextType"/>
+  <xsd:element name="NomineeBirthDate" type="DateType"/>
+  <xsd:element name="NomineePercentValue" type="IntegerType"/>
+  <xsd:element name="RelationType" type="StringType"/>
+  <xsd:element name="FaxNumber" type="StringType"/>
+  <xsd:element name="TelexNumber" type="StringType"/>
+  <xsd:element name="RelatedPartyType" type="StringType"/>
+  <xsd:element name="RelatedPartyTypeDesc" type="StringType"/>
+  <xsd:element name="RelatedPartyCode" type="StringType"/>
+  <xsd:element name="RelatedPartyCodeDesc" type="StringType"/>
+  <!--======================================================================-->
+  <!--============= Complex Referenced Elements =============-->
+  <!--======================================================================-->
+  <xsd:complexType name="PartyReferenceType">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element ref="OrganizationName" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element ref="PersonName" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element ref="Address" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PartyReference" type="PartyReferenceType"/>
+  <xsd:complexType name="AccountReferenceType">
+    <xsd:sequence>
+      <xsd:element ref="AccountIdentifier" minOccurs="0"/>
+      <xsd:element ref="PartyReference" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AccountReference" type="AccountReferenceType"/>
+  <xsd:complexType name="StopPaymentInstructionType">
+    <xsd:sequence>
+      <xsd:element name="RequestDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element name="ReasonCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="ReasonDescription" type="TextType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="StopPaymentInstruction" type="StopPaymentInstructionType"/>
+  <xsd:complexType name="PersonNameType">
+    <xsd:sequence>
+      <xsd:element name="FullName" type="NameType" minOccurs="0"/>
+      <xsd:element name="FirstName" type="NameType" minOccurs="0"/>
+      <xsd:element name="MiddleName" type="NameType" minOccurs="0"/>
+      <xsd:element name="LastName" type="NameType" minOccurs="0"/>
+      <xsd:element name="ShortName" type="NameType" minOccurs="0"/>
+      <xsd:element name="Title" type="TextType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PersonName" type="PersonNameType"/>
+  <xsd:complexType name="IdentityDocumentType">
+    <xsd:sequence>
+      <xsd:element name="IdentityDocumentID" type="IDType"/>
+      <xsd:element name="IdentityDocumentSerialNumber" type="IDType" minOccurs="0"/>
+      <xsd:element name="IdentityDocumentType" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssueDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="ExpirationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="IssuingCountry" type="CodeType" minOccurs="0"/>
+      <xsd:element name="IssuingLocation" type="TextType" minOccurs="0"/>
+      <xsd:element name="IssuingAuthority" type="TextType" minOccurs="0"/>
+      <xsd:element name="DocImage1" type="BinaryObjectType_toRemove" minOccurs="0"/>
+      <xsd:element name="DocImage2" type="BinaryObjectType_toRemove" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="IdentityDocument" type="IdentityDocumentType"/>
+  <xsd:element name="PrimaryIdentityDocument" type="IdentityDocumentType"/>
+  <xsd:complexType name="PersonType">
+    <xsd:sequence>
+      <xsd:element ref="PersonName" minOccurs="0"/>
+      <xsd:element name="BirthDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="DeathDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="BirthCountry" type="CodeType" minOccurs="0"/>
+      <xsd:element name="BirthCityName" type="NameType" minOccurs="0"/>
+      <xsd:element name="GenderCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="Language" type="CodeType" minOccurs="0"/>
+      <xsd:element name="NativeLanguage" type="CodeType" minOccurs="0"/>
+      <xsd:element name="Nationality" type="CodeType" minOccurs="0"/>
+      <xsd:element name="MaritalStatus" type="CodeType" minOccurs="0"/>
+      <xsd:element name="MinorIndicator" type="IndicatorType" minOccurs="0"/>
+      <xsd:element name="NREIndicator" type="IndicatorType" minOccurs="0"/>
+      <xsd:element name="Occupation" type="CodeType" minOccurs="0"/>
+      <xsd:element ref="Employment" minOccurs="0"/>
+      <xsd:element ref="FaceImage" minOccurs="0"/>
+      <xsd:element ref="FingerPrints" minOccurs="0"/>
+      <xsd:element ref="IdentityDocument" minOccurs="0"/>
+      <xsd:element ref="SignatureImage" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Person" type="PersonType"/>
+  <xsd:complexType name="CompanyType">
+    <xsd:sequence>
+      <xsd:element name="CompanyName" type="NameType" minOccurs="0"/>
+      <xsd:element name="IncorporationDate" type="DateType" minOccurs="0"/>
+      <xsd:element name="RegistrationCode" type="CodeType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Company" type="CompanyType"/>
+  <xsd:complexType name="AddressType">
+    <xsd:sequence>
+      <xsd:element name="AddressType" type="CodeType" minOccurs="0"/>
+      <xsd:element name="LineOne" type="TextType" minOccurs="0"/>
+      <xsd:element name="LineTwo" type="TextType" minOccurs="0"/>
+      <xsd:element name="LineThree" type="TextType" minOccurs="0"/>
+      <xsd:element name="LineFour" type="TextType" minOccurs="0"/>
+      <xsd:element name="CityName" type="NameType" minOccurs="0"/>
+      <xsd:element name="StateName" type="NameType" minOccurs="0"/>
+      <xsd:element name="CountyName" type="NameType" minOccurs="0"/>
+      <xsd:element name="CountryName" type="NameType" minOccurs="0"/>
+      <xsd:element name="PostalCode" type="CodeType" minOccurs="0"/>
+      <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Address" type="AddressType"/>
+  <xsd:complexType name="PhoneType">
+    <xsd:sequence>
+      <xsd:element name="PhoneType" type="CodeType" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="CompleteNumber" type="TextType" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element name="CountryCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="AreaCode" type="CodeType" minOccurs="0"/>
+          <xsd:element name="LocalNumber" type="TextType" minOccurs="0"/>
+          <xsd:element name="ExtensionNumber" type="TextType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+      <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Phone" type="PhoneType"/>
+  <xsd:complexType name="EmailType">
+    <xsd:sequence>
+      <xsd:element name="EmailType" type="CodeType" minOccurs="0"/>
+      <xsd:element name="EmailAddress" type="EmailAddressType" minOccurs="0"/>
+      <xsd:element name="PreferredIndicator" type="IndicatorType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Email" type="EmailType"/>
+  <xsd:complexType name="BalanceType">
+    <xsd:sequence>
+      <xsd:element name="BalanceType" type="CodeType" minOccurs="0"/>
+      <xsd:element name="BalanceAmount" type="AmountType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Balance" type="BalanceType"/>
+  <xsd:element name="TransactionBalance" type="AmountType"/>
+  <xsd:complexType name="TransactionType">
+    <xsd:sequence>
+      <xsd:element name="TransactionID" type="IDType" minOccurs="0"/>
+      <xsd:element ref="AccountIdentifier" minOccurs="0"/>
+      <xsd:element name="TransactionType" type="CodeType" minOccurs="0"/>
+      <xsd:element name="TransactionCategory" type="CodeType" minOccurs="0"/>
+      <xsd:element name="TransactionSerialNumber" type="IDType" minOccurs="0"/>
+      <xsd:element name="TransactionReferenceNumber" type="IDType" minOccurs="0"/>
+      <xsd:element name="TransactionDescription" type="TextType" minOccurs="0"/>
+      <xsd:element name="InstrumentReferenceNumber" type="IDType" minOccurs="0"/>
+      <xsd:element name="TransactionAmount" type="AmountType" minOccurs="0"/>
+      <xsd:element ref="Remarks" minOccurs="0"/>
+      <xsd:element name="PostedDateTime" type="DateTimeType" minOccurs="0"/>
+      <xsd:element ref="TransactionDateTime" minOccurs="0"/>
+      <xsd:element ref="ValueDate" minOccurs="0"/>
+      <xsd:element ref="TransactionBalance" minOccurs="0"/>
+      <xsd:element ref="Rate" minOccurs="0"/>
+      <xsd:element ref="TicketNumber" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Transaction" type="TransactionType"/>
+  <xsd:complexType name="MobileWalletType">
+    <xsd:sequence>
+      <xsd:element name="MobileNumber" type="IntegerType" minOccurs="0"/>
+      <xsd:element name="MobileUser" type="NameType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="MobileWallet" type="MobileWalletType"/>
+  <xsd:complexType name="FingerPrintType">
+    <xsd:sequence>
+      <xsd:element name="ImageL1" type="BinaryObjectType"/>
+      <xsd:element name="ImageL2" type="BinaryObjectType"/>
+      <xsd:element name="ImageL3" type="BinaryObjectType"/>
+      <xsd:element name="ImageL4" type="BinaryObjectType"/>
+      <xsd:element name="ImageL5" type="BinaryObjectType"/>
+      <xsd:element name="ImageR1" type="BinaryObjectType"/>
+      <xsd:element name="ImageR2" type="BinaryObjectType"/>
+      <xsd:element name="ImageR3" type="BinaryObjectType"/>
+      <xsd:element name="ImageR4" type="BinaryObjectType"/>
+      <xsd:element name="ImageR5" type="BinaryObjectType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="FingerPrints" type="FingerPrintType"/>
+  <xsd:complexType name="EmploymentType">
+    <xsd:sequence>
+      <xsd:element name="CompanyID" type="CodeType" minOccurs="0"/>
+      <xsd:element name="CompanyName" type="CodeType" minOccurs="0"/>
+      <xsd:element name="Income" type="CodeType" minOccurs="0"/>
+      <xsd:element name="Occupation" type="CodeType" minOccurs="0"/>
+      <xsd:element name="EmploymentStatus" type="IntegerType" minOccurs="0"/>
+      <xsd:element name="TimeInEmploymentYY" type="IntegerType" minOccurs="0"/>
+      <xsd:element name="TimeInEmploymentMM" type="IntegerType" minOccurs="0"/>
+      <xsd:element ref="Address" minOccurs="0"/>
+      <xsd:element ref="Phone" minOccurs="0"/>
+      <xsd:element ref="Email" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Employment" type="EmploymentType"/>
+  <xsd:complexType name="TermsAndConditionType">
+    <xsd:sequence>
+      <xsd:element name="AgreementText" type="TextType" minOccurs="0"/>
+      <xsd:element name="AgreementDocument" type="BinaryObjectType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="TermsAndCondition" type="TermsAndConditionType"/>
+  <xsd:complexType name="ItemType">
+    <xsd:sequence>
+      <xsd:element name="ItemID" type="IDType" minOccurs="0"/>
+      <xsd:element name="ItemValue" type="TextType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Item" type="ItemType"/>
+  <xsd:complexType name="GoodsCategoryType">
+    <xsd:sequence>
+      <xsd:element name="Good_Category" type="StringType" minOccurs="0"/>
+      <xsd:element name="Good" type="StringType" minOccurs="0"/>
+      <xsd:element name="Good_Amount" type="AmountType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GoodsCategory" type="GoodsCategoryType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\jdeveloper\mywork\Equity%20SVN%20Code\EQUITY_SVN_18JUNE2015\EQUITY_SVN_22APR2015\soa\trunk\ProviderComponents\ProviderService\ESBMetadata\ComponentLibrary\EnterpriseObjects\Common\V1\CodeLists.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+  <xsd:include schemaLocation="DataTypes.xsd"/>
+  <xsd:simpleType name="LanguageCodeType">
+    <xsd:restriction base="com:StringType"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="Create"/>
+      <xsd:enumeration value="Query"/>
+      <xsd:enumeration value="QueryStatus"/>
+      <xsd:enumeration value="Update"/>
+      <xsd:enumeration value="Delete"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ResponseCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="Success"/>
+      <xsd:enumeration value="Failure"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MsgTypeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="Requester"/>
+      <xsd:enumeration value="Business"/>
+      <xsd:enumeration value="Enterprise"/>
+      <xsd:enumeration value="Provider"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ServiceType">
+    <xsd:restriction base="com:StringType">
+      <!--======================================================================-->
+      <!--============= Business =============-->
+      <!--======================================================================-->
+      <!--============= BackOffice =============-->
+      <xsd:enumeration value="FileBS"/>
+      <!--======================================================================-->
+      <!--============= Enterprise =============-->
+      <!--======================================================================-->
+      <!--============= Accounts =============-->
+      <xsd:enumeration value="AccountES"/>
+      <!--============= Instruments =============-->
+      <xsd:enumeration value="CardES"/>
+      <xsd:enumeration value="ChequeES"/>
+      <xsd:enumeration value="ChequeBookES"/>
+      <!--============= Misc =============-->
+      <xsd:enumeration value="NotificationES"/>
+      <xsd:enumeration value="DocumentES"/>
+      <xsd:enumeration value="TagES"/>
+      <xsd:enumeration value="FileES"/>
+      <!--============= Parties =============-->
+      <xsd:enumeration value="BillerES"/>
+      <xsd:enumeration value="CustomerES"/>
+      <!--============= Resilience =============-->
+      <xsd:enumeration value="BiometricES"/>
+      <xsd:enumeration value="ListOfValuesES"/>
+      <xsd:enumeration value="NationalIdentityES"/>
+      <xsd:enumeration value="ProjectES"/>
+      <xsd:enumeration value="SignatureES"/>
+      <!--============= Transactions =============-->
+      <xsd:enumeration value="BillES"/>
+      <xsd:enumeration value="PaymentES"/>
+      <xsd:enumeration value="TransferES"/>
+      <xsd:enumeration value="CurrencyExchangeES"/>
+      <xsd:enumeration value="StatementES"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\jdeveloper\mywork\Equity%20SVN%20Code\EQUITY_SVN_18JUNE2015\EQUITY_SVN_22APR2015\soa\trunk\ProviderComponents\ProviderService\ESBMetadata\ComponentLibrary\EnterpriseObjects\Common\V1\DataTypes.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+  <xsd:complexType name="AmountType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="currencyCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="BinaryObjectType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:base64Binary">
+        <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="BinaryObjectType_toRemove">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="CodeType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateType">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DateTimeType">
+    <xsd:restriction base="xsd:dateTime"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DurationType">
+    <xsd:restriction base="xsd:duration"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IDType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IndicatorType">
+    <xsd:restriction base="xsd:boolean">
+      <xsd:pattern value="false"/>
+      <xsd:pattern value="true"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="IntegerType">
+    <xsd:restriction base="xsd:integer"/>
+  </xsd:simpleType>
+  <xsd:complexType name="MeasureType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="NameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NumericType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PercentType">
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:complexType name="QuantityType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="RateType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:decimal">
+        <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+        <xsd:attribute name="baseValue" type="xsd:decimal" use="optional"/>
+        <xsd:attribute name="baseUnitCode" type="xsd:normalizedString" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="TextType">
+    <xsd:restriction base="xsd:normalizedString"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="StringType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="URIType">
+    <xsd:restriction base="xsd:anyURI"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="YearType">
+    <xsd:restriction base="xsd:gYear"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="TimeType">
+    <xsd:restriction base="xsd:time"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="01"/>
+      <xsd:pattern value="02"/>
+      <xsd:pattern value="03"/>
+      <xsd:pattern value="04"/>
+      <xsd:pattern value="05"/>
+      <xsd:pattern value="06"/>
+      <xsd:pattern value="07"/>
+      <xsd:pattern value="08"/>
+      <xsd:pattern value="09"/>
+      <xsd:pattern value="10"/>
+      <xsd:pattern value="11"/>
+      <xsd:pattern value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MonthDayType">
+    <xsd:restriction base="xsd:gMonthDay"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PositiveIntegerType">
+    <xsd:restriction base="xsd:positiveInteger"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="NonNegativeIntegerType">
+    <xsd:restriction base="xsd:nonNegativeInteger">
+      <xsd:minInclusive value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\jdeveloper\mywork\Equity%20SVN%20Code\EQUITY_SVN_18JUNE2015\EQUITY_SVN_22APR2015\soa\trunk\ProviderComponents\ProviderService\ESBMetadata\ComponentLibrary\EnterpriseObjects\Common\V1\Meta.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+  <xsd:include schemaLocation="CommonComponents.xsd"/>
+  <xsd:complexType name="ESBMsgType">
+    <xsd:sequence>
+      <xsd:element name="MsgID" type="com:IDType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Source" type="com:IDType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="MsgType" type="com:MsgTypeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Service" type="com:ServiceType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StatusType">
+    <xsd:sequence>
+      <xsd:element name="Code" type="com:CodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Type" type="com:StringType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Text" type="com:TextType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Status" type="com:StatusType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:endpoint>http://localhost:7101/ESB/PS/ESBPortal/REST/Charge</con:endpoint></con:endpoints><con:resource name="/getAccountChargesList" path="/getAccountChargesList"><con:settings/><con:parameters/><con:method name="POST" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>ChequeBookES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/getAccountChargesList</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/getAccountCharges" path="/getAccountCharges"><con:settings/><con:parameters/><con:method name="POST" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>ChequeBookES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/getAccountCharges</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/getChargeMasterList" path="/getChargeMasterList"><con:settings/><con:parameters/><con:method name="POST" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>ChequeBookES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/getChargeMasterList</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/getChargeMaster" path="/getChargeMaster"><con:settings/><con:parameters/><con:method name="POST" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>ChequeBookES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>67890</v1:AccountID>
+        <v1:ChargeID>2</v1:ChargeID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/getChargeMaster</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/updateAccountCharges" path="/updateAccountCharges"><con:settings/><con:parameters/><con:method name="POST" method="POST"><con:settings/><con:parameters/><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>AccountES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:AccountCurrency>USD</v1:AccountCurrency>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+	  <v11:ReferenceNumber>12345</v11:ReferenceNumber>
+      <v11:ChargeOption>Employer</v11:ChargeOption>
+      <v11:UpdatedBy>test2</v11:UpdatedBy>
+	  <v1:ChargeAmount currencyCode="string">234.00</v1:ChargeAmount>
+      <v1:Remarks>Testing</v1:Remarks>
+      <v11:ApprovedBy>Approver</v11:ApprovedBy>
+	  <v11:ChargeStatus>Success</v11:ChargeStatus>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/updateAccountCharges</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/updateChargeMaster" path="/updateChargeMaster"><con:settings/><con:parameters/><con:method name="POST" method="POST"><con:settings/><con:parameters/><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>AccountES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:AccountCurrency>USD</v1:AccountCurrency>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+      <v11:ChargeOption>Employer</v11:ChargeOption>
+      <v11:UpdatedBy>test2</v11:UpdatedBy>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/updateAccountCharges</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/createChargeMaster" path="/createChargeMaster"><con:settings/><con:parameters/><con:method name="POST" method="POST"><con:settings/><con:parameters/><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>AccountES</v1:Service>
+  <!--You have a CHOICE of the next 2 items at this level-->
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <!--Zero or more repetitions:-->
+    <v11:Charge>
+      <v11:ChargeType>SALARY_RUN</v11:ChargeType>
+      <v11:ChargeFrequency>ANNUAL</v11:ChargeFrequency>
+      <v11:CreatedBy>test</v11:CreatedBy>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/createChargeMaster</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/createAccountCharges" path="/createAccountCharges"><con:settings/><con:parameters/><con:method name="POST" method="POST"><con:settings/><con:parameters/><con:request name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>AccountES</v1:Service>
+  <!--You have a CHOICE of the next 2 items at this level-->
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <!--Zero or more repetitions:-->
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:AccountCurrency>KES</v1:AccountCurrency>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+	  <v1:CustomerID>123456789</v1:CustomerID>
+      <v11:ChargeOption>EMPLOYEE</v11:ChargeOption>
+      <v11:CreatedBy>test</v11:CreatedBy>
+	  <v1:ChargeAmount currencyCode="string">1000.00</v1:ChargeAmount>
+      <v1:Remarks>test</v1:Remarks>
+      <v11:ApprovedBy>approver</v11:ApprovedBy>
+      <v11:ApprovedStatus>approve</v11:ApprovedStatus>
+      <v11:WaiveChargesIndicator>N</v11:WaiveChargesIndicator>
+	  <v11:ChargeStatus>string</v11:ChargeStatus>
+    </v11:Charge>
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>67890</v1:AccountID>
+        <v1:AccountCurrency>KES</v1:AccountCurrency>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+	  <v1:CustomerID>123456789</v1:CustomerID>
+      <v11:ChargeOption>EMPLOYEE</v11:ChargeOption>
+      <v11:CreatedBy>test</v11:CreatedBy>
+	  <v1:ChargeAmount currencyCode="string">1000.00</v1:ChargeAmount>
+      <v1:Remarks>test</v1:Remarks>
+      <v11:ApprovedBy>approver</v11:ApprovedBy>
+      <v11:ApprovedStatus>approve</v11:ApprovedStatus>
+      <v11:WaiveChargesIndicator>string</v11:WaiveChargesIndicator>
+      <v11:ChargeStatus>string</v11:ChargeStatus>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/createAccountCharges</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite name="ChargePS_rest TestSuite"><con:description>TestSuite generated for REST Service [ChargePS_rest]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/getAccountChargesList TestCase" searchProperties="true" id="c718d682-c41c-4266-be23-9345f44e8e85"><con:description>TestCase generated for REST Resource [/getAccountChargesList] located at [/getAccountChargesList]</con:description><con:settings/><con:testStep type="restrequest" name="Request 1"><con:settings/><con:config service="ChargePS_rest" resourcePath="/getAccountChargesList" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>ChequeBookES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/getAccountChargesList</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/getAccountCharges TestCase" searchProperties="true" id="b21c3335-5e3a-4767-913c-d426b7c888af"><con:description>TestCase generated for REST Resource [/getAccountCharges] located at [/getAccountCharges]</con:description><con:settings/><con:testStep type="restrequest" name="Request 1"><con:settings/><con:config service="ChargePS_rest" resourcePath="/getAccountCharges" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>ChequeBookES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/getAccountCharges</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/getChargeMasterList TestCase" searchProperties="true" id="1c8efda9-3d81-47d3-b2ee-94512e2d268b"><con:description>TestCase generated for REST Resource [/getChargeMasterList] located at [/getChargeMasterList]</con:description><con:settings/><con:testStep type="restrequest" name="Request 1"><con:settings/><con:config service="ChargePS_rest" resourcePath="/getChargeMasterList" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>ChequeBookES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/getChargeMasterList</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Check Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/getChargeMaster TestCase" searchProperties="true" id="535cd4a6-c5d1-4146-b026-933b0a189898"><con:description>TestCase generated for REST Resource [/getChargeMaster] located at [/getChargeMaster]</con:description><con:settings/><con:testStep type="restrequest" name="Request 1"><con:settings/><con:config service="ChargePS_rest" resourcePath="/getChargeMaster" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>ChequeBookES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/getChargeMaster</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/updateAccountCharges TestCase" searchProperties="true" id="4580cf5b-248e-4e4a-a78d-bdd66d247394"><con:description>TestCase generated for REST Resource [/updateAccountCharges] located at [/updateAccountCharges]</con:description><con:settings/><con:testStep type="restrequest" name="Request 1"><con:settings/><con:config service="ChargePS_rest" resourcePath="/updateAccountCharges" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Request 1" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>AccountES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:AccountCurrency>USD</v1:AccountCurrency>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+	  <v11:ReferenceNumber>12345</v11:ReferenceNumber>
+      <v11:ChargeOption>Employer</v11:ChargeOption>
+      <v11:UpdatedBy>test2</v11:UpdatedBy>
+	  <v1:ChargeAmount currencyCode="string">234.00</v1:ChargeAmount>
+      <v1:Remarks>Testing</v1:Remarks>
+      <v11:ApprovedBy>Approver</v11:ApprovedBy>
+	  <v11:ChargeStatus>Success</v11:ChargeStatus>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/updateAccountCharges</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace eo='http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1';
+/eo:ESBMsg</path><content><![CDATA[<eo:ESBMsg xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:soap-env="http://www.w3.org/2003/05/soap-envelope">
+   <eo:RsData>
+      <com:Status xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns0="http://xmlns.oracle.com/ProviderService/ESBPortalProv/EBP_Charges_Http_Adapter" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+         <com:Code>ESB-00</com:Code>
+         <com:Type>Success</com:Type>
+         <com:Text>Update account charges successful</com:Text>
+      </com:Status>
+   </eo:RsData>
+</eo:ESBMsg>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/updateChargeMaster TestCase" searchProperties="true" id="502b22f7-bb13-4a68-b564-efa3f40913b4"><con:settings/><con:testStep type="restrequest" name="SucessRequest"><con:settings/><con:config service="ChargePS_rest" resourcePath="/updateChargeMaster" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SucessRequest" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>AccountES</v1:Service>
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:AccountCurrency>USD</v1:AccountCurrency>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+      <v11:ChargeOption>Employer</v11:ChargeOption>
+      <v11:UpdatedBy>test2</v11:UpdatedBy>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/updateAccountCharges</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace eo='http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1';
+/eo:ESBMsg</path><content><![CDATA[<eo:ESBMsg xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:soap-env="http://www.w3.org/2003/05/soap-envelope">
+   <eo:RsData>
+      <com:Status xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+         <com:Code>ESB-00</com:Code>
+         <com:Type>Success</com:Type>
+         <com:Text>Update charge master successful</com:Text>
+      </com:Status>
+   </eo:RsData>
+</eo:ESBMsg>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/createChargeMaster TestCase" searchProperties="true" id="60ee303d-6cce-49cc-ab48-14c10052d7b5"><con:settings/><con:testStep type="restrequest" name="SuccessRequest"><con:settings/><con:config service="ChargePS_rest" resourcePath="/createChargeMaster" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SuccessRequest" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>AccountES</v1:Service>
+  <!--You have a CHOICE of the next 2 items at this level-->
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <!--Zero or more repetitions:-->
+    <v11:Charge>
+      <v11:ChargeType>SALARY_RUN</v11:ChargeType>
+      <v11:ChargeFrequency>ANNUAL</v11:ChargeFrequency>
+      <v11:CreatedBy>test</v11:CreatedBy>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/createChargeMaster</con:originalUri><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace eo='http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1';
+/eo:ESBMsg</path><content><![CDATA[<eo:ESBMsg xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1" xmlns:soap-env="http://www.w3.org/2003/05/soap-envelope">
+   <eo:RsData>
+      <eo:Charge xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+         <com:ChargeIdentifier>
+            <com:ChargeID>1</com:ChargeID>
+         </com:ChargeIdentifier>
+      </eo:Charge>
+      <com:Status xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+         <com:Code>ESB-00</com:Code>
+         <com:Type>Success</com:Type>
+         <com:Text>Create charge master successful</com:Text>
+      </com:Status>
+   </eo:RsData>
+</eo:ESBMsg>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/createAccountCharges TestCase" searchProperties="true" id="4870b21f-2b64-4d3e-9d0a-358a2e613cbf"><con:settings/><con:testStep type="restrequest" name="SuccessRequest"><con:settings/><con:config service="ChargePS_rest" resourcePath="/createAccountCharges" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SuccessRequest" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7001/ESB/PS/ESBPortal/REST/Charge</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1">
+  <v1:MsgID>string</v1:MsgID>
+  <v1:Source>string</v1:Source>
+  <v1:MsgType>Enterprise</v1:MsgType>
+  <v1:Service>AccountES</v1:Service>
+  <!--You have a CHOICE of the next 2 items at this level-->
+  <v11:RqData actionCode="GetAccountChargesbyChargeIDAndAcc">
+    <!--Zero or more repetitions:-->
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>12345</v1:AccountID>
+        <v1:AccountCurrency>KES</v1:AccountCurrency>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+	  <v1:CustomerID>123456789</v1:CustomerID>
+      <v11:ChargeOption>EMPLOYEE</v11:ChargeOption>
+      <v11:CreatedBy>test</v11:CreatedBy>
+	  <v1:ChargeAmount currencyCode="string">1000.00</v1:ChargeAmount>
+      <v1:Remarks>test</v1:Remarks>
+      <v11:ApprovedBy>approver</v11:ApprovedBy>
+      <v11:ApprovedStatus>approve</v11:ApprovedStatus>
+      <v11:WaiveChargesIndicator>N</v11:WaiveChargesIndicator>
+	  <v11:ChargeStatus>string</v11:ChargeStatus>
+    </v11:Charge>
+    <v11:Charge>
+      <v1:ChargeIdentifier>
+        <v1:AccountID>67890</v1:AccountID>
+        <v1:AccountCurrency>KES</v1:AccountCurrency>
+        <v1:ChargeID>1</v1:ChargeID>
+      </v1:ChargeIdentifier>
+	  <v1:CustomerID>123456789</v1:CustomerID>
+      <v11:ChargeOption>EMPLOYEE</v11:ChargeOption>
+      <v11:CreatedBy>test</v11:CreatedBy>
+	  <v1:ChargeAmount currencyCode="string">1000.00</v1:ChargeAmount>
+      <v1:Remarks>test</v1:Remarks>
+      <v11:ApprovedBy>approver</v11:ApprovedBy>
+      <v11:ApprovedStatus>approve</v11:ApprovedStatus>
+      <v11:WaiveChargesIndicator>string</v11:WaiveChargesIndicator>
+      <v11:ChargeStatus>string</v11:ChargeStatus>
+    </v11:Charge>
+  </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/ESBPortal/REST/Charge/createAccountCharges</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:restMockService port="8080" path="/" host="Urvashi-PC"><con:settings/><con:properties/></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

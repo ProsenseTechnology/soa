@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Target createdBy="weblogic" id="tgt_PolarisFTP" lastModifiedBy="weblogic" name="PolarisFTPTarget" responseMode="None" xmlns="http://xmlns.oracle.com/mft/target">
+   <TargetType>
+      <SourceTargetCategory xmlns="http://xmlns.oracle.com/mft/category">
+         <Technology>
+            <TechnologyBinding secure="true" type="SSH-FTP" xmlns="http://xmlns.oracle.com/mft/binding">
+               <SSH-FTP authenticationType="password" folder="/Feed/common/GTB_HOME/INTF_HOME/" host="10.11.3.34" password="pw_key_94d77f24-8461-4ee7-b997-ef908870dcd1" privateKeyFile="none" user="polaris">
+                  <FTPCommon/>
+                  <PerformanceAttributes/>
+               </SSH-FTP>
+            </TechnologyBinding>
+         </Technology>
+      </SourceTargetCategory>
+   </TargetType>
+</Target>

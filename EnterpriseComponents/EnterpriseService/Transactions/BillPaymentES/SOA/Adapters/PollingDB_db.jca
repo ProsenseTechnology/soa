@@ -1,0 +1,22 @@
+<adapter-config name="PollingDB" adapter="db" wsdlLocation="../WSDLs/PollingDB.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="equity_staging_db" location="eis/DB/Staging"/>
+  <endpoint-activation portType="PollingDB_ptt" operation="read">
+    <activation-spec className="oracle.tip.adapter.db.DBActivationSpec">
+      <property name="DescriptorName" value="PollingDB.CustMasterTranTable"/>
+      <property name="QueryName" value="PollingDBSelect"/>
+      <property name="MappingsMetaDataURL" value="PollingDB-or-mappings.xml"/>
+      <property name="PollingStrategy" value="LogicalDeletePollingStrategy"/>
+      <property name="MarkReadColumn" value="STATUS"/>
+      <property name="MarkReadValue" value="Y"/>
+      <property name="MarkReservedValue" value="L"/>
+      <property name="MarkUnreadValue" value="2"/>
+      <property name="PollingInterval" value="2"/>
+      <property name="MaxRaiseSize" value="1000"/>
+      <property name="MaxTransactionSize" value="unlimited"/>
+      <property name="NumberOfThreads" value="1"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+    </activation-spec>
+  </endpoint-activation>
+
+</adapter-config>

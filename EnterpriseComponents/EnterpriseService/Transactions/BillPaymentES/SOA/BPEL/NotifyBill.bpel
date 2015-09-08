@@ -1,0 +1,109 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Thu Apr 30 15:00:46 EAT 2015
+  Author:  Msimango
+  Type: BPEL 2.0 Process
+  Purpose: One Way BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="NotifyBill"
+               targetNamespace="http://xmlns.oracle.com/EnterpriseService_Transactions/BillPaymentES/NotifyBill"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/EnterpriseService_Transactions/BillPaymentES/NotifyBill"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:ui="http://xmlns.oracle.com/soa/designer"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/EnterpriseService.Transactions/BillPaymentES/BillPaymentProvRouter"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:ns2="http://xmlns.oracle.com/EnterpriseService.Transactions/TransferES/Chai.PaymentPS"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/EnterpriseService.Transactions/BillPaymentES/StagingDB"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ns5="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+         xmlns:ns4="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap">
+
+  <import ui:processWSDL="true" namespace="http://xmlns.oracle.com/EnterpriseService_Transactions/BillPaymentES/NotifyBill" location="../WSDLs/NotifyBill.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="NotifyBillPL" partnerLinkType="client:NotifyBill" myRole="NotifyBillProvider"/>
+    <partnerLink name="Chai.PaymentPS" partnerLinkType="ns2:Chai.PaymentPS" partnerRole="Chai.PaymentPSProvider"/>
+    <partnerLink name="StagingDB" partnerLinkType="ns3:StagingDB_plt" partnerRole="StagingDB_role"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:NotifyBillRequestMessage"/>
+    <variable name="InvokeChaiPaidProvInputVariable" messageType="ns2:reference_inputMessage"/>
+    <variable name="InvokeChaiPaidProvOutputVariable" messageType="ns2:reference_outputMessage"/>
+    <variable name="InvokeStagingDBInputVariable" messageType="ns3:CustMasterTranTableCollection_msg"/>
+  </variables>
+  <faultHandlers>
+    <catchAll>
+      <sequence name="FaultSequence">
+        <empty name="DoTo"/>
+      </sequence>
+    </catchAll>
+  </faultHandlers>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in NotifyBill.wsdl) -->
+    <receive name="receiveInput" partnerLink="NotifyBillPL" portType="client:NotifyBill" operation="execute" variable="inputVariable" createInstance="yes"/>
+    <assign name="NotifyBill_Nofication_Rq">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("../Transformations/NotifyBill_Nofication_Rq.xsl", $inputVariable.payload)</from>
+        <to variable="InvokeChaiPaidProvInputVariable" part="request"/>
+      </copy>
+    </assign>
+    <invoke name="InvokeChaiPaidProv" bpelx:invokeAsDetail="no" partnerLink="Chai.PaymentPS"
+            portType="ns2:Chai.PaymentPS_ptt" operation="reference" inputVariable="InvokeChaiPaidProvInputVariable"
+            outputVariable="InvokeChaiPaidProvOutputVariable"/>
+    <assign name="NotifyBill_UpdateStatus_Rq">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("../Transformations/NotifyBill_UpdateStatus_Rq.xsl", $inputVariable.payload, "InvokeChaiPaidProvOutputVariable.reply", $InvokeChaiPaidProvOutputVariable.reply)</from>
+        <to variable="InvokeStagingDBInputVariable" part="CustMasterTranTableCollection"/>
+      </copy>
+    </assign>
+    <invoke name="InvokeStagingDB" bpelx:invokeAsDetail="no" partnerLink="StagingDB" portType="ns3:StagingDB_ptt"
+            operation="update" inputVariable="InvokeStagingDBInputVariable"/>
+  </sequence>
+</process>

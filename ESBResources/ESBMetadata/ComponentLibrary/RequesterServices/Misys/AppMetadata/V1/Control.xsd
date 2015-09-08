@@ -1,0 +1,87 @@
+<xsd:schema targetNamespace="urn:control.services.tiplus2.misys.com" elementFormDefault="qualified"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:control.services.tiplus2.misys.com"
+            xmlns:msg="urn:messages.service.ti.apps.tiplus2.misys.com">
+  <xsd:import namespace="urn:messages.service.ti.apps.tiplus2.misys.com" schemaLocation="Messages.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Complex Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="ServiceRequest" type="ServiceRequestType"/>
+  <xsd:element name="ServiceResponse" type="ServiceResponseType"/>
+  <xsd:element name="RequestHeader" type="RequestHeaderType"/>
+  <xsd:element name="ResponseHeader" type="ResponseHeaderType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Complex Types ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ServiceRequestType">
+    <xsd:sequence>
+      <xsd:element ref="RequestHeader" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:element ref="msg:AvailBalRequest" minOccurs="0"/>
+        <xsd:element ref="msg:AccountDetailsRequest" minOccurs="0"/>
+        <xsd:element ref="msg:AccountSearchRequest" minOccurs="0"/>
+        <xsd:element ref="msg:CustomerDetailsRequest" minOccurs="0"/>
+        <xsd:element ref="msg:CustomerSearchRequest" minOccurs="0"/>
+        <xsd:element ref="msg:AccountOfficer" minOccurs="0"/>
+        <xsd:element ref="msg:SwiftAddress" minOccurs="0"/>
+        <xsd:element ref="msg:FXRate" minOccurs="0"/>
+        <xsd:element ref="msg:Posting" minOccurs="0"/>
+        <xsd:element ref="msg:BatchRequest" minOccurs="0"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ServiceResponseType">
+    <xsd:sequence>
+      <xsd:element ref="ResponseHeader" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:element ref="msg:AvailBalResponse" minOccurs="0"/>
+        <xsd:element ref="msg:AccountDetailsResponse" minOccurs="0"/>
+        <xsd:element ref="msg:AccountSearchResponse" minOccurs="0"/>
+        <xsd:element ref="msg:CustomerDetailsResponse" minOccurs="0"/>
+        <xsd:element ref="msg:CustomerSearchResponse" minOccurs="0"/>
+        <xsd:element ref="msg:AccountOfficerResponse" minOccurs="0"/>
+        <xsd:element ref="msg:SwiftAddressResponse" minOccurs="0"/>
+        <xsd:element ref="msg:BatchResponse" minOccurs="0"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RequestHeaderType">
+    <xsd:sequence>
+      <xsd:element name="Service" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Operation" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Credentials">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Password" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Certificate" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Digest" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReplyFormat" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="TargetSystem" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="SourceSystem" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="NoRepair" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="NoOverride" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="TransactionControl" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="CorrelationId" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseHeaderType">
+    <xsd:sequence>
+      <xsd:element name="Service" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Operation" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Status" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Details">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Error" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Warning" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Info" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CorrelationId" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

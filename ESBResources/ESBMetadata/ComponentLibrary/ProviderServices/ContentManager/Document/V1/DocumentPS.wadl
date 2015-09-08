@@ -1,0 +1,231 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1" xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:tns="http://xmlns.oracle.com/ProviderService/DocumentProv/DocumentPSC">
+    <doc title="DocumentPS_rest">DocumentPS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Misc/Document/V1/DocumentEO.xsd"/>
+        </xsd:schema>
+        <schema targetNamespace="http://xmlns.oracle.com/ProviderService/DocumentProv/DocumentPSC" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="searchDocuments_params">
+                <complexType>
+                    <sequence>
+                        <element name="param1" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getAccountList_params">
+                <complexType>
+                    <sequence>
+                        <element name="documentId" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getPendingDocument_params">
+                <complexType>
+                    <sequence>
+                        <element name="numberOfResults" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="countPendingDocument_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+        <schema targetNamespace="http://xmlns.oracle.com/ProviderServiceConnector/DocumentProv/DocumentPSC" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="downloadDocument_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getDocumentID_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getUserTagList_params">
+                <complexType>
+                    <sequence>
+                        <element name="username" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/ProviderServiceConnector/DocumentProv/DocumentPSC" elementFormDefault="qualified">
+            <element name="getDocument_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+   
+    </grammars>
+    <resources>
+        <resource path="/searchDocument">
+         <method name="GET" soa:wsdlOperation="searchDocument">
+            <request>
+               <param name="param1" style="query" soa:expression="$msg.payload/tns:param1" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/accountList">
+         <method name="POST" soa:wsdlOperation="getAccountList">
+           <request>
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/getPendingDocuments">
+         <method name="POST" soa:wsdlOperation="getPendingDocument">
+            <request>
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/countPendingDocuments">
+         <method name="POST" soa:wsdlOperation="countPendingDocument">
+            <request>
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/createAccount">
+         <method name="POST" soa:wsdlOperation="createAccount">
+            <request>
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/createDocument">
+         <method name="POST" soa:wsdlOperation="createDocument">
+            <request>
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/updateDocument">
+         <method name="PUT" soa:wsdlOperation="updateDocument">
+            <request>
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/download/{id}">
+         <method name="GET" soa:wsdlOperation="downloadDocument">
+            <request>
+               <param name="id" style="template" soa:expression="$msg.payload/tns:id" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/createUserTag">
+         <method name="POST" soa:wsdlOperation="createUserTag">
+            <request>
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/documentSubTypeList">
+         <method name="GET" soa:wsdlOperation="getDocumentSubTypeList">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/documentTypeList">
+         <method name="GET" soa:wsdlOperation="getDocumentTypeList">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/contextList">
+         <method name="GET" soa:wsdlOperation="getContextList">
+            <request>
+            <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/userTagList/{username}">
+         <method name="GET" soa:wsdlOperation="getUserTagList">
+            <request>
+               <param name="username" style="template" soa:expression="$msg.payload/tns:username" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/originList">
+         <method name="GET" soa:wsdlOperation="getOriginList">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/createDocumentUserTag">
+         <method name="POST" soa:wsdlOperation="createDocumentUserTag">
+            <request>
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/getDocument">
+         <method name="POST" soa:wsdlOperation="getDocument">
+            <request>
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="eo:ESBMsg"/>
+            </response>
+         </method>
+      </resource>
+    </resources>
+</application>

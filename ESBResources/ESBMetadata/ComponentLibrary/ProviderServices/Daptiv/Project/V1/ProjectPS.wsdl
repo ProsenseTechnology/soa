@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="ProjectPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/Project/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/Project/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Resilience/Project/V1/ProjectEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateProjectCostFileRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateProjectCostFileRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="ProjectPSPort">
+        <operation name="createProjectCostFile">
+            <input message="ps:CreateProjectCostFileRqMsg"/>
+            <output message="ps:CreateProjectCostFileRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="ProjectPSPortBinding" type="ps:ProjectPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="createProjectCostFile">
+            <soap12:operation soapAction="createProjectCostFile"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ProjectPS">
+        <port name="ProjectPSPort" binding="ps:ProjectPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

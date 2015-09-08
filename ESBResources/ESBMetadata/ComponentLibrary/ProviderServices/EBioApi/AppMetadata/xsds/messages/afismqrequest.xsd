@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.innovatrics.com/afismq/schema/message/afismqrequest"
+           xmlns:a="http://www.innovatrics.com/afismq/schema/message/afismqrequest"
+           elementFormDefault="qualified">
+           
+    <xs:include schemaLocation="extract.xsd"/>
+    <xs:include schemaLocation="register.xsd"/>
+    <xs:include schemaLocation="identify.xsd"/>
+    <xs:include schemaLocation="identify_and_register.xsd"/>
+    <xs:include schemaLocation="clear.xsd"/>
+    <xs:include schemaLocation="get_count.xsd"/>
+    <xs:include schemaLocation="ping.xsd"/>
+    <xs:include schemaLocation="get_pending_jobs.xsd"/>
+    <xs:include schemaLocation="delete.xsd"/>
+    <xs:include schemaLocation="update.xsd"/>
+    <xs:include schemaLocation="get.xsd"/>
+    <xs:include schemaLocation="verify.xsd"/>
+    <xs:include schemaLocation="shutdown.xsd"/>
+ 
+    <xs:simpleType name="RequestType">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="Extract"/>
+            <xs:enumeration value="Register"/>
+            <xs:enumeration value="Identify"/>
+            <xs:enumeration value="IdentifyAndRegister"/>
+            <xs:enumeration value="Get"/>
+            <xs:enumeration value="Clear"/>
+            <xs:enumeration value="GetCount"/>
+            <xs:enumeration value="Ping"/>
+            <xs:enumeration value="GetPendingJobs"/>
+            <xs:enumeration value="Delete"/>
+            <xs:enumeration value="Update"/>
+            <xs:enumeration value="Verify"/>
+            <xs:enumeration value="Shutdown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="message">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="header">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="version" type="xs:int"/>
+                            <xs:element name="type" type="a:RequestType"/>
+                            <xs:element name="system" type="xs:string"/>
+                            <xs:element name="request_id" minOccurs="0" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:choice>
+                    <xs:element ref="a:extract"/>
+                    <xs:element ref="a:register"/>
+                    <xs:element ref="a:identify"/>
+                    <xs:element ref="a:identify_and_register"/>
+                    <xs:element ref="a:clear"/>
+                    <xs:element ref="a:get_count"/>
+                    <xs:element ref="a:ping"/>
+                    <xs:element ref="a:get_pending_jobs"/>
+                    <xs:element ref="a:delete"/>
+                    <xs:element ref="a:update"/>
+                    <xs:element ref="a:get"/>
+                    <xs:element ref="a:verify"/>
+                    <xs:element ref="a:shutdown"/>
+                </xs:choice>
+            
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

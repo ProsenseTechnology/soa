@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xsd:element name="MidletRq">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Set">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="String" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                      <xsd:attribute name="Name" type="xsd:string"/>
+                    </xsd:extension>
+                  </xsd:simpleContent>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="Version" type="xsd:float"/>
+      <xsd:attribute name="Mode" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="MidletRs">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Set">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="String" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                      <xsd:attribute name="Name" type="xsd:string"/>
+                    </xsd:extension>
+                  </xsd:simpleContent>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="Version" type="xsd:float"/>
+      <xsd:attribute name="Mode" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

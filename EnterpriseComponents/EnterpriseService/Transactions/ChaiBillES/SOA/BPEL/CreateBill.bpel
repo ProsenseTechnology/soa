@@ -1,0 +1,103 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Tue Apr 28 23:03:22 EAT 2015
+  Author:  Msimango
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="CreateBill"
+               targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+         xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1" location="../WSDLs/ChaiBillESWrapper.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/" ui:processWSDL="true"/>
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="CreateBillPL" partnerLinkType="es:CreateBillPLType" myRole="CreateBillProvider"/>
+    <partnerLink name="BillProvRouterPL" partnerLinkType="es:BillProvRouterPLType"
+                 partnerRole="ChaiBillESProvider"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="RequestVariable" messageType="es:CreateRqMsg"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="ResponseVariable" messageType="es:CreateRsMsg"/>
+  </variables>
+  <faultHandlers>
+    <catchAll>
+      <sequence name="FaultSequence">
+        <assign name="AssignFault">
+          <copy>
+            <from>"ESB-1002001"</from>
+            <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Code</to>
+          </copy>
+          <copy>
+            <from>"Failure"</from>
+            <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Type</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$ResponseVariable.payload/eo:RsData/com:Status/com:Text</to>
+          </copy>
+        </assign>
+        <reply name="ReplyResponse" variable="ResponseVariable" partnerLink="CreateBillPL"
+               portType="es:CreateBillPort" operation="execute"/>
+      </sequence>
+    </catchAll>
+  </faultHandlers>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="MainSequence">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in CreateBill.wsdl) -->
+    <receive name="ReceiveRequest" partnerLink="CreateBillPL" portType="es:CreateBillPort" operation="execute" variable="RequestVariable" createInstance="yes"/>
+    <invoke name="InvokeBillProv" partnerLink="BillProvRouterPL"
+            portType="es:ChaiBillESPort" operation="create" inputVariable="RequestVariable"
+            outputVariable="ResponseVariable" bpelx:invokeAsDetail="no"/>
+    <!-- Generate reply to synchronous request -->
+    <reply name="ReplyResponse" partnerLink="CreateBillPL" portType="es:CreateBillPort" operation="execute" variable="ResponseVariable"/>
+  </sequence>
+</process>

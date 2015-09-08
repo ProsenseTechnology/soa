@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="ChargeRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Charge/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="CreateCharge.CreateChargePL.execute">
+            <action>
+               <assign>
+                  <copy expression="$in" target="$out"/>
+               </assign>
+               <invoke reference="CreateCharge.CreateChargePL" operation="execute">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in" target="$out"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="QueryCharge.QueryChargePL.execute">
+            <action>
+               <assign>
+                  <copy expression="$in" target="$out"/>
+               </assign>
+               <invoke reference="QueryCharge.QueryChargePL" operation="execute">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in" target="$out"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="UpdateCharge.UpdateChargePL.execute">
+            <action>
+               <assign>
+                  <copy expression="$in" target="$out"/>
+               </assign>
+               <invoke reference="UpdateCharge.UpdateChargePL" operation="execute">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in" target="$out"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+</Mediator>

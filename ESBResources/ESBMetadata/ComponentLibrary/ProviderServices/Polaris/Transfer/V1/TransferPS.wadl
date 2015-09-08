@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1" xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="TransferPS_rest">TransferPS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Transactions/Transfer/V1/TransferEO.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>       
+         <resource path="/createNEFTInwardFile">
+            <method name="POST" soa:wsdlOperation="createNEFTInwardFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/createRTGSInwardFile">
+            <method name="POST" soa:wsdlOperation="createRTGSInwardFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>      
+         <resource path="/createNEFTOutwardRefStatusFile">
+            <method name="POST" soa:wsdlOperation="createNEFTOutwardRefStatusFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/createRTGSOutwardRefStatusFile">
+            <method name="POST" soa:wsdlOperation="createRTGSOutwardRefStatusFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/readAccountEntryPostingReqFile">
+            <method name="POST" soa:wsdlOperation="readAccountEntryPostingReqFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/createAccountEntryPostingRespFile">
+            <method name="POST" soa:wsdlOperation="createAccountEntryPostingRespFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/readRTGSOutwardReqFile">
+            <method name="POST" soa:wsdlOperation="readRTGSOutwardReqFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/createRTGSOutwardRespFile">
+            <method name="POST" soa:wsdlOperation="createRTGSOutwardRespFile">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

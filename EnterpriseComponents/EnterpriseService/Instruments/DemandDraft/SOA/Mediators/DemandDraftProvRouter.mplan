@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="DemandDraftProvRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Instruments/DemandDraft/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator"
+          xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/DemandDraft/V1">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="Polaris.DemandDraftPS.createDemandDraftStatusUpdateFile">
+            <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode='DemandDraftStatusUpdate'</expression>
+            </condition>
+            <action>
+               <invoke reference="Polaris.DemandDraftPS" operation="createDDStatusUpdateFile">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+           
+      <switch>
+         <case executionType="sequential" name="Finacle.DemandDraftPS.queryDDUpdateStatus">
+          <condition language="xpath">
+               <expression>$in.payload/eo:ESBMsg/eo:RqData/@actionCode = 'DemandDraftStatusUpdate'</expression>
+            </condition>
+            <action>
+               <invoke reference="Finacle.DemandDraftPS" operation="queryDDUpdateStatus">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+        
+      </switch>
+   </operation>
+</Mediator>

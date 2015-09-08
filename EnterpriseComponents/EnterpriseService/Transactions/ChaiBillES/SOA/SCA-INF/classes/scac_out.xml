@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc>/ns:composite/ns:reference[@name='Finacle.EqpgwPS']</loc>
+      <line>80</line>
+      <col>74</col>
+      <file>/Users/Msimango/jdeveloper/mywork/SOAApplication/BillES/SOA/composite.xml</file>
+      <name>/Users/Msimango/jdeveloper/mywork/SOAApplication/BillES/SOA/composite.xml</name>
+      <fix/>
+      <msg>Failed to Find Binding "Finacle.EqpgwPS":"{http://xmlns.equitybank.co.ke/ProviderComponents/PSC/Transactions/Bill/V1}Bill_SOAPHttpBindingQSPort" in WSDL Manager</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>Mediators/BillProvRouter.mplan</file>
+      <name>Mediators/BillProvRouter.mplan</name>
+      <fix/>
+      <msg>Operation\Event "query" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>Mediators/BillRouter.mplan</file>
+      <name>Mediators/BillRouter.mplan</name>
+      <fix/>
+      <msg>Operation\Event "query" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+</Faults>

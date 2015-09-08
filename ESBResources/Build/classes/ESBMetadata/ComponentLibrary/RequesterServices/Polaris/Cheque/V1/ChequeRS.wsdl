@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="ChequeRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Cheque/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Cheque/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Cheque/V1" schemaLocation="ChequeRO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="StopPaymentRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="StopPaymentRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryStatusRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryStatusRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <portType name="ChequeRSPort">
+        <operation name="stopPayment">
+            <input message="rs:StopPaymentRqMsg"/>
+            <output message="rs:StopPaymentRsMsg"/>
+        </operation>
+        <operation name="queryStatus">
+            <input message="rs:QueryStatusRqMsg"/>
+            <output message="rs:QueryStatusRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="ChequeRSPortBinding" type="rs:ChequeRSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="stopPayment">
+            <soap:operation soapAction="stopPayment"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryStatus">
+            <soap:operation soapAction="queryStatus"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ChequeRS">
+        <port name="ChequeRSPort" binding="rs:ChequeRSPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

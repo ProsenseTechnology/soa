@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="AccountPS_rest">AccountPS REST Service</doc>
+  <grammars>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Accounts/Account/V1/AccountEO.xsd"/>
+    </xsd:schema>
+  </grammars>
+  <resources>
+	<resource path="/caAcctAdd">
+      <method name="POST" soa:wsdlOperation="caAcctAdd">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/sbAcctAddCustom">
+      <method name="POST" soa:wsdlOperation="sbAcctAddCustom">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/sbAcctAdd">
+      <method name="POST" soa:wsdlOperation="sbAcctAdd">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/custAcctInquiry">
+      <method name="POST" soa:wsdlOperation="custAcctInquiry">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/virtualAcctTest">
+      <method name="POST" soa:wsdlOperation="virtualAcctTest">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/balInq">
+      <method name="POST" soa:wsdlOperation="balInq">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/queryAccountMaster">
+      <method name="POST" soa:wsdlOperation="queryAccountMaster">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/queryDepositAccountMaster">
+      <method name="POST" soa:wsdlOperation="queryDepositAccountMaster">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/queryLoanAccountMaster">
+      <method name="POST" soa:wsdlOperation="queryLoanAccountMaster">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/queryAverageBalance">
+      <method name="POST" soa:wsdlOperation="queryAverageBalance">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

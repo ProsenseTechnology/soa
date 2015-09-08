@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:complexType name="userTagListVO">
+      <xsd:sequence>
+         <xsd:element name="userTagVO" type="userTagVO" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="longVO">
+      <xsd:sequence>
+         <xsd:element name="value" type="xsd:long"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="documentViewVO">
+      <xsd:sequence>
+         <xsd:element name="documentVO" type="documentVO"/>
+         <xsd:element name="context" type="xsd:string"/>
+         <xsd:element name="cmStoreStatus" type="xsd:string"/>
+         <xsd:element name="docSubType" type="xsd:string"/>
+         <xsd:element name="documentType" type="xsd:string"/>
+         <xsd:element name="origin" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="documentViewListVO">
+      <xsd:sequence>
+         <xsd:element name="documentViewVO" type="documentViewVO" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="originVO">
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:long"/>
+         <xsd:element name="origin" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="documentTypeListVO">
+      <xsd:sequence>
+         <xsd:element name="documentTypeVO" type="documentTypeVO" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="documentUserTagVO">
+      <xsd:sequence>
+         <xsd:element name="tagId" type="xsd:long"/>
+         <xsd:element name="documentId" type="xsd:long"/>
+         <xsd:element name="value" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="contextListVO">
+      <xsd:sequence>
+         <xsd:element name="contextVO" type="contextVO" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="downloadVO">
+      <xsd:sequence>
+         <xsd:element name="content" type="xsd:string"/>
+         <xsd:element name="contentType" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="documentSubTypeVO">
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:long"/>
+         <xsd:element name="documentSubType" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="accountListVO">
+      <xsd:sequence>
+         <xsd:element name="accountVO" type="accountVO" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="contextVO">
+      <xsd:sequence>
+         <xsd:element name="context" type="xsd:string"/>
+         <xsd:element name="id" type="xsd:long"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="accountVO">
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:long"/>
+         <xsd:element name="documentId" type="xsd:long"/>
+         <xsd:element name="accountType" type="xsd:string"/>
+         <xsd:element name="accountNumber" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="documentVO">
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:long"/>
+         <xsd:element name="batchId" type="xsd:string"/>
+         <xsd:element name="username" type="xsd:string"/>
+         <xsd:element name="entityIdNumber" type="xsd:string"/>
+         <xsd:element name="entityIdType" type="xsd:string"/>
+         <xsd:element name="contentType" type="xsd:string"/>
+         <xsd:element name="cmDocrefnumber" type="xsd:string"/>
+         <xsd:element name="content" type="xsd:string"/>
+         <xsd:element name="documentSubType" type="xsd:string"/>
+         <xsd:element name="documentUrl" type="xsd:string"/>
+         <xsd:element name="filename" type="xsd:string"/>
+         <xsd:element name="instruction" type="xsd:string"/>
+         <xsd:element name="updatedBy" type="xsd:string"/>
+         <xsd:element name="updatedDate" type="xsd:anySimpleType"/>
+         <xsd:element name="originId" type="xsd:long"/>
+         <xsd:element name="documenTypeId" type="xsd:long"/>
+         <xsd:element name="contextId" type="xsd:long"/>
+         <xsd:element name="documentSubTypeId" type="xsd:long"/>
+         <xsd:element name="cmStoreStatusId" type="xsd:long"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="originListVO">
+      <xsd:sequence>
+         <xsd:element name="originVO" type="originVO" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="documentSubTypeListVO">
+      <xsd:sequence>
+         <xsd:element name="documentSubTypeVO" type="documentSubTypeVO" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="userTagVO">
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:long"/>
+         <xsd:element name="tag" type="xsd:string"/>
+         <xsd:element name="username" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="statusVO">
+      <xsd:sequence>
+         <xsd:element name="status" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="documentTypeVO">
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:long"/>
+         <xsd:element name="description" type="xsd:string"/>
+         <xsd:element name="documentType" type="xsd:string"/>
+         <xsd:element name="functionalGroupDescription" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="documentListVO">
+      <xsd:sequence>
+         <xsd:element name="documentVO" type="documentVO" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="userTagListVO" type="userTagListVO"/>
+   <xsd:element name="longVO" type="longVO"/>
+   <xsd:element name="documentViewVO" type="documentViewVO"/>
+   <xsd:element name="documentViewListVO" type="documentViewListVO"/>
+   <xsd:element name="originVO" type="originVO"/>
+   <xsd:element name="documentTypeListVO" type="documentTypeListVO"/>
+   <xsd:element name="documentUserTagVO" type="documentUserTagVO"/>
+   <xsd:element name="contextListVO" type="contextListVO"/>
+   <xsd:element name="downloadVO" type="downloadVO"/>
+   <xsd:element name="documentSubTypeVO" type="documentSubTypeVO"/>
+   <xsd:element name="accountListVO" type="accountListVO"/>
+   <xsd:element name="contextVO" type="contextVO"/>
+   <xsd:element name="accountVO" type="accountVO"/>
+   <xsd:element name="documentVO" type="documentVO"/>
+   <xsd:element name="originListVO" type="originListVO"/>
+   <xsd:element name="documentSubTypeListVO" type="documentSubTypeListVO"/>
+   <xsd:element name="userTagVO" type="userTagVO"/>
+   <xsd:element name="statusVO" type="statusVO"/>
+   <xsd:element name="documentTypeVO" type="documentTypeVO"/>
+   <xsd:element name="documentListVO" type="documentListVO"/>
+</xsd:schema>

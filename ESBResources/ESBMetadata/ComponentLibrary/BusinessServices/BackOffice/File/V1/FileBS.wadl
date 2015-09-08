@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+             xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="FileBS_rest">FileBS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+                        <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" schemaLocation="../../../../EnterpriseObjects/Misc/File/V1/FileEO.xsd"/>
+
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/generation">
+            <method name="POST" soa:wsdlOperation="generation">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200"/>
+            </method>
+        </resource>
+        <resource path="/consumption">
+            <method name="POST" soa:wsdlOperation="consumption">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200"/>
+            </method>
+        </resource>
+    </resources>
+</application>

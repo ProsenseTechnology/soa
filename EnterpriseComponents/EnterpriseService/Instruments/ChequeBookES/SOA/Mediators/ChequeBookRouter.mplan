@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Mediator name="ChequeBookRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Instruments/ChequeBook/V1" xmlns="http://xmlns.oracle.com/sca/1.0/mediator">
+   <operation name="create" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="CreateChequeBook.CreateChequeBookPL.execute">
+            <action>
+               <invoke reference="CreateChequeBook.CreateChequeBookPL" operation="execute">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="query" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="QueryChequeBook.QueryChequeBookPL.execute">
+            <action>
+               <invoke reference="QueryChequeBook.QueryChequeBookPL" operation="execute">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="update" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="UpdateChequeBook.UpdateChequeBookPL.execute">
+            <action>
+               <invoke reference="UpdateChequeBook.UpdateChequeBookPL" operation="execute">
+                  <onReply>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+</Mediator>

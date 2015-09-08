@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1" xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="TransferPS_rest">TransferPS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Transactions/Transfer/V1/TransferEO.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/xferTrnAdd">
+            <method name="POST" soa:wsdlOperation="xferTrnAdd">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/createPOThruFI">
+            <method name="POST" soa:wsdlOperation="createPOThruFI">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/queryRTGSOutwardRefStatus">
+            <method name="POST" soa:wsdlOperation="queryRTGSOutwardRefStatus">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/queryNEFTOutwardRefStatus">
+            <method name="POST" soa:wsdlOperation="queryNEFTOutwardRefStatus">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/createNEFTInward">
+            <method name="POST" soa:wsdlOperation="createNEFTInward">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+         <resource path="/createRTGSInward">
+            <method name="POST" soa:wsdlOperation="createRTGSInward">
+                <request>
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="eo:ESBMsg"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

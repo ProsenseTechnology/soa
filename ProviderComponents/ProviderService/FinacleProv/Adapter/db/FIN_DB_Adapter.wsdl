@@ -1,0 +1,344 @@
+<wsdl:definitions name="FinacleDBAdapter" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"
+                  xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"
+                  xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+                  xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <plt:partnerLinkType name="FinacleDBAdapterPLType">
+    <plt:role name="FinacleDBAdapterRole">
+      <plt:portType name="adp:FinacleDBAdapterPort"/>
+    </plt:role>
+  </plt:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db" schemaLocation="FIN_DB_Adapter.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="QueryEmployeeRqMsg">
+    <wsdl:part name="payload" element="adp:QueryEmployeeInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryEmployeeRsMsg">
+    <wsdl:part name="payload" element="adp:QueryEmployeeOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryCustomerMasterRqMsg">
+    <wsdl:part name="payload" element="adp:QueryCustomerMasterInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryCustomerMasterRsMsg">
+    <wsdl:part name="payload" element="adp:QueryCustomerMasterOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryAccountMasterRqMsg">
+    <wsdl:part name="payload" element="adp:QueryAccountMasterInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryAccountMasterRsMsg">
+    <wsdl:part name="payload" element="adp:QueryAccountMasterOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryDepositAccountMasterRqMsg">
+    <wsdl:part name="payload" element="adp:QueryDepositAccountMasterInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryDepositAccountMasterRsMsg">
+    <wsdl:part name="payload" element="adp:QueryDepositAccountMasterOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryChequeUpdateStatusRqMsg">
+    <wsdl:part name="payload" element="adp:QueryChequeUpdateStatusInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryChequeUpdateStatusRsMsg">
+    <wsdl:part name="payload" element="adp:QueryChequeUpdateStatusOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryDDUpdateStatusRqMsg">
+    <wsdl:part name="payload" element="adp:QueryDDUpdateStatusInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryDDUpdateStatusRsMsg">
+    <wsdl:part name="payload" element="adp:QueryDDUpdateStatusOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryExchangeRateRqMsg">
+    <wsdl:part name="payload" element="adp:QueryExchangeRateInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryExchangeRateRsMsg">
+    <wsdl:part name="payload" element="adp:QueryExchangeRateOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryLoanAccountMasterRqMsg">
+    <wsdl:part name="payload" element="adp:QueryLoanAccountMasterInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryLoanAccountMasterRsMsg">
+    <wsdl:part name="payload" element="adp:QueryLoanAccountMasterOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryRTGSOutwardRefStatusRqMsg">
+    <wsdl:part name="payload" element="adp:QueryRTGSOutwardRefStatusInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryRTGSOutwardRefStatusRsMsg">
+    <wsdl:part name="payload" element="adp:QueryRTGSOutwardRefStatusOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryNEFTOutwardRefStatusRqMsg">
+    <wsdl:part name="payload" element="adp:QueryNEFTOutwardRefStatusInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryNEFTOutwardRefStatusRsMsg">
+    <wsdl:part name="payload" element="adp:QueryNEFTOutwardRefStatusOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="CreateNEFTInwardRqMsg">
+    <wsdl:part name="payload" element="adp:CreateNEFTInwardInput"/>
+  </wsdl:message>
+  <wsdl:message name="CreateNEFTInwardRsMsg">
+    <wsdl:part name="payload" element="adp:CreateNEFTInwardOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="CreateRTGSInwardRqMsg">
+    <wsdl:part name="payload" element="adp:CreateRTGSInwardInput"/>
+  </wsdl:message>
+  <wsdl:message name="CreateRTGSInwardRsMsg">
+    <wsdl:part name="payload" element="adp:CreateRTGSInwardOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryChequeDetailsRqMsg">
+    <wsdl:part name="payload" element="adp:QueryChequeDetailsInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryChequeDetailsRsMsg">
+    <wsdl:part name="payload" element="adp:QueryChequeDetailsOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryLiquidationChequeStatusRqMsg">
+    <wsdl:part name="payload" element="adp:QueryLiquidationChequeStatusInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryLiquidationChequeStatusRsMsg">
+    <wsdl:part name="payload" element="adp:QueryLiquidationChequeStatusOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="AccountInqByCustIdRqMsg">
+    <wsdl:part name="payload" element="adp:AccountInqByCustIdInput"/>
+  </wsdl:message>
+  <wsdl:message name="AccountInqByCustIdRsMsg">
+    <wsdl:part name="payload" element="adp:AccountInqByCustIdOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryAverageBalanceRqMsg">
+    <wsdl:part name="payload" element="adp:QueryAverageBalanceInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryAverageBalanceRsMsg">
+    <wsdl:part name="payload" element="adp:QueryAverageBalanceOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryClientEmailRqMsg">
+    <wsdl:part name="payload" element="adp:QueryClientEmailInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryClientEmailRsMsg">
+    <wsdl:part name="payload" element="adp:QueryClientEmailOutputCollection"/>
+  </wsdl:message>
+  <wsdl:portType name="FinacleDBAdapterPort">
+    <wsdl:operation name="queryEmployee">
+      <wsdl:input message="adp:QueryEmployeeRqMsg"/>
+      <wsdl:output message="adp:QueryEmployeeRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryCustomerMaster">
+      <wsdl:input message="adp:QueryCustomerMasterRqMsg"/>
+      <wsdl:output message="adp:QueryCustomerMasterRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryAccountMaster">
+      <wsdl:input message="adp:QueryAccountMasterRqMsg"/>
+      <wsdl:output message="adp:QueryAccountMasterRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryDepositAccountMaster">
+      <wsdl:input message="adp:QueryDepositAccountMasterRqMsg"/>
+      <wsdl:output message="adp:QueryDepositAccountMasterRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryChequeUpdateStatus">
+      <wsdl:input message="adp:QueryChequeUpdateStatusRqMsg"/>
+      <wsdl:output message="adp:QueryChequeUpdateStatusRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryDDUpdateStatus">
+      <wsdl:input message="adp:QueryDDUpdateStatusRqMsg"/>
+      <wsdl:output message="adp:QueryDDUpdateStatusRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryExchangeRate">
+      <wsdl:input message="adp:QueryExchangeRateRqMsg"/>
+      <wsdl:output message="adp:QueryExchangeRateRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryLoanAccountMaster">
+      <wsdl:input message="adp:QueryLoanAccountMasterRqMsg"/>
+      <wsdl:output message="adp:QueryLoanAccountMasterRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryRTGSOutwardRefStatus">
+      <wsdl:input message="adp:QueryRTGSOutwardRefStatusRqMsg"/>
+      <wsdl:output message="adp:QueryRTGSOutwardRefStatusRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryNEFTOutwardRefStatus">
+      <wsdl:input message="adp:QueryNEFTOutwardRefStatusRqMsg"/>
+      <wsdl:output message="adp:QueryNEFTOutwardRefStatusRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="createNEFTInward">
+      <wsdl:input message="adp:CreateNEFTInwardRqMsg"/>
+      <wsdl:output message="adp:CreateNEFTInwardRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="createRTGSInward">
+      <wsdl:input message="adp:CreateRTGSInwardRqMsg"/>
+      <wsdl:output message="adp:CreateRTGSInwardRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryChequeDetails">
+      <wsdl:input message="adp:QueryChequeDetailsRqMsg"/>
+      <wsdl:output message="adp:QueryChequeDetailsRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryLiquidationChequeStatus">
+      <wsdl:input message="adp:QueryLiquidationChequeStatusRqMsg"/>
+      <wsdl:output message="adp:QueryLiquidationChequeStatusRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="accountInqByCustId">
+      <wsdl:input message="adp:AccountInqByCustIdRqMsg"/>
+      <wsdl:output message="adp:AccountInqByCustIdRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryAverageBalance">
+      <wsdl:input message="adp:QueryAverageBalanceRqMsg"/>
+      <wsdl:output message="adp:QueryAverageBalanceRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryClientEmail">
+      <wsdl:input message="adp:QueryClientEmailRqMsg"/>
+      <wsdl:output message="adp:QueryClientEmailRsMsg"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FinacleDBAdapterPortBinding" type="adp:FinacleDBAdapterPort">
+    <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+    <wsdl:operation name="queryEmployee">
+      <soap:operation soapAction="queryEmployee"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryCustomerMaster">
+      <soap:operation soapAction="queryCustomerMaster"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryAccountMaster">
+      <soap:operation soapAction="queryAccountMaster"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryDepositAccountMaster">
+      <soap:operation soapAction="queryDepositAccountMaster"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryChequeUpdateStatus">
+      <soap:operation soapAction="queryChequeUpdateStatus"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryDDUpdateStatus">
+      <soap:operation soapAction="queryDDUpdateStatus"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryExchangeRate">
+      <soap:operation soapAction="queryExchangeRate"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryLoanAccountMaster">
+      <soap:operation soapAction="queryLoanAccountMaster"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryRTGSOutwardRefStatus">
+      <soap:operation soapAction="queryRTGSOutwardRefStatus"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryNEFTOutwardRefStatus">
+      <soap:operation soapAction="queryRTGSOutwardRefStatus"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createNEFTInward">
+      <soap:operation soapAction="createNEFTInward"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createRTGSInward">
+      <soap:operation soapAction="createRTGSInward"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryChequeDetails">
+      <soap:operation soapAction="queryChequeDetails"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryLiquidationChequeStatus">
+      <soap:operation soapAction="queryLiquidationChequeStatus"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="accountInqByCustId">
+      <soap:operation soapAction="accountInqByCustId"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryAverageBalance">
+      <soap:operation soapAction="queryAverageBalance"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryClientEmail">
+      <soap:operation soapAction="queryClientEmail"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

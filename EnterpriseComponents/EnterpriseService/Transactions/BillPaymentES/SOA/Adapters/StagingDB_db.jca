@@ -1,0 +1,14 @@
+<adapter-config name="StagingDB" adapter="db" wsdlLocation="../WSDLs/StagingDB.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="equity_staging_db" location="eis/DB/Staging"/>
+  <endpoint-interaction portType="StagingDB_ptt" operation="update">
+    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+      <property name="DescriptorName" value="StagingDB.CustMasterTranTable"/>
+      <property name="DmlType" value="update"/>
+      <property name="MappingsMetaDataURL" value="StagingDB-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+      <property name="DetectOmissions" value="true"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

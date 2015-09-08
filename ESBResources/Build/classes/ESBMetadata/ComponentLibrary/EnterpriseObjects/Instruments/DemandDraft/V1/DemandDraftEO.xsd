@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/DemandDraft/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/DemandDraft/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified"
+            xmlns:fileo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+              schemaLocation="../../../Misc/File/V1/FileEO.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="DemandDraftType" type="com:CodeType"/>
+    <xsd:element name="Memo" type="com:TextType"/>
+    <xsd:element name="IssueDate" type="com:DateType"/> 
+    <xsd:element name="DemandDraftStatus" type="com:CodeType"/>
+    <xsd:element name="DemandDraft" type="DemandDraftType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= DemandDraft ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="DemandDraftType">
+        <xsd:sequence>
+        <xsd:element ref="fileo:File" minOccurs="0"/>
+            <xsd:element ref="com:DemandDraftIdentifier" minOccurs="0"/>
+            <xsd:element ref="DemandDraftType" minOccurs="0"/>
+            <xsd:element ref="Memo" minOccurs="0"/>
+            <xsd:element ref="IssueDate" minOccurs="0"/>
+            <xsd:element ref="com:EndDate" minOccurs="0"/>
+            <xsd:element ref="com:TransactionReferenceNumber" minOccurs="0"/>
+            <xsd:element ref="com:CoreTxnRefNo" minOccurs="0"/>
+            <xsd:element ref="com:Amount" minOccurs="0"/>
+            <xsd:element ref="com:StopPaymentInstruction" minOccurs="0"/>
+            <xsd:element ref="DemandDraftStatus" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="DemandDraft" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="DemandDraft" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="QueryDDStatusByID"/>
+            <xsd:enumeration value="StopDDPaymentByID"/>
+            <xsd:enumeration value="DemandDraftStatusUpdate"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

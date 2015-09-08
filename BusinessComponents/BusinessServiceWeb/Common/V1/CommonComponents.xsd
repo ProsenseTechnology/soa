@@ -1,0 +1,2252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/BusinessObjects/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/BusinessObjects/Common/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:include schemaLocation="Meta.xsd"/>
+  <xsd:include schemaLocation="DataTypes.xsd"/>
+  <xsd:include schemaLocation="CodeLists.xsd"/>
+  <xsd:simpleType name="Addr1_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="NameAddrType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Addr2_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Addr3_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Addr4_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="AddrType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <!--Deleted By Urvashi -->
+  <!--<xsd:simpleType name="AvailDt_Type">
+    <xsd:restriction base="DateTime_Type"/>
+  </xsd:simpleType> -->
+  <xsd:simpleType name="IssueDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="AcctId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SAcctId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CustAcctId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DeviceId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DocId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DocIdType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="AcctType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="AcctKey_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="22"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Desc_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="80"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="StaffFlag_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BirthDt_Type">
+    <xsd:restriction base="DateTime_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="AcctCur_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="22"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CustContactPref_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CustType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PersonType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Fax_Type">
+    <xsd:restriction base="PhoneNumber"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="LegalName_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="96"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Language_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="17"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="NameSuffix_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Occupation_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="50"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PrefTimeEnd_Type">
+    <xsd:restriction base="Time_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="BankId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="34"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ExtBalType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="City_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="EmailAddr_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="128"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CurCode_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="3"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PrefTimeStart_Type">
+    <xsd:restriction base="Time_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ContactInfoType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CurRate_Type">
+    <xsd:restriction base="Numeric_Type"/>
+  </xsd:simpleType>
+  <!-- Added by Prabhat Start -->
+  <xsd:simpleType name="ForExRateInfo_Type">
+    <xsd:restriction base="Numeric_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IncToken_Type">
+    <xsd:restriction base="Boolean"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="MsgRecDt_Type">
+    <xsd:restriction base="DateTime"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DupChkOverride_Type">
+    <xsd:restriction base="Boolean"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="TransferId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ClientChgCode_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:complexType name="RecCtrlIn_Type">
+    <xsd:sequence>
+      <xsd:element ref="MaxRec"/>
+      <xsd:element ref="Cursor" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="TransferStatusCode_Type">
+    <xsd:restriction base="ClosedEnum"/>
+  </xsd:simpleType>
+  <xsd:complexType name="BaseEnvr_Type">
+    <xsd:sequence>
+      <xsd:element ref="CreatedDt"/>
+      <xsd:element ref="CreateRefId" minOccurs="0"/>
+      <xsd:element ref="ClientCreateDt" minOccurs="0"/>
+      <xsd:element name="ClientBusinessDt" type="Date_Type" minOccurs="0"/>
+      <xsd:element ref="CustId" minOccurs="0"/>
+      <xsd:element ref="NetworkTrnInfo" minOccurs="0"/>
+      <xsd:element ref="ServerTerminalSeqId" minOccurs="0"/>
+      <!--xsd:element ref="PointOfServiceData" minOccurs="0"/-->
+      <!-- check it once prabhat-->
+      <xsd:element ref="ClientTerminalSeqId" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- Added by Prabhat end -->
+  <!--Added by Urvashi Starts 30 jan 2015-->
+  <xsd:simpleType name="CreditId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:element name="CreditId" type="CreditId_Type"/>
+  <xsd:element name="SettleInd" type="Boolean"/>
+  <xsd:element name="TruncatedInd" type="Boolean"/>
+  <xsd:element name="ChequeAcceptId" type="Identifier"/>
+  <xsd:element name="ChequeAcceptStatusCode" type="OpenEnum"/>
+  <xsd:simpleType name="ChequeSumId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:element name="ChequeSumId" type="ChequeSumId_Type"/>
+  <xsd:complexType name="ChequeAcceptStatus_Type">
+    <xsd:sequence>
+      <xsd:element ref="ChequeAcceptStatusCode"/>
+      <xsd:element ref="EffDt"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ChequeAcceptStatus" type="ChequeAcceptStatus_Type"/>
+  <xsd:simpleType name="ChkOrdId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:element name="ChequeOrdId" type="ChkOrdId_Type"/>
+  <xsd:simpleType name="DeliveryDestination_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:element name="DeliveryDestination" type="DeliveryDestination_Type"/>
+  <!--xsd:simpleType name="Count_Type">
+    <xsd:restriction base="Long_Type"/>
+  </xsd:simpleType-->
+  <xsd:simpleType name="ChkBkStyleId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:element name="ChkBkStyleId" type="ChkBkStyleId_Type"/>
+  <xsd:simpleType name="BillingMethod_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:element name="BillingMethod" type="BillingMethod_Type"/>
+  <xsd:simpleType name="IncEndrsmntStmp_Type">
+    <xsd:restriction base="Boolean"/>
+  </xsd:simpleType>
+  <xsd:element name="IncEndrsmntStmp" type="IncEndrsmntStmp_Type"/>
+  <!--Added by Urvashi Ends 30 jan 2015-->
+  <xsd:simpleType name="DeliveryMethod_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="RefernceNum_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="BankIdType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="BalType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <!-- Deleted By Urvashi -->
+  <xsd:simpleType name="ExpDt_Type">
+    <xsd:restriction base="DateTime_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="EffDt_Type">
+    <xsd:restriction base="DateTime_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Phone_Type">
+    <xsd:restriction base="PhoneNumber"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="EmploymentStatus_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Nickname_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PassportNumber_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TitlePrefix_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="8"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="RqUID_Type">
+    <xsd:restriction base="UUID"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IncExtBal_Type">
+    <xsd:restriction base="Indicator_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="AsyncRqUID_Type">
+    <xsd:restriction base="UUID"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="BranchId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="22"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BranchName_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Gender_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CustPermId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CardSeqNum_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="16"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Image_Type">
+    <xsd:restriction base="xsd:base64Binary">
+      <xsd:maxLength value="16"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CurConvertRule_Type">
+    <xsd:restriction base="ClosedEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CustLoginId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="AddressText_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="AddressFormatPref_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LabelText_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CertCode_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DocIdCode_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ContactName_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CardEmbossNum_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LicenseNum_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Dependents_Type">
+    <xsd:restriction base="Long_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="MaritalStatus_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Org_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="OEDCode_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="OEDInstitution_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Brand_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="EstablishDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="FullName_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="96"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PostalCode_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="11"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ClassType_Type">
+    <xsd:restriction base="String_Type"></xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ClassSubType_Type">
+    <xsd:restriction base="String_Type"></xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PhoneType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PhoneCode_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CommunicationType_Type">
+    <xsd:restriction base="String_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CommunicationPref_Type">
+    <xsd:restriction base="String_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="RefId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="RefType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="SPName_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CardVrfyData_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="16"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="IndustNum_Type">
+    <xsd:restriction base="String_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="JobTitle_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MktgInfo_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SpouseName_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="StartDt_Type">
+    <xsd:restriction base="DateTime_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="TaxId_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="EndDt_Type">
+    <xsd:restriction base="DateTime_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Identifier">
+    <xsd:annotation>
+      <xsd:documentation>Object identifiers in the IFX Specification are of the data type "Identifier."  This is a Narrow Character data type with a maximum length of 36.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="36"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MotherMaidenName_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ModeOfOperation_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ContactPref_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="URL_Type">
+    <xsd:restriction base="URL"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="URL">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="1024"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MagData1_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="79"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MagData2_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MagData3_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="107"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="NumEmployees_Type">
+    <xsd:restriction base="Long_Type"/>
+  </xsd:simpleType>
+  <!--<xsd:simpleType name="Name_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>-->
+  <xsd:simpleType name="StatusDesc_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="StatusCode_Type">
+    <xsd:restriction base="Long_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ServerStatusCode_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="20"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PhoneNumber">
+    <xsd:restriction base="String_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Severity_Type">
+    <xsd:restriction base="ClosedEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="StateProv_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TINType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="FileName_Type">
+    <xsd:restriction base="String_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="FileContent_Type">
+    <xsd:restriction base="xsd:base64Binary"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Country_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="3"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PlaceOfIssue_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="20"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CountryOfIssue_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="20"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PassportCountry_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="3"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="UUID">
+    <xsd:annotation>
+      <xsd:documentation>UUID elements are Narrow Character with a maximum length of 36.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="36"/>
+      <xsd:pattern value="([0-9]|[a-f]|[A-F]){8}(-([0-9]|[a-f]|[A-F]){4})(-([0-9]|[a-f]|[A-F]){4})(-([0-9]|[a-f]|[A-F]){4})(-([0-9]|[a-f]|[A-F]){12})"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="Status_Type">
+    <xsd:sequence>
+      <xsd:element ref="StatusCode"/>
+      <xsd:element ref="ServerStatusCode" minOccurs="0"/>
+      <xsd:element ref="Severity"/>
+      <xsd:element ref="StatusDesc" minOccurs="0"/>
+      <xsd:element ref="AdditionalStatus" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="AsyncRsInfo" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="Id" type="xsd:ID"/>
+  </xsd:complexType>
+  <xsd:complexType name="AdditionalStatus_Type">
+    <xsd:sequence>
+      <xsd:element ref="StatusCode" minOccurs="0"/>
+      <xsd:element ref="ServerStatusCode" minOccurs="0"/>
+      <xsd:element ref="Severity"/>
+      <xsd:element ref="StatusDesc" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AsyncRsInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="AvailDt" minOccurs="0"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CustId_Type">
+    <xsd:sequence>
+      <xsd:element ref="SPName"/>
+      <xsd:element ref="CustPermId" minOccurs="0"/>
+      <xsd:element ref="CustLoginId" minOccurs="0"/>
+      <xsd:element ref="CardMagData" minOccurs="0"/>
+      <xsd:element ref="CardLogicalData" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CardMagData_Type">
+    <xsd:sequence>
+      <xsd:element ref="MagData1" minOccurs="0"/>
+      <xsd:element ref="MagData2" minOccurs="0"/>
+      <xsd:element ref="MagData3" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CardLogicalData_Type">
+    <xsd:sequence>
+      <xsd:element ref="CardEmbossNum"/>
+      <xsd:element ref="CardSeqNum" minOccurs="0"/>
+      <xsd:element ref="Brand" minOccurs="0"/>
+      <xsd:element ref="Technology" minOccurs="0"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+      <xsd:element ref="CardVrfyData" minOccurs="0"/>
+      <xsd:element ref="Name" minOccurs="0"/>
+      <xsd:element ref="CSPhoneNum" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SavingAcctId_Type">
+    <xsd:sequence>
+      <xsd:element ref="AcctId"/>
+      <xsd:element ref="AcctType"/>
+      <xsd:element ref="AcctKey" minOccurs="0"/>
+      <xsd:element ref="AcctCur" minOccurs="0"/>
+      <xsd:element ref="BankInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- Added by Prabhat >
+    <xsd:element name="StatementAcctId" type="StatementAcctId_Type"/>
+    <xsd:complexType name="StatementAcctId_Type">
+    <xsd:sequence>
+      <xsd:element ref="AcctId"/>
+       <xsd:element ref="AcctType"/>
+       
+        <xsd:element ref="BankInfo"/ >
+     
+    </xsd:sequence>
+    </xsd:complexType-->
+  <xsd:complexType name="ChequeAcctId_Type">
+    <xsd:sequence>
+      <xsd:element ref="AcctId"/>
+      <xsd:element ref="AcctType"/>
+      <xsd:element ref="AcctKey" minOccurs="0"/>
+      <xsd:element ref="AcctCur" minOccurs="0"/>
+      <xsd:element ref="BankInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CurrentAcctId_Type">
+    <xsd:sequence>
+      <xsd:element ref="AcctId"/>
+      <xsd:element ref="AcctType"/>
+      <xsd:element ref="AcctKey" minOccurs="0"/>
+      <xsd:element ref="AcctCur" minOccurs="0"/>
+      <xsd:element ref="BankInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CurrentAcctId" type="CurrentAcctId_Type"/>
+  <xsd:complexType name="DepAcctId_Type">
+    <xsd:sequence>
+      <xsd:element ref="AcctId"/>
+      <xsd:element ref="AcctType"/>
+      <xsd:element ref="AcctKey" minOccurs="0"/>
+      <xsd:element ref="AcctCur" minOccurs="0"/>
+      <xsd:element ref="BankInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BankInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="BankIdType" minOccurs="0"/>
+      <xsd:element ref="BankId" minOccurs="0"/>
+      <xsd:element ref="RefInfo" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="Name" minOccurs="0"/>
+      <xsd:element ref="BranchId" minOccurs="0"/>
+      <xsd:element ref="BranchName" minOccurs="0"/>
+      <xsd:choice minOccurs="0">
+        <xsd:element ref="PostAddr"/>
+        <xsd:sequence>
+          <xsd:element ref="City" minOccurs="0"/>
+          <xsd:element ref="StateProv" minOccurs="0"/>
+          <xsd:element ref="PostalCode" minOccurs="0"/>
+          <xsd:element ref="Country" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RefInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="RefType"/>
+      <xsd:element ref="RefId"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PostAddrType">
+    <xsd:complexContent>
+      <xsd:extension base="PostAddr_Type"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="PostAddr_Type">
+    <xsd:sequence>
+      <xsd:sequence>
+        <xsd:element ref="Addr1"/>
+        <xsd:sequence minOccurs="0">
+          <xsd:element ref="Addr2"/>
+          <xsd:sequence minOccurs="0">
+            <xsd:element ref="Addr3"/>
+            <xsd:sequence minOccurs="0">
+              <xsd:element ref="Addr4"/>
+            </xsd:sequence>
+          </xsd:sequence>
+        </xsd:sequence>
+      </xsd:sequence>
+      <xsd:element ref="City" minOccurs="0"/>
+      <xsd:element ref="StateProv" minOccurs="0"/>
+      <xsd:element ref="PostalCode" minOccurs="0"/>
+      <xsd:element ref="Country"/>
+      <xsd:element ref="AddrType" minOccurs="0"/>
+      <xsd:element ref="AddressPref" minOccurs="0"/>
+      <xsd:element ref="StartDt" minOccurs="0"/>
+      <xsd:element ref="EndDt" minOccurs="0"/>
+      <xsd:element ref="AddressText" minOccurs="0"/>
+      <xsd:element ref="LabelText" minOccurs="0"/>
+      <xsd:element ref="AddressFormatPref" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CardAcctId_Type">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element ref="AcctId"/>
+        <xsd:element ref="CardMagData"/>
+      </xsd:choice>
+      <xsd:element ref="AcctType"/>
+      <xsd:element ref="CCMotoAcct" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CCMotoAcct_Type">
+    <xsd:sequence>
+      <xsd:element ref="ExpDt"/>
+      <xsd:element ref="CardVrfyData" minOccurs="0"/>
+      <xsd:element ref="Name" minOccurs="0"/>
+      <xsd:choice minOccurs="0">
+        <xsd:element ref="PostAddr"/>
+        <xsd:element ref="PostalCode"/>
+      </xsd:choice>
+      <xsd:element ref="Phone" minOccurs="0"/>
+      <xsd:element ref="Brand" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="LoanAcctId_Type">
+    <xsd:sequence>
+      <xsd:element ref="AcctId"/>
+      <xsd:element ref="AcctType"/>
+      <xsd:element ref="BankInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="LoanAcctIdTo_Type">
+    <xsd:complexContent>
+      <xsd:extension base="LoanAcctId_Type"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CardAcctIdTo_Type">
+    <xsd:complexContent>
+      <xsd:extension base="CardAcctId_Type"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SavingAcctIdTo_Type">
+    <xsd:complexContent>
+      <xsd:extension base="SavingAcctId_Type"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SavingAcctIdTo" type="SavingAcctIdTo_Type"/>
+  <xsd:element name="LoanAcctIdTo" type="LoanAcctIdTo_Type"/>
+  <xsd:element name="CardAcctIdTo" type="CardAcctIdTo_Type"/>
+  <xsd:complexType name="AcctBal_Type">
+    <xsd:sequence>
+      <xsd:element ref="BalType"/>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="EffDt" minOccurs="0"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CurAmt_Type">
+    <xsd:complexContent>
+      <xsd:extension base="CurrencyAmount"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CurrencyAmount">
+    <xsd:sequence>
+      <xsd:element ref="Amt"/>
+      <xsd:element ref="CurCode" minOccurs="0"/>
+      <xsd:sequence minOccurs="0">
+        <xsd:element ref="CurRate"/>
+        <xsd:element ref="CurConvertRule"/>
+      </xsd:sequence>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ExtAcctBal_Type">
+    <xsd:sequence>
+      <xsd:element ref="ExtBalType"/>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="EffDt"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SavingAcctBal_Type">
+    <xsd:sequence>
+      <xsd:element ref="ExtBalType"/>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="EffDt"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PersonInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="NameAddrType"/>
+      <xsd:choice>
+        <xsd:element ref="FullName"/>
+        <xsd:element ref="PersonName"/>
+      </xsd:choice>
+      <xsd:element ref="ContactInfo" minOccurs="0"/>
+      <xsd:element ref="TINInfo" minOccurs="0"/>
+      <xsd:element ref="DateOfBirth"/>
+      <xsd:element ref="DriversLicense" minOccurs="0"/>
+      <xsd:element ref="MotherMaidenName" minOccurs="0"/>
+      <xsd:element ref="SpouseName" minOccurs="0"/>
+      <xsd:element ref="EmploymentHistory" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="Gender" minOccurs="1"/>
+      <xsd:element ref="Language" minOccurs="0"/>
+      <xsd:element ref="MaritalStatus" minOccurs="0"/>
+      <xsd:element ref="Nationality"/>
+      <xsd:element ref="Dependents" minOccurs="0"/>
+      <xsd:element ref="PassportNumber" minOccurs="0"/>
+      <xsd:element ref="PassportCountry" minOccurs="0"/>
+      <xsd:element ref="PlaceOfIssue" minOccurs="0"/>
+      <xsd:element ref="IssueDt" minOccurs="0"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+      <xsd:element ref="OEDCode" minOccurs="0"/>
+      <xsd:element ref="OEDInstitution" minOccurs="0"/>
+      <xsd:element ref="IsMinor" minOccurs="0"/>
+      <xsd:element ref="IsCustNRE" minOccurs="0"/>
+      <xsd:element ref="CustTrade" minOccurs="0"/>
+      <xsd:element ref="StaffFlag"/>
+      <xsd:element ref="ClassType"/>
+      <xsd:element ref="ClassSubType" minOccurs="0"/>
+      <xsd:element ref="DocData" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="Signature" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="BiometricInfo" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ContactInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="ContactPref" minOccurs="0"/>
+      <xsd:element ref="PrefTimeStart" minOccurs="0"/>
+      <xsd:element ref="PrefTimeEnd" minOccurs="0"/>
+      <xsd:element ref="ContactDtls" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="ContactName" minOccurs="0"/>
+      <xsd:element ref="URL" minOccurs="0"/>
+      <xsd:element ref="PostAddr" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ContactDtls_Type">
+    <xsd:sequence>
+      <xsd:element ref="CommunicationType" />
+      <xsd:element ref="EmailAddr" minOccurs="0"/>
+      <xsd:element ref="PhoneType"/>
+      <xsd:element ref="PhoneCode"/>
+      <xsd:element ref="Phone"/>
+      <xsd:element ref="CommunicationPref" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DriversLicense_Type">
+    <xsd:sequence>
+      <xsd:element ref="LicenseNum"/>
+      <xsd:element ref="StateProv" minOccurs="0"/>
+      <xsd:element ref="Country" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EmploymentHistory_Type">
+    <xsd:sequence>
+      <xsd:element ref="EmploymentStatus" minOccurs="0"/>
+      <xsd:element ref="OrgInfo" minOccurs="0"/>
+      <xsd:element ref="Occupation"/>
+      <xsd:element ref="Income" minOccurs="0"/>
+      <xsd:element ref="JobTitle" minOccurs="0"/>
+      <xsd:element ref="StartDt" minOccurs="0"/>
+      <xsd:element ref="EndDt" minOccurs="0"/>
+      <xsd:element ref="TaxInfo" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PersonName_Type">
+    <xsd:sequence>
+      <xsd:element ref="LastName" maxOccurs="unbounded"/>
+      <xsd:element ref="FirstName"/>
+      <xsd:element ref="MiddleName" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="TitlePrefix" minOccurs="0"/>
+      <xsd:element ref="NameSuffix" minOccurs="0"/>
+      <xsd:element ref="Nickname" minOccurs="0"/>
+      <xsd:element ref="LegalName" minOccurs="0"/>
+      <xsd:element ref="PersonType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TINInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="TINType" minOccurs="0"/>
+      <xsd:element ref="TaxId"/>
+      <xsd:element ref="CertCode" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="OrgInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="IndustId" minOccurs="0"/>
+      <xsd:element ref="Name" minOccurs="0"/>
+      <xsd:element ref="LegalName" minOccurs="0"/>
+      <xsd:element ref="CompositeContactInfo" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="TINInfo" minOccurs="0"/>
+      <xsd:element ref="EstablishDt" minOccurs="0"/>
+      <xsd:element ref="NumEmployees" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CompositeContactInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="ContactInfoType"/>
+      <xsd:element ref="ContactInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="IndustId_Type">
+    <xsd:sequence>
+      <xsd:element ref="Org"/>
+      <xsd:element ref="IndustNum"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CustInfo_Type">
+    <xsd:choice>
+      <xsd:sequence>
+        <xsd:element ref="CustName"/>
+        <xsd:element ref="PostAddr" minOccurs="0"/>
+        <xsd:element ref="CustContact" minOccurs="0"/>
+        <xsd:element ref="ContactInfo" minOccurs="0"/>
+        <xsd:element ref="CustPref" minOccurs="0"/>
+        <xsd:element ref="CustType" minOccurs="0"/>
+      </xsd:sequence>
+      <xsd:element ref="PersonInfo"/>
+      <xsd:element ref="OrgInfo"/>
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="CustName_Type">
+    <xsd:sequence>
+      <xsd:element ref="LastName" maxOccurs="unbounded"/>
+      <xsd:element ref="FirstName" maxOccurs="unbounded"/>
+      <xsd:element ref="MiddleName" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="TitlePrefix" minOccurs="0"/>
+      <xsd:element ref="NameSuffix" minOccurs="0"/>
+      <xsd:element ref="Nickname" minOccurs="0"/>
+      <xsd:element ref="LegalName" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CustContact_Type">
+    <xsd:sequence>
+      <xsd:element ref="CustContactPref" minOccurs="0"/>
+      <xsd:element ref="PrefTimeStart" minOccurs="0"/>
+      <xsd:element ref="PrefTimeEnd" minOccurs="0"/>
+      <xsd:element ref="Phone" minOccurs="0"/>
+      <xsd:element ref="Fax" minOccurs="0"/>
+      <xsd:element ref="EmailAddr" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CustPref_Type">
+    <xsd:sequence>
+      <xsd:element ref="Language" minOccurs="0"/>
+      <xsd:element ref="MktgInfo" minOccurs="0"/>
+      <xsd:element ref="CustBankSvcPref" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CustBankSvcPref_Type">
+    <xsd:sequence>
+      <xsd:element ref="CustWithdrawalPref" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CustWithdrawalPref_Type">
+    <xsd:sequence>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="DepAcctId" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DateOfBirth_Type">
+    <xsd:sequence>
+      <xsd:element ref="BirthDt"/>
+      <xsd:element ref="Day"/>
+      <xsd:element ref="Month"/>
+      <xsd:element ref="Year"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DocData_Type">
+    <xsd:sequence>
+      <xsd:element ref="DocId"/>
+      <xsd:element ref="DocIdType"/>
+      <xsd:element ref="DocIdCode"/>
+      <xsd:element ref="DocDesc"/>
+      <xsd:element ref="IssueDt" minOccurs="0"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+      <xsd:element ref="RefernceNum" minOccurs="0"/>
+      <xsd:element ref="PlaceOfIssue" minOccurs="0"/>
+      <xsd:element ref="CountryOfIssue" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Signature_Type">
+    <xsd:sequence>
+      <xsd:element ref="Id" minOccurs="0"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+      <xsd:element ref="EffDt" minOccurs="0"/>
+      <xsd:element ref="Image" minOccurs="0"/>
+      <xsd:element ref="File" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="File_Type">
+    <xsd:sequence>
+      <xsd:element ref="FileName" minOccurs="0"/>
+      <xsd:element ref="FileContent" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AgentBioAuthInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="DeviceId" minOccurs="0"/>
+      <xsd:element ref="Image" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BiometricInfo_type">
+    <xsd:sequence>
+      <xsd:element ref="DeviceId" minOccurs="0"/>
+      <xsd:element ref="ImageL1" minOccurs="0"/>
+      <xsd:element ref="ImageL2" minOccurs="0"/>
+      <xsd:element ref="ImageR1" minOccurs="0"/>
+      <xsd:element ref="ImageR2" minOccurs="0"/>
+      <xsd:element ref="MakerFlag" minOccurs="0"/>
+      <xsd:element ref="WorkClass" minOccurs="0"/>
+      <xsd:element ref="Country" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Status" type="Status_Type"/>
+  <xsd:element name="Amt" type="Amount_Type"/>
+  <xsd:element name="AdditionalStatus" type="AdditionalStatus_Type"/>
+  <xsd:element name="AcctId" type="AcctId_Type"/>
+  <xsd:element name="SavingAcctId" type="SavingAcctId_Type"/>
+  <xsd:element name="ChequeAcctId" type="ChequeAcctId_Type"/>
+  <xsd:element name="AcctType" type="AcctType_Type"/>
+  <xsd:element name="AcctKey" type="AcctKey_Type"/>
+  <xsd:element name="AcctCur" type="AcctCur_Type"/>
+  <xsd:element name="AsyncRsInfo" type="AsyncRsInfo_Type"/>
+  <xsd:element name="AsyncRqUID" type="AsyncRqUID_Type"/>
+  <xsd:element name="Addr1" type="Addr1_Type"/>
+  <xsd:element name="Addr2" type="Addr2_Type"/>
+  <xsd:element name="Addr3" type="Addr3_Type"/>
+  <xsd:element name="Addr4" type="Addr4_Type"/>
+  <xsd:element name="AddrType" type="AddrType_Type"/>
+  <xsd:element name="AcctBal" type="AcctBal_Type"/>
+  <xsd:element name="BalType" type="BalType_Type"/>
+  <xsd:element name="BankInfo" type="BankInfo_Type"/>
+  <xsd:element name="BankId" type="BankId_Type"/>
+  <xsd:element name="BankIdType" type="BankIdType_Type"/>
+  <xsd:element name="Brand" type="Brand_Type"/>
+  <xsd:element name="BranchId" type="BranchId_Type"/>
+  <xsd:element name="BranchName" type="BranchName_Type"/>
+  <xsd:element name="ExtBalType" type="ExtBalType_Type"/>
+  <xsd:element name="CurCode" type="CurCode_Type"/>
+  <xsd:element name="CurConvertRule" type="CurConvertRule_Type"/>
+  <xsd:element name="CurRate" type="CurRate_Type"/>
+  <xsd:element name="CurAmt" type="CurAmt_Type"/>
+  <xsd:element name="CCMotoAcct" type="CCMotoAcct_Type"/>
+  <xsd:element name="CardMagData" type="CardMagData_Type"/>
+  <xsd:element name="CardLogicalData" type="CardLogicalData_Type"/>
+  <xsd:element name="CardEmbossNum" type="CardEmbossNum_Type"/>
+  <xsd:element name="CardVrfyData" type="CardVrfyData_Type"/>
+  <xsd:element name="CardSeqNum" type="CardSeqNum_Type"/>
+  <xsd:element name="CustId" type="CustId_Type"/>
+  <xsd:element name="CustPermId" type="CustPermId_Type"/>
+  <xsd:element name="City" type="City_Type"/>
+  <xsd:element name="Country" type="Country_Type"/>
+  <xsd:element name="CustLoginId" type="CustLoginId_Type"/>
+  <xsd:element name="CardAcctId" type="CardAcctId_Type"/>
+  <xsd:element name="Desc" type="Desc_Type"/>
+  <xsd:element name="DeliveryMethod" type="DeliveryMethod_Type"/>
+  <xsd:element name="DepAcctId" type="DepAcctId_Type"/>
+  <xsd:element name="Dependents" type="Dependents_Type"/>
+  <xsd:element name="SavingAcctBal" type="SavingAcctBal_Type"/>
+  <xsd:element name="ExtAcctBal" type="ExtAcctBal_Type"/>
+  <xsd:element name="ExpDt" type="ExpDt_Type"/>
+  <xsd:element name="EndDt" type="EndDt_Type"/>
+  <xsd:element name="EffDt" type="EffDt_Type"/>
+  <xsd:element name="IncExtBal" type="IncExtBal_Type"/>
+  <xsd:element name="LoanAcctId" type="LoanAcctId_Type"/>
+  <xsd:element name="MagData1" type="MagData1_Type"/>
+  <xsd:element name="MagData2" type="MagData2_Type"/>
+  <xsd:element name="MagData3" type="MagData3_Type"/>
+  <xsd:element name="MotherMaidenName" type="MotherMaidenName_Type"/>
+  <xsd:element name="ModeOfOperation" type="ModeOfOperation_Type"/>
+  <xsd:element name="Name" type="Name_Type"/>
+  <xsd:element name="Phone" type="Phone_Type"/>
+  <xsd:element name="PostalCode" type="PostalCode_Type"/>
+  <xsd:element name="PostAddr" type="PostAddrType"/>
+  <xsd:element name="CSPhoneNum" type="PhoneNumber"/>
+  <xsd:element name="RefInfo" type="RefInfo_Type"/>
+  <xsd:element name="RqUID" type="RqUID_Type"/>
+  <xsd:element name="RefType" type="RefType_Type"/>
+  <xsd:element name="RefId" type="RefId_Type"/>
+  <xsd:element name="StateProv" type="StateProv_Type"/>
+  <xsd:element name="StatusCode" type="StatusCode_Type"/>
+  <xsd:element name="ServerStatusCode" type="ServerStatusCode_Type"/>
+  <xsd:element name="Severity" type="Severity_Type"/>
+  <xsd:element name="StatusDesc" type="StatusDesc_Type"/>
+  <xsd:element name="SPName" type="SPName_Type"/>
+  <xsd:element name="StartDt" type="StartDt_Type"/>
+  <xsd:element name="Technology" type="OpenEnum"/>
+  <xsd:element name="ContactInfo" type="ContactInfo_Type"/>
+  <xsd:element name="ContactPref" type="ContactPref_Type"/>
+  <xsd:element name="PrefTimeStart" type="PrefTimeStart_Type"/>
+  <xsd:element name="PrefTimeEnd" type="PrefTimeEnd_Type"/>
+  <xsd:element name="ContactDtls" type="ContactDtls_Type"/>
+  <xsd:element name="PhoneType" type="PhoneType_Type"/>
+  <xsd:element name="PhoneCode" type="PhoneCode_Type"/>
+  <xsd:element name="CommunicationType" type="CommunicationType_Type"/>
+  <xsd:element name="CommunicationPref" type="CommunicationPref_Type"/>
+  <xsd:element name="ContactName" type="ContactName_Type"/>
+  <xsd:element name="EmailAddr" type="EmailAddr_Type"/>
+  <xsd:element name="URL" type="URL_Type"/>
+  <xsd:element name="Nickname" type="Nickname_Type"/>
+  <xsd:element name="PersonName" type="PersonName_Type"/>
+  <xsd:element name="NameAddrType" type="NameAddrType_Type"/>
+  <xsd:element name="FullName" type="FullName_Type"/>
+  <xsd:element name="TINInfo" type="TINInfo_Type"/>
+  <xsd:element name="BirthDt" type="BirthDt_Type"/>
+  <xsd:element name="SpouseName" type="SpouseName_Type"/>
+  <xsd:element name="EmploymentHistory" type="EmploymentHistory_Type"/>
+  <xsd:element name="Gender" type="Gender_Type"/>
+  <xsd:element name="MaritalStatus" type="MaritalStatus_Type"/>
+  <xsd:element name="PassportNumber" type="PassportNumber_Type"/>
+  <xsd:element name="PassportCountry" type="PassportCountry_Type"/>
+  <xsd:element name="OEDCode" type="OEDCode_Type"/>
+  <xsd:element name="OEDInstitution" type="OEDInstitution_Type"/>
+  <xsd:element name="EmploymentStatus" type="EmploymentStatus_Type"/>
+  <xsd:element name="OrgInfo" type="OrgInfo_Type"/>
+  <xsd:element name="Occupation" type="Occupation_Type"/>
+  <xsd:element name="Income" type="CurrencyAmount"/>
+  <xsd:element name="JobTitle" type="JobTitle_Type"/>
+  <xsd:element name="LastName" type="Name_Type"/>
+  <xsd:element name="FirstName" type="Name_Type"/>
+  <xsd:element name="MiddleName" type="Name_Type"/>
+  <xsd:element name="TitlePrefix" type="TitlePrefix_Type"/>
+  <xsd:element name="NameSuffix" type="NameSuffix_Type"/>
+  <xsd:element name="LegalName" type="LegalName_Type"/>
+  <xsd:element name="TINType" type="TINType_Type"/>
+  <xsd:element name="TaxId" type="TaxId_Type"/>
+  <xsd:element name="CertCode" type="CertCode_Type"/>
+  <xsd:element name="IndustId" type="IndustId_Type"/>
+  <xsd:element name="CompositeContactInfo" type="CompositeContactInfo_Type"/>
+  <xsd:element name="LicenseNum" type="LicenseNum_Type"/>
+  <xsd:element name="EstablishDt" type="EstablishDt_Type"/>
+  <xsd:element name="NumEmployees" type="NumEmployees_Type"/>
+  <xsd:element name="ContactInfoType" type="ContactInfoType_Type"/>
+  <xsd:element name="Org" type="Org_Type"/>
+  <xsd:element name="IndustNum" type="IndustNum_Type"/>
+  <xsd:element name="PersonInfo" type="PersonInfo_Type"/>
+  <xsd:element name="DriversLicense" type="DriversLicense_Type"/>
+  <xsd:element name="CustInfo" type="CustInfo_Type"/>
+  <xsd:element name="CustName" type="CustName_Type"/>
+  <xsd:element name="CustContact" type="CustContact_Type"/>
+  <xsd:element name="CustContactPref" type="CustContactPref_Type"/>
+  <xsd:element name="Fax" type="Fax_Type"/>
+  <xsd:element name="CustPref" type="CustPref_Type"/>
+  <xsd:element name="CustType" type="CustType_Type"/>
+  <xsd:element name="PersonType" type="PersonType_Type"/>
+  <xsd:element name="Language" type="Language_Type"/>
+  <xsd:element name="MktgInfo" type="MktgInfo_Type"/>
+  <xsd:element name="CustBankSvcPref" type="CustBankSvcPref_Type"/>
+  <xsd:element name="CustWithdrawalPref" type="CustWithdrawalPref_Type"/>
+  <xsd:element name="Nationality" type="String_Type"/>
+  <xsd:element name="DateOfBirth" type="DateOfBirth_Type"/>
+  <xsd:element name="Day" type="String_Type"/>
+  <xsd:element name="Month" type="String_Type"/>
+  <xsd:element name="Year" type="String_Type"/>
+  <xsd:element name="AddressPref" type="String_Type"/>
+  <xsd:element name="IsMinor" type="String_Type"/>
+  <xsd:element name="IsCustNRE" type="String_Type"/>
+  <xsd:element name="CustTrade" type="String_Type"/>
+  <xsd:element name="DocData" type="DocData_Type"/>
+  <xsd:element name="DocId" type="DocId_Type"/>
+  <xsd:element name="DocIdCode" type="DocIdCode_Type"/>
+  <xsd:element name="DocIdType" type="DocIdType_Type"/>
+  <xsd:element name="IssueDt" type="IssueDt_Type"/>
+  <xsd:element name="RefernceNum" type="RefernceNum_Type"/>
+  <xsd:element name="PlaceOfIssue" type="PlaceOfIssue_Type"/>
+  <xsd:element name="CountryOfIssue" type="CountryOfIssue_Type"/>
+  <xsd:element name="DocDesc" type="String_Type"/>
+  <xsd:element name="Signature" type="Signature_Type"/>
+  <xsd:element name="Id" type="String_Type"/>
+  <xsd:element name="File" type="File_Type"/>
+  <xsd:element name="FileName" type="FileName_Type"/>
+  <xsd:element name="FileContent" type="FileContent_Type"/>
+  <xsd:element name="SigId" type="String_Type"/>
+  <xsd:element name="StaffFlag" type="StaffFlag_Type"/>
+  <xsd:element name="ClassType" type="ClassType_Type"/>
+  <xsd:element name="ClassSubType" type="ClassSubType_Type"/>
+  <xsd:element name="CustAcctId" type="CustAcctId_Type"/>
+  <xsd:element name="DeviceId" type="DeviceId_Type"/>
+  <xsd:element name="Image" type="Image_Type"/>
+  <xsd:element name="ImageL1" type="Image_Type"/>
+  <xsd:element name="ImageL2" type="Image_Type"/>
+  <xsd:element name="ImageR1" type="Image_Type"/>
+  <xsd:element name="ImageR2" type="Image_Type"/>
+  <xsd:element name="BiometricInfo" type="BiometricInfo_type"/>
+  <xsd:element name="MakerFlag" type="String_Type"/>
+  <xsd:element name="WorkClass" type="String_Type"/>
+  <xsd:element name="AgentBioAuthInfo" type="AgentBioAuthInfo_Type"/>
+  <xsd:element name="AddressText" type="AddressText_Type"/>
+  <xsd:element name="AddressFormatPref" type="AddressFormatPref_Type"/>
+  <xsd:element name="LabelText" type="LabelText_Type"/>
+  <!-- Added by Prabhat - Start -->
+  <xsd:element name="ClientTerminalSeqId" type="Identifier"/>
+  <xsd:element name="BaseEnvr" type="BaseEnvr_Type"/>
+  <xsd:element name="ClientCreateDt" type="DateTime"/>
+  <xsd:element name="ServerTerminalSeqId" type="Identifier"/>
+  <xsd:element name="ForExRateInfo" type="ForExRateInfo_Type"/>
+  <xsd:element name="CreateRefId" type="Identifier"/>
+  <xsd:element name="IncToken" type="IncToken_Type"/>
+  <xsd:element name="SelRangeDueDt" type="SelRangeDt_Type"/>
+  <xsd:element name="SelRangePaidDt" type="SelRangeDt_Type"/>
+  <xsd:element name="SelRangeCurAmt" type="SelRangeCurAmt_Type"/>
+  <xsd:element name="TransferStatusCode" type="TransferStatusCode_Type"/>
+  <xsd:element name="MsgRecDt" type="MsgRecDt_Type"/>
+  <xsd:element name="DupChkOverride" type="DupChkOverride_Type"/>
+  <xsd:element name="RecCtrlIn" type="RecCtrlIn_Type"/>
+  <xsd:element name="RecCtrl" type="RecCtrl_Type"/>
+  <xsd:element name="ClientChgCode" type="ClientChgCode_Type"/>
+  <xsd:element name="ApprovalId" type="Identifier"/>
+  <xsd:element name="TransferId" type="TransferId_Type"/>
+  <!-- Added by Mustaque - Start -->
+  <xsd:simpleType name="BillId_Type">
+    <xsd:restriction base="UUID"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="StatusModBy_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:element name="EMVData" type="EMVData_Type"/>
+  <xsd:element name="POSData" type="POSData_Type"/>
+  <xsd:complexType name="EMVData_Type">
+    <xsd:sequence>
+      <xsd:element ref="AppId" minOccurs="0"/>
+      <xsd:element ref="Trk2EquivData" minOccurs="0"/>
+      <xsd:element ref="AppPan" minOccurs="0"/>
+      <xsd:element ref="AppPanSeq" minOccurs="0"/>
+      <xsd:element ref="CryptoInfoData" minOccurs="0"/>
+      <xsd:element ref="AuthRqCrypto" minOccurs="0"/>
+      <xsd:element ref="IssAppData" minOccurs="0"/>
+      <xsd:element ref="AppICProf" minOccurs="0"/>
+      <xsd:element ref="AppTrnCounter" minOccurs="0"/>
+      <xsd:element ref="AuthAmt" minOccurs="0"/>
+      <xsd:element ref="SecAmt" minOccurs="0"/>
+      <xsd:element ref="TerminalCountryCode" minOccurs="0"/>
+      <xsd:element ref="TerminalVrfyRslt" minOccurs="0"/>
+      <xsd:element ref="CurCode" minOccurs="0"/>
+      <xsd:element ref="TrnDt" minOccurs="0"/>
+      <xsd:element ref="EMVTrnType" minOccurs="0"/>
+      <xsd:element ref="UnpredictNum" minOccurs="0"/>
+      <xsd:element ref="CVMRslts" minOccurs="0"/>
+      <xsd:element ref="TrnStatInfo" minOccurs="0"/>
+      <!--<xsd:element ref="TerminalCaps" minOccurs="0"/>
+			<xsd:element ref="AppVersionNum" minOccurs="0"/>
+			<xsd:element ref="IssScriptResultData" minOccurs="0"/>
+			<xsd:element ref="AppEffDt" minOccurs="0"/>
+			<xsd:element ref="AppExpDt" minOccurs="0"/>
+			<xsd:element ref="IssCountryCode" minOccurs="0"/>
+                        <xsd:element ref="CDOL1" minOccurs="0"/>
+			<xsd:element ref="CDOL2" minOccurs="0"/>
+			<xsd:element ref="TDOL" minOccurs="0"/>
+			<xsd:element ref="TCHash" minOccurs="0"/>
+			<xsd:element ref="PDOL" minOccurs="0"/>
+                        <xsd:element ref="TrnSeqCntr" minOccurs="0"/>
+			<xsd:element ref="IssDiscData" minOccurs="0"/>-->
+      <xsd:choice minOccurs="0">
+        <xsd:element ref="IssActionCodeDefault" minOccurs="0"/>
+        <xsd:element ref="IssActionCodeDenial" minOccurs="0"/>
+        <xsd:element ref="IssActionCodeOnline" minOccurs="0"/>
+      </xsd:choice>
+      <xsd:element ref="TrnCategory" minOccurs="0"/>
+      <xsd:element ref="CVMList" minOccurs="0"/>
+      <xsd:element ref="AuthRsCode"/>
+      <xsd:element ref="AuthCode" minOccurs="0"/>
+      <xsd:element ref="IssAuthData" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="POSData_Type">
+    <xsd:sequence>
+      <xsd:element ref="Environment"/>
+      <xsd:element ref="POSCapabilities" minOccurs="0"/>
+      <xsd:element ref="POSSecurity" minOccurs="0"/>
+      <xsd:element ref="POSAgent" minOccurs="0"/>
+      <!--<xsd:element ref="IdentCharacterData" minOccurs="0"/>-->
+      <xsd:element ref="POSLocation" minOccurs="0"/>
+      <xsd:element ref="PostingSessionId" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AuthRsCode" type="String_Type"/>
+  <xsd:element name="AuthCode" type="HexBinary_Type"/>
+  <xsd:element name="IssAuthData" type="HexBinary_Type"/>
+  <xsd:element name="AppId" type="HexBinary_Type"/>
+  <xsd:element name="Trk2EquivData" type="HexBinary_Type"/>
+  <xsd:element name="AppPan" type="HexBinary_Type"/>
+  <xsd:element name="AppPanSeq" type="HexBinary_Type"/>
+  <xsd:element name="CryptoInfoData" type="HexBinary_Type"/>
+  <xsd:element name="AuthRqCrypto" type="HexBinary_Type"/>
+  <xsd:element name="IssAppData" type="HexBinary_Type"/>
+  <xsd:element name="AppICProf" type="HexBinary_Type"/>
+  <xsd:element name="AppTrnCounter" type="HexBinary_Type"/>
+  <xsd:element name="AuthAmt" type="CurrencyAmount"/>
+  <xsd:element name="SecAmt" type="CurrencyAmount"/>
+  <xsd:element name="TerminalCountryCode" type="CurCode_Type"/>
+  <xsd:element name="TerminalVrfyRslt" type="HexBinary_Type"/>
+  <xsd:element name="TrnDt" type="Date_Type"/>
+  <xsd:element name="EMVTrnType" type="String_Type"/>
+  <xsd:element name="UnpredictNum" type="HexBinary_Type"/>
+  <xsd:element name="CVMRslts" type="HexBinary_Type"/>
+  <xsd:element name="TrnStatInfo" type="HexBinary_Type"/>
+  <xsd:element name="IssActionCodeDefault" type="HexBinary_Type"/>
+  <xsd:element name="IssActionCodeDenial" type="HexBinary_Type"/>
+  <xsd:element name="IssActionCodeOnline" type="HexBinary_Type"/>
+  <xsd:element name="TrnCategory" type="String_Type"/>
+  <xsd:element name="CVMList" type="CVMList_Type"/>
+  <xsd:element name="NetworkTrnInfo" type="NetworkTrnInfo_Type"/>
+  <xsd:complexType name="CVMList_Type">
+    <xsd:sequence>
+      <xsd:element ref="AmtX"/>
+      <xsd:element ref="AmtY"/>
+      <xsd:element ref="CVMRule" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AmtX" type="CurrencyAmount"/>
+  <xsd:element name="AmtY" type="CurrencyAmount"/>
+  <xsd:element name="CVMRule" type="HexBinary_Type"/>
+  <xsd:element name="Environment" type="OpenEnum"/>
+  <xsd:element name="POSCapabilities" type="POSCapabilities_Type"/>
+  <xsd:element name="POSSecurity" type="POSSecurity_Type"/>
+  <xsd:complexType name="POSCapabilities_Type">
+    <xsd:sequence>
+      <xsd:element ref="POSAttended" minOccurs="0"/>
+      <xsd:element ref="POSOperation" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="POSEntryCapability" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="POSCaptureCapability" minOccurs="0"/>
+      <xsd:element ref="POSVerifyCapability" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="POSOutCapabilities" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="POSAttended" type="Boolean"/>
+  <xsd:element name="POSOperation" type="OpenEnum"/>
+  <xsd:element name="POSEntryCapability" type="OpenEnum"/>
+  <xsd:element name="POSCaptureCapability" type="Boolean"/>
+  <xsd:element name="POSVerifyCapability" type="OpenEnum"/>
+  <xsd:element name="POSOutCapabilities" type="OpenEnum"/>
+  <xsd:complexType name="POSSecurity_Type">
+    <xsd:sequence>
+      <xsd:element ref="PSSNetworkType" minOccurs="0"/>
+      <xsd:element ref="PSSMsgMAC" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="PSSMsgEncryption" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="PSSCATSecLevel" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PSSNetworkType" type="OpenEnum"/>
+  <xsd:element name="PSSMsgMAC" type="OpenEnum"/>
+  <xsd:element name="PSSMsgEncryption" type="OpenEnum"/>
+  <xsd:element name="PSSCATSecLevel" type="OpenEnum"/>
+  <xsd:element name="POSAgent" type="POSAgent_Type"/>
+  <xsd:complexType name="POSAgent_Type">
+    <xsd:sequence>
+      <xsd:element ref="AgentType" minOccurs="0"/>
+      <xsd:element ref="AgentId" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AgentType" type="OpenEnum"/>
+  <xsd:element name="AgentId" type="Identifier"/>
+  <xsd:element name="POSLocation" type="OpenEnum"/>
+  <xsd:element name="PostingSessionId" type="Identifier"/>
+  <xsd:complexType name="NetworkTrnInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="NetworkOwner"/>
+      <xsd:element ref="OriginatorName" minOccurs="0"/>
+      <xsd:element ref="OriginatorType" minOccurs="0"/>
+      <xsd:element ref="TerminalId" minOccurs="0"/>
+      <xsd:element ref="TerminalType" minOccurs="0"/>
+      <xsd:choice minOccurs="0">
+        <xsd:element ref="PostAddr"/>
+        <xsd:element ref="Desc"/>
+        <xsd:element ref="Name"/>
+      </xsd:choice>
+      <xsd:element ref="BankIdType" minOccurs="0"/>
+      <xsd:element ref="BankId" minOccurs="0"/>
+      <xsd:element ref="NetworkRefId" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="NetworkOwner" type="OpenEnum"/>
+  <xsd:element name="OriginatorName" type="String_Type"/>
+  <xsd:element name="OriginatorType" type="Long_Type"/>
+  <xsd:element name="TerminalId" type="Identifier"/>
+  <xsd:element name="TerminalType" type="OpenEnum"/>
+  <xsd:element name="NetworkRefId" type="Identifier"/>
+  <xsd:complexType name="RecCtrl_Type">
+    <xsd:sequence>
+      <xsd:element ref="MaxRec"/>
+      <xsd:element ref="SentRec"/>
+      <xsd:element ref="Cursor" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="MaxRec" type="Long_Type"/>
+  <xsd:element name="Cursor" type="Binary"/>
+  <xsd:element name="SentRec" type="Long_Type"/>
+  <xsd:element name="BillRetAddr" type="PostAddrType"/>
+  <xsd:element name="RemitName" type="String_Type"/>
+  <xsd:element name="RemitAddr" type="PostAddrType"/>
+  <xsd:element name="OrgContact" type="OrgContact_Type"/>
+  <xsd:complexType name="OrgContact_Type">
+    <xsd:sequence>
+      <xsd:element ref="ContactType"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+      <xsd:element ref="Phone" minOccurs="0"/>
+      <xsd:element ref="Fax" minOccurs="0"/>
+      <xsd:element ref="EmailAddr" minOccurs="0"/>
+      <xsd:element ref="URL" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ContactType" type="OpenEnum"/>
+  <!--xsd:complexType name="ResponseStatus_Type">
+    <xsd:sequence>
+      <xsd:element name="Code" type="Code_Type" minOccurs="0"/>
+      <xsd:element name="Message" type="Text_Type" minOccurs="0" maxOccurs="unbounded"/-->
+  <!-- Added by Mustaque - Start >
+      <xsd:element name="Status" type="StatusCode_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="StatusDesc" type="StatusDesc_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="ServerStatusCode" type="ServerStatusCode_Type"/>
+      <xsd:element name="Severity" type="ClosedEnum" minOccurs="0"/>
+      <xsd:element name="AsyncRsInfo" type="AsyncRsInfo_Type"/>
+      <xsd:element name="AdditionalStatus" type="AdditionalStatus_Type" minOccurs="0"/>
+      <xsd:element name="StatusModBy" type="StatusModBy_Type" minOccurs="0"/>
+      <xsd:element ref="Memo" minOccurs="0"/>
+      <xsd:element name="EffDt" type="EffDt_Type"/>
+      <xsd:element name="ApprovalId" type="Identifier"/-->
+  <!--  <xsd:element ref="StatusModBy" minOccurs="0"/> -->
+  <!--xsd:element ref="PmtAuthId" minOccurs="0"/>
+      <xsd:element ref="RemitId" minOccurs="0"/>
+      <xsd:element ref="RecPmtMod" minOccurs="0"/>
+      <xsd:element ref="PmtAuthCount" minOccurs="0"/>
+      <xsd:element ref="PmtMethod" minOccurs="0"/>
+      <xsd:element ref="ChkNum" minOccurs="0"/-->
+  <!-- Added by Mustaque - End -->
+  <!--/xsd:sequence>
+  </xsd:complexType-->
+  <xsd:complexType name="BSPReferTo_Type">
+    <xsd:sequence>
+      <xsd:element ref="SPName" minOccurs="0"/>
+      <xsd:element ref="OrgContact" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PmtInstruction_Type">
+    <xsd:sequence>
+      <xsd:element ref="Country" minOccurs="0"/>
+      <xsd:element ref="PmtFormat" minOccurs="0"/>
+      <xsd:element ref="RefInfo" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="IntermediaryDepAcct" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="FeeChargeAlloc" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PmtFormat" type="OpenEnum"/>
+  <xsd:element name="IntermediaryDepAcct" type="IntermediaryDepAcct_Type"/>
+  <xsd:element name="FeeChargeAlloc" type="FeeChargeAlloc_Type"/>
+  <xsd:complexType name="FeeChargeAlloc_Type">
+    <xsd:sequence>
+      <xsd:element ref="ChargeRegulation"/>
+      <xsd:element ref="Fee"/>
+      <xsd:element ref="DepAcctId" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ChargeRegulation" type="OpenEnum"/>
+  <xsd:element name="Fee" type="Fee_Type"/>
+  <xsd:complexType name="Fee_Type">
+    <xsd:sequence>
+      <xsd:element ref="FeeType"/>
+      <xsd:element ref="CurAmt" minOccurs="0"/>
+      <xsd:element ref="Rate" minOccurs="0"/>
+      <xsd:element ref="MinCurAmt" minOccurs="0"/>
+      <xsd:element ref="MaxCurAmt" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="FeeType" type="OpenEnum"/>
+  <xsd:element name="Rate" type="Rate_Type"/>
+  <xsd:element name="MinCurAmt" type="CurrencyAmount"/>
+  <xsd:element name="MaxCurAmt" type="CurrencyAmount"/>
+  <xsd:complexType name="IntermediaryDepAcct_Type">
+    <xsd:sequence>
+      <xsd:element ref="SeqNum"/>
+      <xsd:element ref="DepAcctId"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SeqNum" type="Long_Type"/>
+  <xsd:complexType name="SettlementInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="SettlementMethod"/>
+      <xsd:element ref="DepAcctId" minOccurs="0"/>
+      <xsd:element ref="SettlementId" minOccurs="0"/>
+      <xsd:element ref="OrgContact" minOccurs="0"/>
+      <xsd:element ref="ContactInfo" minOccurs="0"/>
+      <xsd:element ref="Memo" minOccurs="0"/>
+      <xsd:element ref="PmtInstruction" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PmtInst_Type">
+    <xsd:sequence>
+      <xsd:element ref="PmtInstType"/>
+      <xsd:element ref="Brand" minOccurs="0"/>
+      <xsd:element ref="SettlementInfo" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SettlementInfo" type="SettlementInfo_Type"/>
+  <xsd:element name="PmtInstType" type="String_Type"/>
+  <xsd:element name="Memo" type="Memo_Type"/>
+  <xsd:element name="SettlementMethod" type="OpenEnum"/>
+  <xsd:element name="SettlementId" type="String_Type"/>
+  <xsd:element name="PmtInstruction" type="PmtInstruction_Type"/>
+  <!-- Added by Mustaque - End -->
+  <!-- -->
+  <xsd:complexType name="PmtAckInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="PmtStatusCode"/>
+      <xsd:element ref="Count"/>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="Memo" minOccurs="0"/>
+      <xsd:element ref="CompositeContactInfo" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PmtStatusCode" type="PmtStatusCode_Type"/>
+  <xsd:element name="Count" type="Count_Type"/>
+  <xsd:element name="CardAcctIdFrom" type="CardAcctId_Type"/>
+  <xsd:element name="Category" type="Category_Type"/>
+  <xsd:element name="DueDt" type="DueDt_Type"/>
+  <xsd:element name="ImmediatePmt" type="ImmediatePmt_Type"/>
+  <xsd:element name="ForExDealId" type="Identifier"/>
+  <xsd:complexType name="PmtInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="CurAmt" minOccurs="0"/>
+      <xsd:choice minOccurs="0">
+        <xsd:element ref="LegalName"/>
+        <xsd:element ref="PayerInfo"/>
+      </xsd:choice>
+      <xsd:element ref="RemitInfo" maxOccurs="unbounded"/>
+      <xsd:choice>
+        <xsd:element ref="DepAcctIdFrom"/>
+        <xsd:element ref="CardAcctIdFrom"/>
+      </xsd:choice>
+      <xsd:element ref="Category" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:element ref="PrcDt"/>
+        <xsd:element ref="DueDt"/>
+      </xsd:choice>
+      <xsd:element ref="ImmediatePmt" minOccurs="0"/>
+      <xsd:element ref="ForExDealId" minOccurs="0"/>
+      <xsd:element ref="PmtRefId" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PmtRec_Type">
+    <xsd:sequence>
+      <xsd:element ref="PmtId"/>
+      <xsd:element ref="RecPmtId" minOccurs="0"/>
+      <xsd:element ref="SvcRqUID" minOccurs="0"/>
+      <xsd:element ref="PmtInfo"/>
+      <xsd:element ref="PmtStatus"/>
+      <xsd:element ref="PmtRemitAck" minOccurs="0"/>
+      <xsd:element ref="PmtRemitInfo" minOccurs="0"/>
+      <xsd:element ref="CreatedDt" minOccurs="0"/>
+      <xsd:choice minOccurs="0">
+        <xsd:element ref="OrigPmtPrcDt"/>
+        <xsd:element ref="OrigPmtDueDt"/>
+      </xsd:choice>
+      <xsd:element ref="FIDebitTrcNum" minOccurs="0"/>
+      <xsd:element ref="FICreditTrcNum" minOccurs="0"/>
+      <xsd:element ref="CSPRefId" minOccurs="0"/>
+      <xsd:element ref="SPRefId" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PmtRemitInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="Name" minOccurs="0"/>
+      <xsd:element ref="PostAddr" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="CreatedDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="OrigPmtPrcDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="OrigPmtDueDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="FIDebitTrcNum_Type">
+    <xsd:restriction base="NC">
+      <xsd:maxLength value="7"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FICreditTrcNum_Type">
+    <xsd:restriction base="NC">
+      <xsd:maxLength value="7"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="FICreditTrcNum" type="FICreditTrcNum_Type"/>
+  <xsd:element name="FIDebitTrcNum" type="FIDebitTrcNum_Type"/>
+  <xsd:element name="OrigPmtDueDt" type="OrigPmtDueDt_Type"/>
+  <xsd:element name="OrigPmtPrcDt" type="OrigPmtPrcDt_Type"/>
+  <xsd:element name="CreatedDt" type="CreatedDt_Type"/>
+  <xsd:element name="PmtRemitInfo" type="PmtRemitInfo_Type"/>
+  <xsd:element name="RecPmtId" type="RecPmtId_Type"/>
+  <xsd:element name="SvcRqUID" type="Identifier"/>
+  <xsd:element name="PmtInfo" type="PmtInfo_Type"/>
+  <xsd:element name="PmtStatus" type="Status_Type"/>
+  <xsd:element name="PmtRemitAck" type="PmtRemitAck_Type"/>
+  <xsd:complexType name="PmtRemitAck_Type">
+    <xsd:sequence>
+      <xsd:element ref="TotalFeeCharge" minOccurs="0"/>
+      <xsd:element ref="CompositePmtRemitInfo" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="TotalFeeCharge" type="TotalFeeCharge_Type"/>
+  <xsd:element name="CompositePmtRemitInfo" type="CompositePmtRemitInfo_Type"/>
+  <xsd:complexType name="CompositePmtRemitInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="PmtRemitChksum" minOccurs="0"/>
+      <xsd:element ref="PmtRemitDetail" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PmtRemitChksum" type="PmtRemitChksum_Type"/>
+  <xsd:complexType name="PmtRemitChksum_Type">
+    <xsd:sequence>
+      <xsd:element ref="AckType"/>
+      <xsd:element ref="Count"/>
+      <xsd:element ref="TotalCurAmt"/>
+      <xsd:element ref="Memo" minOccurs="0"/>
+      <xsd:element ref="CompositeContactInfo" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PmtRemitDetail" type="PmtRemitDetail_Type"/>
+  <xsd:complexType name="PmtRemitDetail_Type">
+    <xsd:sequence>
+      <xsd:element ref="PmtRemitRefId"/>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="PmtRemitStatus" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="PmtRemitRefId">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:element name="PmtRemitStatus" type="Status_Type"/>
+  <xsd:element name="PmtRemitRefId" type="PmtRemitRefId"/>
+  <xsd:element name="AckType" type="AckType_Type"/>
+  <xsd:element name="TotalCurAmt" type="TotalCurAmt_Type"/>
+  <xsd:complexType name="TotalCurAmt_Type">
+    <xsd:complexContent>
+      <xsd:extension base="CurrencyAmount"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="AckType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:complexType name="TotalFeeCharge_Type">
+    <xsd:sequence>
+      <xsd:element ref="Count"/>
+      <xsd:element ref="CompositeCurAmt"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CompositeCurAmt" type="CompositeCurAmt_Type"/>
+  <xsd:complexType name="CompositeCurAmt_Type">
+    <xsd:sequence>
+      <xsd:element ref="CompositeCurAmtId" minOccurs="0"/>
+      <xsd:element ref="CompositeCurAmtType"/>
+      <xsd:element ref="CurAmt" minOccurs="0"/>
+      <xsd:element ref="Rate" minOccurs="0"/>
+      <xsd:element ref="MinCurAmt" minOccurs="0"/>
+      <xsd:element ref="MaxCurAmt" minOccurs="0"/>
+      <xsd:element ref="SpecialHandling" minOccurs="0"/>
+      <xsd:element ref="Memo" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CompositeCurAmtId" type="CompositeCurAmtId_Type"/>
+  <xsd:element name="CompositeCurAmtType" type="CompositeCurAmtType_Type"/>
+  <xsd:element name="SpecialHandling" type="SpecialHandling_Type"/>
+  <xsd:simpleType name="CompositeCurAmtId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CompositeCurAmtType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="SpecialHandling_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="RecPmtId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CSPRefId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="SPRefId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:element name="CSPRefId" type="CSPRefId_Type"/>
+  <xsd:element name="SPRefId" type="SPRefId_Type"/>
+  <xsd:element name="PmtId" type="PmtId_Type"/>
+  <xsd:element name="PayerInfo" type="PayerInfo_Type"/>
+  <xsd:element name="OrgId" type="OrgId_Type"/>
+  <xsd:element name="RemitInfo" type="RemitInfo_Type"/>
+  <xsd:element name="DepAcctIdFrom" type="DepAcctIdFrom_Type"/>
+  <xsd:element name="PrcDt" type="PrcDt_Type"/>
+  <xsd:element name="PmtRefId" type="PmtRefId_Type"/>
+  <xsd:simpleType name="PmtRefId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PmtId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:complexType name="PayerInfo_Type">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element ref="PersonInfo"/>
+        <xsd:sequence>
+          <xsd:element ref="OrgInfo"/>
+          <xsd:element ref="OrgId"/>
+        </xsd:sequence>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="OrgId_Type">
+    <xsd:sequence>
+      <xsd:element ref="OrgIdType"/>
+      <xsd:element ref="OrgIdNum"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrgIdType" type="OrgIdType_Type"/>
+  <xsd:element name="OrgIdNum" type="OrgIdNum_Type"/>
+  <xsd:simpleType name="OrgIdType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="OrgIdNum_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="Category_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="DepAcctIdFrom_Type">
+    <xsd:complexContent>
+      <xsd:extension base="DepAcctId_Type"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="PrcDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DueDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ImmediatePmt_Type">
+    <xsd:restriction base="Boolean"/>
+  </xsd:simpleType>
+  <xsd:complexType name="RemitInfo_Type">
+    <xsd:annotation>
+      <xsd:documentation>Made RemitDetail optional to resolve non-deterministic parsing error.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence minOccurs="0">
+      <xsd:sequence>
+        <xsd:element ref="RemitInstruction" minOccurs="0"/>
+        <xsd:element ref="SettlementInfo" minOccurs="0"/>
+        <xsd:element ref="CounterpartyInfo" minOccurs="0"/>
+        <xsd:element ref="ChkInfo" minOccurs="0"/>
+        <xsd:element ref="ChkURL" minOccurs="0"/>
+        <xsd:choice>
+          <xsd:element ref="CustPayeeId"/>
+          <xsd:element ref="CustPayeeInfo"/>
+        </xsd:choice>
+      </xsd:sequence>
+      <xsd:choice minOccurs="0">
+        <xsd:sequence minOccurs="0">
+          <xsd:element ref="BillRefInfo" minOccurs="0"/>
+          <xsd:element ref="BillId" minOccurs="0"/>
+          <xsd:element ref="PmtId" minOccurs="0"/>
+          <xsd:element ref="Memo" minOccurs="0"/>
+          <xsd:element ref="BillingAcct" minOccurs="0"/>
+          <xsd:element ref="CurAmt"/>
+          <xsd:element ref="PmtSummAmt" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="InvoiceInfo" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <!-- 
+				<xsd:sequence minOccurs="0">
+					<xsd:element ref="RemitDetail" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="PmtId" minOccurs="0"/>
+					<xsd:element ref="RefInfo" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="CurAmt"/>
+					<xsd:element ref="PmtRemitRefId" minOccurs="0"/>
+				</xsd:sequence>
+				-->
+      </xsd:choice>
+      <xsd:element ref="PmtLegalRpt" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PmtSummAmt_Type">
+    <xsd:sequence>
+      <xsd:element ref="BillSummAmtId"/>
+      <xsd:element ref="CurAmt"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="BillSummAmtId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:complexType name="InvoiceInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="InvoiceType" minOccurs="0"/>
+      <xsd:element ref="InvoiceNum"/>
+      <xsd:element ref="RefInfo" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="TotalCurAmt"/>
+      <xsd:element ref="PaidCurAmt" minOccurs="0"/>
+      <xsd:element ref="EffDt"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+      <xsd:element ref="InvoiceVouchNum" minOccurs="0"/>
+      <xsd:element ref="Fee" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="InvoicePremium" minOccurs="0"/>
+      <xsd:element ref="Discount" minOccurs="0"/>
+      <xsd:element ref="TaxInfo" minOccurs="0"/>
+      <xsd:element ref="InvoiceAdj" minOccurs="0"/>
+      <xsd:element ref="InvoiceLineItem" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="InvoiceType" type="InvoiceType_Type"/>
+  <xsd:element name="InvoiceNum" type="InvoiceNum_Type"/>
+  <xsd:element name="PaidCurAmt" type="CurrencyAmount"/>
+  <xsd:element name="InvoiceVouchNum" type="InvoiceVouchNum_Type"/>
+  <xsd:element name="InvoicePremium" type="InvoicePremium_Type"/>
+  <xsd:element name="Discount" type="Discount_Type"/>
+  <xsd:element name="TaxInfo" type="TaxInfo_Type"/>
+  <xsd:element name="TaxType" type="TaxType_Type"/>
+  <xsd:element name="TaxDeductionCode" type="TaxDeductionCode_Type"/>
+  <xsd:element name="InvoiceAdj" type="InvoiceAdj_Type"/>
+  <xsd:element name="InvoiceLineItem" type="InvoiceLineItem_Type"/>
+  <xsd:element name="InvoiceLineItemNum" type="InvoiceLineItemNum_Type"/>
+  <xsd:simpleType name="InvoiceLineItemNum_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="InvoiceLineItem_Type">
+    <xsd:sequence>
+      <xsd:element ref="InvoiceLineItemNum"/>
+      <xsd:element ref="AdjType" minOccurs="0"/>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InvoiceAdj_Type">
+    <xsd:sequence>
+      <xsd:element ref="InvoiceAdjNum" minOccurs="0"/>
+      <xsd:element ref="AdjType" minOccurs="0"/>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="EffDt" minOccurs="0"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="TaxType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="TaxDeductionCode_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  
+  <xsd:complexType name="TaxInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="Org"/>
+      <xsd:element ref="TaxType"/>
+      <xsd:element ref ="TaxDeductionCode" />
+      <xsd:element ref="CurAmt" minOccurs="0"/>
+      <xsd:element ref="Rate" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Discount_Type">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element ref="Rate"/>
+        <xsd:element ref="CurAmt"/>
+      </xsd:choice>
+      <xsd:element ref="EffDt" minOccurs="0"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InvoicePremium_Type">
+    <xsd:complexContent>
+      <xsd:extension base="CurrencyAmount"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="InvoiceVouchNum_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="80"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="InvoiceType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="InvoiceNum_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="AdjType_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="InvoiceAdjNum_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="InvoiceAdjNum" type="InvoiceAdjNum_Type"/>
+  <xsd:element name="AdjType" type="AdjType_Type"/>
+  <xsd:element name="InvoiceInfo" type="InvoiceInfo_Type"/>
+  <xsd:element name="BillSummAmtId" type="BillSummAmtId_Type"/>
+  <xsd:element name="PmtSummAmt" type="PmtSummAmt_Type"/>
+  <xsd:element name="BillId" type="BillId_Type"/>
+  <xsd:element name="BillingAcct" type="BillingAcct_Type"/>
+  <xsd:simpleType name="BillingAcct_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BillRefInfo_Type">
+    <xsd:restriction base="NC">
+      <xsd:maxLength value="80"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="BillRefInfo" type="BillRefInfo_Type"/>
+  <xsd:element name="ChkURL" type="ChkURL_Type"/>
+  <xsd:element name="CustPayeeId" type="CustPayeeId_Type"/>
+  <xsd:element name="CustPayeeInfo" type="CustPayeeInfo_Type"/>
+  <xsd:complexType name="CustPayeeInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="Name" minOccurs="0"/>
+      <xsd:element ref="Nickname" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:element ref="StdPayeeId"/>
+        <xsd:element ref="FSPayee"/>
+        <xsd:element ref="XferPayee"/>
+        <xsd:element ref="BillerPayee"/>
+      </xsd:choice>
+      <xsd:element ref="BillingAcct" minOccurs="0"/>
+      <xsd:element ref="AcctPayAcctId" minOccurs="0"/>
+      <xsd:element ref="DfltPmtInfo" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AcctPayAcctId" type="AcctPayAcctId_Type"/>
+  <xsd:element name="DfltPmtInfo" type="DfltPmtInfo_Type"/>
+  <xsd:element name="StdPayeeId" type="StdPayeeId_Type"/>
+  <xsd:element name="FSPayee" type="FSPayee_Type"/>
+  <xsd:element name="XferPayee" type="XferPayee_Type"/>
+  <xsd:element name="BillerPayee" type="BillerPayee_Type"/>
+  <xsd:complexType name="BillerPayee_Type">
+    <xsd:sequence>
+      <xsd:element ref="BillerId"/>
+      <xsd:element ref="BillerContact" minOccurs="0"/>
+      <xsd:element ref="HistRetentionDays" minOccurs="0"/>
+      <xsd:element ref="BillerPayInfo" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BillerPayInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="PmtInst" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="DaysToEPost" minOccurs="0"/>
+      <xsd:element ref="PrenoteReqd" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="DaysToEPost_Type">
+    <xsd:restriction base="Long_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PrenoteReqd_Type">
+    <xsd:restriction base="Boolean"/>
+  </xsd:simpleType>
+  <xsd:element name="PrenoteReqd" type="PrenoteReqd_Type"/>
+  <xsd:element name="DaysToEPost" type="DaysToEPost_Type"/>
+  <xsd:element name="PmtInst" type="PmtInst_Type"/>
+  <xsd:element name="BillerPayInfo" type="BillerPayInfo_Type"/>
+  <xsd:element name="BillerId" type="BillerId_Type"/>
+  <xsd:element name="BillerContact" type="BillerContact_Type"/>
+  <xsd:element name="HistRetentionDays" type="HistRetentionDays_Type"/>
+  <xsd:simpleType name="HistRetentionDays_Type">
+    <xsd:restriction base="Long_Type"/>
+  </xsd:simpleType>
+  <xsd:complexType name="BillerId_Type">
+    <xsd:sequence>
+      <xsd:element ref="SPName"/>
+      <xsd:element ref="BillerNum"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BillerContact_Type">
+    <xsd:sequence>
+      <xsd:element ref="LegalName" minOccurs="0"/>
+      <xsd:element ref="Name" minOccurs="0"/>
+      <xsd:element ref="PostAddr" minOccurs="0"/>
+      <xsd:element ref="BillRetAddr" minOccurs="0"/>
+      <xsd:element ref="RemitName" minOccurs="0"/>
+      <xsd:element ref="RemitAddr" minOccurs="0"/>
+      <xsd:choice>
+        <xsd:element ref="OrgContact" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element ref="ContactInfo" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="XferPayee_Type">
+    <xsd:sequence>
+      <xsd:element ref="DepAcctIdTo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DepAcctIdTo" type="DepAcctIdTo_Type"/>
+  <xsd:complexType name="DepAcctIdTo_Type">
+    <xsd:complexContent>
+      <xsd:extension base="DepAcctId_Type"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FSPayee_Type">
+    <xsd:sequence>
+      <xsd:element ref="PostAddr"/>
+      <xsd:choice>
+        <xsd:element ref="OrgContact"/>
+        <xsd:element ref="ContactInfo"/>
+      </xsd:choice>
+      <xsd:element ref="LegalName" minOccurs="0"/>
+      <xsd:element ref="OrgId" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StdPayeeId_Type">
+    <xsd:sequence>
+      <xsd:element ref="SPName"/>
+      <xsd:element ref="BillerNum"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="BillerNum" type="BillerNum_Type"/>
+  <xsd:simpleType name="BillerNum_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:complexType name="DfltPmtInfo_Type">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element ref="DepAcctIdFrom" minOccurs="0"/>
+        <xsd:element ref="CardAcctIdFrom" minOccurs="0"/>
+      </xsd:choice>
+      <xsd:element ref="Category" minOccurs="0"/>
+      <xsd:element ref="Memo" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="AcctPayAcctId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="CustPayeeId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ChkURL_Type">
+    <xsd:restriction base="URL"/>
+  </xsd:simpleType>
+  <xsd:complexType name="ChkInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="ChkNum" minOccurs="0"/>
+      <xsd:element ref="OrigDt" minOccurs="0"/>
+      <xsd:element ref="Name" minOccurs="0"/>
+      <xsd:element ref="PostAddr" minOccurs="0"/>
+      <xsd:element ref="OrgPhone" minOccurs="0"/>
+      <xsd:element ref="Memo" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="OrigDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="OrgPhone_Type">
+    <xsd:restriction base="PhoneNumber"/>
+  </xsd:simpleType>
+  <xsd:element name="OrgPhone" type="OrgPhone_Type"/>
+  <xsd:element name="OrigDt" type="OrigDt_Type"/>
+  <xsd:element name="ChkInfo" type="ChkInfo_Type"/>
+  <xsd:element name="PmtLegalRpt" type="PmtLegalRpt_Type"/>
+  <xsd:element name="CounterpartyInfo" type="CounterpartyInfo_Type"/>
+  <xsd:complexType name="CounterpartyInfo_Type">
+    <xsd:sequence>
+      <xsd:element ref="LegalName" minOccurs="0"/>
+      <xsd:element ref="RefInfo" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:choice minOccurs="0">
+        <xsd:element ref="DepAcctId"/>
+        <xsd:element ref="CardAcctId"/>
+        <xsd:element ref="LoanAcctId"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PmtLegalRpt_Type">
+    <xsd:sequence>
+      <xsd:element ref="OrgInfo"/>
+      <xsd:element ref="OrgId" minOccurs="0"/>
+      <xsd:element ref="PayeeCountry"/>
+      <xsd:element ref="CurAmt" minOccurs="0"/>
+      <xsd:element ref="PrcDt" minOccurs="0"/>
+      <xsd:element ref="PmtLegalRptData" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="LegalRptCode_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="36"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SupplRptCode_Type">
+    <xsd:restriction base="String_Type">
+      <xsd:maxLength value="36"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="PmtLegalRptData" type="PmtLegalRptData_Type"/>
+  <xsd:element name="LegalRptCode" type="LegalRptCode_Type"/>
+  <xsd:element name="SupplRptCode" type="SupplRptCode_Type"/>
+  <xsd:complexType name="PmtLegalRptData_Type">
+    <xsd:sequence>
+      <xsd:element ref="LegalRptCode"/>
+      <xsd:element ref="SupplRptCode" minOccurs="0"/>
+      <xsd:element ref="Desc" minOccurs="0"/>
+      <xsd:element ref="Memo" minOccurs="0"/>
+      <xsd:element ref="SupplyingCountry" minOccurs="0"/>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="ImportDt" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="PayeeCountry_Type">
+    <xsd:restriction base="NC">
+      <xsd:maxLength value="3"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="SupplyingCountry" type="SupplyingCountry_Type"/>
+  <xsd:element name="PayeeCountry" type="PayeeCountry_Type"/>
+  <xsd:element name="ImportDt" type="ImportDt_Type"/>
+  <xsd:simpleType name="ImportDt_Type">
+    <xsd:restriction base="Date_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="SupplyingCountry_Type">
+    <xsd:restriction base="NC">
+      <xsd:maxLength value="3"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="RemitInstruction_Type">
+    <xsd:sequence>
+      <xsd:element ref="RemitRefId" minOccurs="0"/>
+      <xsd:element ref="PmtRefId" minOccurs="0"/>
+      <xsd:element ref="DeliveryInstruction" minOccurs="0"/>
+      <xsd:element ref="DeliveryMethod" minOccurs="0"/>
+      <xsd:element ref="ContactInfo" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="RemitRefId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DeliveryInstruction_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:element name="DeliveryInstruction" type="DeliveryInstruction_Type"/>
+  <xsd:element name="RemitRefId" type="RemitRefId_Type"/>
+  <xsd:element name="RemitInstruction" type="RemitInstruction_Type"/>
+  <xsd:element name="StatusModBy" type="StatusModBy_Type"/>
+  <xsd:element name="PmtAuthId" type="PmtAuthId_Type"/>
+  <xsd:element name="RemitId" type="RemitId_Type"/>
+  <xsd:element name="RecPmtMod" type="RecPmtMod_Type"/>
+  <xsd:element name="PmtAuthCount" type="PmtAuthCount_Type"/>
+  <xsd:element name="PmtMethod" type="PmtMethod_Type"/>
+  <xsd:element name="ChkNum" type="ChkNum_Type"/>
+  <xsd:simpleType name="PmtAuthId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="RemitId_Type">
+    <xsd:restriction base="Identifier"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="RecPmtMod_Type">
+    <xsd:restriction base="Boolean"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PmtAuthCount_Type">
+    <xsd:restriction base="Long_Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PmtMethod_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ChkNum_Type">
+    <xsd:restriction base="NC">
+      <xsd:maxLength value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Method_Type">
+    <xsd:restriction base="ClosedEnum"/>
+  </xsd:simpleType>
+  <xsd:complexType name="PmtAuthInfo_Type">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element ref="DepAcctIdFrom"/>
+        <xsd:element ref="CardAcctIdFrom"/>
+      </xsd:choice>
+      <xsd:element ref="CurAmt"/>
+      <xsd:element ref="Name" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PmtAuthRec_Type">
+    <xsd:sequence>
+      <xsd:element ref="PmtAuthId"/>
+      <xsd:element ref="PmtAuthInfo"/>
+      <xsd:element ref="PmtAuthStatus"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PmtAuthInfo" type="PmtAuthInfo_Type"/>
+  <xsd:element name="PmtAuthStatus" type="PmtAuthStatus_Type"/>
+  <xsd:complexType name="PmtAuthStatus_Type">
+    <xsd:sequence>
+      <xsd:element ref="PmtAuthStatusCode"/>
+      <xsd:element ref="StatusDesc" minOccurs="0"/>
+      <xsd:element ref="EffDt"/>
+      <xsd:element ref="ExpDt" minOccurs="0"/>
+      <xsd:element ref="StatusModBy" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PmtAuthStatusCode" type="PmtAuthStatusCode_Type"/>
+  <xsd:simpleType name="PmtAuthStatusCode_Type">
+    <xsd:restriction base="OpenEnum"/>
+  </xsd:simpleType>
+  <xsd:complexType name="SelRangeCurAmt_Type">
+    <xsd:sequence>
+      <xsd:element ref="LowCurAmt" minOccurs="0"/>
+      <xsd:element ref="HighCurAmt" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="LowCurAmt" type="LowCurAmt_Type"/>
+  <xsd:element name="HighCurAmt" type="CurrencyAmount"/>
+  <xsd:complexType name="LowCurAmt_Type">
+    <xsd:complexContent>
+      <xsd:extension base="CurrencyAmount"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  
+</xsd:schema>

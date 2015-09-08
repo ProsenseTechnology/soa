@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="AccountRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Account/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Account/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Account/V1" schemaLocation="AccountRO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="QuerySummaryRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QuerySummaryRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryDetailRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryDetailRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryStatusRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryStatusRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryBalanceRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryBalanceRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <portType name="AccountRSPort">
+        <operation name="querySummary">
+            <input message="rs:QuerySummaryRqMsg"/>
+            <output message="rs:QuerySummaryRsMsg"/>
+        </operation>
+        <operation name="queryDetail">
+            <input message="rs:QueryDetailRqMsg"/>
+            <output message="rs:QueryDetailRsMsg"/>
+        </operation>
+        <operation name="queryStatus">
+            <input message="rs:QueryStatusRqMsg"/>
+            <output message="rs:QueryStatusRsMsg"/>
+        </operation>
+        <operation name="queryBalance">
+            <input message="rs:QueryBalanceRqMsg"/>
+            <output message="rs:QueryBalanceRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="AccountRSPortBinding" type="rs:AccountRSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="querySummary">
+            <soap:operation soapAction="querySummary"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryDetail">
+            <soap:operation soapAction="queryDetail"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryStatus">
+            <soap:operation soapAction="queryStatus"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryBalance">
+            <soap:operation soapAction="queryBalance"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="AccountRS">
+        <port name="AccountRSPort" binding="rs:AccountRSPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,59 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<definitions name="CustomerRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Misys/Customer/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ro="urn:control.services.tiplus2.misys.com"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Misys/Customer/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="urn:control.services.tiplus2.misys.com" schemaLocation="../../AppMetadata/V1/Control.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CustomerDetailsRqMsg">
+        <part name="payload" element="ro:ServiceRequest"/>
+    </message>
+    <message name="CustomerDetailsRsMsg">
+        <part name="payload" element="ro:ServiceResponse"/>
+    </message>
+    <message name="CustomerSearchRqMsg">
+        <part name="payload" element="ro:ServiceRequest"/>
+    </message>
+    <message name="CustomerSearchRsMsg">
+        <part name="payload" element="ro:ServiceResponse"/>
+    </message>
+    <portType name="CustomerRSPort">
+        <operation name="customerDetails">
+            <input message="rs:CustomerDetailsRqMsg"/>
+            <output message="rs:CustomerDetailsRsMsg"/>
+        </operation>
+        <operation name="customerSearch">
+            <input message="rs:CustomerSearchRqMsg"/>
+            <output message="rs:CustomerSearchRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="CustomerRSPortBinding" type="rs:CustomerRSPort">
+        <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="customerDetails">
+            <soap12:operation soapAction="customerDetails"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="customerSearch">
+            <soap12:operation soapAction="customerSearch"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CustomerRS">
+        <port name="CustomerRSPort" binding="rs:CustomerRSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:businessServiceEntry xmlns:con="http://xmlns.oracle.com/servicebus/business/config" xmlns:oper="http://xmlns.oracle.com/servicebus/business/operations" xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:mq="http://www.bea.com/wli/sb/transports/mq">
+    <con:coreEntry>
+        <con:binding type="abstract XML"/>
+        <oper:operations enabled="true">
+            <oper:throttling enabled="false"/>
+            <oper:resultCachingEnabled>true</oper:resultCachingEnabled>
+        </oper:operations>
+        <con:xqConfiguration>
+            <ser:snippetVersion>1.0</ser:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:endpointConfig>
+        <tran:provider-id>mq</tran:provider-id>
+        <tran:inbound>false</tran:inbound>
+        <tran:URI>
+            <env:value>mq://TIPLUS2.BO.INCOMING?conn=MisysReq/Adapter/mq/MYS_Connection_mq</env:value>
+        </tran:URI>
+        <tran:outbound-properties>
+            <tran:load-balancing-algorithm>round-robin</tran:load-balancing-algorithm>
+            <tran:retry-count>0</tran:retry-count>
+            <tran:retry-interval>30</tran:retry-interval>
+        </tran:outbound-properties>
+        <tran:provider-specific>
+            <mq:outbound-properties>
+                <mq:message-type>Bytes</mq:message-type>
+                <mq:response-required>false</mq:response-required>
+                <mq:endpoint-URI-PUT-options/>
+                <mq:process-rfh2>false</mq:process-rfh2>
+            </mq:outbound-properties>
+            <mq:dispatch-policy>SBDefaultResponseWorkManager</mq:dispatch-policy>
+            <mq:worker-thread-dispatch-policy>SBDefaultResponseWorkManager</mq:worker-thread-dispatch-policy>
+        </tran:provider-specific>
+    </con:endpointConfig>
+</con:businessServiceEntry>

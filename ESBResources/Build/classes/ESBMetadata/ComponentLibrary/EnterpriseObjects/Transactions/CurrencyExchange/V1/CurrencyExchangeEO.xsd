@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified"
+            xmlns:fileo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+              schemaLocation="../../../Misc/File/V1/FileEO.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="CurrencyExchangeType" type="com:CodeType"/>
+  <xsd:element name="FromCurrencyCode" type="com:CodeType"/>
+  <xsd:element name="ToCurrencyCode" type="com:CodeType"/>
+  <xsd:element name="ConversionDateTime" type="com:DateTimeType"/>
+  <xsd:element name="ConversionRate" type="com:RateType"/>
+  <xsd:element name="FixedCurrencyUnit" type="com:StringType"/>
+  <xsd:element name="VarCurrencyUnit" type="com:StringType"/>
+  <xsd:element name="BidRate" type="com:RateType"/>
+  <xsd:element name="OfferRate" type="com:RateType"/>
+  <xsd:element name="MidRate" type="com:RateType"/>
+  <xsd:element name="CurrencyExchange" type="CurrencyExchangeType"/>
+  <xsd:element name="CurrencyExchangeStatus" type="com:CodeType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= CurrencyExchange ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CurrencyExchangeType">
+    <xsd:sequence>
+    <xsd:element ref="fileo:File" minOccurs="0"/>
+      <xsd:element ref="com:CurrencyExchangeIdentifier" minOccurs="0"/>
+	  <xsd:element ref="CurrencyExchangeType" minOccurs="0"/>
+	  <xsd:element ref="com:CustomerID" minOccurs="0"/>
+      <xsd:element ref="FromCurrencyCode" minOccurs="0"/>
+      <xsd:element ref="ToCurrencyCode" minOccurs="0"/>
+      <xsd:element ref="ConversionDateTime" minOccurs="0"/>
+      <xsd:element ref="ConversionRate" minOccurs="0"/>
+      <xsd:element ref="com:Amount" minOccurs="0"/>
+      <xsd:element ref="FixedCurrencyUnit" minOccurs="0"/>
+      <xsd:element ref="VarCurrencyUnit" minOccurs="0"/>
+      <xsd:element ref="com:StartDate" minOccurs="0"/>
+      <xsd:element ref="com:EndDate" minOccurs="0"/>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="BidRate" minOccurs="0"/>
+      <xsd:element ref="OfferRate" minOccurs="0"/>
+      <xsd:element ref="MidRate" minOccurs="0"/>
+      <xsd:element ref="CurrencyExchangeStatus" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="com:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="CurrencyExchange" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="CurrencyExchange" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Action Codes ============= -->
+  <!-- ====================================================================== -->
+  <xsd:simpleType name="ActionCodeType">
+    <xsd:restriction base="com:StringType">
+      <xsd:enumeration value="QueryCurrencyExchangeRate"/>
+      <xsd:enumeration value="ExchangeRateMaster"/>
+      <xsd:enumeration value="QueryDealRate"/>
+      <xsd:enumeration value="QueryCurrencyExchangeRateCode"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="AccountPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Account/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Polaris/Account/V1">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Accounts/Account/V1/AccountEO.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="CreateAccountMasterFileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateAccountMasterFileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateLoanAccountMasterFileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateLoanAccountMasterFileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateDepositAccountMasterFileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateDepositAccountMasterFileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="ReadAverageBalanceFileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="ReadAverageBalanceFileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateAverageBalanceFileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateAverageBalanceFileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryVirtualAccountStatusRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="QueryVirtualAccountStatusRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="ReadInternalAccountValidationFileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="ReadInternalAccountValidationFileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateInternalAccountValidationFileRqMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <message name="CreateInternalAccountValidationFileRsMsg">
+    <part name="payload" element="eo:ESBMsg"/>
+  </message>
+  <portType name="AccountPSPort">
+    <operation name="createAccountMasterFile">
+      <input message="ps:CreateAccountMasterFileRqMsg"/>
+      <output message="ps:CreateAccountMasterFileRsMsg"/>
+    </operation>
+    <operation name="createDepositAccountMasterFile">
+      <input message="ps:CreateDepositAccountMasterFileRqMsg"/>
+      <output message="ps:CreateDepositAccountMasterFileRsMsg"/>
+    </operation>
+    <operation name="createLoanAccountMasterFile">
+      <input message="ps:CreateLoanAccountMasterFileRqMsg"/>
+      <output message="ps:CreateLoanAccountMasterFileRsMsg"/>
+    </operation>
+    <operation name="readAverageBalanceFile">
+      <input message="ps:ReadAverageBalanceFileRqMsg"/>
+      <output message="ps:ReadAverageBalanceFileRsMsg"/>
+    </operation>
+    <operation name="createAverageBalanceFile">
+      <input message="ps:CreateAverageBalanceFileRqMsg"/>
+      <output message="ps:CreateAverageBalanceFileRsMsg"/>
+    </operation>
+    <operation name="queryVirtualAccountStatus">
+      <input message="ps:QueryVirtualAccountStatusRqMsg"/>
+      <output message="ps:QueryVirtualAccountStatusRsMsg"/>
+    </operation>
+    <operation name="readInternalAccountValidationFile">
+      <input message="ps:ReadInternalAccountValidationFileRqMsg"/>
+      <output message="ps:ReadInternalAccountValidationFileRsMsg"/>
+    </operation>
+    <operation name="createInternalAccountValidationFile">
+      <input message="ps:CreateInternalAccountValidationFileRqMsg"/>
+      <output message="ps:CreateInternalAccountValidationFileRsMsg"/>
+    </operation>
+  </portType>
+  <binding name="AccountPSPortBinding" type="ps:AccountPSPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="createAccountMasterFile">
+      <soap12:operation soapAction="createAccountMasterFile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="createDepositAccountMasterFile">
+      <soap12:operation soapAction="createDepositAccountMasterFile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="createLoanAccountMasterFile">
+      <soap12:operation soapAction="createLoanAccountMasterFile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="readAverageBalanceFile">
+      <soap12:operation soapAction="readAverageBalanceFile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="createAverageBalanceFile">
+      <soap12:operation soapAction="createAverageBalanceFile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="queryVirtualAccountStatus">
+      <soap12:operation soapAction="queryVirtualAccountStatus"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="readInternalAccountValidationFile">
+      <soap12:operation soapAction="readInternalAccountValidationFile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="createInternalAccountValidationFile">
+      <soap12:operation soapAction="createInternalAccountValidationFile"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="AccountPS">
+    <port name="AccountPSPort" binding="ps:AccountPSPortBinding">
+      <soap12:address location=""/>
+    </port>
+  </service>
+</definitions>

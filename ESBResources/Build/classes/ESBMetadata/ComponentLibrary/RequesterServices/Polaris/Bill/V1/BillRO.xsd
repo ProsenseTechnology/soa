@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Bill/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:rcom="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Bill/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"
+              schemaLocation="../../../../EnterpriseObjects/Transactions/Bill/V1/BillEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+              schemaLocation="../../Common/V1/CommonComponents.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="Bill" type="BillType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Bill ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="BillIdentifierType">
+    <xsd:sequence>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="com:BillerID" minOccurs="0"/>
+      <xsd:element ref="com:BillID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BillType">
+    <xsd:sequence>
+      <xsd:element name="BillIdentifier" type="BillIdentifierType" minOccurs="0"/>
+      <xsd:element name="BillType" type="com:StringType" minOccurs="0"/>
+      
+      <xsd:element name="BillStatus" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="StatusDesc" type="xsd:string" minOccurs="0"/>
+      <xsd:element ref="rcom:Amount" minOccurs="0"/>
+      <xsd:element name="ValType" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="BranchName" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="DealerCode" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="DealerAccountNumber" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="PayMethod" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="CustomerReferenceNumber" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="DocumentReferenceNumber" type="com:IDType" minOccurs="0"/>
+      <xsd:element name="CustomerName" type="com:StringType" minOccurs="0"/>
+      <xsd:element name="BillCreationDate" type="com:StringType" minOccurs="0"/>
+      
+      
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="rcom:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Bill" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Bill" minOccurs="0"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

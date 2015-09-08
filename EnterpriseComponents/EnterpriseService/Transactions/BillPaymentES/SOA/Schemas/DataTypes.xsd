@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns=" http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:complexType name="AmountType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:decimal">
+                <xsd:attribute name="currencyCode" type="xsd:normalizedString" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="BinaryObjectType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:base64Binary">
+                <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+                <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+                <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="BinaryObjectType_toRemove">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="mimeCode" type="xsd:normalizedString" use="optional"/>
+                <xsd:attribute name="characterSetCode" type="xsd:normalizedString" use="optional"/>
+                <xsd:attribute name="fileName" type="xsd:normalizedString"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="CodeType">
+        <xsd:restriction base="xsd:normalizedString"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DateType">
+        <xsd:restriction base="xsd:date"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DateTimeType">
+        <xsd:restriction base="xsd:dateTime"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DurationType">
+        <xsd:restriction base="xsd:duration"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="IDType">
+        <xsd:restriction base="xsd:normalizedString"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="IndicatorType">
+        <xsd:restriction base="xsd:boolean">
+            <xsd:pattern value="false"/>
+            <xsd:pattern value="true"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="IntegerType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:complexType name="MeasureType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:decimal">
+                <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="NameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="NumericType">
+        <xsd:restriction base="xsd:decimal"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="PercentType">
+        <xsd:restriction base="xsd:decimal"/>
+    </xsd:simpleType>
+    <xsd:complexType name="QuantityType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:decimal">
+                <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="RateType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:decimal">
+                <xsd:attribute name="unitCode" type="xsd:normalizedString" use="optional"/>
+                <xsd:attribute name="baseValue" type="xsd:decimal" use="optional"/>
+                <xsd:attribute name="baseUnitCode" type="xsd:normalizedString" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="TextType">
+        <xsd:restriction base="xsd:normalizedString"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="StringType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="URIType">
+        <xsd:restriction base="xsd:anyURI"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="YearType">
+        <xsd:restriction base="xsd:gYear"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="TimeType">
+        <xsd:restriction base="xsd:time"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MonthType">
+        <xsd:restriction base="xsd:normalizedString">
+            <xsd:pattern value="01"/>
+            <xsd:pattern value="02"/>
+            <xsd:pattern value="03"/>
+            <xsd:pattern value="04"/>
+            <xsd:pattern value="05"/>
+            <xsd:pattern value="06"/>
+            <xsd:pattern value="07"/>
+            <xsd:pattern value="08"/>
+            <xsd:pattern value="09"/>
+            <xsd:pattern value="10"/>
+            <xsd:pattern value="11"/>
+            <xsd:pattern value="12"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="MonthDayType">
+        <xsd:restriction base="xsd:gMonthDay"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="PositiveIntegerType">
+        <xsd:restriction base="xsd:positiveInteger"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="NonNegativeIntegerType">
+        <xsd:restriction base="xsd:nonNegativeInteger">
+            <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

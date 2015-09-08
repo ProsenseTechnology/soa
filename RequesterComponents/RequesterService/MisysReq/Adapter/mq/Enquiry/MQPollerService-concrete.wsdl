@@ -1,0 +1,12 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/mq/RequesterService/MQPoller/MQPollerService" name="MQPollerService-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="MQPollerService.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/mq/RequesterService/MQPoller/MQPollerService"/>
+    <wsdl:binding name="ENQUIRY_ptt-binding" type="mqp:ENQUIRY_ptt" xmlns:mqp="http://xmlns.oracle.com/pcbpel/adapter/mq/RequesterService/MQPoller/MQPollerService">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="ENQUIRY">
+            <soap:operation soapAction="ENQUIRY"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

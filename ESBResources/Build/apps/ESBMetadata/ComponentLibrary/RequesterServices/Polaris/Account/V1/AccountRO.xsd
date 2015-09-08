@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Account/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:rcom="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+            xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Account/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+              schemaLocation="../../../../EnterpriseObjects/Parties/Customer/V1/CustomerEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+              schemaLocation="../../../../EnterpriseObjects/Accounts/Account/V1/AccountEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+              schemaLocation="../../Common/V1/CommonComponents.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="Account" type="AccountType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Account ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="BalanceType">
+    <xsd:sequence>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="com:AccountIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="rcom:BalanceList" minOccurs="0"/>
+    </xsd:sequence>
+    
+  </xsd:complexType>
+  
+   <xsd:element name="BalanceList">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Balance" type="com:BalanceType" maxOccurs="unbounded" minOccurs="0"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="CustomerType">
+    <xsd:sequence>
+      <xsd:element ref="com:Person" minOccurs="0"/>
+      <xsd:element ref="com:Phone" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AccountType">
+    <xsd:sequence>
+      <xsd:element ref="com:AccountIdentifier" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:BankID" minOccurs="0"/>
+      <xsd:element ref="com:AccountID" minOccurs="0"/>
+      <xsd:element ref="rcom:AccountClosureFlag" minOccurs="0"/>
+      <xsd:element name="AccountOpenDate" type="com:DateType" minOccurs="0"/>
+      <xsd:element ref="com:AccountCurrency" minOccurs="0"/>
+      <xsd:element name="AccountType" type="com:NameType" minOccurs="0"/>
+      <xsd:element name="Customer" type="CustomerType" minOccurs="0"/>
+      <xsd:element name="AccountStatus" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="LedgerBalance" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="AvailableBalance" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="FloatBalance" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="UnclearBalance" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="OverdraftLimit" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="AvailableOverdraftLimit" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="CurrentBalance" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element name="TransactionBalance" type="rcom:AmountType" minOccurs="0"/>
+      <xsd:element ref="com:BranchID" minOccurs="0"/>
+      <xsd:element ref="com:CustomerID" minOccurs="0"/>
+      <xsd:element name="FullName" type="com:NameType" minOccurs="0"/>
+      <xsd:element name="AccountOwnership" type="com:CodeType" minOccurs="0"/>
+      <xsd:element name="AccountSubType" type="com:CodeType" minOccurs="0"/>
+      <xsd:element ref="eo:ModeOfOperation" minOccurs="0"/>
+      <xsd:element ref="eo:NoCreditStatus" minOccurs="0"/>
+      <xsd:element ref="eo:NoDebitStatus" minOccurs="0"/>
+      <xsd:element ref="eo:DelinquencyStatus" minOccurs="0"/>
+      <xsd:element ref="com:RelationshipManagerName" minOccurs="0"/>
+      <xsd:element ref="com:RelationshipManagerEmailID" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="rcom:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Account" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="Balance" type="BalanceType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Account" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="Balance" type="BalanceType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

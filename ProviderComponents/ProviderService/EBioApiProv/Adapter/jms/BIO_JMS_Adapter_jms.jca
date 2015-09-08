@@ -1,0 +1,14 @@
+<adapter-config name="BIO_JMS_Adapter" adapter="jms" wsdlLocation="BIO_JMS_Adapter.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIJmsProvider="THIRDPARTY" location="eis/activemq/Biometric" UiOperationMode="Synchronous"/>
+  <endpoint-interaction portType="validate_ptt" operation="validate" UITransmissionPrimitive="Request-response">
+    <interaction-spec className="oracle.tip.adapter.jms.outbound.JmsRequestReplyInteractionSpec">
+      <property name="TimeToLive" value="0"/>
+      <property name="PayloadType" value="TextMessage"/>
+      <property name="DeliveryMode" value="Persistent"/>
+      <property name="ReplyDestinationName" value="queue.OSB"/>
+      <property name="RequestDestinationName" value="queue.applicant"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

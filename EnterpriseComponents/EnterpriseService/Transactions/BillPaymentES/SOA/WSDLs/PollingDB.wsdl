@@ -1,0 +1,29 @@
+<wsdl:definitions
+     name="PollingDB"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/EnterpriseService.Transactions/BillPaymentES/PollingDB"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/EnterpriseService.Transactions/BillPaymentES/PollingDB"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:pc="http://xmlns.oracle.com/pcbpel/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/PollingDB"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="PollingDB_plt" >
+    <plt:role name="PollingDB_role" >
+      <plt:portType name="tns:PollingDB_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/PollingDB" schemaLocation="../Schemas/PollingDB_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="CustMasterTranTableCollection_msg">
+        <wsdl:part name="CustMasterTranTableCollection" element="top:CustMasterTranTableCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="PollingDB_ptt">
+        <wsdl:operation name="read">
+            <wsdl:input message="tns:CustMasterTranTableCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

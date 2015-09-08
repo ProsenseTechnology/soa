@@ -1,0 +1,147 @@
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1"
+             xmlns:tns="http://xmlns.oracle.com/ProviderService/ESBPortalProv/ChargePSC"
+             xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="ChargePS_rest">RestService</doc>
+  <grammars>
+    <xsd:schema>
+      <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1"
+                  schemaLocation="../../../../EnterpriseObjects/Transactions/Charge/V1/ChargeEO.xsd"/>
+    </xsd:schema>
+    <schema targetNamespace="http://xmlns.oracle.com/ProviderService/ESBPortalProv/ChargePSC"
+            elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"/>
+  </grammars>
+  <resources>
+    <resource path="/getWaiveChargesIndicatorList">
+      <method name="POST" soa:wsdlOperation="getWaiveChargesIndicatorList">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getApprovedAccountCharges">
+      <method name="POST" soa:wsdlOperation="getApprovedAccountCharges">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getApprovedAccountChargesList">
+      <method name="POST" soa:wsdlOperation="getApprovedAccountChargesList">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getChargeCurrencyList">
+      <method name="POST" soa:wsdlOperation="getChargeCurrencyList">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getChargeTypeList">
+      <method name="POST" soa:wsdlOperation="getChargeTypeList">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getChargeOptionList">
+      <method name="POST" soa:wsdlOperation="getChargeOptionList">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/createApprovedAccountCharges">
+      <method name="POST" soa:wsdlOperation="createApprovedAccountCharges">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/updateApprovedAccountCharges">
+      <method name="POST" soa:wsdlOperation="updateApprovedAccountCharges">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getChargeMasterList">
+      <method name="POST" soa:wsdlOperation="getChargeMasterList">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getChargeMaster">
+      <method name="POST" soa:wsdlOperation="getChargeMaster">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/createChargeMaster">
+      <method name="POST" soa:wsdlOperation="createChargeMaster">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/updateChargeMaster">
+      <method name="POST" soa:wsdlOperation="updateChargeMaster">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/getFrequencyList">
+      <method name="POST" soa:wsdlOperation="getFrequencyList">
+        <request>
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/xml" element="eo:ESBMsg"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

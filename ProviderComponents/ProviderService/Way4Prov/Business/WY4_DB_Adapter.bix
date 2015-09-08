@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ser:businessServiceEntry xmlns:ser="http://xmlns.oracle.com/servicebus/business/config" xmlns:svc="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:jca="http://www.bea.com/wli/sb/transports/jca" xmlns:ops="http://xmlns.oracle.com/servicebus/business/operations" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ser:coreEntry>
+        <ser:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config">
+            <con:wsdl ref="Way4Prov/Adapter/db/WY4_DB_Adapter"/>
+            <con:binding>
+                <con:name>Way4DBAdapterPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db</con:namespace>
+            </con:binding>
+        </ser:binding>
+        <ops:operations enabled="true">
+            <ops:sla-alerting enabled="true"/>
+        </ops:operations>
+        <ser:ws-policy>
+            <svc:binding-mode>no-policies</svc:binding-mode>
+        </ser:ws-policy>
+        <ser:xqConfiguration>
+            <svc:snippetVersion>1.0</svc:snippetVersion>
+        </ser:xqConfiguration>
+    </ser:coreEntry>
+    <ser:endpointConfig>
+        <tran:provider-id>jca</tran:provider-id>
+        <tran:inbound>false</tran:inbound>
+        <tran:URI>
+            <env:value>jca://eis/DB/Way4</env:value>
+        </tran:URI>
+        <tran:outbound-properties>
+            <tran:load-balancing-algorithm>round-robin</tran:load-balancing-algorithm>
+            <tran:retry-count>2</tran:retry-count>
+            <tran:retry-interval>1</tran:retry-interval>
+            <tran:retry-application-errors>true</tran:retry-application-errors>
+        </tran:outbound-properties>
+        <tran:all-headers>false</tran:all-headers>
+        <tran:provider-specific xsi:type="jca:JCAEndPointConfiguration">
+            <jca:jca-file ref="Way4Prov/Adapter/db/WY4_DB_Adapter"/>
+            <jca:adapter-name>Database Adapter</jca:adapter-name>
+            <jca:adapter-type>db</jca:adapter-type>
+            <jca:dispatch-policy>SBDefaultResponseWorkManager</jca:dispatch-policy>
+            <jca:always-use-wsdl>true</jca:always-use-wsdl>
+            <jca:connection-mode>managed</jca:connection-mode>
+            <jca:outbound-properties>
+                <jca:operation-properties>
+                    <jca:operation-name>queryCreditCardDetails</jca:operation-name>
+                    <jca:spec-properties>
+                        <jca:property>
+                            <jca:name>SqlString</jca:name>
+                            <jca:value>select a.id CardID, B.CLIENT_NUMBER CustomerId,   a.rbs_number RecoveryAccount,  substr(a.contract_number,0,6)||'*******'||substr(a.contract_number,13,4) CreditCardNo,  a.tr_first_nam||' '||a.tr_last_nam CardName, c.name Product,  D.AMOUNT_AVAILABLE CurrentBalance , D.TOTAL_BLOCKED UnbilledAmount, abs(D.AUTH_LIMIT_AMOUNT) TotalCreditLimit, D.AMOUNT_AVAILABLE AvailableCreditLimit,  D.AMOUNT_AVAILABLE AvailableCashLimit, abs(D.AUTH_LIMIT_AMOUNT) CashLimit,  abs(D.TOTAL_BALANCE) TotalPaymentDue, e.full_name ContractCurrency, D.LAST_BILLING_DATE LastBillingDate, D.NEXT_BILLING_DATE NextStatementDate, decode(substr(c.name,instr(c.name,' ',-1)),' Main','M','S') CardType, DECODE(A.contr_status,'14','Ok' ,'51', 'buck1,Normal', '166', 'buck2', '97', 'buck3', '205', 'buck4') CardStatus, abs(D.TOTAL_BALANCE) TotalAmtDue, a.tr_first_nam||' '||a.tr_last_nam CardHolderName, a.rbs_number CardAccountNumber,  x.amnd_date LastPaymentDate,  x.TRANS_AMOUNT  LastPaymentAmount,  decode(a.channel,'x','AMEX','v','VISA','m','MASTERCARD') CardIssuer, TO_NUMBER(NVL(ows.sy_convert.GET_TAG_VALUE (f.MSG_DETAILS, 'CURRENT_DUE'), 0))  MinPaymentDue,  TRG_DATE PaymentDueDate, g.TOTAL_DUE_AMOUNT TotalDueAmount,  PAST_DUE_AMOUNT PastDueAmount, TO_NUMBER(NVL(ows.sy_convert.GET_TAG_VALUE (f.MSG_DETAILS, 'STMT_BALANCE'), 0))   LastStatementBalance, decode(H.SEQV_NUMBER,1,'N','Y')  CardReissueFlag,  y.RecoveryAccount,  y.RecoveryBank, y.AutoRecoveryOption from ows.acnt_contract a, ows.client b, ows.appl_product c, OWS.ACNT_CONTRACT d, ows.currency e, ows.acnt_log f,ows.CONTRACT_DATA g, ows.card_info h, (select   target_number,  amnd_state,  amnd_date,  TRANS_AMOUNT from (select  target_number,  amnd_state,  amnd_date,  TRANS_AMOUNT from ows.doc where target_number =#targetNumber and trans_type in ('146') and amnd_state='A' order by amnd_date desc) where rownum =1) x, (select nvl(a.target_number,'0') RecoveryAccount , nvl(A.TARGET_MEMBER_ID,'0') RecoveryBank, nvl(a.acnt_contract__oid,'0') aid,  decode(nvl(A.AMND_STATE,'0'),'A','Y','N')  AutoRecoveryOption   from OWS.STANDING_ORDER a , OWS.ACCOUNT b where a .acnt_contract__oid in (select  ACNT_CONTRACT__OID  from OWS.ACNT_CONTRACT c where contract_number =#contractNumber) and a .amnd_state = 'A'  and a.IS_ACTIVE= 'Y' and a.ACCOUNT__ID = b.ID and b.CODE = 'OS11') y where a.client__id=b.id and a.product=c.internal_code and A.ACNT_CONTRACT__OID=d.id and e.code=d.curr and a.contract_number =x.target_number and x.amnd_state ='A' and d.amnd_state='A' and e.amnd_state='A' and f.MSG_CODE='BILLING' and f.acnt_contract__oid =  d.ID and a.id=H.ACNT_CONTRACT__OID and f .BANK_DATE = d.LAST_BILLING_DATE and d.id=g.acnt_contract__oid and  y.aid(+) = d.id and a.amnd_state='A' and b.amnd_state='A' and c.amnd_state='A' and a.con_cat='C' and a.contract_number=#cardNumber</jca:value>
+                        </jca:property>
+                        <jca:property>
+                            <jca:name>GetActiveUnitOfWork</jca:name>
+                            <jca:value>false</jca:value>
+                        </jca:property>
+                    </jca:spec-properties>
+                </jca:operation-properties>
+                <jca:operation-properties>
+                    <jca:operation-name>queryCreditCardFeed</jca:operation-name>
+                    <jca:spec-properties>
+                        <jca:property>
+                            <jca:name>SqlString</jca:name>
+                            <jca:value>select contract_number CardNo, b.BRANCH BranchCode,  CONTRACT_NAME CardHolderName, to_char(a.DATE_OPEN,'YYYYMMDD') OpenDate, rbs_number CustID, rbs_number CardAccNo, to_Char(a.DATE_EXPIRE,'YYYYMMDD') ExpiryDate, contr_status CardStatus, Country Country, con_cat CardCategory, (case when substr(a.contract_number, 1,6) = '447815'  then 'VISA' when substr(a.contract_number, 1,6) = '627851' then 'AUTO_BRANCH' when substr(a.contract_number, 1,6) = '519601' then 'MasterCard' end) CardType, (SELECT distinct NAME FROM OWS.CURRENCY WHERE CODE=A.curr) CardCcy  from ows.acnt_contract a,ows.client b where substr(contract_number, 1,6) in ( '447815' ,'627851' ,'519601' ) and a.client__id=b.id and a.F_I = '717' and a.amnd_state = 'A' and contr_status='14' and CON_CAT = 'C' and a.DATE_OPEN = #startDate union all select contract_number CardNo, (SELECT distinct NAME FROM OWS.CURRENCY WHERE CODE=A.curr) CardCcy,  b.BRANCH BranchCode,  CONTRACT_NAME CardHolderName, to_char(a.DATE_OPEN,'YYYYMMDD') OpenDate, rbs_number CustID, rbs_number CardAccNo, (case when a.product in ('101104000000000000001391', '101229000000000000001427') then 'VIP' when a.product in ( '100819000000000000001327', '100819000000000000001294') then 'CREDIT_GOLD' when a.product in ('100819000000000000001313', '100818000000000000001237') then 'CREDIT_CLASSIC' when a.product in ('140612000000000000003221', '140612000000000000003220', '140612000000000000003224', '140612000000000000003223') then 'AMEX_CARD' end) CardType, to_char(a.DATE_EXPIRE,'YYYYMMDD') ExpiryDate, contr_status CardStatus, Country Country, con_cat CardCategory from ows.acnt_contract a,ows.client b where product in ('140612000000000000003221', '140612000000000000003220', '140612000000000000003224', '140612000000000000003223', '100819000000000000001313', '100818000000000000001237', '100819000000000000001327', '100819000000000000001294', '101104000000000000001391', '101229000000000000001427')  and a.client__id=b.id and a.F_I = '717' and a.amnd_state = 'A' and a.contr_status='14' and a.CON_CAT = 'C' and a.DATE_OPEN = #startDate1</jca:value>
+                        </jca:property>
+                        <jca:property>
+                            <jca:name>GetActiveUnitOfWork</jca:name>
+                            <jca:value>false</jca:value>
+                        </jca:property>
+                    </jca:spec-properties>
+                </jca:operation-properties>
+                <jca:operation-properties>
+                    <jca:operation-name>queryCreditCardSummary</jca:operation-name>
+                    <jca:spec-properties>
+                        <jca:property>
+                            <jca:name>SqlString</jca:name>
+                            <jca:value>select lpad(a.client__id,16,0) LoyaltyAccount, substr(a.contract_number,0,6)||'*******'||substr(a.contract_number,13,4) CardNumber,  a.card_expire ExpiryDate, a.tr_first_nam||' '||a.tr_last_nam CustomerName, NVL(b.phone, b.phone_m) PhoneNumber, b.e_mail EmailAddress,  a.date_open DateOpened, c.name Product,  D.AMOUNT_AVAILABLE AvailableCredit, abs(D.AUTH_LIMIT_AMOUNT) CreditLimit, D.TOTAL_BLOCKED BlockedAmount, abs(D.TOTAL_BALANCE) UsedAmount, e.full_name ContractCurrency, D.LAST_BILLING_DATE LastBillingDate, D.NEXT_BILLING_DATE NextBillingDate, decode(substr(c.name,instr(c.name,' ',-1)),' Main','Y','N')IsMain,  DECODE(A.contr_status,'14','Ok' ,'51', 'buck1,Normal', '166', 'buck2', '97', 'buck3', '205', 'buck4') Status from ows.acnt_contract a, ows.client b, ows.appl_product c, OWS.ACNT_CONTRACT d, ows.currency e where a.client__id=b.id and a.product=c.internal_code and A.ACNT_CONTRACT__OID=d.id and e.code=d.curr and d.amnd_state='A' and e.amnd_state='A' and a.amnd_state='A' and b.amnd_state='A' and c.amnd_state='A' and a.con_cat='C' and a.contract_number=#cardNumber</jca:value>
+                        </jca:property>
+                        <jca:property>
+                            <jca:name>GetActiveUnitOfWork</jca:name>
+                            <jca:value>false</jca:value>
+                        </jca:property>
+                    </jca:spec-properties>
+                </jca:operation-properties>
+                <jca:operation-properties>
+                    <jca:operation-name>queryCreditCardTransactionSummary</jca:operation-name>
+                    <jca:spec-properties>
+                        <jca:property>
+                            <jca:name>SqlString</jca:name>
+                            <jca:value>SELECT substr(target_number,0,6)||'*******'||substr(target_number,13,4) CardID, TO_CHAR(a.trans_date, 'MM/DD/YYYY') TranDate,  A.POSTING_DATE PostDate,  NVL(TRANS_DETAILS, '--') TranDescription, to_char(A.TRANS_AMOUNT,'999,999,999') Amount,  a.ret_ref_number TranRefNo, decode(e.direction,-1,'D',1,'C') DebitCreditFlag,  C.NAME Currency FROM OWS.DOC A,OWS.ACNT_CONTRACT B, OWS.CURRENCY C, OWS.TRANS_TYPE D,OWS.M_TRANSACTION E WHERE  A.TARGET_NUMBER=B.CONTRACT_NUMBER AND A.TRANS_CURR=C.CODE AND A.TRANS_TYPE=D.ID AND A.ID=E.DOC__OID AND A.AMND_STATE='A' and b.amnd_state ='A' and C.AMND_STATE='A' and D.AMND_STATE='A' AND A.IS_AUTHORIZATION='N' AND A.POSTING_STATUS='P' AND A.OUTWARD_STATUS='C' and E.SERVICE_CLASS='T' AND A.POSTING_DATE IS NOT NULL AND a.target_number= #cardNumber and a.posting_date between #startDate and #endDate ORDER BY TRANS_DATE desc</jca:value>
+                        </jca:property>
+                        <jca:property>
+                            <jca:name>GetActiveUnitOfWork</jca:name>
+                            <jca:value>false</jca:value>
+                        </jca:property>
+                    </jca:spec-properties>
+                </jca:operation-properties>
+            </jca:outbound-properties>
+            <jca:endpoint-properties>
+                <jca:endpoint-property>
+                    <jca:name>jca.retry.maxInterval</jca:name>
+                    <jca:value>10</jca:value>
+                </jca:endpoint-property>
+                <jca:endpoint-property>
+                    <jca:name>jca.retry.count</jca:name>
+                    <jca:value>2</jca:value>
+                </jca:endpoint-property>
+                <jca:endpoint-property>
+                    <jca:name>jca.retry.interval</jca:name>
+                    <jca:value>1</jca:value>
+                </jca:endpoint-property>
+                <jca:endpoint-property>
+                    <jca:name>jca.retry.backoff</jca:name>
+                    <jca:value>2</jca:value>
+                </jca:endpoint-property>
+            </jca:endpoint-properties>
+        </tran:provider-specific>
+    </ser:endpointConfig>
+</ser:businessServiceEntry>

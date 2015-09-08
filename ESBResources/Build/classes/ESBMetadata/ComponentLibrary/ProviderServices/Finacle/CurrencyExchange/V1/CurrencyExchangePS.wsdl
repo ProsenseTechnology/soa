@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="CurrencyExchangePS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/CurrencyExchange/V1"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+             xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/CurrencyExchange/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/CurrencyExchange/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Transactions/CurrencyExchange/V1/CurrencyExchangeEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="OnlineTestRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="OnlineTestRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetExchangeRateForRateCodeRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="GetExchangeRateForRateCodeRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryExchangeRateRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryExchangeRateRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+     <message name="DealRateRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="DealRateRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="CurrencyExchangePSPort">
+        <operation name="onlineTest">
+            <input message="ps:OnlineTestRqMsg"/>
+            <output message="ps:OnlineTestRsMsg"/>
+        </operation>
+        <operation name="getExchangeRateForRateCode">
+            <input message="ps:GetExchangeRateForRateCodeRqMsg"/>
+            <output message="ps:GetExchangeRateForRateCodeRsMsg"/>
+        </operation>
+         <operation name="queryExchangeRate">
+            <input message="ps:QueryExchangeRateRqMsg"/>
+            <output message="ps:QueryExchangeRateRsMsg"/>
+        </operation>
+         <operation name="dealrate">
+            <input message="ps:DealRateRqMsg"/>
+            <output message="ps:DealRateRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="CurrencyExchangePSPortBinding" type="ps:CurrencyExchangePSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="onlineTest">
+            <soap12:operation soapAction="onlineTest"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getExchangeRateForRateCode">
+            <soap12:operation soapAction="getExchangeRateForRateCode"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryExchangeRate">
+            <soap12:operation soapAction="queryExchangeRate"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+         <operation name="dealrate">
+            <soap12:operation soapAction="dealRate"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CurrencyExchangePS">
+        <port name="CurrencyExchangePSPort" binding="ps:CurrencyExchangePSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

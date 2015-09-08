@@ -1,0 +1,107 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon Aug 03 16:12:36 IST 2015
+  Author:  Prosense7
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="ReadEmail"
+               targetNamespace="http://xmlns.oracle.com/EnterpriseService_Misc/NotificationES/ReadEmail"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/EnterpriseService_Misc/NotificationES/ReadEmail"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:ns1="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns2="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Notification/V1"
+         xmlns:ns3="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://xmlns.equitybank.co.ke/ESB/ES/Misc/Notification/V1"
+          location="../WSDLs/NotificationESWrapper1.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"
+          ui:processWSDL="true"/>
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="ReadEmailPL" partnerLinkType="ns1:ReadEmail" myRole="NotificationESPort"/>
+    <partnerLink name="NotificationProvRouterPL"
+                 partnerLinkType="ns1:NotificationProvRouter.NotificationProvRouter" partnerRole="NotificationESPort"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="RequestVariable" messageType="ns1:ReadEmailRqMsg"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="ResponseVariable" messageType="ns1:ReadEmailRsMsg"/>
+  </variables>
+  <faultHandlers>
+    <catchAll>
+      <sequence name="Sequence1">
+        <assign name="AssignFault">
+          <copy>
+            <from>"ESB-1040302"</from>
+            <to>$ResponseVariable.payload/ns2:RsData/ns3:Status/ns3:Code</to>
+          </copy>
+          <copy>
+            <from>"Failure"</from>
+            <to>$ResponseVariable.payload/ns2:RsData/ns3:Status/ns3:Type</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$ResponseVariable.payload/ns2:RsData/ns3:Status/ns3:Text</to>
+          </copy>
+        </assign>
+        <reply name="ReplyResponse" variable="ResponseVariable" partnerLink="ReadEmailPL"
+               portType="ns1:NotificationESPort" operation="readEmail"/>
+      </sequence>
+    </catchAll>
+  </faultHandlers>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in ReadEmail.wsdl) -->
+    <receive name="receiveInput" partnerLink="ReadEmailPL" portType="ns1:NotificationESPort" operation="readEmail"
+             variable="RequestVariable" createInstance="yes"/>
+    <invoke name="NotificationProvRouterPL" bpelx:invokeAsDetail="no" partnerLink="NotificationProvRouterPL"
+            portType="ns1:NotificationESPort" operation="readEmail" inputVariable="RequestVariable"
+            outputVariable="ResponseVariable"/>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="ReadEmailPL" portType="ns1:NotificationESPort" operation="readEmail"
+           variable="ResponseVariable"/>
+  </sequence>
+</process>

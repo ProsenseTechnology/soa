@@ -1,0 +1,41 @@
+<?xml version = '1.0'?>
+<jobset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OutgoingFilesJobSet" execution-mode="PARALLEL" first-step=""
+        xmlns="http://xmlns.oracle.com/scheduler">
+    <description/>
+    <display-name>OutgoingFilesJobSet</display-name>
+    <parameter-list>
+        <parameter name="SYS_effectiveApplication" data-type="string">EssNativeHostingApp</parameter>
+    </parameter-list>
+    <steps>
+        <step id="CustomerMaster">
+            <job-definition name="/oracle/apps/ess/custom/esb/Jobs/FileBSGenerationJob.xml" id="mdsId_0"/>
+            <parameter-list>
+                <parameter name="ActionCode" data-type="string">CustomerMaster</parameter>
+            </parameter-list>
+        </step>
+        <step id="AccountMaster">
+            <job-definition name="/oracle/apps/ess/custom/esb/Jobs/FileBSGenerationJob.xml" id="mdsId_1"/>
+            <parameter-list>
+                <parameter name="ActionCode" data-type="string">AccountMaster</parameter>
+            </parameter-list>
+        </step>
+        <step id="DepositAccountMaster">
+            <job-definition name="/oracle/apps/ess/custom/esb/Jobs/FileBSGenerationJob.xml" id="mdsId_2"/>
+            <parameter-list>
+                <parameter name="ActionCode" data-type="string">DepositAccountMaster</parameter>
+            </parameter-list>
+        </step>
+        <step id="LoanAccountMaster">
+            <job-definition name="/oracle/apps/ess/custom/esb/Jobs/FileBSGenerationJob.xml" id="mdsId_3"/>
+            <parameter-list>
+                <parameter name="ActionCode" data-type="string">LoanAccountMaster</parameter>
+            </parameter-list>
+        </step>
+        <step id="CreditCard">
+            <job-definition name="/oracle/apps/ess/custom/esb/Jobs/FileBSGenerationJob.xml" id="mdsId_4"/>
+            <parameter-list>
+                <parameter name="ActionCode" data-type="string">CreditCard</parameter>
+            </parameter-list>
+        </step>
+    </steps>
+</jobset>

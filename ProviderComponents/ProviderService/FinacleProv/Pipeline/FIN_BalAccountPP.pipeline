@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ESBMetadata/ComponentLibrary/ProviderServices/Finacle/Account/V1/AccountPS"/>
+            <con:binding>
+                <con:name>AccountPSPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Account/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:template-overrides>
+            <con:action-override id="_ActionId-a031a6a.7752c19d.0.14dbd290ba9.N7f39">
+                <con1:validate xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con1:schema ref="ESBMetadata/ComponentLibrary/EnterpriseObjects/Accounts/Account/V1/AccountEO"/>
+                    <con1:schemaElement xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1">v1:ESBMsg</con1:schemaElement>
+                </con1:validate>
+            </con:action-override>
+            <con:template-branch-override id="_FlowId-N3f57c7ff.79382b7a.0.14d902488bb.N7fe2">
+                <con:branch-node>
+                    <con:branch-table>
+                        <con:branch name="queryAverageBalance">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Account</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd4">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="FinacleProv/Transformation/Account/xsl/FIN_BalAccountPS_balInq_Rq"/>
+                                                <con2:input>$body/v1:ESBMsg/v1:RqData/*[$Index]</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="FinacleProv/Business/FIN_DB_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>queryAverageBalance</con1:operation>
+                                        <con1:request>
+                                            <con1:body wrapped="true">Request</con1:body>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:body wrapped="true">Response</con1:body>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd0">
+                                    <con1:assign varName="TmpVar" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config"><![CDATA[fn:concat($localvar,
+xs:string("&#13;<eo:Account>
+<com:AccountIdentifier><com:BankID>")
+,$body/v1:ESBMsg/v1:RqData/v1:Account[$Index]/v12:AccountIdentifier/v12:BankID
+,xs:string("</com:BankID></com:AccountIdentifier><custeo:Customer><com:CustomerIdentifier><com:CustomerID>")
+,$Response/app:QueryAverageBalanceOutputCollection/app:QueryAverageBalanceOutput/app:CifId/text()
+,xs:string("</com:CustomerID></com:CustomerIdentifier></custeo:Customer><eo:Period>")
+,$Response/app:QueryAverageBalanceOutputCollection/app:QueryAverageBalanceOutput/app:Period/text()
+,xs:string("</eo:Period><eo:AverageBalance>")
+,$Response/app:QueryAverageBalanceOutputCollection/app:QueryAverageBalanceOutput/app:AverageBalance/text()
+,xs:string("</eo:AverageBalance></eo:Account>")
+)]]></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="app" namespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="com" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="custeo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="eo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v12" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.390552dd.0.14dadb39ca6.N7ff2">
+                                    <con1:assign varName="TmpVar" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config"><![CDATA[fn:concat(xs:string(
+'<eo:ESBMsg xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+<eo:RsData>'),
+$TmpVar,
+xs:string('<com:Status><com:Code>ESB-00</com:Code><com:Type>SUCCESS</com:Type><com:Text/></com:Status></eo:RsData></eo:ESBMsg>')
+)]]></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eb1">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;soap:Body>
+{fn-bea:inlinedXML(xs:string($TmpVar))}
+&lt;/soap:Body></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdc">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="com" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="custeo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="eo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="soap" namespace="http://www.w3.org/2003/05/soap-envelope" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031a2e.376e873e.0.14e3e185de6.N7d71">
+                                    <con1:assign varName="TmpVar" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">concat($TmpVar,$localvar)</con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:branch name="custAcctInquiry">
+                            <con:operator>equals</con:operator>
+                            <con:value/>
+                            <con:template-overrides>
+                                <con:placeholder-override id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4">
+                                    <con:actions/>
+                                </con:placeholder-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9">
+                                    <con1:foreach xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expression>
+                                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">./v1:ESBMsg/v1:RqData/v1:Account</con2:xpathText>
+                                        </con1:expression>
+                                    </con1:foreach>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd4">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="FinacleProv/Transformation/Account/xsl/FIN_BalAccountPS_custAcctInquiry_Rq"/>
+                                                <con2:input>$body/v1:ESBMsg/v1:RqData/*[$Index]</con2:input>
+                                                <con2:param name="source">
+                                                    <con2:path>$body/v1:ESBMsg/v11:Source/text()</con2:path>
+                                                </con2:param>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae">
+                                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:service ref="FinacleProv/Business/FIN_Http_Adapter" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:request>
+                                            <con1:payload wrapped="true">Request</con1:payload>
+                                        </con1:request>
+                                        <con1:response>
+                                            <con1:payload wrapped="true">Response</con1:payload>
+                                        </con1:response>
+                                    </con1:wsCallout>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd0">
+                                    <con1:assign varName="localvar" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xsltTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                                <con2:resource ref="FinacleProv/Transformation/Account/xsl/FIN_BalAccountPS_custAcctInquiry_Rs"/>
+                                                <con2:input>$Response/*</con2:input>
+                                            </con2:xsltTransform>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="app" namespace="http://www.finacle.com/fixml" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="com" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="bio" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="custeo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="fileo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="v11" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="eo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.390552dd.0.14dadb39ca6.N7ff2">
+                                    <con1:assign varName="TmpVar" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config"><![CDATA[fn:concat(xs:string(
+'<eo:ESBMsg xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">
+<eo:RsData>'),
+$TmpVar,
+xs:string('<com:Status><com:Code>ESB-00</com:Code><com:Type>SUCCESS</com:Type><com:Text/></com:Status></eo:RsData></eo:ESBMsg>')
+)]]></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:action-override id="_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eb1">
+                                    <con1:assign xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;soap:Body>
+{fn-bea:inlinedXML(xs:string($TmpVar))}
+&lt;/soap:Body></con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                                <con:stage-override id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdc">
+                                    <con:context>
+                                        <con1:userNsDecl prefix="app" namespace="http://www.finacle.com/fixml" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="com" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="bio" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="custeo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="fileo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="eo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                        <con1:userNsDecl prefix="soap" namespace="http://www.w3.org/2003/05/soap-envelope" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                                    </con:context>
+                                </con:stage-override>
+                                <con:action-override id="_ActionId-a031a2e.376e873e.0.14e3e185de6.N7d71">
+                                    <con1:assign varName="TmpVar" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                                        <con1:expr>
+                                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">fn:concat($TmpVar,fn-bea:serialize($localvar))</con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con:action-override>
+                            </con:template-overrides>
+                        </con:branch>
+                        <con:default-branch/>
+                    </con:branch-table>
+                </con:branch-node>
+            </con:template-branch-override>
+        </con:template-overrides>
+    </con:router>
+    <con:template ref="ESBMetadata/Templates/Pipeline/ForeachProviderPP"/>
+</con:pipelineEntry>

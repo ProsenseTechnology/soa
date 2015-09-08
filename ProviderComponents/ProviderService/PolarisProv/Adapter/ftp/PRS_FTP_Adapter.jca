@@ -1,0 +1,223 @@
+<adapter-config name="PolarisFTP_Adapter" adapter="ftp" wsdlLocation="PRS_FTP_Adapter.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/FTP/BatchFiles"/> 
+
+  <endpoint-interaction portType="PolarisFTPAdapterPort" operation="readAccountEntryPostingReqFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPReadInteractionSpec">
+      <property name="DeleteFile" value="true"/>
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Incoming/Polaris/New"/>
+      <property name="FileName" value="AC_ENTRY_POSTING_FEED_*"/>
+      <property name="FileType" value="ascii"/>
+    </interaction-spec>
+  </endpoint-interaction> 
+
+<endpoint-interaction portType="PolarisFTPAdapterPort" operation="readAverageBalanceReqFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPReadInteractionSpec">
+      <property name="DeleteFile" value="true"/>
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Incoming/Polaris/New"/>
+      <property name="FileName" value="AVG_BAL_FEED_20141212134534"/>
+      <property name="FileType" value="ascii"/>
+    </interaction-spec>
+  </endpoint-interaction> 
+  
+  <endpoint-interaction portType="PolarisFTPAdapterPort" operation="readInternalAccountValidationReqFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPReadInteractionSpec">
+      <property name="DeleteFile" value="true"/>
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Incoming/Polaris/New"/>
+      <property name="FileName" value="AC_VALIDITY_FEED_20150603160557"/>
+      <property name="FileType" value="ascii"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+  <endpoint-interaction portType="PolarisFTPAdapterPort" operation="readRTGSOutwardReqFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPReadInteractionSpec">
+      <property name="DeleteFile" value="true"/>
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Incoming/Polaris/New"/>
+      <property name="FileName" value="OUTWRD_RTGS_FEED_20150112134234"/>
+      <property name="FileType" value="ascii"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createRTGSOutwardRespFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="EXRATE_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+  <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createAccountEntryPostingRespFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="EXRATE_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+  <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createAverageBalanceRespFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="AVG_BAL_RESP_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createInternalAccountValidationRespFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="AC_VALIDITY_RESP_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createExchangeRateMasterFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="EXRATE_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createChequeStatusUpdateFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="INSTRUMENT_STAT_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createDemandDraftStatusUpdateFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="INSTRUMENT_STAT_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createLoanAccountMasterFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="LOAN_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createNEFTInwardFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="INWRD_NEFT_ FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createRTGSInwardFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="INWRD_RTGS_ FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createNEFTOutwardRefStatusFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="OUTWRD_NEFT_REF_ FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createRTGSOutwardRefStatusFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="OUTWRD_RTGS_REF_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createAccountMasterFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="ACCT_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createChequeLiquidationStatusFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="OUTWRD_CLRNG_STAT_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createCTSHandoffFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="CTS_FEED_%yyyyMMddHHmmss%.status"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+  
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createCreditCardFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="CREDIT_CARD_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>  
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createCustomerMasterFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="CUST_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>  
+  
+    <endpoint-interaction portType="PolarisFTPAdapterPort" operation="createDepositAccountMasterFile">
+    <interaction-spec className="oracle.tip.adapter.ftp.outbound.FTPInteractionSpec">
+      <property name="PhysicalDirectory" value="/app/BatchFiles/Outgoing/Polaris/New"/>
+      <property name="FileType" value="ascii"/>
+      <property name="Append" value="false"/>
+      <property name="FileNamingConvention" value="DEPOSIT_FEED_%yyyyMMddHHmmss%"/>
+      <property name="NumberMessages" value="1"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

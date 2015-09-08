@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.innovatrics.com/afismq/schema/message/afismqrequest"
+           xmlns:a="http://www.innovatrics.com/afismq/schema/message/afismqrequest"
+           elementFormDefault="qualified">
+
+<!--    <xs:import namespace="http://www.innovatrics.com/afismq/schema/message/afismqrequest/applicant" schemaLocation="applicant.xsd"/>
+    <xs:import namespace="http://www.innovatrics.com/afismq/schema/message/afismqrequest/register" schemaLocation="register.xsd"/>-->
+    
+    <xs:include schemaLocation="applicant.xsd"/>
+    <xs:include schemaLocation="register.xsd"/>
+    <xs:include schemaLocation="identify.xsd"/>
+ 
+    <xs:element name="identify_and_register">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="a:register"/>
+                <xs:element ref="a:mask" minOccurs="0"/>
+                <xs:element ref="a:parameters" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="mask">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="biometric_data">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fingerprints">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="fingerprint" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element ref="a:position"/>
+                                                <xs:element name="index" minOccurs="0">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="0"/>
+                                                            <xs:maxInclusive value="255"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="FileES" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Misc/File/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Misc/File/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1" schemaLocation="../../../../EnterpriseObjects/Misc/File/V1/FileEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryDataRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryDataRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateDataRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateDataRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="TransferRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="TransferRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="FileESPort">
+        <operation name="create">
+            <input message="es:CreateRqMsg"/>
+            <output message="es:CreateRsMsg"/>
+        </operation>
+        <operation name="queryData">
+            <input message="es:QueryDataRqMsg"/>
+            <output message="es:QueryDataRsMsg"/>
+        </operation>
+        <operation name="updateData">
+            <input message="es:UpdateDataRqMsg"/>
+            <output message="es:UpdateDataRsMsg"/>
+        </operation>
+        <operation name="transfer">
+            <input message="es:TransferRqMsg"/>
+            <output message="es:TransferRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="FileESPortBinding" type="es:FileESPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="create">
+            <soap12:operation soapAction="create"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryData">
+            <soap12:operation soapAction="queryData"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="updateData">
+            <soap12:operation soapAction="updateData"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="transfer">
+            <soap12:operation soapAction="transfer"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="FileES">
+        <port name="FileESPort" binding="es:FileESPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

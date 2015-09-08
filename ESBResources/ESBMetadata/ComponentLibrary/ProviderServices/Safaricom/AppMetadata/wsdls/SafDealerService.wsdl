@@ -1,0 +1,103 @@
+<?xml version="1.0" ?><wsdl:definitions name="SafDealerImpService" targetNamespace="http://ws.equitybank/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.equitybank/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://ws.equitybank/" version="1.0" xmlns:tns="http://ws.equitybank/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="authRequest" type="tns:authRequest"></xs:element>
+<xs:element name="authRequestResponse" type="tns:authRequestResponse"></xs:element>
+<xs:element name="finRequest" type="tns:finRequest"></xs:element>
+<xs:element name="finRequestResponse" type="tns:finRequestResponse"></xs:element>
+<xs:complexType name="finRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dealer" type="tns:dealer"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="dealer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="branchName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="checkNumber" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="chequeType" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="dealerAccountNumber" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="dealerCode" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="dealerName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="finacleUserId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="payMethod" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="payRef" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="respCode" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="serviceId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="valueDate" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="finRequestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:dealer"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="authRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dealer" type="tns:dealer"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="authRequestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:dealer"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="authRequestResponse">
+    <wsdl:part element="tns:authRequestResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="finRequestResponse">
+    <wsdl:part element="tns:finRequestResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="finRequest">
+    <wsdl:part element="tns:finRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authRequest">
+    <wsdl:part element="tns:authRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SafDealer">
+    <wsdl:operation name="finRequest">
+      <wsdl:input message="tns:finRequest" name="finRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:finRequestResponse" name="finRequestResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authRequest">
+      <wsdl:input message="tns:authRequest" name="authRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:authRequestResponse" name="authRequestResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SafDealerImpServiceSoapBinding" type="tns:SafDealer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="finRequest">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="finRequest">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="finRequestResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authRequest">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="authRequest">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="authRequestResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SafDealerImpService">
+    <wsdl:port binding="tns:SafDealerImpServiceSoapBinding" name="SafDealerImpPort">
+      <soap:address location="http://10.1.9.100:9500/SafDealerPortal/SafDealerImpService"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

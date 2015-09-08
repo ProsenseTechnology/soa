@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="1f044ee6-ab1a-491b-926d-d59604d111e1" activeEnvironment="Default" name="ExperianProvTest" resourceRoot="" soapui-version="5.0.0-m-SNAPSHOT" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="3d561b36-a1ef-423c-9681-53bc17144be6" wadlVersion="http://wadl.dev.java.net/2009/02" name="AccountPS_rest" type="rest" basePath="" definitionUrl="file:/Z:/testFile/AccountPS.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT"/><con:endpoints><con:endpoint>http://localhost:7101/ESB/PS/Experian/REST/Account</con:endpoint></con:endpoints><con:resource name="/queryLoanLimit" path="/queryLoanLimit" id="ea393db8-f05e-4169-b862-28aa3aa0d3de"><con:settings/><con:parameters/><con:method name="POST" id="0bfe37ac-50b6-49a7-9fe2-60c4139a382b" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" id="29f3fd9f-ae6c-4ec4-85ea-413cdf0f342c" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7101/ESB/PS/Experian/REST/Account </con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:v12="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:v13="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1">
+    <!--Optional:-->
+    <v1:MsgID>string</v1:MsgID>
+    <!--Optional:-->
+    <v1:Source>string</v1:Source>
+    <!--Optional:-->
+    <v1:MsgType>Enterprise</v1:MsgType>
+    <!--Optional:-->
+    <v1:Service>ChequeBookES</v1:Service>
+    <!--You have a CHOICE of the next 2 items at this level-->
+    <v11:RqData actionCode="QueryLoan">
+        <!--Zero or more repetitions:-->
+        <v11:Account>
+            <!--Optional:-->
+            <v13:Customer>
+                <v1:CustomerIdentifier>
+                    <v1:CustomerID>54303885455</v1:CustomerID>
+                </v1:CustomerIdentifier>
+            </v13:Customer>
+            <v11:LoanProducts>LA530</v11:LoanProducts>
+        </v11:Account>
+    </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/Experian/REST/Account/queryLoanLimit</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/createLoanAccount" path="/createLoanAccount" id="cefbfee1-d0a0-4a90-b9c5-5d24c9698f61"><con:settings/><con:parameters/><con:method name="POST" id="cf69f317-c7a4-4711-824e-aad0a406af1c" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1">v1:ESBMsg</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" id="cd16c63e-1158-4af8-95e1-3424783fc603" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7101/ESB/PS/Experian/REST/Account </con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:v12="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:v13="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1">
+    <!--Optional:-->
+    <v1:MsgID>string</v1:MsgID>
+    <!--Optional:-->
+    <v1:Source>string</v1:Source>
+    <!--Optional:-->
+    <v1:MsgType>Enterprise</v1:MsgType>
+    <!--Optional:-->
+    <v1:Service>ChequeBookES</v1:Service>
+    <!--You have a CHOICE of the next 2 items at this level-->
+    <v11:RqData actionCode="LoanAccountMaster">
+        <!--Zero or more repetitions:-->
+        <v11:Account>
+            <v13:Customer>
+                <!--Optional:-->
+                <v1:CustomerIdentifier>
+                    <v1:CustomerID>54302416264</v1:CustomerID>
+                    <v1:BranchID>54</v1:BranchID>
+                </v1:CustomerIdentifier>
+                <v1:Person>
+                    <v1:MaritalStatus>M</v1:MaritalStatus>
+                    <v1:Employment>
+                        <v1:CompanyName>Equity</v1:CompanyName>
+                        <v1:EmploymentStatus>1</v1:EmploymentStatus>
+                        <!--Optional:-->
+                        <v1:TimeInEmploymentYY>2</v1:TimeInEmploymentYY>
+                        <!--Optional:-->
+                        <v1:TimeInEmploymentMM>44</v1:TimeInEmploymentMM>
+                        <!--Optional:-->
+                        <v1:Phone>
+                            <v1:CompleteNumber>7760643200</v1:CompleteNumber>
+                        </v1:Phone>
+                    </v1:Employment>
+				</v1:Person>
+            </v13:Customer>
+            <!--Optional:-->
+            <v11:LoanProducts>LA510</v11:LoanProducts>
+            <!--Optional:-->
+            <v11:LoanAmount currencyCode="string">100022</v11:LoanAmount>
+            <!--Optional:-->
+            <v11:LoanPeriod>11</v11:LoanPeriod>
+            <!--Optional:-->
+            <v11:ResidentialStatus>3</v11:ResidentialStatus>
+            <!--Optional:-->
+            <v11:TimeAtAdressYY>100</v11:TimeAtAdressYY>
+            <!--Optional:-->
+            <v11:TimeAtAdressMM>100</v11:TimeAtAdressMM>
+            <!--Zero or more repetitions:-->
+            <v1:GoodsCategory>
+                <!--Optional:-->
+                <v1:Good_Category>Category1</v1:Good_Category>
+                <!--Optional:-->
+                <v1:Good>Good1</v1:Good>
+                <!--Optional:-->
+                <v1:Good_Amount currencyCode="string">100022</v1:Good_Amount>
+            </v1:GoodsCategory>
+            <!--Optional:-->
+            <v11:MerchantReferenceNumber>MER2343REF</v11:MerchantReferenceNumber>
+            <!--Optional:-->
+            <v11:MerchantID>1233</v11:MerchantID>
+            <!--Optional:-->
+            <v11:ClientContribution>10002</v11:ClientContribution>
+        </v11:Account>
+    </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://loalhost/ESB/PS/Experian/REST/Account/createLoanAccount</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite name="AccountPS_rest TestSuite"><con:description>TestSuite generated for REST Service [AccountPS_rest]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/queryLoanLimit TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [/queryLoanLimit] located at [/queryLoanLimit]</con:description><con:settings/><con:testStep type="restrequest" name="SuccessRequest"><con:settings/><con:config service="AccountPS_rest" resourcePath="/queryLoanLimit" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SuccessRequest" id="29f3fd9f-ae6c-4ec4-85ea-413cdf0f342c" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7101/ESB/PS/Experian/REST/Account </con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:v12="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:v13="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1">
+    <!--Optional:-->
+    <v1:MsgID>string</v1:MsgID>
+    <!--Optional:-->
+    <v1:Source>string</v1:Source>
+    <!--Optional:-->
+    <v1:MsgType>Enterprise</v1:MsgType>
+    <!--Optional:-->
+    <v1:Service>ChequeBookES</v1:Service>
+    <!--You have a CHOICE of the next 2 items at this level-->
+    <v11:RqData actionCode="QueryLoan">
+        <!--Zero or more repetitions:-->
+        <v11:Account>
+            <!--Optional:-->
+            <v13:Customer>
+                <v1:CustomerIdentifier>
+                    <v1:CustomerID>54303885455</v1:CustomerID>
+                </v1:CustomerIdentifier>
+            </v13:Customer>
+            <v11:LoanProducts>LA530</v11:LoanProducts>
+        </v11:Account>
+    </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://localhost/ESB/PS/Experian/REST/Account/queryLoanLimit</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="checkValidHTTPStatusCode"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="MatchResponse"><con:configuration><path>declare namespace eo='http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1';
+/eo:ESBMsg</path><content><![CDATA[<eo:ESBMsg xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:oug="http://ougwebcomponent.components.oug.osgi.scorex.com/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <com:MsgID xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">string</com:MsgID>
+   <com:Source xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">string</com:Source>
+   <com:MsgType xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">Enterprise</com:MsgType>
+   <com:Service xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">ChequeBookES</com:Service>
+   <eo:RsData>
+      <eo:Account xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:bio="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:app="http://ougwebcomponent.components.oug.osgi.scorex.com/">
+         <custeo:Customer>
+            <com:CustomerIdentifier>
+               <com:CustomerID/>
+            </com:CustomerIdentifier>
+         </custeo:Customer>
+         <eo:LoanProducts>LA530</eo:LoanProducts>
+         <eo:ResponseCode>OK</eo:ResponseCode>
+         <eo:EffectiveInterestRate/>
+         <eo:Fees/>
+         <eo:MinimumLoanTerm>001</eo:MinimumLoanTerm>
+         <eo:MaximumLoanTerm>018</eo:MaximumLoanTerm>
+         <eo:MaxCreditLimitAmnt>001200000000.00</eo:MaxCreditLimitAmnt>
+         <eo:MinCreditLimitAmnt>00000000000.00</eo:MinCreditLimitAmnt>
+         <eo:MaximumAffordableLoanAmount>00001000000.00</eo:MaximumAffordableLoanAmount>
+         <eo:MinimumLoanAmount>00000005000.00</eo:MinimumLoanAmount>
+         <eo:EazzyLoanLimit>00000000000.00</eo:EazzyLoanLimit>
+         <eo:MaxPLLimitAmnt>00000000000.00</eo:MaxPLLimitAmnt>
+         <eo:MaxCCLimitAmnt>00000000000.00</eo:MaxCCLimitAmnt>
+         <eo:MaxPLInstallment>00000000000.00</eo:MaxPLInstallment>
+      </eo:Account>
+      <com:Status xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:bio="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:app="http://ougwebcomponent.components.oug.osgi.scorex.com/">
+         <com:Code>ESB-00</com:Code>
+         <com:Type>Success</com:Type>
+         <com:Text>Loan Limit Successful</com:Text>
+      </com:Status>
+   </eo:RsData>
+</eo:ESBMsg>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/createLoanAccount TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [/createLoanAccount] located at [/createLoanAccount]</con:description><con:settings/><con:testStep type="restrequest" name="SuccessRequest"><con:settings/><con:config service="AccountPS_rest" resourcePath="/createLoanAccount" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SuccessRequest" id="cd16c63e-1158-4af8-95e1-3424783fc603" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:7101/ESB/PS/Experian/REST/Account</con:endpoint><con:request><![CDATA[<v11:ESBMsg xmlns:v1="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:v11="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:v12="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:v13="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1">
+    <!--Optional:-->
+    <v1:MsgID>string</v1:MsgID>
+    <!--Optional:-->
+    <v1:Source>string</v1:Source>
+    <!--Optional:-->
+    <v1:MsgType>Enterprise</v1:MsgType>
+    <!--Optional:-->
+    <v1:Service>ChequeBookES</v1:Service>
+    <!--You have a CHOICE of the next 2 items at this level-->
+    <v11:RqData actionCode="LoanAccountMaster">
+        <!--Zero or more repetitions:-->
+        <v11:Account>
+            <v13:Customer>
+                <!--Optional:-->
+                <v1:CustomerIdentifier>
+                    <v1:CustomerID>54302416264</v1:CustomerID>
+                    <v1:BranchID>54</v1:BranchID>
+                </v1:CustomerIdentifier>
+                <v1:Person>
+                    <v1:MaritalStatus>M</v1:MaritalStatus>
+                    <v1:Employment>
+                        <v1:CompanyName>Equity</v1:CompanyName>
+                        <v1:EmploymentStatus>1</v1:EmploymentStatus>
+                        <!--Optional:-->
+                        <v1:TimeInEmploymentYY>2</v1:TimeInEmploymentYY>
+                        <!--Optional:-->
+                        <v1:TimeInEmploymentMM>44</v1:TimeInEmploymentMM>
+                        <!--Optional:-->
+                        <v1:Phone>
+                            <v1:CompleteNumber>7760643200</v1:CompleteNumber>
+                        </v1:Phone>
+                    </v1:Employment>
+				</v1:Person>
+            </v13:Customer>
+            <!--Optional:-->
+            <v11:LoanProducts>LA510</v11:LoanProducts>
+            <!--Optional:-->
+            <v11:LoanAmount currencyCode="string">100022</v11:LoanAmount>
+            <!--Optional:-->
+            <v11:LoanPeriod>11</v11:LoanPeriod>
+            <!--Optional:-->
+            <v11:ResidentialStatus>3</v11:ResidentialStatus>
+            <!--Optional:-->
+            <v11:TimeAtAdressYY>100</v11:TimeAtAdressYY>
+            <!--Optional:-->
+            <v11:TimeAtAdressMM>100</v11:TimeAtAdressMM>
+            <!--Zero or more repetitions:-->
+            <v1:GoodsCategory>
+                <!--Optional:-->
+                <v1:Good_Category>Category1</v1:Good_Category>
+                <!--Optional:-->
+                <v1:Good>Good1</v1:Good>
+                <!--Optional:-->
+                <v1:Good_Amount currencyCode="string">100022</v1:Good_Amount>
+            </v1:GoodsCategory>
+            <!--Optional:-->
+            <v11:MerchantReferenceNumber>MER2343REF</v11:MerchantReferenceNumber>
+            <!--Optional:-->
+            <v11:MerchantID>1233</v11:MerchantID>
+            <!--Optional:-->
+            <v11:ClientContribution>10002</v11:ClientContribution>
+        </v11:Account>
+    </v11:RqData>
+</v11:ESBMsg>]]></con:request><con:originalUri>http://loalhost/ESB/PS/Experian/REST/Account/createLoanAccount</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="CheckValidHTTPStatusCodes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="MatchResponse"><con:configuration><path>declare namespace eo='http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1';
+/eo:ESBMsg</path><content><![CDATA[<eo:ESBMsg xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" xmlns:oug="http://ougwebcomponent.components.oug.osgi.scorex.com/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <com:MsgID xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">string</com:MsgID>
+   <com:Source xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">string</com:Source>
+   <com:MsgType xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">Enterprise</com:MsgType>
+   <com:Service xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1">ChequeBookES</com:Service>
+   <eo:RsData>
+      <eo:Account xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:bio="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:app="http://ougwebcomponent.components.oug.osgi.scorex.com/">
+         <custeo:Customer>
+            <com:CustomerIdentifier>
+               <com:CustomerID>543024162647</com:CustomerID>
+            </com:CustomerIdentifier>
+         </custeo:Customer>
+         <com:TransactionReferenceNumber>000005290</com:TransactionReferenceNumber>
+         <eo:LoanProducts>LA527</eo:LoanProducts>
+         <eo:ResponseCode>OK</eo:ResponseCode>
+         <eo:PolicyRules>LT10</eo:PolicyRules>
+         <eo:LoanDecision>D</eo:LoanDecision>
+         <eo:AccountCreateStatus/>
+         <eo:NewAccOpened/>
+      </eo:Account>
+      <com:Status xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:bio="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Biometric/V1" xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:custeo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:app="http://ougwebcomponent.components.oug.osgi.scorex.com/">
+         <com:Code>ESB-00</com:Code>
+         <com:Type>Success</com:Type>
+         <com:Text>Loan Account Declined</com:Text>
+      </com:Status>
+   </eo:RsData>
+</eo:ESBMsg>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

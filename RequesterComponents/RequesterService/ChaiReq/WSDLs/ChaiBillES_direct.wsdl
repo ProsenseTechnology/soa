@@ -1,0 +1,77 @@
+<definitions name="ChaiBillES" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Bill/V1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <documentation>
+        <abstractWSDL>https://10.3.26.137:7102/soa-infra/services/default/ChaiBillES!1.0/WSDLs/ChaiBillES.wsdl</abstractWSDL>
+    </documentation>
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1" schemaLocation="../Schemas/XMLSchema_-777266802.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="ChaiBillESPort">
+        <operation name="create">
+            <input message="es:CreateRqMsg"/>
+            <output message="es:CreateRsMsg"/>
+        </operation>
+        <operation name="query">
+            <input message="es:QueryRqMsg"/>
+            <output message="es:QueryRsMsg"/>
+        </operation>
+        <operation name="update">
+            <input message="es:UpdateRqMsg"/>
+            <output message="es:UpdateRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="ChaiBillESPortBinding" type="es:ChaiBillESPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="create">
+            <soap:operation style="document" soapAction="create"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="query">
+            <soap:operation style="document" soapAction="query"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="update">
+            <soap:operation style="document" soapAction="update"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ChaiBillES_direct">
+        <port name="ChaiBillESPort_pt" binding="es:ChaiBillESPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

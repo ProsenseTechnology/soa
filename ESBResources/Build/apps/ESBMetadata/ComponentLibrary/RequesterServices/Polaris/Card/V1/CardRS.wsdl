@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="CardRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Card/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Card/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Card/V1" schemaLocation="CardRO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="QuerySummaryRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QuerySummaryRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryDetailRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryDetailRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <portType name="CardRSPort">
+        <operation name="querySummary">
+            <input message="rs:QuerySummaryRqMsg"/>
+            <output message="rs:QuerySummaryRsMsg"/>
+        </operation>
+        <operation name="queryDetail">
+            <input message="rs:QueryDetailRqMsg"/>
+            <output message="rs:QueryDetailRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="CardRSPortBinding" type="rs:CardRSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="querySummary">
+            <soap:operation soapAction="querySummary"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryDetail">
+            <soap:operation soapAction="queryDetail"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CardRS">
+        <port name="CardRSPort" binding="rs:CardRSPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

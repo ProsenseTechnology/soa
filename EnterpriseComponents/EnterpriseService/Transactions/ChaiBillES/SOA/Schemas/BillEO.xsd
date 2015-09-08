@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../Schemas/CommonComponents.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="BillType" type="com:CodeType"/>
+    <xsd:element name="BillStatus" type="com:CodeType"/>
+    <xsd:element name="Bill" type="BillType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Bill ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="BillType">
+        <xsd:sequence>
+            <xsd:element ref="com:BillIdentifier" minOccurs="0"/>
+            <xsd:element ref="BillType" minOccurs="0"/>
+            <xsd:element ref="com:UserID" minOccurs="0"/>
+            <xsd:element ref="com:PaymentRef" minOccurs="0"/>
+            <xsd:element ref="com:Amount" minOccurs="0"/>
+            <xsd:element ref="com:ShortDescription" minOccurs="0"/>
+            <xsd:element ref="com:PersonName" minOccurs="0"/>
+            <xsd:element ref="com:ExchangeCurrency" minOccurs="0"/>
+            <xsd:element ref="com:MobileWallet" minOccurs="0"/>
+            <xsd:element ref="BillStatus" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="Bill" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="Bill" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="QueryStatus"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

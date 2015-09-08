@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xpf:xpathFunctions xmlns:xpf="http://www.bea.com/wli/sb/xpath/config">
+    <xpf:category id="%CUSTOM_OSB_FUNCTIONS%">
+        <xpf:function>
+            <xpf:name>encode</xpf:name>
+            <xpf:comment>%FUNC_ENCODE_COMMENT%</xpf:comment>
+            <xpf:namespaceURI>http://www.oracle.com/XSL/Transform/java/ke.co.equitybank.esb.functions.Base64Functions</xpf:namespaceURI>
+            <xpf:className>ke.co.equitybank.esb.functions.Base64Functions</xpf:className>
+            <xpf:method>java.lang.String encode(java.lang.String)</xpf:method>
+            <xpf:isDeterministic>false</xpf:isDeterministic>
+            <xpf:scope>Pipeline</xpf:scope>
+            <xpf:scope>SplitJoin</xpf:scope>
+        </xpf:function>
+        <xpf:function>
+            <xpf:name>decode</xpf:name>
+            <xpf:comment>%FUNC_DECODE_COMMENT%</xpf:comment>
+            <xpf:namespaceURI>http://www.oracle.com/XSL/Transform/java/ke.co.equitybank.esb.functions.Base64Functions</xpf:namespaceURI>
+            <xpf:className>ke.co.equitybank.esb.functions.Base64Functions</xpf:className>
+            <xpf:method>java.lang.String decode(java.lang.String)</xpf:method>
+            <xpf:isDeterministic>false</xpf:isDeterministic>
+            <xpf:scope>Pipeline</xpf:scope>
+            <xpf:scope>SplitJoin</xpf:scope>
+        </xpf:function>
+        <xpf:function>
+            <xpf:name>encrypt</xpf:name>
+            <xpf:comment>%FUNC_ENCRYPT_COMMENT%</xpf:comment>
+            <xpf:namespaceURI>http://www.oracle.com/XSL/Transform/java/ke.co.equitybank.esb.functions.EncryptionFunctions</xpf:namespaceURI>
+            <xpf:className>ke.co.equitybank.esb.functions.EncryptionFunctions</xpf:className>
+            <xpf:method>java.lang.String encrypt(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)</xpf:method>
+            <xpf:isDeterministic>false</xpf:isDeterministic>
+            <xpf:scope>Pipeline</xpf:scope>
+            <xpf:scope>SplitJoin</xpf:scope>
+        </xpf:function>
+    </xpf:category>
+</xpf:xpathFunctions>

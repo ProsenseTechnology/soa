@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="PaymentRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Payment/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Payment/V1"
+             xmlns:billrs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/BillPayment/V1">
+            
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Payment/V1" schemaLocation="PaymentRO.xsd"/>
+            
+        </xsd:schema>
+    </types>
+    <message name="CreateRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="CreateRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    
+    <message name="QueryRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <portType name="PaymentRSPort">
+        <operation name="createCardPayment">
+            <input message="rs:CreateRqMsg"/>
+            <output message="rs:CreateRsMsg"/>
+        </operation>
+		<operation name="createBillPayment">
+            <input message="rs:CreateRqMsg"/>
+            <output message="rs:CreateRqMsg"/>
+        </operation>
+        <operation name="query">
+            <input message="rs:QueryRqMsg"/>
+            <output message="rs:QueryRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="PaymentRSPortBinding" type="rs:PaymentRSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="createCardPayment">
+            <soap:operation soapAction="createCardPayment"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+		<operation name="createBillPayment">
+            <soap:operation soapAction="createBillPayment"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="query">
+            <soap:operation soapAction="query"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="PaymentRS">
+        <port name="PaymentRSPort" binding="rs:PaymentRSPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

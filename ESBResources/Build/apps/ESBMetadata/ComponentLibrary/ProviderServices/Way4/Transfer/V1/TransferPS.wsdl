@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="TransferPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Transfer/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Transfer/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Transactions/Transfer/V1/TransferEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="MobileWalletTransferRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="MobileWalletTransferRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="TransferPSPort">
+        <operation name="mobileWalletTransfer">
+            <input message="ps:MobileWalletTransferRqMsg"/>
+            <output message="ps:MobileWalletTransferRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="TransferPSPortBinding" type="ps:TransferPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="mobileWalletTransfer">
+            <soap12:operation soapAction="mobileWalletTransfer"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="TransferPS">
+        <port name="TransferPSPort" binding="ps:TransferPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

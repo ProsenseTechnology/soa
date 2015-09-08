@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con5="http://www.bea.com/wli/sb/stages/alert/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ChaiReq/WSDLs/BillRS"/>
+            <con:binding>
+                <con:name>BillRSPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/RS/Chai/Bill/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router errorHandler="error-a031a9b.N64bf4452.0.14d955c1046.N7ece">
+        <con:pipeline type="request" name="request-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b4b">
+            <con:stage id="_StageId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b49" name="Request Auditing">
+                <con:context/>
+                <con:actions>
+                    <con4:log>
+                        <con1:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b45</con1:id>
+                        <con4:logLevel>debug</con4:logLevel>
+                        <con4:expr>
+                            <con1:xqueryText>$body</con1:xqueryText>
+                        </con4:expr>
+                    </con4:log>
+                    <con4:report>
+                        <con1:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b3c</con1:id>
+                        <con4:expr>
+                            <con1:xqueryText>$body</con1:xqueryText>
+                        </con4:expr>
+                    </con4:report>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b3b" name="Data Validation">
+                <con:context/>
+                <con:actions>
+                    <con3:assign varName="payload">
+                        <con1:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b38</con1:id>
+                        <con3:expr>
+                            <con1:xqueryText>$body/*[1]</con1:xqueryText>
+                        </con3:expr>
+                    </con3:assign>
+                    <con3:validate>
+                        <con1:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b35</con1:id>
+                        <con3:schema ref="ChaiReq/Schemas/BillRO"/>
+                        <con3:schemaElement xmlns:v1="http://xmlns.equitybank.co.ke/ESB/RS/Chai/BillRO/V1">v1:ESBMsg</con3:schemaElement>
+                        <con3:varName>body</con3:varName>
+                        <con3:location>
+                            <con1:xpathText>./*[1]</con1:xpathText>
+                        </con3:location>
+                    </con3:validate>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b4a">
+            <con:stage id="_StageId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b48" name="Response Auditing">
+                <con:context/>
+                <con:actions>
+                    <con4:log>
+                        <con1:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b42</con1:id>
+                        <con4:logLevel>debug</con4:logLevel>
+                        <con4:expr>
+                            <con1:xqueryText>$body</con1:xqueryText>
+                        </con4:expr>
+                    </con4:log>
+                    <con4:report>
+                        <con1:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b3f</con1:id>
+                        <con4:expr>
+                            <con1:xqueryText>$body</con1:xqueryText>
+                        </con4:expr>
+                    </con4:report>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="error" name="error-a031a9b.N64bf4452.0.14d955c1046.N7ece">
+            <con:stage id="_StageId-a031a9b.N64bf4452.0.14d955c1046.N7ecd" name="Error Reporting">
+                <con:context>
+                    <con1:userNsDecl prefix="ro" namespace="http://xmlns.equitybank.co.ke/ESB/RS/Chai/BillRO/V1"/>
+                    <con1:userNsDecl prefix="com" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"/>
+                    <con1:userNsDecl prefix="rs" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"/>
+                    <con1:userNsDecl prefix="flt" namespace="http://xmlns.equitybank.co.ke/ESB/RS/Fault/V1"/>
+                </con:context>
+                <con:actions>
+                    <con3:ifThenElse>
+                        <con1:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7ec6</con1:id>
+                        <con3:case id="_BranchId-a031a9b.N64bf4452.0.14d955c1046.N7ec5">
+                            <con3:condition>
+                                <con1:xqueryText>$fault/ctx:errorCode="OSB-382505"</con1:xqueryText>
+                            </con3:condition>
+                            <con3:actions>
+                                <con3:assign varName="body">
+                                    <con1:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7eb9</con1:id>
+                                    <con3:expr>
+                                        <con1:xqueryText><![CDATA[<soap-env:Body>
+<soap-env:Fault>
+<faultcode>soap-env:Server</faultcode>
+<faultstring/>
+<detail>
+<flt:ApplicationError>
+    <flt:messages>Schema Validation Failure</flt:messages>
+</flt:ApplicationError>
+</detail>
+</soap-env:Fault>
+</soap-env:Body>]]></con1:xqueryText>
+                                    </con3:expr>
+                                </con3:assign>
+                            </con3:actions>
+                        </con3:case>
+                        <con3:case id="_BranchId-a031a9b.N64bf4452.0.14d955c1046.N7eb4">
+                            <con3:condition>
+                                <con1:xqueryText>$fault/ctx:errorCode="BusinessFault"</con1:xqueryText>
+                            </con3:condition>
+                            <con3:actions>
+                                <con3:assign varName="body">
+                                    <con1:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7eb1</con1:id>
+                                    <con3:expr>
+                                        <con1:xqueryText><![CDATA[<soap-env:Body>
+<soap-env:Fault>
+<faultcode>soap-env:Server</faultcode>
+<faultstring/>
+<detail>
+<flt:ApplicationError>
+    <flt:messages>{$body//rs:ESBMsg/rs:RsData/com:Status/com:Text/text()}</flt:messages>
+</flt:ApplicationError>
+</detail>
+</soap-env:Fault>
+</soap-env:Body>]]></con1:xqueryText>
+                                    </con3:expr>
+                                </con3:assign>
+                            </con3:actions>
+                        </con3:case>
+                        <con3:case id="_BranchId-a031a9b.N64bf4452.0.14d955c1046.N7e5c">
+                            <con3:condition>
+                                <con1:xqueryText>$fault/ctx:errorCode="InternalServerError"</con1:xqueryText>
+                            </con3:condition>
+                            <con3:actions>
+                                <con3:assign varName="body">
+                                    <con1:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7e59</con1:id>
+                                    <con3:expr>
+                                        <con1:xqueryText><![CDATA[<soap-env:Body>
+<soap-env:Fault>
+<faultcode>soap-env:Server</faultcode>
+<faultstring/>
+<detail>
+<flt:ServerError>
+    <flt:messages>{$body//rs:ESBMsg/rs:RsData/com:Status/com:Text/text()}</flt:messages>
+</flt:ServerError>
+</detail>
+</soap-env:Fault>
+</soap-env:Body>]]></con1:xqueryText>
+                                    </con3:expr>
+                                </con3:assign>
+                            </con3:actions>
+                        </con3:case>
+                        <con3:case id="_BranchId-N3f57b68d.N324f4a6a.0.14de2f4d8bc.N7fed">
+                            <con3:condition>
+                                <con1:xqueryText>$fault/ctx:errorCode="MissingValues"</con1:xqueryText>
+                            </con3:condition>
+                            <con3:actions>
+                                <con3:assign varName="body">
+                                    <con1:id>_ActionId-N3f57b68d.N324f4a6a.0.14de2f4d8bc.N7fea</con1:id>
+                                    <con3:expr>
+                                        <con1:xqueryText><![CDATA[<soap-env:Body>
+<soap-env:Fault>
+<faultcode>soap-env:Server</faultcode>
+<faultstring/>
+<detail>
+<flt:ApplicationError>
+    <flt:messages>{fn:concat('user ',$body//rs:ESBMsg/rs:RqData/rs:Bill/com:UserID/text(),' not found')}</flt:messages>
+</flt:ApplicationError>
+</detail>
+</soap-env:Fault>
+</soap-env:Body>]]></con1:xqueryText>
+                                    </con3:expr>
+                                </con3:assign>
+                            </con3:actions>
+                        </con3:case>
+                        <con3:default>
+                            <con3:assign varName="body">
+                                <con1:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7eb6</con1:id>
+                                <con3:expr>
+                                    <con1:xqueryText><![CDATA[<soap-env:Body>
+<soap-env:Fault>
+<faultcode>soap-env:Server</faultcode>
+<faultstring/>
+<detail>
+<flt:ServerError>
+    <flt:messages>Server Error</flt:messages>
+</flt:ServerError>
+</detail>
+</soap-env:Fault>
+</soap-env:Body>]]></con1:xqueryText>
+                                </con3:expr>
+                            </con3:assign>
+                        </con3:default>
+                    </con3:ifThenElse>
+                    <con1:reply isError="true">
+                        <con1:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7ebc</con1:id>
+                    </con1:reply>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Message Flow">
+                <con:request>request-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b4b</con:request>
+                <con:response>response-a031a2d.N1df91b0b.0.14d6b88dbd3.N7b4a</con:response>
+            </con:pipeline-node>
+            <con:branch-node type="operation" id="_FlowId-a031a89.N49e0bb24.0.14d4318905d.N7ff3" name="Operations">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="createBill">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="create_Route To Business Service">
+                                <con:context>
+                                    <con1:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/RS/Chai/BillRO/V1"/>
+                                    <con1:userNsDecl prefix="com" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"/>
+                                    <con1:userNsDecl prefix="rs" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"/>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-a031a89.N49e0bb24.0.14d4318905d.N7fe6</con1:id>
+                                        <con2:service ref="ChaiReq/Business/ChaiBillES" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>create</con2:operation>
+                                        <con2:outboundTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57b68d.N324f4a6a.0.14de2f4d8bc.N7f78</con1:id>
+                                                <con3:location>
+                                                    <con1:xpathText>.</con1:xpathText>
+                                                </con3:location>
+                                                <con3:expr>
+                                                    <con1:xsltTransform>
+                                                        <con1:resource ref="ChaiReq/Transformation/Bill/xsl/CHS_BillPS_createBill_Rq"/>
+                                                        <con1:input>$body/*</con1:input>
+                                                    </con1:xsltTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                            <con3:ifThenElse>
+                                                <con1:id>_ActionId-N3f57b68d.N324f4a6a.0.14de2f4d8bc.N7ff3</con1:id>
+                                                <con3:case id="_BranchId-N3f57b68d.N324f4a6a.0.14de2f4d8bc.N7ff2">
+                                                    <con3:condition>
+                                                        <con1:xqueryText>not($body//rs:ESBMsg/rs:RqData/rs:Bill/com:PersonName/com:FullName!="")</con1:xqueryText>
+                                                    </con3:condition>
+                                                    <con3:actions>
+                                                        <con3:Error>
+                                                            <con1:id>_ActionId-N3f57b68d.N324f4a6a.0.14de2f4d8bc.N7fef</con1:id>
+                                                            <con3:errCode>MissingValues</con3:errCode>
+                                                            <con3:message>Missing values fault</con3:message>
+                                                        </con3:Error>
+                                                    </con3:actions>
+                                                </con3:case>
+                                                <con3:default/>
+                                            </con3:ifThenElse>
+                                        </con2:outboundTransform>
+                                        <con2:responseTransform>
+                                            <con3:ifThenElse>
+                                                <con1:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7e7a</con1:id>
+                                                <con3:case id="_BranchId-a031a9b.N64bf4452.0.14d955c1046.N7e79">
+                                                    <con3:condition>
+                                                        <con1:xqueryText>$body//rs:ESBMsg/rs:RsData/com:Status/com:Text="SUCCESS"</con1:xqueryText>
+                                                    </con3:condition>
+                                                    <con3:actions>
+                                                        <con3:replace varName="body" contents-only="true">
+                                                            <con1:id>_ActionId-a031a89.N49e0bb24.0.14d4318905d.N7fe0</con1:id>
+                                                            <con3:location>
+                                                                <con1:xpathText>.</con1:xpathText>
+                                                            </con3:location>
+                                                            <con3:expr>
+                                                                <con1:xsltTransform>
+                                                                    <con1:resource ref="ChaiReq/Transformation/Bill/xsl/CHS_BillPS_createBill_Rs"/>
+                                                                    <con1:input>$body/*</con1:input>
+                                                                </con1:xsltTransform>
+                                                            </con3:expr>
+                                                        </con3:replace>
+                                                    </con3:actions>
+                                                </con3:case>
+                                                <con3:case id="_BranchId-a031a9b.N64bf4452.0.14d955c1046.N7e61">
+                                                    <con3:condition>
+                                                        <con1:xqueryText>$body//rs:ESBMsg/rs:RsData/com:Status/com:Type="Failure"</con1:xqueryText>
+                                                    </con3:condition>
+                                                    <con3:actions>
+                                                        <con3:Error>
+                                                            <con1:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7e5e</con1:id>
+                                                            <con3:errCode>InternalServerError</con3:errCode>
+                                                            <con3:message>Internal server error fault occured</con3:message>
+                                                        </con3:Error>
+                                                    </con3:actions>
+                                                </con3:case>
+                                                <con3:default>
+                                                    <con3:Error>
+                                                        <con1:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7e75</con1:id>
+                                                        <con3:errCode>BusinessFault</con3:errCode>
+                                                        <con3:message>Business fault occured</con3:message>
+                                                    </con3:Error>
+                                                </con3:default>
+                                            </con3:ifThenElse>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="updateBill">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="update_Route To Business Service" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                <con:context>
+                                    <con2:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/RS/Chai/BillRO/V1"/>
+                                    <con2:userNsDecl prefix="com" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"/>
+                                    <con2:userNsDecl prefix="rs" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"/>
+                                </con:context>
+                                <con:actions>
+                                    <con1:route xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con2:id>_ActionId-a031a89.N49e0bb24.0.14d4318905d.N7ff0</con2:id>
+                                        <con1:service ref="ChaiReq/Business/ChaiBillES" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con4:operation>update</con4:operation>
+                                        <con1:outboundTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con2:id>_ActionId-a031a89.N49e0bb24.0.14d4318905d.N7fe9</con2:id>
+                                                <con3:location>
+                                                    <con2:xpathText>.</con2:xpathText>
+                                                </con3:location>
+                                                <con3:expr>
+                                                    <con2:xsltTransform>
+                                                        <con2:resource ref="ChaiReq/Transformation/Bill/xsl/CHS_BillPS_updateBill_Rq"/>
+                                                        <con2:input>$body/v1:ESBMsg</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con1:outboundTransform>
+                                        <con1:responseTransform>
+                                            <con3:ifThenElse>
+                                                <con2:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7e6b</con2:id>
+                                                <con3:case id="_BranchId-a031a9b.N64bf4452.0.14d955c1046.N7e6a">
+                                                    <con3:condition>
+                                                        <con2:xqueryText>$body//rs:ESBMsg/rs:RsData/com:Status/com:Type="Success"</con2:xqueryText>
+                                                    </con3:condition>
+                                                    <con3:actions>
+                                                        <con3:replace varName="body" contents-only="true">
+                                                            <con2:id>_ActionId-a031a89.N49e0bb24.0.14d4318905d.N7fec</con2:id>
+                                                            <con3:location>
+                                                                <con2:xpathText>.</con2:xpathText>
+                                                            </con3:location>
+                                                            <con3:expr>
+                                                                <con2:xsltTransform>
+                                                                    <con2:resource ref="ChaiReq/Transformation/Bill/xsl/CHS_BillPS_updateBill_Rs"/>
+                                                                    <con2:input>$body/*</con2:input>
+                                                                </con2:xsltTransform>
+                                                            </con3:expr>
+                                                        </con3:replace>
+                                                    </con3:actions>
+                                                </con3:case>
+                                                <con3:case id="_BranchId-a031a9b.N64bf4452.0.14d955c1046.N7e57">
+                                                    <con3:condition>
+                                                        <con2:xqueryText>$body//rs:ESBMsg/rs:RsData/com:Status/com:Type="Failure"</con2:xqueryText>
+                                                    </con3:condition>
+                                                    <con3:actions>
+                                                        <con3:Error>
+                                                            <con2:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7e54</con2:id>
+                                                            <con3:errCode>InternalServerError</con3:errCode>
+                                                            <con3:message>Internal server error fault occured</con3:message>
+                                                        </con3:Error>
+                                                    </con3:actions>
+                                                </con3:case>
+                                                <con3:default>
+                                                    <con3:Error>
+                                                        <con2:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7e67</con2:id>
+                                                        <con3:errCode>BusinessFault</con3:errCode>
+                                                        <con3:message>Business fault occured</con3:message>
+                                                    </con3:Error>
+                                                </con3:default>
+                                            </con3:ifThenElse>
+                                        </con1:responseTransform>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

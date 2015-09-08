@@ -1,0 +1,20 @@
+<wsdl:definitions name="MQPollerService" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/mq/RequesterService/MQPoller/MQPollerService" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/mq/RequesterService/MQPoller/MQPollerService" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:pc="http://xmlns.oracle.com/pcbpel/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:imp1="urn:control.services.tiplus2.misys.com">
+  <plt:partnerLinkType name="ENQUIRY_plt">
+    <plt:role name="ENQUIRY_role">
+      <plt:portType name="tns:ENQUIRY_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+        <import namespace="urn:control.services.tiplus2.misys.com" schemaLocation="../../../../ESBMetadata/ComponentLibrary/RequesterServices/Misys/AppMetadata/V1/Control.xsd"/>
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="ENQUIRY_msg">
+        <wsdl:part name="body" element="imp1:ServiceRequest"/>
+    </wsdl:message>
+    <wsdl:portType name="ENQUIRY_ptt">
+        <wsdl:operation name="ENQUIRY">
+            <wsdl:input message="tns:ENQUIRY_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

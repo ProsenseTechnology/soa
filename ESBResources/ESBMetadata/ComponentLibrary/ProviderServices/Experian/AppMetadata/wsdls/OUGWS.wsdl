@@ -1,0 +1,56 @@
+<wsdl:definitions xmlns:ns1="http://schemas.xmlsoap.org/wsdl/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ougwebcomponent.components.oug.osgi.scorex.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="OUGWS" targetNamespace="http://ougwebcomponent.components.oug.osgi.scorex.com/">
+	<wsdl:types>
+		<xs:schema xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:tns="http://ougwebcomponent.components.oug.osgi.scorex.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ougwebcomponent.components.oug.osgi.scorex.com/">
+			<xs:import namespace="http://jaxb.dev.java.net/array"/>
+			<xs:element name="ougWS" type="tns:ougWS"/>
+			<xs:element name="ougWSResponse" type="tns:ougWSResponse"/>
+			<xs:complexType name="ougWS">
+				<xs:sequence>
+					<xs:element minOccurs="1" name="workflow_name" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="data_flux" type="ns1:stringArray"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ougWSResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="data_flux" type="ns1:stringArray"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns="http://jaxb.dev.java.net/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://jaxb.dev.java.net/array">
+			<xs:complexType final="#all" name="stringArray">
+				<xs:sequence>
+					<xs:element maxOccurs="2" minOccurs="2" name="item" nillable="false" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="ougWSResponse">
+		<wsdl:part element="tns:ougWSResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="ougWS">
+		<wsdl:part element="tns:ougWS" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="OUGWS">
+		<wsdl:operation name="ougWS">
+			<wsdl:input message="tns:ougWS" name="ougWS"/>
+			<wsdl:output message="tns:ougWSResponse" name="ougWSResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="OUGWSSoapBinding" type="tns:OUGWS">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="ougWS">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="ougWS">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="ougWSResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="OUGWS">
+		<wsdl:port binding="tns:OUGWSSoapBinding" name="OUGWSImplPort">
+			<soap:address location="http://10.1.18.35:9989/OUGWar/workflow_soap"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

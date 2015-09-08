@@ -1,0 +1,167 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"
+           xmlns="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db" elementFormDefault="qualified"
+           attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- ====================================================================== -->
+  <!-- ============= QueryCreditCardFeed ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryCreditCardFeedInput" type="QueryCreditCardFeedInputType"/>
+  <xs:complexType name="QueryCreditCardFeedInputType">
+    <xs:sequence>
+      <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="startDate1" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForEachOutputCollection">
+  <xs:complexType>
+  <xs:sequence>
+  <xs:element name="QueryCreditCardFeedOutputCollection" type="QueryCreditCardFeedOutputCollectionType"/>
+   <xs:element name="QueryCreditCardDetailsOutputCollection" type="QueryCreditCardDetailsOutputCollectionType"/>
+  <xs:element name="QueryCreditCardSummaryOutputCollection" type="QueryCreditCardSummaryOutputCollectionType"/>
+  </xs:sequence>
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryCreditCardFeedOutputCollection" type="QueryCreditCardFeedOutputCollectionType"/>
+  <xs:complexType name="QueryCreditCardFeedOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryCreditCardFeedOutput" type="QueryCreditCardFeedOutputType" minOccurs="0"
+                  maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryCreditCardFeedOutputType">
+    <xs:sequence>
+      <xs:element name="CardNo" type="xs:string" minOccurs="0" nillable="true"/>
+       <xs:element name="CardCcy" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="BranchCode" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CardHolderName" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="OpenDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CustID" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CardAccNo" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CardType" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="ExpiryDate" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CardStatus" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="Country" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="RecordType" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="CardCategory" type="xs:string" minOccurs="0" nillable="true"/>     
+    </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= QueryCreditCardSummary ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryCreditCardSummaryInput" type="QueryCreditCardSummaryInputType"/>
+  <xs:complexType name="QueryCreditCardSummaryInputType">
+    <xs:sequence>
+      <xs:element name="cardNumber" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryCreditCardSummaryOutputCollection" type="QueryCreditCardSummaryOutputCollectionType"/>
+  <xs:complexType name="QueryCreditCardSummaryOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryCreditCardSummaryOutput" type="QueryCreditCardSummaryOutputType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryCreditCardSummaryOutputType">
+    <xs:sequence>
+         <xs:element name="LoyaltyAccount" type="xs:string" nillable="true"/>
+         <xs:element name="CardNumber" type="xs:string" nillable="true"/>
+         <xs:element name="ExpiryDate" type="xs:string" nillable="true"/>
+         <xs:element name="CustomerName" type="xs:string" nillable="true"/>
+         <xs:element name="PhoneNumber" type="xs:string" nillable="true"/>
+         <xs:element name="EmailAddress" type="xs:string" nillable="true"/>
+         <xs:element name="DateOpened" type="xs:dateTime" nillable="true"/>
+         <xs:element name="Product" type="xs:string" nillable="true"/>
+         <xs:element name="AvailableCredit" type="xs:decimal" nillable="true"/>
+         <xs:element name="CreditLimit" type="xs:decimal" nillable="true"/>
+         <xs:element name="BlockedAmount" type="xs:decimal" nillable="true"/>
+         <xs:element name="UsedAmount" type="xs:decimal" nillable="true"/>
+         <xs:element name="ContractCurrency" type="xs:string" nillable="true"/>
+         <xs:element name="LastBillingDate" type="xs:dateTime" nillable="true"/>
+         <xs:element name="NextBillingDate" type="xs:dateTime" nillable="true"/>
+         <xs:element name="IsMain" type="xs:string" nillable="true"/>
+         <xs:element name="Status" type="xs:string" nillable="true"/>
+      </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= QueryCreditCardTransactionSummary ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryCreditCardTransactionSummaryInput" type="QueryCreditCardTransactionSummaryInputType"/>
+  <xs:complexType name="QueryCreditCardTransactionSummaryInputType">
+    <xs:sequence>
+         <xs:element name="cardNumber" type="xs:string" nillable="true"/>
+         <xs:element name="startDate" type="xs:string" nillable="true"/>
+         <xs:element name="endDate" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryCreditCardTransactionSummaryOutputCollection" type="QueryCreditCardTransactionSummaryOutputCollectionType"/>
+  <xs:complexType name="QueryCreditCardTransactionSummaryOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryCreditCardTransactionSummaryOutput" type="QueryCreditCardTransactionSummaryOutputType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryCreditCardTransactionSummaryOutputType">
+    <xs:sequence>
+         <xs:element name="CardID" type="xs:string" nillable="true"/>
+         <xs:element name="TranDate" type="xs:string" nillable="true"/>
+         <xs:element name="PostDate" type="xs:string" nillable="true"/>
+         <xs:element name="TranDescription" type="xs:string" nillable="true"/>
+         <xs:element name="Amount" type="xs:string" nillable="true"/>
+         <xs:element name="TranRefNo" type="xs:string" nillable="true"/>
+         <xs:element name="DebitCreditFlag" type="xs:string" nillable="true"/>
+         <xs:element name="Currency" type="xs:string" nillable="true"/>
+      </xs:sequence>
+  </xs:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= QueryCreditCardDetails ============= -->
+  <!-- ====================================================================== -->
+  <xs:element name="QueryCreditCardDetailsInput" type="QueryCreditCardDetailsInputType"/>
+  <xs:complexType name="QueryCreditCardDetailsInputType">
+    <xs:sequence>
+         <xs:element name="targetNumber" type="xs:string" nillable="true"/>
+         <xs:element name="contractNumber" type="xs:string" nillable="true"/>
+         <xs:element name="cardNumber" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryCreditCardDetailsOutputCollection" type="QueryCreditCardDetailsOutputCollectionType"/>
+  <xs:complexType name="QueryCreditCardDetailsOutputCollectionType">
+    <xs:sequence>
+      <xs:element name="QueryCreditCardDetailsOutput" type="QueryCreditCardDetailsOutputType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryCreditCardDetailsOutputType">
+    <xs:sequence>
+         <xs:element name="CardID" type="xs:string" nillable="true"/>
+         <xs:element name="CustomerId" type="xs:string" nillable="true"/>
+         <xs:element name="RecoveryAccount" type="xs:string" nillable="true"/>
+         <xs:element name="CreditCardNo" type="xs:string" nillable="true"/>
+         <xs:element name="CardName" type="xs:string" nillable="true"/>
+         <xs:element name="Product" type="xs:string" nillable="true"/>
+         <xs:element name="CurrentBalance" type="xs:string" nillable="true"/>
+         <xs:element name="UnbilledAmount" type="xs:string" nillable="true"/>
+         <xs:element name="TotalCreditLimit" type="xs:string" nillable="true"/>
+         <xs:element name="AvailableCreditLimit" type="xs:string" nillable="true"/>
+         <xs:element name="AvailableCashLimit" type="xs:string" nillable="true"/>
+         <xs:element name="CashLimit" type="xs:string" nillable="true"/>
+         <xs:element name="TotalPaymentDue" type="xs:string" nillable="true"/>
+         <xs:element name="ContractCurrency" type="xs:string" nillable="true"/>
+         <xs:element name="LastBillingDate" type="xs:string" nillable="true"/>
+         <xs:element name="NextStatementDate" type="xs:string" nillable="true"/>
+         <xs:element name="CardType" type="xs:string" nillable="true"/>
+         <xs:element name="CardStatus" type="xs:string" nillable="true"/>
+         <xs:element name="TotalAmtDue" type="xs:string" nillable="true"/>
+         <xs:element name="CardHolderName" type="xs:string" nillable="true"/>
+         <xs:element name="CardAccountNumber" type="xs:string" nillable="true"/>
+         <xs:element name="LastPaymentDate" type="xs:string" nillable="true"/>
+         <xs:element name="LastPaymentAmount" type="xs:string" nillable="true"/>
+         <xs:element name="CardIssuer" type="xs:string" nillable="true"/>
+         <xs:element name="MinPaymentDue" type="xs:string" nillable="true"/>
+         <xs:element name="PaymentDueDate" type="xs:string" nillable="true"/>
+         <xs:element name="TotalDueAmount" type="xs:string" nillable="true"/>
+         <xs:element name="PastDueAmount" type="xs:string" nillable="true"/>
+         <xs:element name="LastStatementBalance" type="xs:string" nillable="true"/>
+         <xs:element name="CardReissueFlag" type="xs:string" nillable="true"/>
+         <xs:element name="RecoveryAccount_1" type="xs:string" nillable="true"/>
+         <xs:element name="RecoveryBank" type="xs:string" nillable="true"/>
+         <xs:element name="AutoRecoveryOption" type="xs:string" nillable="true"/>
+      </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="EBZ_Apps_Adapter">This is a rest service of EBZ_Apps_Adapter</doc>
+   <grammars>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+            <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps" schemaLocation="EBZ_Apps_Adapter.xsd"/>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="/createProject">
+         <method name="GET" soa:wsdlOperation="createProject">
+            <request>
+               <param name="V_PROJECT_NUMBER" style="query" soa:expression="$msg.payload/adp:V_PROJECT_NUMBER" default="" type="xsd:string"/>
+               <param name="V_PROJECT_NAME" style="query" soa:expression="$msg.payload/adp:V_PROJECT_NAME" default="" type="xsd:string"/>
+               <param name="V_PROJECT_DESCRIPTION" style="query" soa:expression="$msg.payload/adp:V_PROJECT_DESCRIPTION" default="" type="xsd:string"/>
+               <param name="V_PROJECT_TEMPLATE" style="query" soa:expression="$msg.payload/adp:V_PROJECT_TEMPLATE" default="" type="xsd:string"/>
+               <param name="V_START_DATE" style="query" soa:expression="$msg.payload/adp:V_START_DATE" default="" type="xsd:dateTime"/>
+               <param name="V_ORG_NAME" style="query" soa:expression="$msg.payload/adp:V_ORG_NAME" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:AppsStoredProcedureOutput" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps"/>
+               <representation mediaType="application/json" element="cns:AppsStoredProcedureOutput" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/updateProject">
+         <method name="GET" soa:wsdlOperation="updateProject">
+            <request>
+               <param name="nil" style="query" soa:expression="$msg.payload/adp:V_PROJECT_LIST/@xsi:nil" default="" type="xsd:boolean"/>
+               <param name="V_PROJECT_LIST_ITEM.nil" style="query" soa:expression="$msg.payload/adp:V_PROJECT_LIST/adp:V_PROJECT_LIST_ITEM/@xsi:nil" default="" type="xsd:boolean"/>
+               <param name="PROJECT_NUMBER" style="query" soa:expression="$msg.payload/adp:V_PROJECT_LIST/adp:V_PROJECT_LIST_ITEM/adp:PROJECT_NUMBER" default="" type="xsd:string"/>
+               <param name="TRANS_ID" style="query" soa:expression="$msg.payload/adp:V_PROJECT_LIST/adp:V_PROJECT_LIST_ITEM/adp:TRANS_ID" default="" type="xsd:integer"/>
+               <param name="TRANS_DATE" style="query" soa:expression="$msg.payload/adp:V_PROJECT_LIST/adp:V_PROJECT_LIST_ITEM/adp:TRANS_DATE" default="" type="xsd:date"/>
+               <param name="TARGET_SYSTEM" style="query" soa:expression="$msg.payload/adp:V_PROJECT_LIST/adp:V_PROJECT_LIST_ITEM/adp:TARGET_SYSTEM" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:AppsStoredProcedureOutput" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps"/>
+               <representation mediaType="application/json" element="cns:AppsStoredProcedureOutput" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/apps"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

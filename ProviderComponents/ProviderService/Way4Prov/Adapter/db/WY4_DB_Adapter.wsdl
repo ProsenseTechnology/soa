@@ -1,0 +1,97 @@
+<wsdl:definitions name="Way4DBAdapter" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"
+                  xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db"
+                  xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+                  xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <plt:partnerLinkType name="Way4DBAdapterPLType">
+    <plt:role name="Way4DBAdapterRole">
+      <plt:portType name="adp:Way4DBAdapterPort"/>
+    </plt:role>
+  </plt:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Way4/Adapter/db" schemaLocation="WY4_DB_Adapter.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="QueryCreditCardFeedRqMsg">
+    <wsdl:part name="payload" element="adp:QueryCreditCardFeedInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryCreditCardFeedRsMsg">
+    <wsdl:part name="payload" element="adp:QueryCreditCardFeedOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryCreditCardSummaryRqMsg">
+    <wsdl:part name="payload" element="adp:QueryCreditCardSummaryInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryCreditCardSummaryRsMsg">
+    <wsdl:part name="payload" element="adp:QueryCreditCardSummaryOutputCollection"/>
+  </wsdl:message>
+   <wsdl:message name="QueryCreditCardTransactionSummaryRqMsg">
+    <wsdl:part name="payload" element="adp:QueryCreditCardTransactionSummaryInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryCreditCardTransactionSummaryRsMsg">
+    <wsdl:part name="payload" element="adp:QueryCreditCardTransactionSummaryOutputCollection"/>
+  </wsdl:message>
+  <wsdl:message name="QueryCreditCardDetailsRqMsg">
+    <wsdl:part name="payload" element="adp:QueryCreditCardDetailsInput"/>
+  </wsdl:message>
+  <wsdl:message name="QueryCreditCardDetailsRsMsg">
+    <wsdl:part name="payload" element="adp:QueryCreditCardDetailsOutputCollection"/>
+  </wsdl:message>
+  <wsdl:portType name="Way4DBAdapterPort">
+    <wsdl:operation name="queryCreditCardFeed">
+      <wsdl:input message="adp:QueryCreditCardFeedRqMsg"/>
+      <wsdl:output message="adp:QueryCreditCardFeedRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryCreditCardSummary">
+      <wsdl:input message="adp:QueryCreditCardSummaryRqMsg"/>
+      <wsdl:output message="adp:QueryCreditCardSummaryRsMsg"/>
+    </wsdl:operation>
+     <wsdl:operation name="queryCreditCardTransactionSummary">
+      <wsdl:input message="adp:QueryCreditCardTransactionSummaryRqMsg"/>
+      <wsdl:output message="adp:QueryCreditCardTransactionSummaryRsMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="queryCreditCardDetails">
+      <wsdl:input message="adp:QueryCreditCardDetailsRqMsg"/>
+      <wsdl:output message="adp:QueryCreditCardDetailsRsMsg"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Way4DBAdapterPortBinding" type="adp:Way4DBAdapterPort">
+    <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+    <wsdl:operation name="queryCreditCardFeed">
+      <soap:operation soapAction="queryCreditCardFeed"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+     <wsdl:operation name="queryCreditCardSummary">
+    <soap:operation soapAction="queryCreditCardSummary"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryCreditCardTransactionSummary">
+      <soap:operation soapAction="queryCreditCardTransactionSummary"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+     <wsdl:operation name="queryCreditCardDetails">
+      <soap:operation soapAction="queryCreditCardDetails"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

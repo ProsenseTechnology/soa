@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/BS/Party/Customer/Rules/V1"  xmlns:accteo="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/BS/Party/Customer/Rules/V1" elementFormDefault="qualified">
+            
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1" schemaLocation="oramds:/apps/ESBMetadata/ComponentLibrary/EnterpriseObjects/Accounts/Account/V1/AccountEO.xsd"/>
+            
+  <xsd:element name="AccountOpenRulesRequest">
+    <xsd:annotation>
+      <xsd:documentation>A sample element</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="BirthDate" type="xsd:dateTime"/>
+        <xsd:element name="IsDeath" type="xsd:string"/>
+        <xsd:element name="NationalID" type="xsd:string"/>
+        <xsd:element name="CustomerID" type="xsd:string"/>
+         <xsd:element name="Account" type="accteo:AccountType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AccountOpenRulesResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="StatusCode" type="xsd:string"/>
+        <xsd:element name="Status" type="xsd:string"/>
+        <xsd:element name="Account" type="accteo:AccountType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

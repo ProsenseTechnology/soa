@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="CustomerBS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/RetailBanking/Account/V1" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:bs="http://xmlns.equitybank.co.ke/ESB/BS/RetailBanking/Account/V1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+   <wsdl:import namespace="http://xmlns.equitybank.co.ke/ESB/BS/RetailBanking/Account/V1" location="oramds:/apps/ESBMetadata/ComponentLibrary/BusinessServices/RetailBanking/Account/V1/AccountBS.wsdl"/>
+   <wsdl:portType name="AccountOpeningPort">
+      <wsdl:operation name="opening">
+         <wsdl:input message="bs:OpeningRqMsg"/>
+         <wsdl:output message="bs:OpeningRsMsg"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <plnk:partnerLinkType name="AccountOpeningPLType">
+      <plnk:role name="AccountOpeningProvider" portType="bs:AccountOpeningPort"/>
+   </plnk:partnerLinkType>
+</wsdl:definitions>

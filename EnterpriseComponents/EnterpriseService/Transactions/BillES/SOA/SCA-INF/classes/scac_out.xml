@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>Mediators/BillProvRouter.mplan</file>
+      <name>Mediators/BillProvRouter.mplan</name>
+      <fix/>
+      <msg>Operation\Event "create" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>Mediators/BillProvRouter.mplan</file>
+      <name>Mediators/BillProvRouter.mplan</name>
+      <fix/>
+      <msg>Operation\Event "update" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+</Faults>

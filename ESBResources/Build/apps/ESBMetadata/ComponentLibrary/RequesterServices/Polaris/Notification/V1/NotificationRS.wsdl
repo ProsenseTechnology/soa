@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="NotificationRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Notification/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Notification/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Notification/V1" schemaLocation="NotificationRO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="SendSmsRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="SendSmsRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="SendEmailRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="SendEmailRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <portType name="NotificationRSPort">
+        <operation name="sendSms">
+            <input message="rs:SendSmsRqMsg"/>
+            <output message="rs:SendSmsRsMsg"/>
+        </operation>
+        <operation name="sendEmail">
+            <input message="rs:SendEmailRqMsg"/>
+            <output message="rs:SendEmailRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="NotificationRSPortBinding" type="rs:NotificationRSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="sendSms">
+            <soap:operation soapAction="sendSms"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="sendEmail">
+            <soap:operation soapAction="sendEmail"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="NotificationRS">
+        <port name="NotificationRSPort" binding="rs:NotificationRSPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

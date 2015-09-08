@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Employee/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Employee/V1" elementFormDefault="qualified">
+    <!-- ====================================================================== -->
+    <!-- ============= EmployeeValidation Request ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="EmployeeValidationRequestRMType">
+        <xsd:sequence>
+            <xsd:element name="AgentBioDetails" type="AgentBioDetails_Type"/>
+            <xsd:element name="PersonInfo" type="PersonInfo_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EmployeeValidationRequestRM" type="EmployeeValidationRequestRMType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= EmployeeValidation Response ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="EmployeeValidationResponseRMType">
+        <xsd:sequence>
+            <xsd:element name="AgentDetails" type="AgentDetails_Type"/>
+            <xsd:element name="CustomerInfo" type="CustomerInfo_Type"/>
+            <xsd:element name="Status" type="Status_Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EmployeeValidationResponseRM" type="EmployeeValidationResponseRMType"/>
+    <xsd:complexType name="AgentPinDetails_Type">
+        <xsd:sequence>
+            <xsd:element name="UserID" type="xsd:string"/>
+            <xsd:element name="UserPin" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AgentBioDetails_Type">
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:element name="Image" type="xsd:base64Binary"/>
+                <xsd:element name="AgentPinDetails" type="AgentPinDetails_Type"/>
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PersonInfo_Type">
+        <xsd:sequence>
+            <xsd:element name="IdNr" type="xsd:string"/>
+            <xsd:element name="IDSerialNr" type="xsd:string"/>
+            <xsd:element name="FullName" type="xsd:string"/>
+            <xsd:element name="IssueDate" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CustomerInfo_Type">
+        <xsd:sequence>
+            <xsd:element name="FirstName" type="xsd:string"/>
+            <xsd:element name="MiddleName" type="xsd:string"/>
+            <xsd:element name="Surname" type="xsd:string"/>
+            <xsd:element name="Gender" type="xsd:string"/>
+            <xsd:element name="Citizenship" type="xsd:string"/>
+            <xsd:element name="DateOfBirth" type="xsd:dateTime"/>
+            <xsd:element name="PlaceofLive" type="xsd:string"/>
+            <xsd:element name="ApplicantSignature" type="xsd:base64Binary"/>
+            <xsd:element name="ApplicantPhoto" type="xsd:base64Binary"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AgentDetails_Type">
+        <xsd:sequence>
+            <xsd:element name="CIFKey" type="xsd:string"/>
+            <xsd:element name="Firstname" type="xsd:string"/>
+            <xsd:element name="SurName" type="xsd:string"/>
+            <xsd:element name="BankCode" type="xsd:string"/>
+            <xsd:element name="BranchCode" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Status_Type">
+        <xsd:sequence>
+            <xsd:element name="Status" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Code" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

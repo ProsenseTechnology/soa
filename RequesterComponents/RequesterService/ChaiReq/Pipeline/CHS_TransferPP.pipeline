@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con3="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/alert/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ChaiReq/WSDLs/TransferRS_rest"/>
+            <con:binding>
+                <con:name>TransferPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/RS/Chai/Transfer/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router errorHandler="error-a031a9b.N64bf4452.0.14d955c1046.N7c56">
+        <con:pipeline type="request" name="request-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f78">
+            <con:stage id="_StageId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f76" name="Request Auditing">
+                <con:context/>
+                <con:actions>
+                    <con2:log>
+                        <con3:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f72</con3:id>
+                        <con2:logLevel>debug</con2:logLevel>
+                        <con2:expr>
+                            <con3:xqueryText>$body</con3:xqueryText>
+                        </con2:expr>
+                    </con2:log>
+                    <con2:report>
+                        <con3:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f69</con3:id>
+                        <con2:expr>
+                            <con3:xqueryText>$body</con3:xqueryText>
+                        </con2:expr>
+                    </con2:report>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f68" name="Data Validation">
+                <con:context/>
+                <con:actions>
+                    <con1:assign varName="payload">
+                        <con3:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f65</con3:id>
+                        <con1:expr>
+                            <con3:xqueryText>$body/*[1]</con3:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:validate>
+                        <con3:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f62</con3:id>
+                        <con1:schema ref="ChaiReq/Schemas/TransferRO"/>
+                        <con1:schemaElement xmlns:v1="http://xmlns.equitybank.co.ke/ESB/RS/Chai/TransferRO/V1">v1:ESBMsg</con1:schemaElement>
+                        <con1:varName>body</con1:varName>
+                        <con1:location>
+                            <con3:xpathText>./*[1]</con3:xpathText>
+                        </con1:location>
+                    </con1:validate>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f77">
+            <con:stage id="_StageId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f75" name="Response Auditing">
+                <con:context/>
+                <con:actions>
+                    <con2:log>
+                        <con3:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f6f</con3:id>
+                        <con2:logLevel>debug</con2:logLevel>
+                        <con2:expr>
+                            <con3:xqueryText>$body</con3:xqueryText>
+                        </con2:expr>
+                    </con2:log>
+                    <con2:report>
+                        <con3:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f6c</con3:id>
+                        <con2:expr>
+                            <con3:xqueryText>$body</con3:xqueryText>
+                        </con2:expr>
+                    </con2:report>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="error" name="error-a031a9b.N64bf4452.0.14d955c1046.N7c56">
+            <con:stage id="_StageId-a031a9b.N64bf4452.0.14d955c1046.N7c55" name="Error Reporting">
+                <con:context>
+                    <con3:userNsDecl prefix="com" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"/>
+                    <con3:userNsDecl prefix="eo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Settlement/V1"/>
+                    <con3:userNsDecl prefix="flt" namespace="http://xmlns.equitybank.co.ke/ESB/RS/Fault/V1"/>
+                </con:context>
+                <con:actions>
+                    <con1:ifThenElse>
+                        <con3:id>_ActionId-N3f57f34b.65e785d0.0.14d9c08c42a.N7ffa</con3:id>
+                        <con1:case id="_BranchId-N3f57f34b.65e785d0.0.14d9c08c42a.N7ff9">
+                            <con1:condition>
+                                <con3:xqueryText>$fault/ctx:errorCode="OSB-382505"</con3:xqueryText>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:replace varName="body" contents-only="true">
+                                    <con3:id>_ActionId-N3f57b68d.N69af62ab.0.14dd3c902d0.N7f0e</con3:id>
+                                    <con1:location>
+                                        <con3:xpathText>.</con3:xpathText>
+                                    </con1:location>
+                                    <con1:expr>
+                                        <con3:xqueryText><![CDATA[<soap-env:Fault xmlns:soap-env="http://www.w3.org/2003/05/soap-envelope">
+  <soap-env:Code>
+    <soap-env:Value>soap-env:Receiver</soap-env:Value>
+  </soap-env:Code>
+  <soap-env:Detail>
+      <flt:ApplicationError>
+          <flt:messages>Schema Validation Failure</flt:messages>
+      </flt:ApplicationError>
+  </soap-env:Detail>
+</soap-env:Fault>]]></con3:xqueryText>
+                                    </con1:expr>
+                                </con1:replace>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:case id="_BranchId-N3f57f34b.65e785d0.0.14d9c08c42a.N7ff6">
+                            <con1:condition>
+                                <con3:xqueryText>$fault/ctx:errorCode="MissingValues"</con3:xqueryText>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:replace contents-only="true" varName="body">
+                                    <con3:id>_ActionId-N3f57b68d.N69af62ab.0.14dd3c902d0.N7f0b</con3:id>
+                                    <con1:location>
+                                        <con3:xpathText>.</con3:xpathText>
+                                    </con1:location>
+                                    <con1:expr>
+                                        <con3:xqueryText><![CDATA[<soap-env:Fault xmlns:soap-env="http://www.w3.org/2003/05/soap-envelope">
+  <soap-env:Code>
+    <soap-env:Value>soap-env:Receiver</soap-env:Value>
+  </soap-env:Code>
+  <soap-env:Detail>
+<flt:ApplicationError>
+    <flt:messages>{$body//eo:ESBMsg/eo:RsData/eo:Transfer/eo:RefKey/text()}</flt:messages>
+    <flt:messages>{fn:concat('user ',$body//eo:ESBMsg/eo:RsData/eo:Transfer/com:Status/com:Text/text(),' not found')}</flt:messages>
+</flt:ApplicationError>
+  </soap-env:Detail>
+</soap-env:Fault>]]></con3:xqueryText>
+                                    </con1:expr>
+                                </con1:replace>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:replace varName="body" contents-only="true">
+                                <con3:id>_ActionId-N3f57b68d.N69af62ab.0.14dd3c902d0.N7f08</con3:id>
+                                <con1:location>
+                                    <con3:xpathText>.</con3:xpathText>
+                                </con1:location>
+                                <con1:expr>
+                                    <con3:xqueryText><![CDATA[<soap-env:Fault xmlns:soap-env="http://www.w3.org/2003/05/soap-envelope">
+  <soap-env:Code>
+    <soap-env:Value>soap-env:Receiver</soap-env:Value>
+  </soap-env:Code>
+  <soap-env:Detail>
+     <flt:ServerError>
+    <flt:messages>Server Error</flt:messages>
+</flt:ServerError>
+  </soap-env:Detail>
+</soap-env:Fault>]]></con3:xqueryText>
+                                </con1:expr>
+                            </con1:replace>
+                        </con1:default>
+                    </con1:ifThenElse>
+                    <con3:reply isError="true">
+                        <con3:id>_ActionId-a031a9b.N64bf4452.0.14d955c1046.N7c52</con3:id>
+                    </con3:reply>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Message Flow">
+                <con:request>request-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f78</con:request>
+                <con:response>response-a031a2d.N1df91b0b.0.14d6b88dbd3.N7f77</con:response>
+            </con:pipeline-node>
+            <con:branch-node type="operation" id="_FlowId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7ffc" name="Operations">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="create">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="create_Route To Business Service" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                <con:context>
+                                    <con2:userNsDecl prefix="v1" namespace="http://xmlns.equitybank.co.ke/ESB/RS/Chai/TransferRO/V1"/>
+                                    <con2:userNsDecl prefix="com" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"/>
+                                    <con2:userNsDecl prefix="rs" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Bill/V1"/>
+                                    <con2:userNsDecl prefix="eo" namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Settlement/V1"/>
+                                    <con2:userNsDecl prefix="es" namespace="http://xmlns.equitybank.co.ke/ESB/ES/Transactions/Transfer/V1"/>
+                                </con:context>
+                                <con:actions>
+                                    <con1:route>
+                                        <con2:id>_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7ff9</con2:id>
+                                        <con1:service ref="ChaiReq/Business/Settlement" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation passThrough="true"/>
+                                        <con1:outboundTransform>
+                                            <con3:replace varName="body" contents-only="true" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con2:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7ff2</con2:id>
+                                                <con3:location>
+                                                    <con2:xpathText xmlns:con4="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
+                                                </con3:location>
+                                                <con3:expr>
+                                                    <con2:xsltTransform xmlns:con4="http://www.bea.com/wli/sb/stages/config">
+                                                        <con2:resource ref="ChaiReq/Transformation/Transfer/xsl/CHS_TransferPS_create_Rq"/>
+                                                        <con2:input>$body/v1:ESBMsg</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con1:outboundTransform>
+                                        <con1:responseTransform>
+                                            <con5:ifThenElse xmlns:con5="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con2:id>_ActionId-N3f57b68d.78565675.0.14e0c1ffadd.N7ffa</con2:id>
+                                                <con5:case id="_BranchId-N3f57b68d.78565675.0.14e0c1ffadd.N7ff9">
+                                                    <con5:condition>
+                                                        <con2:xqueryText>$body//eo:ESBMsg/eo:RsData/eo:Transfer/com:Status/com:Type="UserNotFound"</con2:xqueryText>
+                                                    </con5:condition>
+                                                    <con5:actions>
+                                                        <con5:Error>
+                                                            <con2:id>_ActionId-645a702c.N62f3d618.0.14e10d57f5a.N7fcc</con2:id>
+                                                            <con5:errCode>MissingValues</con5:errCode>
+                                                            <con5:message>Missing values fault</con5:message>
+                                                        </con5:Error>
+                                                    </con5:actions>
+                                                </con5:case>
+                                                <con5:default>
+                                                    <con3:replace contents-only="true" varName="body" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                                        <con2:id xmlns:con4="http://www.bea.com/wli/sb/stages/config">_ActionId-a031a2d.N1df91b0b.0.14d6b88dbd3.N7fbf</con2:id>
+                                                        <con3:location>
+                                                            <con2:xpathText xmlns:con4="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
+                                                        </con3:location>
+                                                        <con3:expr>
+                                                            <con2:xsltTransform xmlns:con4="http://www.bea.com/wli/sb/stages/config">
+                                                                <con2:resource ref="ChaiReq/Transformation/Transfer/xsl/CHS_TransferPS_create_Rs"/>
+                                                                <con2:input>$body/*</con2:input>
+                                                            </con2:xsltTransform>
+                                                        </con3:expr>
+                                                    </con3:replace>
+                                                </con5:default>
+                                            </con5:ifThenElse>
+                                        </con1:responseTransform>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

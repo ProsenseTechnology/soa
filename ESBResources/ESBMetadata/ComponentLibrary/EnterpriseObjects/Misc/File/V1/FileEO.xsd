@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Misc/File/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="../../../Common/V1/CommonComponents.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <xsd:element name="FileType" type="com:CodeType"/>
+    <xsd:element name="FileName" type="com:NameType"/>
+    <xsd:element name="FileFormatType" type="com:StringType"/>
+    <xsd:element name="FileLocation" type="com:NameType"/>
+    <xsd:element name="FTPReferenceURL" type="com:URIType"/>
+    <xsd:element name="Payload" type="xsd:anyType"/>
+    <xsd:element name="FileStatus" type="com:CodeType"/>
+    <xsd:element name="File" type="FileType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= File ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="FileType">
+        <xsd:sequence>
+            <xsd:element ref="com:FileIdentifier" minOccurs="0"/>
+            <xsd:element ref="FileType" minOccurs="0"/>
+            <xsd:element ref="FileName" minOccurs="0"/>
+            <xsd:element ref="FileFormatType" minOccurs="0"/>
+            <xsd:element ref="FileLocation" minOccurs="0"/>
+            <xsd:element ref="FTPReferenceURL" minOccurs="0"/>
+            <xsd:element ref="Payload" minOccurs="0"/>
+            <xsd:element ref="com:StartDate" minOccurs="0"/>
+            <xsd:element ref="com:EndDate" minOccurs="0"/>
+            <xsd:element ref="FileStatus" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="File" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="File" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="ProjectCosting"/>
+            <xsd:enumeration value="CustomerMaster"/>
+            <xsd:enumeration value="AccountMaster"/>
+            <xsd:enumeration value="DepositAccountMaster"/>
+            <xsd:enumeration value="LoanAccountMaster"/>
+            <xsd:enumeration value="CreditCard"/>
+            <xsd:enumeration value="DemandDraftStatusUpdate"/>
+            <xsd:enumeration value="CTSHandoff"/>
+            <xsd:enumeration value="ChequeStatusUpdate"/>
+            <xsd:enumeration value="LiquidationChequeStatus"/>
+            <xsd:enumeration value="ExchangeRateMaster"/>
+            <xsd:enumeration value="NEFTInward"/>
+            <xsd:enumeration value="RTGSInward"/>
+            <xsd:enumeration value="NEFTOutwardRefStatus"/>
+            <xsd:enumeration value="RTGSOutwardRefStatus"/>
+            <xsd:enumeration value="AccountEntryPosting"/>
+            <xsd:enumeration value="AccountEntryPostingFile"/>
+            <xsd:enumeration value="RTGSOutwardReq"/>
+            <xsd:enumeration value="RTGSOutwardReqFile"/>
+            <xsd:enumeration value="AverageBalance"/>
+            <xsd:enumeration value="AverageBalanceFile"/>
+            <xsd:enumeration value="InternalAccountValidation"/>
+            <xsd:enumeration value="InternalAccountValidationFile"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

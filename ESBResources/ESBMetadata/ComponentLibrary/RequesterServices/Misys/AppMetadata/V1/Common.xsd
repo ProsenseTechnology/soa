@@ -1,0 +1,2 @@
+<xsd:schema targetNamespace="urn:common.service.ti.apps.tiplus2.misys.com" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="urn:common.service.ti.apps.tiplus2.misys.com"></xsd:schema>

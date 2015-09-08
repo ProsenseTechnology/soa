@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="CustomerRS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Customer/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Customer/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Customer/V1" schemaLocation="CustomerRO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="QueryStatusRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="QueryStatusRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="UpdateStatusRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="UpdateStatusRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="AcctInqByCustIDRqMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <message name="AcctInqByCustIDRsMsg">
+        <part name="payload" element="rs:ESBMsg"/>
+    </message>
+    <portType name="CustomerRSPort">
+        <operation name="queryStatus">
+            <input message="rs:QueryStatusRqMsg"/>
+            <output message="rs:QueryStatusRsMsg"/>
+        </operation>
+        <operation name="updateStatus">
+            <input message="rs:UpdateStatusRqMsg"/>
+            <output message="rs:UpdateStatusRsMsg"/>
+        </operation>
+        
+         <operation name="AcctInqByCustID">
+            <input message="rs:AcctInqByCustIDRqMsg"/>
+            <output message="rs:AcctInqByCustIDRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="CustomerRSPortBinding" type="rs:CustomerRSPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="queryStatus">
+            <soap:operation soapAction="queryStatus"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="updateStatus">
+            <soap:operation soapAction="updateStatus"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+          <operation name="AcctInqByCustID">
+            <soap:operation soapAction="AcctInqByCustID"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CustomerRS">
+        <port name="CustomerRSPort" binding="rs:CustomerRSPortBinding">
+            <soap:address location=""/>
+        </port>
+    </service>
+</definitions>

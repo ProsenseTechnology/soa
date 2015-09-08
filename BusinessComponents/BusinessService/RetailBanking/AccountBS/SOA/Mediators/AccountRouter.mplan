@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Mediator name="AccountRouter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.oracle.com/sca/1.0/mediator" wsdlTargetNamespace="http://xmlns.equitybank.co.ke/ESB/BS/RetailBanking/Account/V1">
+   <operation name="opening" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch>
+         <case executionType="sequential" name="AccountOpening.AccountOpening.service.opening">
+            <action>
+               <assign>
+                  <copy expression="$in.payload/bo:ESBMsg" target="$out.parameters/tns:opening/bo:ESBMsg"
+                        xmlns:bo="http://xmlns.equitybank.co.ke/ESB/BO/RetailBanking/Account/V1"
+                        xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/AccountOpening"/>
+                  <copy expression="med:setCompositeInstanceTitle(concat(string($in.payload/bo:ESBMsg/ns0:MsgID),' - ',string($in.payload/bo:ESBMsg/bo:RqData/@actionCode), ' - ',string($in.payload/bo:ESBMsg/bo:RqData/ns3:Account/ns2:Customer/ns0:Person/ns0:IdentityDocument/ns0:IdentityDocumentID)))"
+                        target="$out.parameters/tns:opening/bo:ESBMsg/bo:RsData/ns0:Status/ns0:Text"
+                        xmlns:bo="http://xmlns.equitybank.co.ke/ESB/BO/RetailBanking/Account/V1"
+                        xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+                        xmlns:ns2="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Customer/V1"
+                        xmlns:ns3="http://xmlns.equitybank.co.ke/ESB/EO/Accounts/Account/V1"
+                        xmlns:med="http://schemas.oracle.com/mediator/xpath"
+                        xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/AccountOpening"/>
+               </assign>
+               <invoke reference="AccountOpening.AccountOpening.service" operation="opening">
+                  <onReply>
+                     <assign>
+                        <copy expression="$in.parameters/tns:openingResponse/tns6:ESBMsg" target="$out.payload/tns6:ESBMsg" xmlns:tns6="http://xmlns.equitybank.co.ke/ESB/BO/RetailBanking/Account/V1" xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/AccountOpening"/>
+                     </assign>
+                     <reply/>
+                  </onReply>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+</Mediator>

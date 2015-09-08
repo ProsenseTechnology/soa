@@ -1,0 +1,235 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/ProviderService/ContentManagerProv/DMG_Document_Http_Adapter" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="DMG_Document_Http_Adapter">RestReference</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:include schemaLocation="../../ESBMetadata/ComponentLibrary/ProviderServices/ContentManager/AppMetadata/xsds/xsd0.xsd"/>
+        </xsd:schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/ProviderService/ContentManagerProv/DMG_Document_Http_Adapter" elementFormDefault="qualified">
+            <element name="getAccountList_params">
+                <complexType>
+                    <sequence>
+                        <element name="documentId" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="countPendingDocuments_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="downloadDocument_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getDocument_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getPendingDocuments_params">
+                <complexType>
+                    <sequence>
+                        <element name="numberOfResults" type="long"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="searchDocuments_params">
+                <complexType>
+                    <sequence>
+                        <element name="document" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getUserTagList_params">
+                <complexType>
+                    <sequence>
+                        <element name="username" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="document/accountList/{documentId}">
+         <method name="GET" soa:wsdlOperation="getAccountList">
+            <request>
+               <param name="documentId" style="template" soa:expression="$msg.request/tns:documentId" default="" type="xsd:long"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="accountListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="accountListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/contextList">
+         <method name="GET" soa:wsdlOperation="getContextList">
+            <request/>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="contextListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="contextListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/countPendingDocuments/{id}">
+         <method name="GET" soa:wsdlOperation="countPendingDocuments">
+            <request>
+               <param name="id" style="template" soa:expression="$msg.request/tns:id" default="" type="xsd:long"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="longVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="longVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/createAccounts">
+         <method name="POST" soa:wsdlOperation="createAccounts">
+            <request>
+               <ns0:representation mediaType="application/xml" element="accountListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="accountListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="statusVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="statusVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/createDocument">
+         <method name="POST" soa:wsdlOperation="createDocument">
+            <request>
+               <ns0:representation mediaType="application/xml" element="documentVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="documentVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="longVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="longVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/createDocumentUserTag">
+         <method name="POST" soa:wsdlOperation="createDocumentUserTag">
+            <request>
+               <ns0:representation mediaType="application/xml" element="documentUserTagVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="documentUserTagVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="statusVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="statusVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/createUserTag">
+         <method name="POST" soa:wsdlOperation="createUserTag">
+            <request>
+               <ns0:representation mediaType="application/xml" element="userTagVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="userTagVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="longVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="longVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/documentSubTypeList">
+         <method name="GET" soa:wsdlOperation="getDocumentSubTypeList">
+            <request/>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="documentSubTypeListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="documentSubTypeListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/documentTypeList">
+         <method name="GET" soa:wsdlOperation="getDocumentTypeList">
+            <request/>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="documentTypeListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="documentTypeListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/download/{id}">
+         <method name="GET" soa:wsdlOperation="downloadDocument">
+            <request>
+               <param name="id" style="template" soa:expression="$msg.request/tns:id" default="" type="xsd:long"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="downloadVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="downloadVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/getDocument/{id}">
+         <method name="GET" soa:wsdlOperation="getDocument">
+            <request>
+               <param name="id" style="template" soa:expression="$msg.request/tns:id" default="" type="xsd:long"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="documentViewVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="documentViewVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/getPendingDocuments/{numberOfResults}">
+         <method name="GET" soa:wsdlOperation="getPendingDocuments">
+            <request>
+               <param name="numberOfResults" style="template" soa:expression="$msg.request/tns:numberOfResults" default="" type="xsd:long"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="documentListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="documentListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/originList">
+         <method name="GET" soa:wsdlOperation="getOriginList">
+            <request/>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="originListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="originListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/searchDocuments">
+         <method name="GET" soa:wsdlOperation="searchDocuments">
+            <request>
+               <param name="document" style="query" soa:expression="$msg.request/tns:document" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="documentViewListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="documentViewListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/updateDocument">
+         <method name="PUT" soa:wsdlOperation="updateDocument">
+            <request>
+               <ns0:representation mediaType="application/xml" element="documentVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="documentVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="statusVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="statusVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="document/userTagList/{username}">
+         <method name="GET" soa:wsdlOperation="getUserTagList">
+            <request>
+               <param name="username" style="template" soa:expression="$msg.request/tns:username" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <ns0:representation mediaType="application/xml" element="userTagListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+               <ns0:representation mediaType="application/json" element="userTagListVO" xmlns="" xmlns:ns0="http://wadl.dev.java.net/2009/02"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

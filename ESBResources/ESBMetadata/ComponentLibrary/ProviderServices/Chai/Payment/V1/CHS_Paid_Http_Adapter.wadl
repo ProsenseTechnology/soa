@@ -1,0 +1,20 @@
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/EqpgwProviderService/ChaiPaidProv/CHS_Paid_Http_Adapter" xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/PS/Chai/Payment/V1" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="CHS_Paid_Http_Adapter">RestReference</doc>
+   <grammars>
+      <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Chai/Payment/V1" schemaLocation="CHS_Paid_Http_Adapter_Prov.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/External/chai/rest/ref/paid/V1">
+         <method name="PUT" soa:wsdlOperation="ChaiPayment">
+            <request>
+               <representation mediaType="application/json" element="cns:Request" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Chai/Payment/V1"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:Response" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Chai/Payment/V1"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

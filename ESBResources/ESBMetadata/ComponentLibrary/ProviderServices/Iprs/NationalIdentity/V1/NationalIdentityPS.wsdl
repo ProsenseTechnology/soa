@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="NationalIdentityPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Iprs/NationalIdentity/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Iprs/NationalIdentity/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/NationalIdentity/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Resilience/NationalIdentity/V1/NationalIdentityEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="QueryNationalIdentityRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryNationalIdentityRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    
+     <message name="QueryNationalIdentityWSRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryNationalIdentityWSRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="NationalIdentityPSPort">
+        <operation name="queryNationalIdentity">
+            <input message="ps:QueryNationalIdentityRqMsg"/>
+            <output message="ps:QueryNationalIdentityRsMsg"/>
+        </operation>
+        <operation name="queryNationalIdentityWS">
+            <input message="ps:QueryNationalIdentityWSRqMsg"/>
+            <output message="ps:QueryNationalIdentityWSRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="NationalIdentityPSPortBinding" type="ps:NationalIdentityPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="queryNationalIdentity">
+            <soap12:operation soapAction="queryNationalIdentity"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryNationalIdentityWS">
+            <soap12:operation soapAction="queryNationalIdentityWS"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="NationalIdentityPS">
+        <port name="NationalIdentityPSPort" binding="ps:NationalIdentityPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

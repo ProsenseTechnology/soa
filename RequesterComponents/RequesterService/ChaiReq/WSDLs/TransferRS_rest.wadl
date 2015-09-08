@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RS/Chai/TransferRO/V1" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="TransferRS_rest">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Chai/TransferRO/V1" schemaLocation="../Schemas/TransferRO.xsd"/>
+        </xsd:schema>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Fault/V1" schemaLocation="../Schemas/Error.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/">
+         <method name="POST" soa:wsdlOperation="create">
+            <request>
+               <representation mediaType="application/json" element="ro:ESBMsg" xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RS/Chai/TransferRO/V1"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="ro:ESBMsg" xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RS/Chai/TransferRO/V1"/>
+            </response>
+            <response status="400" soa:wsdlFaultName="BadRequest">
+               <representation mediaType="application/json" element="ro:ApplicationError" xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RS/Fault/V1"/>
+            </response>
+            <response status="500" soa:wsdlFaultName="InternalServerError">
+               <representation mediaType="application/json" element="ro:ServerError" xmlns:ro="http://xmlns.equitybank.co.ke/ESB/RS/Fault/V1"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

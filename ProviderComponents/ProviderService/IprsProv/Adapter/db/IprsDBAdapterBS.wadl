@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/IprsDBAdapterBS" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="IprsDBAdapterBS_rest">RestService</doc>
+   <grammars>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ProviderService/IprsProv/IprsDBAdapterBS" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/IprsDBAdapterBS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/IprsDBAdapterBS" schemaLocation="IprsDBAdapterBS.xsd"/>
+      </schema>
+   </grammars>
+   <resources>
+      <resource path="/IprsDBAdapterBSSelect">
+         <method name="GET" soa:wsdlOperation="IprsDBAdapterBSSelect">
+            <request>
+               <param name="id" style="query" soa:expression="$msg.IprsDBAdapterBSSelect_inputParameters/top:id" default="" type="xsd:decimal"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:HumanCollection" xmlns:cns="http://xmlns.oracle.com/pcbpel/adapter/db/top/IprsDBAdapterBS"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

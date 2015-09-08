@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+     name="MFTService"
+     targetNamespace="http://xmlns.oracle.com/fmw/mft/soap"
+     xmlns="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://xmlns.oracle.com/fmw/mft/soap"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    >
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/fmw/mft/soap"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" elementFormDefault="qualified">
+            <xsd:complexType name="DeliveryOnlyType">
+                <xsd:sequence>
+                    <xsd:element name="TargetFilesize" type="xsd:long" minOccurs="0"/>
+                    <xsd:element name="SourceUser" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="TransferURL" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="SourceName" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="TargetName" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="TransferName" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="DeliveryOnly" type="tns:DeliveryOnlyType"/>
+            <xsd:complexType name="MFTHeaderType">
+                <xsd:sequence>
+                    <xsd:element name="TargetFilename" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="ContentIdentifier" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="DeliveryOnly" type="tns:DeliveryOnlyType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="MFTHeader" type="tns:MFTHeaderType"/>
+            <xsd:complexType name="FileReferenceType">
+                <xsd:sequence>
+                    <xsd:element name="URL" type="xsd:anyURI"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="FTPReferenceType">
+                <xsd:sequence>
+                    <xsd:element name="URL" type="xsd:anyURI"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="MFTServiceInputType">
+                <xsd:choice maxOccurs="1" minOccurs="1">
+                    <xsd:element name="FileReference" type="tns:FileReferenceType"/>
+                    <xsd:element name="FTPReference" type="tns:FTPReferenceType"/>
+                </xsd:choice>
+                <xsd:attribute default="FtpRefFile" name="PayloadType" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:element name="MFTServiceInput" type="tns:MFTServiceInputType"/>
+        </schema>
+    </types>
+    <message name="MFTSOAPServiceInlineRequest">
+        <part name="input" type="xsd:anyType"/>
+    </message>
+    <message name="MFTSOAPServiceResponse">
+        <part name="payload" type="xsd:anyType"/>
+    </message>
+    <message name="MFTSOAPServiceFaultMessage">
+        <part name="error" type="xsd:anyType"/>
+    </message>
+    <message name="MFTSOAPServiceReferenceRequest">
+        <part name="input" element="tns:MFTServiceInput"/>
+    </message>
+    
+    <message name="MFTHeader">
+        <part name="header" element="tns:MFTHeader"/>
+    </message>
+    <portType name="MFTServicePortType">
+        <operation name="submitInline">
+            <input message="tns:MFTSOAPServiceInlineRequest"/>
+            <output message="tns:MFTSOAPServiceResponse"/>
+            <fault name="MFTSOAPServiceFault" message="tns:MFTSOAPServiceFaultMessage"/>
+        </operation>
+              <operation name="submitReference">
+            <input message="tns:MFTSOAPServiceReferenceRequest"/>
+            <output message="tns:MFTSOAPServiceResponse"/>
+            <fault name="MFTSOAPServiceFault" message="tns:MFTSOAPServiceFaultMessage"/>
+        </operation>
+    </portType>
+    <binding name="MFTWSDefaultBinding" type="tns:MFTServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="submitInline">
+            <soap:operation soapAction="http://xmlns.oracle.com/fmw/mft/soap/mftSubmitSOAP"/>
+            <input>
+                <soap:body use="literal" parts="input"/>
+                <soap:header message="tns:MFTHeader" part="header" use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal" parts="payload"/>
+            </output>
+            <fault name="MFTSOAPServiceFault">
+                <soap:fault name="MFTSOAPServiceFault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="submitReference">
+            <soap:operation soapAction="http://xmlns.oracle.com/fmw/mft/soap/mftSubmitSOAP"/>
+            <input>
+                <soap:body use="literal" parts="input"/>
+                <soap:header message="tns:MFTHeader" part="header" use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal" parts="payload"/>
+            </output>
+            <fault name="MFTSOAPServiceFault">
+                <soap:fault name="MFTSOAPServiceFault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="MFTService">
+        <port name="MFTServicePort" binding="tns:MFTWSDefaultBinding">
+            <soap:address location="TBD"/>
+        </port>
+    </service>
+</definitions>

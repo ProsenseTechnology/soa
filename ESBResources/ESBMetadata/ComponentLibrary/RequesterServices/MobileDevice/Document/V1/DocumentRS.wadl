@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/ESB/RequesterService/MobileDeviceReq/ContentManager/DocumentRS" xmlns:ns0="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1" xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Misc/Document/V1" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="DocumentRS">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1" schemaLocation="DocumentRO.xsd"/>
+        </xsd:schema>
+      <schema targetNamespace="http://xmlns.oracle.com/ESB/RequesterService/MobileDeviceReq/ContentManager/DocumentRS" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="accountList_params">
+                <complexType>
+                    <sequence>
+                        <element name="documentId" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+      <schema targetNamespace="http://xmlns.oracle.com/ESB/RequesterService/MobileDeviceReq/ContentManager/DocumentRS" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="searchDocument_params">
+                <complexType>
+                    <sequence>
+                        <element name="param1" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="/createDocument">
+         <method name="POST" soa:wsdlOperation="createDocuments">
+            <request>
+               <representation mediaType="application/json" element="cns:CreateDocumentRequestRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:CreateDocumentResponseRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/updateDocument">
+         <method name="PUT" soa:wsdlOperation="updateDocument">
+            <request>
+               <representation mediaType="application/json" element="cns:UpdateDocumentRequestRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:UpdateDocumentResponseRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/createAccount">
+         <method name="POST" soa:wsdlOperation="createAccounts">
+            <request>
+               <representation mediaType="application/json" element="cns:CreateAccountsRequestRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:CreateAccountsResponseRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/getAccountList/{documentId}">
+         <method name="GET" soa:wsdlOperation="accountList">
+            <request>
+               <param name="documentId" style="template" soa:expression="$msg.request/tns:documentId" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:GetAccountListResponseRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/QueryDocument">
+         <method name="GET" soa:wsdlOperation="queryDocuments">
+            <request>
+               <param name="RefID" style="query" soa:expression="$msg.request/ns0:RefID" default="" type="xsd:string"/>
+               <param name="Count" style="query" soa:expression="$msg.request/ns0:Count" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:QueryDocumentResponseRM" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/RO/ContentManager/Document/V1"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ESBMetadata/ComponentLibrary/RequesterServices/MobileDevice/Account/V1/AccountRS"/>
+            <con:binding>
+                <con:name>AccountRSPortBinding</con:name>
+                <con:namespace>http://xmlns.equitybank.co.ke/ESB/RS/MobileDevice/Account/V1</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router errorHandler="_onErrorHandler-8813869209702577994--3a149cdd.13e115efd27.-7fd5">
+        <con:pipeline name="_onErrorHandler-8813869209702577994--3a149cdd.13e115efd27.-7fd5" type="error">
+            <con:stage name="Error Reporting">
+                <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config"/>
+                <con:actions>
+                    <con3:log xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-N3f57fefe.1d0f6e4.0.14ca04bc267.N7ecc</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con4:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fa3</con2:id>
+                        <con4:location>
+                            <con2:xpathText>./*[1]</con2:xpathText>
+                        </con4:location>
+                        <con4:expr>
+                            <con2:xqueryTransform>
+                                <con2:resource ref="ESBMetadata/XQuery/ESBStatus_Req_Rs"/>
+                                <con2:param name="OSBFault">
+                                    <con2:path>$fault</con2:path>
+                                </con2:param>
+                            </con2:xqueryTransform>
+                        </con4:expr>
+                    </con4:replace>
+                    <con3:report xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fd3</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$payload</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>Error</con3:key>
+                            <con3:varName>fault</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ctx:reason</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                    <con4:alert xmlns:con4="http://www.bea.com/wli/sb/stages/alert/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fd7</con2:id>
+                        <con4:destination ref="ESBMetadata/Templates/Pipeline/AlertDestination"/>
+                        <con4:description>Business Service is down or under duress.  Please check fault for details.</con4:description>
+                        <con4:severity>critical</con4:severity>
+                        <con4:payload>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con4:payload>
+                    </con4:alert>
+                    <con2:reply isError="true" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-7310000335358824837-2e9bb9b.13e13ee0a52.-7fff</con2:id>
+                    </con2:reply>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline name="8813869209702577994--3a149cdd.13e115efd27.-7fd8_request" type="request">
+            <con:stage name="Request Auditing">
+                <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config"/>
+                <con:actions>
+                    <con3:log xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-N3f57fefe.1d0f6e4.0.14ca04bc267.N7f65</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:report xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-N3f57fefe.1d0f6e4.0.14ca04bc267.N7f9a</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ESBMessageId</con3:key>
+                            <con3:varName>body</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./*[1]/*:MsgID</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                </con:actions>
+            </con:stage>
+            <con:stage name="Data Validation">
+                <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config"/>
+                <con:actions>
+                    <con4:assign varName="payload" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fae</con2:id>
+                        <con4:expr>
+                            <con2:xqueryText>$body/*[1]</con2:xqueryText>
+                        </con4:expr>
+                    </con4:assign>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline name="8813869209702577994--3a149cdd.13e115efd27.-7fd8_response" type="response">
+            <con:stage name="Response Auditing">
+                <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config"/>
+                <con:actions>
+                    <con3:log xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-N3f57fefe.1d0f6e4.0.14ca04bc267.N7eff</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:report xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                        <con2:id>_ActionId-205755226734284210--7ad1d10a.13e19ccd971.-7fb0</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ESBMessageId</con3:key>
+                            <con3:varName>body</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./*[1]/*:MsgID</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Message Flow">
+                <con:request>8813869209702577994--3a149cdd.13e115efd27.-7fd8_request</con:request>
+                <con:response>8813869209702577994--3a149cdd.13e115efd27.-7fd8_response</con:response>
+            </con:pipeline-node>
+            <con:branch-node name="Operations" type="operation">
+                <con:context xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con1="http://www.bea.com/wli/sb/stages/alert/config"/>
+                <con:branch-table>
+                    <con:branch name="opening">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="opening_Route To Business Service">
+                                <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config"/>
+                                <con:actions>
+                                    <con1:route xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con2:id>_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1</con2:id>
+                                        <con1:service ref="MobileDeviceReq/Business/AccountBS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>opening</con1:operation>
+                                        <con1:outboundTransform>
+                                            <con4:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con2:id>_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34</con2:id>
+                                                <con4:location>
+                                                    <con2:xpathText>.</con2:xpathText>
+                                                </con4:location>
+                                                <con4:expr>
+                                                    <con2:xsltTransform>
+                                                        <con2:resource ref="MobileDeviceReq/Transformation/Account/xsl/MDE_AccountRS_opening_Rq"/>
+                                                        <con2:input>$body/*</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con4:expr>
+                                            </con4:replace>
+                                        </con1:outboundTransform>
+                                        <con1:responseTransform>
+                                            <con4:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con2:id>_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00</con2:id>
+                                                <con4:location>
+                                                    <con2:xpathText>.</con2:xpathText>
+                                                </con4:location>
+                                                <con4:expr>
+                                                    <con2:xsltTransform>
+                                                        <con2:resource ref="MobileDeviceReq/Transformation/Account/xsl/MDE_AccountRS_opening_Rs"/>
+                                                        <con2:input>$body/*</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con4:expr>
+                                            </con4:replace>
+                                        </con1:responseTransform>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="queryLoanLimit">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="queryLoanLimit_Route_To Business Service">
+                                <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config"/>
+                                <con:actions>
+                                    <con1:route xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con2:id>_ActionId-8813869209702577994--3a149cdd.13e115efd27.-7fe1</con2:id>
+                                        <con1:service ref="MobileDeviceReq/Business/AccountES" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>query</con1:operation>
+                                        <con1:outboundTransform>
+                                            <con4:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con2:id>_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e34</con2:id>
+                                                <con4:location>
+                                                    <con2:xpathText>.</con2:xpathText>
+                                                </con4:location>
+                                                <con4:expr>
+                                                    <con2:xsltTransform>
+                                                        <con2:resource ref="MobileDeviceReq/Transformation/Account/xsl/MDE_AccountRS_loanQuery_Rq"/>
+                                                        <con2:input>$body/*</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con4:expr>
+                                            </con4:replace>
+                                        </con1:outboundTransform>
+                                        <con1:responseTransform>
+                                            <con4:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con2:id>_ActionId-a000002.Nb0a3d7d.0.14cb2f7f8fe.N7e00</con2:id>
+                                                <con4:location>
+                                                    <con2:xpathText>.</con2:xpathText>
+                                                </con4:location>
+                                                <con4:expr>
+                                                    <con2:xsltTransform>
+                                                        <con2:resource ref="MobileDeviceReq/Transformation/Account/xsl/MDE_AccountRS_loanQuery_Rs"/>
+                                                        <con2:input>$body/*</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con4:expr>
+                                            </con4:replace>
+                                        </con1:responseTransform>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="createLoanAccount">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="createLoanAccount_Route To Business Service">
+                                <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config"/>
+                                <con:actions>
+                                    <con1:route xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                                        <con2:id>_ActionId-a031a82.7ccc27fd.0.14d9f9d9af7.N7f95</con2:id>
+                                        <con1:service ref="MobileDeviceReq/Business/AccountBS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>opening</con1:operation>
+                                        <con1:outboundTransform>
+                                            <con4:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con2:id>_ActionId-a031a82.7ccc27fd.0.14d9f9d9af7.N7f94</con2:id>
+                                                <con4:location>
+                                                    <con2:xpathText>.</con2:xpathText>
+                                                </con4:location>
+                                                <con4:expr>
+                                                    <con2:xsltTransform>
+                                                        <con2:resource ref="MobileDeviceReq/Transformation/Account/xsl/MDE_AccountRS_createLoanAccount_Rq"/>
+                                                        <con2:input>$body/*[1]</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con4:expr>
+                                            </con4:replace>
+                                        </con1:outboundTransform>
+                                        <con1:responseTransform>
+                                            <con4:replace varName="body" contents-only="true" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config">
+                                                <con2:id>_ActionId-a031a82.7ccc27fd.0.14d9f9d9af7.N7f93</con2:id>
+                                                <con4:location>
+                                                    <con2:xpathText>.</con2:xpathText>
+                                                </con4:location>
+                                                <con4:expr>
+                                                    <con2:xsltTransform>
+                                                        <con2:resource ref="MobileDeviceReq/Transformation/Account/xsl/MDE_AccountRS_createLoanAccount_Rs"/>
+                                                        <con2:input>$body/*[1]</con2:input>
+                                                    </con2:xsltTransform>
+                                                </con4:expr>
+                                            </con4:replace>
+                                        </con1:responseTransform>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+        <con:shared-variables>
+            <con:variable>payload</con:variable>
+        </con:shared-variables>
+    </con:router>
+</con:pipelineEntry>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="enroll">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="afisId"/>
+        <xs:element type="xs:string" name="branchId"/>
+        <xs:element type="xs:long" name="cifId"/>
+        <xs:element type="xs:string" name="countryId"/>
+        <xs:element type="xs:string" name="makerFlag"/>
+        <xs:element type="xs:short" name="workClass"/>
+        <xs:element type="xs:short" name="userId"/>
+        <xs:element type="xs:short" name="createdBy"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="validate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="afisId"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="branchId"/>
+        <xs:element type="xs:long" name="cifId"/>
+        <xs:element type="xs:string" name="countryCode"/>
+        <xs:element type="xs:string" name="responseCode"/>
+        <xs:element type="xs:long" name="responseMessage"/>
+        <xs:element type="xs:short" name="userId"/>
+        <xs:element type="xs:short" name="workClass"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

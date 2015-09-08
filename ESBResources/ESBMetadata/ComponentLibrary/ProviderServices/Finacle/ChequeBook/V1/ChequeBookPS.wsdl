@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="ChequeBookPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/ChequeBook/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/ChequeBook/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/ChequeBook/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/ChequeBook/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Instruments/ChequeBook/V1/ChequeBookEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="DoChequeBookReqRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="DoChequeBookReqRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="BookOrderRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="BookOrderRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="ChequeBookPSPort">
+        <operation name="doChequeBookReq">
+            <input message="ps:DoChequeBookReqRqMsg"/>
+            <output message="ps:DoChequeBookReqRsMsg"/>
+        </operation>
+        <operation name="bookOrder">
+            <input message="ps:BookOrderRqMsg"/>
+            <output message="ps:BookOrderRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="ChequeBookPSPortBinding" type="ps:ChequeBookPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="doChequeBookReq">
+            <soap12:operation soapAction="doChequeBookReq"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="bookOrder">
+            <soap12:operation soapAction="bookOrder"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ChequeBookPS">
+        <port name="ChequeBookPSPort" binding="ps:ChequeBookPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

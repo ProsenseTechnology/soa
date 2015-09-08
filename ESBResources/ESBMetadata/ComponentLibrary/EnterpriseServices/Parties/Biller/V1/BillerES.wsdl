@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="BillerES" targetNamespace="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Biller/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Biller/V1" xmlns:es="http://xmlns.equitybank.co.ke/ESB/ES/Parties/Biller/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Parties/Biller/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Parties/Biller/V1/BillerEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="BillerESPort">
+        <operation name="create">
+            <input message="es:CreateRqMsg"/>
+            <output message="es:CreateRsMsg"/>
+        </operation>
+        <operation name="query">
+            <input message="es:QueryRqMsg"/>
+            <output message="es:QueryRsMsg"/>
+        </operation>
+        <operation name="update">
+            <input message="es:UpdateRqMsg"/>
+            <output message="es:UpdateRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="BillerESPortBinding" type="es:BillerESPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="create">
+            <soap12:operation soapAction="create"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="query">
+            <soap12:operation soapAction="query"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="update">
+            <soap12:operation soapAction="update"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BillerES">
+        <port name="BillerESPort" binding="es:BillerESPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,205 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="FIN_DB_Adapter">This is a rest service of FIN_DB_Adapter</doc>
+   <grammars>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+      <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db" schemaLocation="FIN_DB_Adapter.xsd"/>
+    </schema>
+   </grammars>
+   <resources>
+      <resource path="/queryEmployee">
+         <method name="GET" soa:wsdlOperation="queryEmployee">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryEmployeeOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryEmployeeOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryCustomerMaster">
+         <method name="GET" soa:wsdlOperation="queryCustomerMaster">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryCustomerMasterOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryAccountMaster">
+         <method name="GET" soa:wsdlOperation="queryAccountMaster">
+            <request>
+               <param name="changeDate" style="query" soa:expression="$msg.payload/adp:changeDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryAccountMasterOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryDepositAccountMaster">
+         <method name="GET" soa:wsdlOperation="queryDepositAccountMaster">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+               <param name="endDate" style="query" soa:expression="$msg.payload/adp:endDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryDepositAccountMasterOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryDepositAccountMasterOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryChequeUpdateStatus">
+         <method name="GET" soa:wsdlOperation="queryChequeUpdateStatus">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+               <param name="endDate" style="query" soa:expression="$msg.payload/adp:endDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryChequeUpdateStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryChequeUpdateStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryDDUpdateStatus">
+         <method name="GET" soa:wsdlOperation="queryDDUpdateStatus">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+               <param name="endDate" style="query" soa:expression="$msg.payload/adp:endDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryDDUpdateStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryDDUpdateStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryExchangeRate">
+         <method name="GET" soa:wsdlOperation="queryExchangeRate">
+            <request>
+               <param name="vrateDateRTH" style="query" soa:expression="$msg.payload/adp:vrateDateRTH" default="" type="xsd:string"/>
+               <param name="vrateDate" style="query" soa:expression="$msg.payload/adp:vrateDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryExchangeRateOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryExchangeRateOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryLoanAccountMaster">
+         <method name="GET" soa:wsdlOperation="queryLoanAccountMaster">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+               <param name="endDate" style="query" soa:expression="$msg.payload/adp:endDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryLoanAccountMasterOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryLoanAccountMasterOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryAverageBalance">
+         <method name="GET" soa:wsdlOperation="queryAverageBalance">
+            <request>
+               <param name="cifId" style="query" soa:expression="$msg.payload/adp:cifId" default="" type="xsd:string"/>
+               <param name="eodDate" style="query" soa:expression="$msg.payload/adp:eodDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryAverageBalanceOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryAverageBalanceOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+       <resource path="/queryClientEmail">
+         <method name="GET" soa:wsdlOperation="queryClientEmail">
+            <request>
+               <param name="payRefNum" style="query" soa:expression="$msg.payload/adp:payRefNum" default="" type="xsd:string"/>
+                </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryClientEmailOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryClientEmailOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/accounttInqByCustId">
+         <method name="GET" soa:wsdlOperation="accountInqByCustId">
+            <request>
+               <param name="customerIDTBA" style="query" soa:expression="$msg.payload/adp:customerIDTBA" default="" type="xsd:string"/>
+               <param name="customerIDCRM" style="query" soa:expression="$msg.payload/adp:customerIDCRM" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:AccountInqByCustIdOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:AccountInqByCustIdOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryLiquidationChequeStatus">
+         <method name="GET" soa:wsdlOperation="queryLiquidationChequeStatus">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryLiquidationChequeStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryLiquidationChequeStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryChequeDetails">
+         <method name="GET" soa:wsdlOperation="queryChequeDetails">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryChequeDetailsOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryChequeDetailsOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/createRTGSInward">
+         <method name="GET" soa:wsdlOperation="createRTGSInward">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+               <param name="endDate" style="query" soa:expression="$msg.payload/adp:endDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:CreateRTGSInwardOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:CreateRTGSInwardOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/createNEFTInward">
+         <method name="GET" soa:wsdlOperation="createNEFTInward">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+               <param name="endDate" style="query" soa:expression="$msg.payload/adp:endDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:CreateNEFTInwardOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:CreateNEFTInwardOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryNEFTOutwardRefStatus">
+         <method name="GET" soa:wsdlOperation="queryNEFTOutwardRefStatus">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+               <param name="endDate" style="query" soa:expression="$msg.payload/adp:endDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryNEFTOutwardRefStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryNEFTOutwardRefStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/queryRTGSOutwardRefStatus">
+         <method name="GET" soa:wsdlOperation="queryRTGSOutwardRefStatus">
+            <request>
+               <param name="startDate" style="query" soa:expression="$msg.payload/adp:startDate" default="" type="xsd:string"/>
+               <param name="endDate" style="query" soa:expression="$msg.payload/adp:endDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:QueryRTGSOutwardRefStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+               <representation mediaType="application/json" element="cns:QueryRTGSOutwardRefStatusOutputCollection" xmlns:cns="http://xmlns.equitybank.co.ke/ESB/PS/Finacle/Adapter/db"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

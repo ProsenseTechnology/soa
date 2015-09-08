@@ -1,0 +1,32 @@
+<wsdl:definitions name="DaptivFTPAdapter" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/Adapter/ftp"
+                  xmlns:adp="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/Adapter/ftp" xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+                  xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plt:partnerLinkType name="DaptivFTPAdapterPLType">
+        <plt:role name="DaptivFTPAdapterRole">
+            <plt:portType name="adp:DaptivFTPAdapterPort"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.equitybank.co.ke/ESB/PS/Daptiv/Adapter/ftp" schemaLocation="DPV_FTP_Adapter.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="CreateProjectCostFileRqMsg">
+        <wsdl:part name="payload" element="adp:ProjectCostFileInput"/>
+    </wsdl:message>
+    <wsdl:portType name="DaptivFTPAdapterPort">
+        <wsdl:operation name="createProjectCostFile">
+            <wsdl:input message="adp:CreateProjectCostFileRqMsg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DaptivFTPAdapterPortBinding" type="adp:DaptivFTPAdapterPort">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="createProjectCostFile">
+            <soap:operation soapAction="createProjectCostFile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

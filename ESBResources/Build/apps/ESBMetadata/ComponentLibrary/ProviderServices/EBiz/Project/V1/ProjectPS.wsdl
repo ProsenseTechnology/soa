@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="ProjectPS" targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Project/V1" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1" xmlns:ps="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Project/V1">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Resilience/Project/V1"
+                        schemaLocation="../../../../EnterpriseObjects/Resilience/Project/V1/ProjectEO.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CreateProjectRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="CreateProjectRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryProjectCostRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="QueryProjectCostRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateProjectRqMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <message name="UpdateProjectRsMsg">
+        <part name="payload" element="eo:ESBMsg"/>
+    </message>
+    <portType name="ProjectPSPort">
+        <operation name="createProject">
+            <input message="ps:CreateProjectRqMsg"/>
+            <output message="ps:CreateProjectRsMsg"/>
+        </operation>
+        <operation name="queryProjectCost">
+            <input message="ps:QueryProjectCostRqMsg"/>
+            <output message="ps:QueryProjectCostRsMsg"/>
+        </operation>
+        <operation name="updateProject">
+            <input message="ps:UpdateProjectRqMsg"/>
+            <output message="ps:UpdateProjectRsMsg"/>
+        </operation>
+    </portType>
+    <binding name="ProjectPSPortBinding" type="ps:ProjectPSPort">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="createProject">
+            <soap12:operation soapAction="createProject"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="queryProjectCost">
+            <soap12:operation soapAction="queryProjectCost"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="updateProject">
+            <soap12:operation soapAction="updateProject"/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ProjectPS">
+        <port name="ProjectPSPort" binding="ps:ProjectPSPortBinding">
+            <soap12:address location=""/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Account/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RO/MobileDevice/Account/V1"
+            elementFormDefault="qualified">
+  <!-- ====================================================================== -->
+  <!-- ============= Account Opening Request ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="AccountOpeningRequestRMType">
+    <xsd:sequence>
+	  <xsd:element name="MsgID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="AgentBioDetails" type="AgentBioDetials_Type"/>
+      <xsd:element name="PersonInfo" type="PersonalInfo_Type" minOccurs="0"/>
+      <xsd:element name="AccountInfo" type="AccountInfo_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="SocailMedia" type="SocialMediaType" minOccurs="0"/>
+      <xsd:element name="Contract" type="ContractType" minOccurs="0"/>
+      <xsd:element name="AOOValidation" type="AOOValidationType" minOccurs="0"/>
+      <xsd:element name="AccountRefID" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AccountOpeningRequestRM" type="AccountOpeningRequestRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Loan Query Request ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="LoanQueryRequestRMType">
+    <xsd:sequence>
+      <xsd:element name="MsgID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="CIFCode" type="xsd:string"/>
+      <xsd:element name="LoanDetails" type="LoanDetails_Type" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="LoanQueryRequestRM" type="LoanQueryRequestRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Create Loan Account Request ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CreateLoanAccountRequestRMType">
+    <xsd:sequence>
+      <xsd:element name="MsgID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="AgentId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="AgentPin" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="AgentImage" type="xsd:string" minOccurs="0"/>     
+      <xsd:element name="CustomerInfo" type="CustomerInfoType"/>
+      <xsd:element name="InStoreLoanInfo" type="InStoreLoanInfoType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CreateLoanAccountRequestRM" type="CreateLoanAccountRequestRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= AccountOpening Response ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="AccountOpeningResponseRMType">
+    <xsd:sequence>
+      <xsd:element name="MsgID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="CustomerID" type="xsd:string"/>
+      <xsd:element name="AccountDetails" type="AccountDetails_Type" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="Status" type="Status_Type"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AccountOpeningResponseRM" type="AccountOpeningResponseRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Loan Query Response ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="LoanQueryResponseRMType">
+    <xsd:sequence>
+      <xsd:element name="MsgID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="CIFCode" type="xsd:string"/>
+      <xsd:element name="LoanDetails" type="LoanDetails_Type" minOccurs="0"/>
+      <xsd:element name="Status" type="Status_Type"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="LoanQueryResponseRM" type="LoanQueryResponseRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Create Loan Account Response ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="CreateLoanAccountResponseRMType">
+    <xsd:sequence>
+      <xsd:element name="MsgID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="CustomerID" type="xsd:string"/>
+      <xsd:element name="InStoreLoanResponse" type="InStoreLoanResponseType" minOccurs="0"/>
+      <xsd:element name="Status" type="Status_Type"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CreateLoanAccountResponseRM" type="CreateLoanAccountResponseRMType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Account Opening Complex Type ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="AccountInfo_Type">
+    <xsd:sequence>
+      <xsd:element name="SchemeCode" type="xsd:string"/>
+      <xsd:element name="CurrencyType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="DespatchCode" type="xsd:string"/>
+  <xsd:element name="InstallmentAmount" type="xsd:decimal"/>
+  <xsd:element name="InstallmentPeriod" type="xsd:positiveInteger"/>	  
+  <xsd:element name="CalenderType" type="xsd:string" minOccurs="0"/>
+  <xsd:element name="StmtType" type="xsd:string" minOccurs="0"/>
+  <xsd:element name="StartDt" type="xsd:string" minOccurs="0"/>
+  <xsd:element name="WeekDay" type="xsd:string" minOccurs="0"/>
+  <xsd:element name="WeekNum" type="xsd:string" minOccurs="0"/>
+  <xsd:element name="HolidayStatus" type="xsd:string" minOccurs="0"/>
+  
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PostalAddress_Type">
+    <xsd:sequence>
+      <xsd:element name="PostalNumber" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="State" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Country" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="PostalCode" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BiometricInfo_type">
+    <xsd:sequence>
+      <xsd:element name="DeviceId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ImageL1" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ImageL2" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ImageR1" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ImageR2" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ContactDetails_type">
+    <xsd:sequence>
+      <xsd:element name="CommType" type="xsd:string"/>
+      <xsd:element name="PhoneCode" type="xsd:string"/>
+      <xsd:element name="PhoneType" type="xsd:string"/>
+      <xsd:element name="CommPref" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ContactInfo_Type">
+    <xsd:sequence>
+      <xsd:element name="MobilePhone" type="xsd:string"/>
+      <xsd:element name="WorkPhone" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="PersonalMail" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="WorkEmail" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="PostalAddress" type="PostalAddress_Type" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="File_Type">
+    <xsd:sequence>
+      <xsd:element name="FileContent" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="IdDocuments_Type">
+    <xsd:sequence>
+      <xsd:element name="DocumentId" type="xsd:string"/>
+      <xsd:element name="DocumentIdReference" type="xsd:string"/>
+      <xsd:element name="IssueDate" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="IDFrontImage" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="IDBackImage" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SignatureType">
+    <xsd:sequence>
+      <xsd:element name="Id" type="xsd:string"/>
+      <xsd:element name="Description" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Employment_Type">
+    <xsd:sequence>
+      <xsd:element name="CompanyName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="CompanyAddress" type="PostalAddress_Type" minOccurs="0"/>
+      <xsd:element name="EmployerPhone" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Income" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Occupation" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="IndustId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="EmployementStatus" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="TimeInEmploymentYY" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="TimeInEmploymentMM" type="xsd:positiveInteger" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AgentPinDetails_Type">
+    <xsd:sequence>
+      <xsd:element name="UserID" type="xsd:string"/>
+      <xsd:element name="UserPin" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AgentBioDetials_Type">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element name="Image" type="xsd:string"/>
+        <xsd:element name="AgentPinDetails" type="AgentPinDetails_Type"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AgentDetails_Type">
+    <xsd:sequence>
+      <xsd:element name="Agentname" type="xsd:string"/>
+      <xsd:element name="AgentId" type="xsd:string"/>
+      <xsd:element name="BankId" type="xsd:string"/>
+      <xsd:element name="BranchId" type="xsd:string"/>
+      <xsd:element name="AgentBioDetails" type="AgentBioDetials_Type"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AccountDetails_Type">
+    <xsd:sequence>
+      <xsd:element name="AccountId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="SchemeCode" type="xsd:string"/>
+      <xsd:element name="SchemeType" type="xsd:string"/>
+      <xsd:element name="BalanceAmt" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PersonalInfo_Type">
+    <xsd:sequence>
+      <xsd:element name="FullName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Firstname" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="SecondName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Familyname" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Title" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Gender" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Nationality" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="MaritalStatus" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="DOB" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="FacePhoto" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ContactInfo" type="ContactInfo_Type" minOccurs="0"/>
+      <xsd:element name="Employment" type="Employment_Type" minOccurs="0"/>
+      <xsd:element name="IdDcouments" type="IdDocuments_Type" minOccurs="0"/>
+      <xsd:element name="SigFile" type="File_Type" minOccurs="0"/>
+      <xsd:element name="BioMetricInfo" type="BiometricInfo_type" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Status_Type">
+    <xsd:sequence>
+      <xsd:element name="Status" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Code" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SocialMediaType">
+    <xsd:sequence>
+      <xsd:element name="LinkedInOAuthToken" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="YahooOAuthToken" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="GoogleOAuthToken" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="PIN" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ContractType">
+    <xsd:sequence>
+      <xsd:element name="Document" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AOOValidationType">
+    <xsd:sequence>
+      <xsd:element name="firstNameReason" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="MiddleNameReason" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="SurnameReason" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="GenderReason" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="DateOfBirthReason" type="xsd:dateTime" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= Loan Query Complex Type ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="LoanDetails_Type">
+    <xsd:sequence>
+      <xsd:element name="LoanType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="LoanProducts" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="LoanAmount" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="ResponseCode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="EffectiveInterestRate" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="Fees" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="MinimumLoanTerm" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="MaximumLoanTerm" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="MaxCreditLimitAmnt" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="MinCreditLimitAmnt" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="AffordableMonthlyRepayment" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="MaximumAffordableLoanAmount" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="MinimumLoanAmount" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="EazzyLoanLimit" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="MaxPLLimitAmnt" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="MaxCCLimitAmnt" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="MaxPLInstallment" type="xsd:decimal" minOccurs="0"/>
+      <xsd:element name="LoanPeriod" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="RepaymentStartDate" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="RepaymentEndDate" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="MaritalStatus" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ResidentialStatus" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="TimeAtAdressYY" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="TimeAtAdressMM" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="Employment" type="Employment_Type"/>
+      <xsd:element name="ApplicationReference" type="xsd:string"/>
+      <xsd:element name="ODBalance" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="CCardLimit" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="UnsecInstallmLimit" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="OverdraftLimit" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="RiskGrading" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="PolicyRules" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="LoanDecision" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="AccountCreateStatus" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="NewAccOpened" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    
+  
+  <!-- ====================================================================== -->
+  <!-- ============= Instore Loan Create Complex Type ============= -->
+  <!-- ====================================================================== -->
+  
+  <xsd:complexType name="CustomerInfoType">
+    <xsd:sequence>
+      <xsd:element name="CustomerID" type="xsd:string"/>
+      <xsd:element name="PhoneNumber" type="xsd:string"/>
+      <xsd:element name="PhonePin" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="DocumentId" type="xsd:string"/>
+      <xsd:element name="DocumentIdReference" type="xsd:string"/>
+      <xsd:element name="MaritalStatus" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ResidentialStatus" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="TimeAtAdressMM" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="CompanyName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="EmployementStatus" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="TimeInEmploymentMM" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="EmployerPhone" type="xsd:string" minOccurs="0"/>
+      <!--xsd:element name="AllowMarketing" type="xsd:string" minOccurs="0"/-->
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InStoreLoanInfoType">
+    <xsd:sequence>
+      <xsd:element name="LoanType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="RepaymentStartDate" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="LoanProducts" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="LoanAmount" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="LoanPeriod" type="xsd:positiveInteger" minOccurs="0"/>
+	  <xsd:element name="Document" type="xsd:string" minOccurs="0"/>
+	  <xsd:element name="MerchantRef" type="xsd:string" minOccurs="0"/>
+	  <xsd:element name="MerchantID" type="xsd:string" minOccurs="0"/>
+	  <xsd:element name="ClientContribution" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="GoodsCategoryInfo" type="GoodsCategoryType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GoodsCategoryType">
+    <xsd:sequence>
+      <xsd:element name="Good_Category" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Good" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Good_Amount" type="xsd:positiveInteger" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InStoreLoanResponseType">
+    <xsd:sequence>
+      <xsd:element name="LoanProduct" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="LoanRespCode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="TransactApplicationNumber" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="LoanDecision" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="LoanAccountCreationStatus" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="NewAccountOpened" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="PolicyRules" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

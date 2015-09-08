@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.innovatrics.com/afismq/schema/message/afismqrequest"
+           xmlns:a="http://www.innovatrics.com/afismq/schema/message/afismqrequest"
+           elementFormDefault="qualified">
+
+    <xs:include schemaLocation="applicant.xsd"/>
+ 
+    <xs:element name="identify">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="applicant" type="a:request_applicant"/>
+                <xs:element ref="a:response_content" minOccurs="0"/>
+                <xs:element ref="a:parameters" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="parameters">
+        <xs:complexType>
+            <xs:sequence>          
+                <xs:element name="candidates_count" minOccurs="0">  <!-- tu nesmu byt default hodnoty: see https://ssh.fingera.com/issues/4221 -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                            <xs:maxInclusive value="1000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>                      
+                <xs:element name="similarity_threshold" minOccurs="0">  <!-- tu nesmu byt default hodnoty: see https://ssh.fingera.com/issues/4221 -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="20000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="identification_speed" minOccurs="0">  <!-- tu nesmu byt default hodnoty: see https://ssh.fingera.com/issues/4221 -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="10"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="max_rotation" minOccurs="0">  <!-- tu nesmu byt default hodnoty: see https://ssh.fingera.com/issues/4221 -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="180"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="min_matching_fingerprints" minOccurs="0">  <!-- tu nesmu byt default hodnoty: see https://ssh.fingera.com/issues/4221 -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="10"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="return_candidate_templates" type="xs:boolean" minOccurs="0"/>
+                <xs:element name="selection" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="afis_id" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="tag_query" minOccurs="0" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>            
+    </xs:element>
+    
+</xs:schema>

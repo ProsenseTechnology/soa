@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:rs="http://xmlns.equitybank.co.ke/ESB/RS/Misys/Customer/V1" xmlns:ro="urn:control.services.tiplus2.misys.com"
+             xmlns="http://wadl.dev.java.net/2009/02">
+    <doc title="CustomerRS_rest">CustomerRS REST Service</doc>
+    <grammars>
+        <xsd:schema>
+            <xsd:import namespace="urn:control.services.tiplus2.misys.com" schemaLocation="../../AppMetadata/V1/Control.xsd"/>
+        </xsd:schema>
+    </grammars>
+    <resources>
+        <resource path="/customerDetails">
+            <method name="POST" soa:wsdlOperation="customerDetails">
+                <request>
+                    <representation mediaType="application/xml" element="ro:ServiceRequest"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="ro:ServiceResponse"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/customerSearch">
+            <method name="POST" soa:wsdlOperation="customerSearch">
+                <request>
+                    <representation mediaType="application/xml" element="ro:ServiceRequest"/>
+                </request>
+                <response status="200">
+                    <representation mediaType="application/xml" element="ro:ServiceResponse"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Settlement/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" targetNamespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Settlement/V1"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1" schemaLocation="CommonComponents.xsd"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Referenced Elements ============= -->
+    <!-- ====================================================================== -->
+    <!-- Added By Mustaque Start -->
+    <!-- Added By Mustaque End -->
+    <xsd:element name="Transfer" type="TransferType"/>
+    <!-- ====================================================================== -->
+    <!-- ============= Transfer ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="TransferType">
+        <xsd:sequence>
+        <xsd:element name="ID" type="xsd:string" minOccurs="0"/>
+            <xsd:element ref="com:Amount" minOccurs="0"/>
+             <xsd:element name="RefKey" type="xsd:string" minOccurs="0"/>
+             <xsd:element name="UserGroup" type="xsd:string" minOccurs="0"/>
+            <xsd:element ref="com:Status" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= ESB Message ============= -->
+    <!-- ====================================================================== -->
+    <xsd:complexType name="ESBMsgType">
+        <xsd:complexContent>
+            <xsd:extension base="com:ESBMsgType">
+                <xsd:sequence>
+                    <xsd:choice>
+                        <xsd:element name="RqData" type="RqDataType"/>
+                        <xsd:element name="RsData" type="RsDataType"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="ESBMsg" type="ESBMsgType"/>
+    <xsd:complexType name="RqDataType">
+        <xsd:sequence>
+            <xsd:element ref="Transfer" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="actionCode" type="ActionCodeType" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="RsDataType">
+        <xsd:sequence>
+            <xsd:element ref="Transfer" minOccurs="0" maxOccurs="unbounded"/>
+            
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="CreateMobileWalletTransfer"/>
+            <xsd:enumeration value="CreateRetailIntraBankTransfer"/>
+            <xsd:enumeration value="CreateRtgsTransfer"/>
+            <xsd:enumeration value="CreateSwiftTransfer"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,14 @@
+<adapter-config name="IprsDBAdapterBS" adapter="db" wsdlLocation="IprsDBAdapterBS.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="equity_iprs_db" location="eis/DB/Iprs"/>
+  <endpoint-interaction portType="IprsDBAdapterBS_ptt" operation="IprsDBAdapterBSSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="IprsDBAdapterBS.Human"/>
+      <property name="QueryName" value="IprsDBAdapterBSSelect"/>
+      <property name="MappingsMetaDataURL" value="IprsDBAdapterBS-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

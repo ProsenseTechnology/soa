@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:templateEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="true" xsi:type="con:AnyWsdlSoapBindingType"/>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-N3f57c7ff.79382b7a.0.14d902488bb.N7fe6">
+            <con:stage id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fe4" name="Request Auditing">
+                <con:context/>
+                <con:actions>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fcd</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                    </con3:log>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fca</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ESBMessageId</con3:key>
+                            <con3:varName>body</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./*:ESBMsg/*:MsgID</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                        <con3:labels>
+                            <con3:key>Operation</con3:key>
+                            <con3:varName>inbound</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ctx:service/ctx:operation</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7ebe" name="Data Validation">
+                <con:context/>
+                <con:actions>
+                    <con1:assign varName="payload">
+                        <con2:id>_ActionId-a031a6a.7752c19d.0.14dbd290ba9.N7f6c</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$body/*[1]</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:validate>
+                        <con2:id>_ActionId-a031a6a.7752c19d.0.14dbd290ba9.N7f39</con2:id>
+                        <con1:varName>body</con1:varName>
+                        <con1:location>
+                            <con2:xpathText>./*[1]</con2:xpathText>
+                        </con1:location>
+                    </con1:validate>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f57c7ff.79382b7a.0.14d902488bb.N7fe5">
+            <con:stage id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fe3" name="Response Auditing">
+                <con:context/>
+                <con:actions>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fc7</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                    </con3:log>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fc4</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ESBMessageId</con3:key>
+                            <con3:varName>body</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./*:ESBMsg/*:MsgID</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                        <con3:labels>
+                            <con3:key>Operation</con3:key>
+                            <con3:varName>outbound</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ctx:service/ctx:operation</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-N3f57c7ff.79382b7a.0.14d902488bb.N7fdf">
+            <con:stage id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdd" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con1:assign varName="InputMsg">
+                        <con2:id>_ActionId-a031aee.57acc6ea.0.14dde6cc4b3.N7fd0</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$body/*[1]</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con:placeholder-node id="PlaceholderID_a031a6a.7752c19d.0.14dbd290ba9.N7ee4"/>
+                    <con1:foreach>
+                        <con2:id>_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd9</con2:id>
+                        <con1:variable>body</con1:variable>
+                        <con1:value-variable>Foreach</con1:value-variable>
+                        <con1:index-variable>Index</con1:index-variable>
+                        <con1:total-variable>Count</con1:total-variable>
+                        <con1:actions>
+                            <con1:assign varName="Request">
+                                <con2:id>_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd4</con2:id>
+                                <con1:expr>
+                                    <con2:xqueryText>$body/*</con2:xqueryText>
+                                </con1:expr>
+                            </con1:assign>
+                            <con1:wsCallout>
+                                <con2:id>_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eae</con2:id>
+                                <con1:request/>
+                                <con1:response/>
+                                <con1:requestTransform>
+                                    <con3:report>
+                                        <con2:id>_ActionId-a031aea.17563fb5.0.14f26518ca7.N7fe2</con2:id>
+                                        <con3:expr>
+                                            <con2:xqueryText>$Request</con2:xqueryText>
+                                        </con3:expr>
+                                        <con3:labels>
+                                            <con3:key>ESBMessageId</con3:key>
+                                            <con3:varName>body</con3:varName>
+                                            <con3:value>
+                                                <con2:xpathText>./*:ESBMsg/*:MsgID</con2:xpathText>
+                                            </con3:value>
+                                        </con3:labels>
+                                        <con3:labels>
+                                            <con3:key>Operation</con3:key>
+                                            <con3:varName>inbound</con3:varName>
+                                            <con3:value>
+                                                <con2:xpathText>./ctx:service/ctx:operation</con2:xpathText>
+                                            </con3:value>
+                                        </con3:labels>
+                                    </con3:report>
+                                </con1:requestTransform>
+                                <con1:responseTransform>
+                                    <con3:report>
+                                        <con2:id>_ActionId-a031aea.17563fb5.0.14f26518ca7.N7fdf</con2:id>
+                                        <con3:expr>
+                                            <con2:xqueryText>$Response</con2:xqueryText>
+                                        </con3:expr>
+                                        <con3:labels>
+                                            <con3:key>ESBMessageId</con3:key>
+                                            <con3:varName>body</con3:varName>
+                                            <con3:value>
+                                                <con2:xpathText>./*:ESBMsg/*:MsgID</con2:xpathText>
+                                            </con3:value>
+                                        </con3:labels>
+                                        <con3:labels>
+                                            <con3:key>Operation</con3:key>
+                                            <con3:varName>outbound</con3:varName>
+                                            <con3:value>
+                                                <con2:xpathText>./ctx:service/ctx:operation</con2:xpathText>
+                                            </con3:value>
+                                        </con3:labels>
+                                    </con3:report>
+                                    <con1:assign varName="Response">
+                                        <con2:id>_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7fd0</con2:id>
+                                        <con1:expr>
+                                            <con2:xqueryText>$body/*</con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con1:responseTransform>
+                            </con1:wsCallout>
+                        </con1:actions>
+                    </con1:foreach>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f57c7ff.79382b7a.0.14d902488bb.N7fde">
+            <con:stage id="_StageId-N3f57c7ff.79382b7a.0.14d902488bb.N7fdc" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con1:assign varName="body">
+                        <con2:id>_ActionId-N3f57c7ff.390552dd.0.14dadb39ca6.N7ff2</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$body/*</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:assign varName="body">
+                        <con2:id>_ActionId-N3f57c7ff.79382b7a.0.14d902488bb.N7eb1</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$body/*</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-a031aee.57acc6ea.0.14dde6cc4b3.N7fcd</con2:id>
+                        <con1:location>
+                            <con2:xpathText>.</con2:xpathText>
+                        </con1:location>
+                        <con1:expr>
+                            <con2:xqueryTransform>
+                                <con2:resource ref="ESBMetadata/XQuery/ESBHeader_Rs"/>
+                                <con2:param name="ESBMsgResponse">
+                                    <con2:path>$body/*[1]</con2:path>
+                                </con2:param>
+                                <con2:param name="ESBMsgInput">
+                                    <con2:path>$InputMsg</con2:path>
+                                </con2:param>
+                            </con2:xqueryTransform>
+                        </con1:expr>
+                    </con1:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Message Flow">
+                <con:request>request-N3f57c7ff.79382b7a.0.14d902488bb.N7fe6</con:request>
+                <con:response>response-N3f57c7ff.79382b7a.0.14d902488bb.N7fe5</con:response>
+            </con:pipeline-node>
+            <con:template-branch-node type="operation" id="_FlowId-N3f57c7ff.79382b7a.0.14d902488bb.N7fe2" name="BranchNode1">
+                <con:context/>
+                <con:branch-table>
+                    <con:main-branch>
+                        <con:flow>
+                            <con:pipeline-node name="PipelinePairNode1">
+                                <con:request>request-N3f57c7ff.79382b7a.0.14d902488bb.N7fdf</con:request>
+                                <con:response>response-N3f57c7ff.79382b7a.0.14d902488bb.N7fde</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:main-branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:template-branch-node>
+        </con:flow>
+        <con:shared-variables>
+            <con:variable>Request</con:variable>
+            <con:variable>Response</con:variable>
+            <con:variable>localvar</con:variable>
+        </con:shared-variables>
+    </con:router>
+</con:templateEntry>

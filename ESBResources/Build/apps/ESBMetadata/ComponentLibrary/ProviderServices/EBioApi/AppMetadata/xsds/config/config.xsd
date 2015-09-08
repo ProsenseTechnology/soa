@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="log" minOccurs="0"/>
+                <xs:element ref="connectors"/>
+                <xs:element ref="afismq"/>
+                <xs:element ref="multiafis"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="loglevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ERROR"/>
+            <xs:enumeration value="WARNING"/>
+            <xs:enumeration value="INFO"/>
+            <xs:enumeration value="DEBUG"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="image_format">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BMP"/>
+            <xs:enumeration value="PNG"/>
+            <xs:enumeration value="JPG"/>
+            <xs:enumeration value="GIF"/>
+            <xs:enumeration value="TIF"/>
+            <xs:enumeration value="WSQ"/>
+            <xs:enumeration value="JPEG2K"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="log">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="level" minOccurs="0" type="loglevel"/>
+                <xs:element name="rotate" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="limit" default="10000000" > 
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="count" default="10" > 
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="connectors">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="mq" minOccurs="0"/>
+                <xs:element name="idmapper">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="jdbc"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="mq">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="client_type" type="xs:string"/>
+                <xs:element name="connection_string" type="xs:string"/>
+                <xs:element name="username" type="xs:string" minOccurs="0" default=""/>
+                <xs:element name="password" type="xs:string" minOccurs="0" default=""/>
+                <xs:element name="queue" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="default_response_queue" type="xs:string" minOccurs="0"/>
+                <xs:element name="administrative_message_queue" minOccurs="0" type="xs:string"/>
+                <xs:element name="default_admin_response_queue" type="xs:string" minOccurs="0"/>
+                <xs:element name="persistent_responses" type="xs:boolean"  minOccurs="0" default="true"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="jdbc">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="driver_class" type="xs:string" />
+                <xs:element name="connection_uri" type="xs:string"/>
+                <xs:element name="username" type="xs:string" minOccurs="0"/>
+                <xs:element name="password" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="afismq">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="afis_connection_string" type="xs:string" default="type=service;"/>
+                <xs:element name="max_subafis_dispatcher_connection_count" minOccurs="0" >
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="max_messages_in_prepare_phase" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="max_messages_in_afis_phase" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="store_images" minOccurs="0" type="xs:boolean"/>
+                <xs:element name="store_slap_images" minOccurs="0" type="xs:boolean"/>
+                <xs:element name="candidates_count" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                            <xs:maxInclusive value="1000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>                      
+                <xs:element name="similarity_threshold" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="10000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="identification_speed" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="10"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="max_rotation" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="180"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="min_matching_fingerprints" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="10"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="store_image_format" minOccurs="0" default="PNG" type="image_format"/>
+                <xs:element name="wsq_bitrate" minOccurs="0" default="125">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                            <xs:maxInclusive value="500"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="jpeg2k_compression_ratio" minOccurs="0" default="15">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="slap_store_image_format" minOccurs="0" default="PNG" type="image_format"/>
+                <xs:element name="slap_compression_level" minOccurs="0" default="0.9">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:float">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="multiafis">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="managers">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="manager" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="address"/>
+                                    </xs:sequence>
+                                </xs:complexType>                                
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>                                
+                </xs:element>
+                <xs:element name="extractors">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="extractor_count" type="xs:int" />
+                            <xs:element name="extractor" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="address"/>
+                                    </xs:sequence>
+                                </xs:complexType>                                
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>                                
+                </xs:element>
+                <xs:element name="processes" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="process" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="max_count" type="xs:int" />
+                                        <xs:element name="min_count" minOccurs="0" default="1" type="xs:int" />
+                                        <xs:element name="command" type="xs:string" />
+                                        <xs:element name="cwd" type="xs:string" />
+                                        <xs:element name="win32console" type="xs:boolean" default="false" minOccurs="0" />
+                                        <xs:element name="win32console_ctrlc_msdelay" type="xs:int" default="2000" minOccurs="0" />
+                                        <xs:element ref="address" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="subafis" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="configuration">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="max_live_partitions" type="xs:int" />
+                                        <xs:element name="max_failing_partitions" type="xs:int" default="-1" minOccurs="0" />
+                                        <xs:element name="max_failing_matchers" type="xs:int" default="-1" minOccurs="0"/>
+                                        <xs:element name="dispatcher_dynamic_matcher_weights" type="xs:boolean" default="false" minOccurs="0" />
+                                        <xs:element ref="db"/>
+                                    </xs:sequence>
+                                </xs:complexType>                                
+                            </xs:element>
+                            <xs:element name="matchers">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="partition" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element ref="matcher" maxOccurs="unbounded"/>
+                                                </xs:sequence>
+                                            </xs:complexType>                                
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>                                
+                            </xs:element>
+                            <xs:element name="dispatchers">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="dispatcher" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element ref="address"/>
+                                                </xs:sequence>
+                                            </xs:complexType>                                
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>                                
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute ref="id" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:attribute name="id" type="xs:string"/>
+    
+    <xs:element name="db">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="cache"/>
+                <xs:element name="cassandra">
+                    <xs:complexType>
+                        <xs:attribute name="host" type="xs:string" use="required"/>
+                        <xs:attribute name="keyspace" type="xs:string" use="required"/>
+                        <xs:attribute name="port" type="xs:int" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="odbc">
+                    <xs:complexType>
+                        <xs:attribute name="dsn" type="xs:string" use="required"/>
+                        <xs:attribute name="username" type="xs:string" use="required"/>
+                        <xs:attribute name="password" type="xs:string" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="jdbc"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="address" type="xs:string"/>
+
+    <xs:element name="matcher">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="numa">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Transfer createdBy="weblogic" description="Polaris_BASE_RATE_FEED_Transfer" id="xfer_Polaris_BASE_RATE_FEED_Transfer" lastModifiedBy="weblogic" name="Polaris_BASE_RATE_FEED_Transfer" priority="medium" xmlns="http://xmlns.oracle.com/mft/transfer">
+   <Source>
+      <SourceRef id="soRef_PolarisOSBSource" sourceRef="/mft/source/so_PolarisOSBSource.xml#so_PolarisOSBSource"/>
+   </Source><ContentFilters>
+      <ContentFilter order="1">
+         <ContentTypeIdentifier name="Polaris_BASE_RATE_FEED" patternType="file">
+            <pattern>BASE_RATE_FEED*</pattern>
+         </ContentTypeIdentifier>
+      </ContentFilter>
+   </ContentFilters>
+   <Targets>
+      <Target id="xfer_tgt_PolarisFTP_BASE_RATE">
+         <TargetRef id="tgtRef_PolarisFTP_BASE_RATE" targetRef="/mft/target/tgt_PolarisFTP.xml#tgt_PolarisFTP">
+            <TechnologyBindingOverrides xmlns="http://xmlns.oracle.com/mft/binding">
+               <SSH-FTP folder="BASE_RATE_FEED/incoming/"/>
+            </TechnologyBindingOverrides>
+         </TargetRef>
+      </Target>
+   </Targets>
+</Transfer>

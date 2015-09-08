@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Cheque/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:rcom="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+            xmlns:eo="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Cheque/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Cheque/V1" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Instruments/Cheque/V1"
+              schemaLocation="../../../../EnterpriseObjects/Instruments/Cheque/V1/ChequeEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/RS/Polaris/Common/V1"
+              schemaLocation="../../Common/V1/CommonComponents.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Referenced Elements ============= -->
+  <!-- ====================================================================== -->
+  <xsd:element name="Cheque" type="ChequeType"/>
+  <!-- ====================================================================== -->
+  <!-- ============= Cheque ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ChequeType">
+    <xsd:sequence>
+      <xsd:element ref="com:ChequeIdentifier" minOccurs="0"/>
+      <xsd:element ref="eo:ChequeType" minOccurs="0"/>
+      <xsd:element ref="eo:Memo" minOccurs="0"/>
+      <xsd:element ref="eo:IssueDate" minOccurs="0"/>
+      <xsd:element ref="rcom:Amount" minOccurs="0"/>
+      <xsd:element ref="com:NoOfLeaves" minOccurs="0"/>
+      <xsd:element ref="com:PayeeAccount" minOccurs="0"/>
+      <xsd:element ref="com:StopPaymentInstruction" minOccurs="0"/>
+      <xsd:element name="BeginChequeNumber" type="com:IntegerType" minOccurs="0"/>
+      <xsd:element name="EndChequeNumber" type="com:IntegerType" minOccurs="0"/>
+      <xsd:element name="ChequeStatus" type="com:StringType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="rcom:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="RqDataType"/>
+            <xsd:element name="RsData" type="RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="Cheque" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="Cheque" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

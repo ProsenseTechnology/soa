@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:bo="http://xmlns.equitybank.co.ke/ESB/BO/CorporateBanking/Charge/V1"
+            xmlns:com="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+            xmlns:chareo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1"
+            xmlns:traneo="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+            targetNamespace="http://xmlns.equitybank.co.ke/ESB/BO/CorporateBanking/Charge/V1"
+            elementFormDefault="qualified">
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Common/V1"
+              schemaLocation="../../../../EnterpriseObjects/Common/V1/CommonComponents.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Charge/V1"
+              schemaLocation="../../../../EnterpriseObjects/Transactions/Charge/V1/ChargeEO.xsd"/>
+  <xsd:import namespace="http://xmlns.equitybank.co.ke/ESB/EO/Transactions/Transfer/V1"
+              schemaLocation="../../../../EnterpriseObjects/Transactions/Transfer/V1/TransferEO.xsd"/>
+  <!-- ====================================================================== -->
+  <!-- ============= ESB Message ============= -->
+  <!-- ====================================================================== -->
+  <xsd:complexType name="ESBMsgType">
+    <xsd:complexContent>
+      <xsd:extension base="com:ESBMsgType">
+        <xsd:sequence>
+          <xsd:choice>
+            <xsd:element name="RqData" type="bo:RqDataType"/>
+            <xsd:element name="RsData" type="bo:RsDataType"/>
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ESBMsg" type="bo:ESBMsgType"/>
+  <xsd:complexType name="RqDataType">
+    <xsd:sequence>
+      <xsd:element ref="chareo:Charge" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="traneo:Transfer" minOccurs="0" maxOccurs="unbounded"/>      
+    </xsd:sequence>
+        <xsd:attribute name="actionCode" type="bo:ActionCodeType" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="RsDataType">
+    <xsd:sequence>
+      <xsd:element ref="chareo:Charge" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="traneo:Transfer" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="com:Status" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+      <!-- ====================================================================== -->
+    <!-- ============= Action Codes ============= -->
+    <!-- ====================================================================== -->
+    <xsd:simpleType name="ActionCodeType">
+        <xsd:restriction base="com:StringType">
+            <xsd:enumeration value="CreateSBAcccount"/>
+            <xsd:enumeration value="CreateLoanAccount"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

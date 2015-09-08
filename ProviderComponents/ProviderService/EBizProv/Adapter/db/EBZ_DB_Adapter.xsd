@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/db"
+           xmlns="http://xmlns.equitybank.co.ke/ESB/PS/EBiz/Adapter/db" elementFormDefault="qualified" attributeFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="QueryProjectCostInput" type="QueryProjectCostInputType"/>
+    <xs:complexType name="QueryProjectCostInputType">
+      <xs:sequence>
+         <xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="endDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ProjectInfoCollection" type="ProjectInfoCollectionType"/>
+    <xs:complexType name="ProjectInfoCollectionType">
+        <xs:sequence>
+            <xs:element name="ProjectInfo" type="ProjectInfoType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ProjectInfoType">
+        <xs:sequence>
+         <xs:element name="projectNumber" type="string25" minOccurs="0"/>
+         <xs:element name="expenditureType" type="string30" minOccurs="0"/>
+         <xs:element name="taskName" type="string20" minOccurs="0"/>
+         <xs:element name="description" type="string250" minOccurs="0" nillable="true"/>
+         <xs:element name="expenditureItemDate" type="string9" minOccurs="0" nillable="true"/>
+         <xs:element name="supplier" type="string240" minOccurs="0" nillable="true"/>
+         <xs:element name="transactionId" type="xs:long" minOccurs="0"/>
+         <xs:element name="invoiceNum" type="string60" minOccurs="0" nillable="true"/>
+         <xs:element name="itemDescription" type="string240" minOccurs="0" nillable="true"/>
+         <xs:element name="transactionAmount" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="transCurrCode" type="string15" minOccurs="0" nillable="true"/>
+         <xs:element name="accountedAmount" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="projectCurrencyCode" type="string15" minOccurs="0" nillable="true"/>
+         <xs:element name="projectAmount" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="poNumber" type="string20" minOccurs="0" nillable="true"/>
+         <xs:element name="projectId" type="xs:long" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+   <xs:simpleType name="string25">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="25"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string30">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="30"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string20">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="20"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string250">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="250"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string9">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="9"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string240">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="240"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string60">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="60"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string15">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="15"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
