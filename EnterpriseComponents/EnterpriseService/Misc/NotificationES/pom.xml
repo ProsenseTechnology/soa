@@ -23,9 +23,6 @@
         <composite.name>${project.artifactId}</composite.name>
         <composite.revision>1.0</composite.revision>
         <composite.partition>Misc</composite.partition>
-        <serverUrl>${oracleServerUrl}</serverUrl>
-        <user>${oracleUsername}</user>
-        <password>${oraclePassword}</password>
         <overwrite>true</overwrite>
         <forceDefault>true</forceDefault>
         <regenerateRulebase>false</regenerateRulebase>

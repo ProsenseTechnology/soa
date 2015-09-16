@@ -2,14 +2,14 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-<localRepository>/home/soauser1/.m2/repository</localRepository>
+<localRepository>/Users/KRISHNA/.m2/repository</localRepository>
   <pluginGroups>
     <!-- pluginGroup
      | Specifies a further group identifier to use for plugin lookup.
     <pluginGroup>com.your.plugins</pluginGroup>
     -->
   </pluginGroups>
-  <proxies>
+ <!-- <proxies>
     <proxy>
       <id>myproxy</id>
       <active>true</active>
@@ -20,7 +20,7 @@
       <port>8080</port>
       <nonProxyHosts>local*|*soa*|*10.*</nonProxyHosts>
     </proxy>
-  </proxies>
+  </proxies> -->
   <servers>
     <!-- server
      | Specifies the authentication information to use when connecting to a particular server, identified by
@@ -58,18 +58,33 @@
     </mirror>
      -->
   </mirrors>
-
   <profiles>
+      <profile>
+      <id>bpm-local</id>
+      <activation>
+        <property>
+          <name>BPMProfile</name>
+          <value>BPM-LOCAL</value>
+        </property>
+      </activation>
+      <properties>  
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
+        <serverUrl>http://localhost:7101</serverUrl>
+        <user>weblogic</user>
+        <password>weblogic1</password>
+        <wlsOoracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</wlsOoracleHome>
+      </properties>
+    </profile>
     <profile>
       <id>bpm-dev</id>
       <activation>
         <property>
-          <name>BPMEnvironment</name>
+          <name>BPMProfile</name>
           <value>BPM-DEV</value>
         </property>
       </activation>
       <properties>
-        <oracleHome>/home/soauser1/Oracle/Middleware/bpm_quick</oracleHome>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
         <serverUrl>http://bpmhost1vhn1dev.ebsafrica.com:8001</serverUrl>
         <user>weblogic</user>
         <password>Oracle123</password>
@@ -79,42 +94,57 @@
       <id>bpm-test</id>
       <activation>
         <property>
-          <name>BPMEnvironment</name>
+          <name>BPMProfile</name>
           <value>BPM-TEST</value>
         </property>
       </activation>
       <properties>
-        <oracleHome>/home/soauser1/Oracle/Middleware/bpm_quick</oracleHome>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
         <serverUrl>http://bpmhost1vhn1tst.ebsafrica.com:8001</serverUrl>
         <user>weblogic</user>
         <password>Oracle123</password>
       </properties>
     </profile>
     <profile>
-      <id>bpm-UAT</id>
+      <id>bpm-uat</id>
       <activation>
         <property>
-          <name>BPMEnvironment</name>
+          <name>BPMProfile</name>
           <value>BPM-UAT</value>
         </property>
       </activation>
       <properties>
-        <oracleHome>/home/soauser1/Oracle/Middleware/bpm_quick</oracleHome>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
         <serverUrl>http://bpmhost1vhn1uat.ebsafrica.com:8001</serverUrl>
         <user>weblogic</user>
         <password>Oracle123</password>
+      </properties>
+    </profile>
+     <profile>
+      <id>soa1-local</id>
+      <activation>
+        <property>
+          <name>SOA1Profile</name>
+          <value>SOA1-LOCAL</value>
+        </property>
+      </activation>
+      <properties>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
+        <serverUrl>http://localhost:7101</serverUrl>
+        <user>weblogic</user>
+        <password>weblogic1</password>
       </properties>
     </profile>
     <profile>
       <id>soa1-dev</id>
       <activation>
         <property>
-          <name>SOA1Environment</name>
+          <name>SOA1Profile</name>
           <value>SOA1-DEV</value>
         </property>
       </activation>
       <properties>
-        <oracleHome>/home/soauser1/Oracle/Middleware/bpm_quick</oracleHome>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
         <serverUrl>http://soa1host1vhn1dev.ebsafrica.com:8001</serverUrl>
         <user>weblogic</user>
         <password>Oracle123</password>
@@ -124,42 +154,57 @@
       <id>soa1-test</id>
       <activation>
         <property>
-          <name>SOA1Environment</name>
+          <name>SOA1Profile</name>
           <value>SOA1-TEST</value>
         </property>
       </activation>
       <properties>
-        <oracleHome>/home/soauser1/Oracle/Middleware/bpm_quick</oracleHome>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
         <serverUrl>http://soa1host1vhn1tst.ebsafrica.com:8001</serverUrl>
         <user>weblogic</user>
         <password>Oracle123</password>
       </properties>
     </profile>
     <profile>
-      <id>soa1-UAT</id>
+      <id>soa1-uat</id>
       <activation>
         <property>
-          <name>SOA1Environment</name>
+          <name>SOA1Profile</name>
           <value>SOA1-UAT</value>
         </property>
       </activation>
       <properties>
-        <oracleHome>/home/soauser1/Oracle/Middleware/bpm_quick</oracleHome>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
         <serverUrl>http://soa1host1vhn1uat.ebsafrica.com:8001</serverUrl>
         <user>weblogic</user>
         <password>Oracle123</password>
       </properties>
     </profile>
+   <profile>
+      <id>soa3-local</id>
+      <activation>
+        <property>
+          <name>SOA3Profile</name>
+          <value>SOA3-LOCAL</value>
+        </property>
+      </activation>
+      <properties>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
+        <oracleServerUrl>http://localhost:7101</oracleServerUrl>
+        <oracleUsername>weblogic</oracleUsername>
+        <oraclePassword>weblogic1</oraclePassword>
+      </properties>
+    </profile> 
 <profile>
       <id>soa3-dev</id>
       <activation>
         <property>
-          <name>SOA3Environment</name>
+          <name>SOA3Profile</name>
           <value>SOA3-DEV</value>
         </property>
       </activation>
       <properties>
-        <oracleHome>/home/soauser1/Oracle/Middleware/bpm_quick</oracleHome>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
         <serverUrl>http://soa3host1vhn2dev.ebsafrica.com:8011</serverUrl>
         <user>weblogic</user>
         <password>Oracle123</password>
@@ -169,27 +214,27 @@
       <id>soa3-test</id>
       <activation>
         <property>
-          <name>SOA3Environment</name>
+          <name>SOA3Profile</name>
           <value>SOA3-TEST</value>
         </property>
       </activation>
       <properties>
-        <oracleHome>/home/soauser1/Oracle/Middleware/bpm_quick</oracleHome>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
         <serverUrl>http://soa3host1vhn1tst.ebsafrica.com:8011</serverUrl>
         <user>weblogic</user>
         <password>Oracle123</password>
       </properties>
     </profile>
     <profile>
-      <id>soa3-UAT</id>
+      <id>soa3-uat</id>
       <activation>
         <property>
-          <name>SOA3Environment</name>
+          <name>SOA3Profile</name>
           <value>SOA3-UAT</value>
         </property>
       </activation>
       <properties>
-        <oracleHome>/home/soauser1/Oracle/Middleware/bpm_quick</oracleHome>
+        <oracleHome>/Users/KRISHNA/Oracle/Middleware/bpm_quick_start</oracleHome>
         <serverUrl>http://soa3host1vhn1uat.ebsafrica.com:8011</serverUrl>
         <user>weblogic</user>
         <password>Oracle123</password>

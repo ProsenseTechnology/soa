@@ -14,20 +14,15 @@
                 <description></description>
                 <choices class="java.util.Arrays$ArrayList">
                   <a class="string-array">
-                    <string>BUILD</string>
+                    <string>LOCAL</string>
                     <string>DEV</string>
                     <string>TEST</string>
                     <string>UAT</string>
                   </a>
                 </choices>
               </hudson.model.ChoiceParameterDefinition>
-              <hudson.model.StringParameterDefinition>
-                <name>Code_Path</name>
-                <description>checkout, compile and deploy from a specific location</description>
-                <defaultValue></defaultValue>
-              </hudson.model.StringParameterDefinition>
               <hudson.model.ChoiceParameterDefinition>
-                <name>Project</name>
+                <name>ESBApplication</name>
                 <description></description>
                 <choices class="java.util.Arrays$ArrayList">
                   <a class="string-array">
@@ -38,6 +33,16 @@
                   </a>
                 </choices>
               </hudson.model.ChoiceParameterDefinition>
+              <hudson.model.StringParameterDefinition>
+                <name>Workspace</name>
+                <description></description>
+                <defaultValue></defaultValue>
+              </hudson.model.StringParameterDefinition>
+              <hudson.model.StringParameterDefinition>
+                <name>Code_Path</name>
+                <description>checkout, compile and deploy from a specific location</description>
+                <defaultValue></defaultValue>
+              </hudson.model.StringParameterDefinition>
             </parameterDefinitions>
           </hudson.model.ParametersDefinitionProperty>
         </originalValue>
@@ -47,7 +52,7 @@
     <entry>
       <string>customWorkspace</string>
       <string-property>
-        <originalValue class="string">/home/soauser1/build/${Code_Path}</originalValue>
+        <originalValue class="string">${Workspace}/${Code_Path}</originalValue>
         <propertyOverridden>false</propertyOverridden>
       </string-property>
     </entry>
@@ -56,20 +61,20 @@
       <describable-list-property>
         <originalValue class="hudson.util.DescribableList">
           <hudson.tasks.Shell>
-            <command>rsync -rv --exclude=ESBMetadata.jpr --exclude=Templates --exclude=pom.xml --exclude=.svn ESBResources/ESBMetadata/ /home/soauser1/build/soa/ESBResources/Build/apps/ESBMetadata
+            <command>rsync -rv --exclude=ESBMetadata.jpr --exclude=Templates --exclude=pom.xml --exclude=.svn ESBResources/ESBMetadata/ ESBResources/Build/apps/ESBMetadata
 </command>
           </hudson.tasks.Shell>
           <maven-builder>
             <config>
-              <installationId>localM3</installationId>
+              <installationId>(Bundled)</installationId>
               <goals>ojdeploy:deploy</goals>
               <privateRepository>true</privateRepository>
               <privateTmpdir>false</privateTmpdir>
               <pomFile>ESBResources/soa_mds_pom.xml</pomFile>
               <properties>
                 <entries>
-                  <entry name="oracleHome" value="/home/soauser1/Oracle/Middleware/bpm_quick"/>
-                  <entry name="maven.repo.local" value="/home/soauser1/.m2/repository"/>
+                  <entry name="oracleHome" value="/Users/KRISHNA/Oracle/Middleware/bpm_quick_start"/>
+                  <entry name="maven.repo.local" value="/Users/KRISHNA/.m2/repository"/>
                 </entries>
               </properties>
               <errors>false</errors>
@@ -80,89 +85,130 @@
               <checksumMode>NORMAL</checksumMode>
               <failMode>NORMAL</failMode>
               <makeMode>NONE</makeMode>
-              <settingsId>ac472460-e530-41bb-8b67-cfe34f944645</settingsId>
-              <globalSettingsId>ac472460-e530-41bb-8b67-cfe34f944645</globalSettingsId>
+              <settingsId>NONE</settingsId>
+              <globalSettingsId>NONE</globalSettingsId>
               <toolChainsId>NONE</toolChainsId>
             </config>
           </maven-builder>
+          <hudson.plugins.parameterizedtrigger.TriggerBuilder>
+            <configs>
+              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+                <configs>
+                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                    <properties>BPMProfile=BPM-${Environment}
+Environment=${Environment}
+Workspace=${Workspace}
+Code_Path=${Code_Path}
+ESBApplication=${ESBApplication}
+</properties>
+                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                </configs>
+                <projects>bpm-deploy</projects>
+                <condition>ALWAYS</condition>
+                <triggerWithNoParameters>false</triggerWithNoParameters>
+                <block>
+                  <buildStepFailureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                  </buildStepFailureThreshold>
+                  <unstableThreshold>
+                    <name>UNSTABLE</name>
+                    <ordinal>1</ordinal>
+                    <color>YELLOW</color>
+                  </unstableThreshold>
+                  <failureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                  </failureThreshold>
+                </block>
+                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            </configs>
+          </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+          <hudson.plugins.parameterizedtrigger.TriggerBuilder>
+            <configs>
+              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+                <configs>
+                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                    <properties>SOA1Profile=SOA1-${Environment}
+Environment=${Environment}
+Workspace=${Workspace}
+Code_Path=${Code_Path}
+ESBApplication=${ESBApplication}
+</properties>
+                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                </configs>
+                <projects>soa1-deploy</projects>
+                <condition>ALWAYS</condition>
+                <triggerWithNoParameters>false</triggerWithNoParameters>
+                <block>
+                  <buildStepFailureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                  </buildStepFailureThreshold>
+                  <unstableThreshold>
+                    <name>UNSTABLE</name>
+                    <ordinal>1</ordinal>
+                    <color>YELLOW</color>
+                  </unstableThreshold>
+                  <failureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                  </failureThreshold>
+                </block>
+                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            </configs>
+          </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+          <hudson.plugins.parameterizedtrigger.TriggerBuilder>
+            <configs>
+              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+                <configs>
+                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                    <properties>SOA3Profile=SOA3-${Environment}
+Environment=${Environment}
+Workspace=${Workspace}
+Code_Path=${Code_Path}
+ESBApplication=${ESBApplication}
+</properties>
+                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                </configs>
+                <projects>soa3-deploy</projects>
+                <condition>ALWAYS</condition>
+                <triggerWithNoParameters>false</triggerWithNoParameters>
+                <block>
+                  <buildStepFailureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                  </buildStepFailureThreshold>
+                  <unstableThreshold>
+                    <name>UNSTABLE</name>
+                    <ordinal>1</ordinal>
+                    <color>YELLOW</color>
+                  </unstableThreshold>
+                  <failureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                  </failureThreshold>
+                </block>
+                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            </configs>
+          </hudson.plugins.parameterizedtrigger.TriggerBuilder>
         </originalValue>
         <propertyOverridden>false</propertyOverridden>
       </describable-list-property>
     </entry>
     <entry>
-      <string>hudson-plugins-parameterizedtrigger-BuildTrigger</string>
-      <external-property>
-        <originalValue class="hudson.plugins.parameterizedtrigger.BuildTrigger">
-          <configs>
-            <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-              <configs>
-                <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                  <properties>BPMEnvironment=BPM-${Environment}
-Environment=${Environment}
-Code_Path=${Code_Path}
-Project=${Project}
-</properties>
-                </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              </configs>
-              <projects>bpm-deploy</projects>
-              <condition>SUCCESS</condition>
-              <triggerWithNoParameters>false</triggerWithNoParameters>
-            </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-            <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-              <configs>
-                <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                  <properties>SOA1Environment=SOA1-${Environment}
-Environment=${Environment}
-Code_Path=${Code_Path}
-Project=${Project}
-
-
-</properties>
-                </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              </configs>
-              <projects>soa1-deploy</projects>
-              <condition>SUCCESS</condition>
-              <triggerWithNoParameters>false</triggerWithNoParameters>
-            </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-            <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-              <configs>
-                <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                  <properties>SOA3Environment=SOA3-${Environment}
-Environment=${Environment}
-Code_Path=${Code_Path}
-Project=${Project}</properties>
-                </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              </configs>
-              <projects>soa3-deploy</projects>
-              <condition>SUCCESS</condition>
-              <triggerWithNoParameters>false</triggerWithNoParameters>
-            </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-          </configs>
-        </originalValue>
-        <propertyOverridden>false</propertyOverridden>
-        <modified>true</modified>
-      </external-property>
-    </entry>
-    <entry>
       <string>scm</string>
       <scm-property>
-        <originalValue class="hudson.scm.SubversionSCM">
-          <locations>
-            <hudson.scm.SubversionSCM_-ModuleLocation>
-              <remote>svn://10.1.25.47/${Code_Path}</remote>
-              <local>.</local>
-              <depthOption>infinity</depthOption>
-              <ignoreExternalsOption>false</ignoreExternalsOption>
-            </hudson.scm.SubversionSCM_-ModuleLocation>
-          </locations>
-          <excludedRegions></excludedRegions>
-          <includedRegions></includedRegions>
-          <excludedUsers></excludedUsers>
-          <excludedRevprop></excludedRevprop>
-          <excludedCommitMessages></excludedCommitMessages>
-          <workspaceUpdater class="hudson.scm.subversion.CheckoutUpdater"/>
-          <ignoreCommitNotification>false</ignoreCommitNotification>
-        </originalValue>
+        <originalValue class="hudson.scm.NullSCM"/>
         <propertyOverridden>false</propertyOverridden>
       </scm-property>
     </entry>
@@ -173,6 +219,7 @@ Project=${Project}</properties>
   <cascadingChildrenNames class="java.util.concurrent.CopyOnWriteArraySet"/>
   <cascading-job-properties class="java.util.concurrent.CopyOnWriteArraySet">
     <string>org-hudsonci-plugins-snapshotmonitor-WatchedDependenciesProperty</string>
+    <string>hudson-plugins-batch_task-BatchTaskProperty</string>
   </cascading-job-properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>false</canRoam>

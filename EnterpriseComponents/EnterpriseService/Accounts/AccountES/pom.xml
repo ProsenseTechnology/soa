@@ -19,13 +19,10 @@
         <scac.output>${scac.output.dir}/out.xml</scac.output>
         <scac.error>${scac.output.dir}/error.txt</scac.error>
         <scac.displayLevel>1</scac.displayLevel>
-        <configplan>${env.oracleHome}/resources/${Environment}_cfgplan.xml</configplan>
+        <configplan>${oracleHome}/resources/${Environment}_cfgplan.xml</configplan>
         <composite.name>${project.artifactId}</composite.name>
         <composite.revision>1.0</composite.revision>
         <composite.partition>Accounts</composite.partition>
-        <serverUrl>${oracleServerUrl}</serverUrl>
-        <user>${oracleUsername}</user>
-        <password>${oraclePassword}</password>
         <overwrite>true</overwrite>
         <forceDefault>true</forceDefault>
         <regenerateRulebase>false</regenerateRulebase>
@@ -49,7 +46,7 @@
                             <outputDirectory>${project.basedir}/META-INF/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${env.oracleHome}/resources/META-INF/</directory>
+                                    <directory>${oracleHome}/resources/META-INF/</directory>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>
@@ -66,8 +63,6 @@
                     <composite>${scac.input}</composite>
                     <sarLocation>${scac.output.dir}/sca_${project.artifactId}_rev${composite.revision}.jar</sarLocation>
                     <serverUrl>${serverUrl}</serverUrl>
-                    <user>${user}</user>
-                    <password>${password}</password>
                     <compositeRevision>${composite.revision}</compositeRevision>
                     <partition>${composite.partition}</partition>
                     <revision>${composite.revision}</revision>

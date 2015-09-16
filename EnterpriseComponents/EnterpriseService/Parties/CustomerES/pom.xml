@@ -23,9 +23,6 @@
         <composite.name>${project.artifactId}</composite.name>
         <composite.revision>1.0</composite.revision>
         <composite.partition>Parties</composite.partition>
-        <serverUrl>${oracleServerUrl}</serverUrl>
-        <user>${oracleUsername}</user>
-        <password>${oraclePassword}</password>
         <overwrite>true</overwrite>
         <forceDefault>true</forceDefault>
         <regenerateRulebase>false</regenerateRulebase>
@@ -66,8 +63,6 @@
                     <composite>${scac.input}</composite>
                     <sarLocation>${scac.output.dir}/sca_${project.artifactId}_rev${composite.revision}.jar</sarLocation>
                     <serverUrl>${serverUrl}</serverUrl>
-                    <user>${user}</user>
-                    <password>${password}</password>
                     <compositeRevision>${composite.revision}</compositeRevision>
                     <partition>${composite.partition}</partition>
                     <revision>${composite.revision}</revision>

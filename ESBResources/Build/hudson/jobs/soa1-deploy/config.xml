@@ -10,23 +10,31 @@
           <hudson.model.ParametersDefinitionProperty>
             <parameterDefinitions>
               <hudson.model.ChoiceParameterDefinition>
-                <name>SOA1Environment</name>
+                <name>Environment</name>
                 <description></description>
                 <choices class="java.util.Arrays$ArrayList">
                   <a class="string-array">
+                    <string>LOCAL</string>
+                    <string>DEV</string>
+                    <string>TEST</string>
+                    <string>UAT</string>
+                  </a>
+                </choices>
+              </hudson.model.ChoiceParameterDefinition>
+              <hudson.model.ChoiceParameterDefinition>
+                <name>SOA1Profile</name>
+                <description></description>
+                <choices class="java.util.Arrays$ArrayList">
+                  <a class="string-array">
+                    <string>SOA1-LOCAL</string>
                     <string>SOA1-DEV</string>
                     <string>SOA1-TEST</string>
                     <string>SOA1-UAT</string>
                   </a>
                 </choices>
               </hudson.model.ChoiceParameterDefinition>
-              <hudson.model.StringParameterDefinition>
-                <name>Code_Path</name>
-                <description></description>
-                <defaultValue></defaultValue>
-              </hudson.model.StringParameterDefinition>
               <hudson.model.ChoiceParameterDefinition>
-                <name>Project</name>
+                <name>ESBApplication</name>
                 <description></description>
                 <choices class="java.util.Arrays$ArrayList">
                   <a class="string-array">
@@ -37,6 +45,16 @@
                   </a>
                 </choices>
               </hudson.model.ChoiceParameterDefinition>
+              <hudson.model.StringParameterDefinition>
+                <name>Workspace</name>
+                <description></description>
+                <defaultValue></defaultValue>
+              </hudson.model.StringParameterDefinition>
+              <hudson.model.StringParameterDefinition>
+                <name>Code_Path</name>
+                <description></description>
+                <defaultValue></defaultValue>
+              </hudson.model.StringParameterDefinition>
             </parameterDefinitions>
           </hudson.model.ParametersDefinitionProperty>
         </originalValue>
@@ -46,7 +64,7 @@
     <entry>
       <string>customWorkspace</string>
       <string-property>
-        <originalValue class="string">/home/soauser1/build/${Code_Path}</originalValue>
+        <originalValue class="string">${Workspace}/${Code_Path}</originalValue>
         <propertyOverridden>false</propertyOverridden>
       </string-property>
     </entry>
@@ -56,14 +74,14 @@
         <originalValue class="hudson.util.DescribableList">
           <maven-builder>
             <config>
-              <installationId>localM3</installationId>
+              <installationId>(Bundled)</installationId>
               <goals>oracle-soa:deploy</goals>
               <privateRepository>false</privateRepository>
               <privateTmpdir>false</privateTmpdir>
               <pomFile>ESBResources/soa_mds_pom.xml</pomFile>
               <properties>
                 <entries>
-                  <entry name="maven.repo.local" value="/home/soauser1/.m2/repository"/>
+                  <entry name="maven.repo.local" value="/Users/KRISHNA/.m2/repository"/>
                 </entries>
               </properties>
               <errors>false</errors>
@@ -74,21 +92,21 @@
               <checksumMode>NORMAL</checksumMode>
               <failMode>NORMAL</failMode>
               <makeMode>NONE</makeMode>
-              <settingsId>ac472460-e530-41bb-8b67-cfe34f944645</settingsId>
-              <globalSettingsId>ac472460-e530-41bb-8b67-cfe34f944645</globalSettingsId>
+              <settingsId>NONE</settingsId>
+              <globalSettingsId>NONE</globalSettingsId>
               <toolChainsId>NONE</toolChainsId>
             </config>
           </maven-builder>
           <maven-builder>
             <config>
-              <installationId>localM3</installationId>
+              <installationId>(Bundled)</installationId>
               <goals>pre-integration-test</goals>
               <privateRepository>false</privateRepository>
               <privateTmpdir>false</privateTmpdir>
-              <pomFile>ESBResources/Build/maven/${Project}/soa1_pom.xml</pomFile>
+              <pomFile>ESBResources/Build/maven/${ESBApplication}/soa1_pom.xml</pomFile>
               <properties>
                 <entries>
-                  <entry name="maven.repo.local" value="/home/soauser1/.m2/repository"/>
+                  <entry name="maven.repo.local" value="/Users/KRISHNA/.m2/repository"/>
                 </entries>
               </properties>
               <errors>false</errors>
@@ -99,8 +117,8 @@
               <checksumMode>NORMAL</checksumMode>
               <failMode>NORMAL</failMode>
               <makeMode>NONE</makeMode>
-              <settingsId>ac472460-e530-41bb-8b67-cfe34f944645</settingsId>
-              <globalSettingsId>ac472460-e530-41bb-8b67-cfe34f944645</globalSettingsId>
+              <settingsId>NONE</settingsId>
+              <globalSettingsId>NONE</globalSettingsId>
               <toolChainsId>NONE</toolChainsId>
             </config>
           </maven-builder>
@@ -122,6 +140,7 @@
   <cascadingChildrenNames class="java.util.concurrent.CopyOnWriteArraySet"/>
   <cascading-job-properties class="java.util.concurrent.CopyOnWriteArraySet">
     <string>org-hudsonci-plugins-snapshotmonitor-WatchedDependenciesProperty</string>
+    <string>hudson-plugins-batch_task-BatchTaskProperty</string>
   </cascading-job-properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>false</canRoam>

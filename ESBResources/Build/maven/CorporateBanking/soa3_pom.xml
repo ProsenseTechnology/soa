@@ -12,7 +12,7 @@
         <module>../../../../ProviderComponents/ProviderService/FinacleProv</module>
         <module>../../../../ProviderComponents/ProviderService/PolarisProv</module>
         <module>../../../../ProviderComponents/ProviderService/SafaricomProv</module>
-        <module>../../../../ProviderComponents/ProviderService/Way4Prov</module>
+        <!--<module>../../../../ProviderComponents/ProviderService/Way4Prov</module>-->
         <module>../../../../RequesterComponents/RequesterService/PolarisReq</module>
     </modules>
 </project>
