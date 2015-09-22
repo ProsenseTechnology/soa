@@ -2,3 +2,9 @@
 ESBResources/Build/deploy/soamds.jar
 
 ESBResources/deploy/ESBResourcesBundle.zip
+
+*.jdb
+
+*.lck
+
+EnterpriseComponents/EnterpriseService/Transactions/BillPaymentES/deploy/sca_BillPaymentES_rev1.0.jar
