@@ -18,7 +18,7 @@
         <row>
             <cell>ATBL</cell>
             <cell>BROKER</cell>
-            <cell>0180291963550</cell>
+            <cell>0100000429303</cell>
             <cell>Africa Tea Brokers Ltd</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -30,7 +30,7 @@
         <row>
             <cell>ANJL</cell>
             <cell>BROKER</cell>
-            <cell>0180291963550</cell>
+            <cell>0100000429249</cell>
             <cell>Anjeli Ltd</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -42,7 +42,7 @@
         <row>
             <cell>BICL</cell>
             <cell>BROKER</cell>
-            <cell>0180291963550</cell>
+            <cell>0100000429427</cell>
             <cell>Bicorn Exim Tea Brokers Ltd</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -54,7 +54,7 @@
         <row>
             <cell>CENT</cell>
             <cell>BROKER</cell>
-            <cell>0180291963550</cell>
+            <cell>0100000431251</cell>
             <cell>Centreline Tea Brokers Ltd</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -66,7 +66,7 @@
         <row>
             <cell>CTBL</cell>
             <cell>BROKER</cell>
-            <cell>0180291963550</cell>
+            <cell>0100000431324</cell>
             <cell>Choice Tea Brokers Ltd</cell>
             <cell>AccountEntryPosting</cell>
             <cell>USD</cell>
@@ -78,7 +78,7 @@
         <row>
             <cell>COMK</cell>
             <cell>BROKER</cell>
-            <cell>0250293401593</cell>
+            <cell>0000429125</cell>
             <cell>Combrok Ltd</cell>
             <cell>AccountEntryPosting</cell>
             <cell>USD</cell>
@@ -90,7 +90,7 @@
         <row>
             <cell>PTBL</cell>
             <cell>BROKER</cell>
-            <cell>0250293401593</cell>
+            <cell>0100000435109</cell>
             <cell>Prudential Tea Brokers (E.A.) Ltd</cell>
             <cell>AccountEntryPosting</cell>
             <cell>USD</cell>
@@ -102,7 +102,7 @@
         <row>
             <cell>TBEA</cell>
             <cell>BROKER</cell>
-            <cell>0250293401593</cell>
+            <cell>01000004294</cell>
             <cell>Tea Brokers East Africa Ltd</cell>
             <cell>AccountEntryPosting</cell>
             <cell>USD</cell>
@@ -114,7 +114,7 @@
         <row>
             <cell>UNTB</cell>
             <cell>BROKER</cell>
-            <cell>0250293401593</cell>
+            <cell>0100000430042</cell>
             <cell>Union Tea Brokers Ltd</cell>
             <cell>AccountEntryPosting</cell>
             <cell>USD</cell>
@@ -126,7 +126,7 @@
         <row>
             <cell>VENS</cell>
             <cell>BROKER</cell>
-            <cell>0250293401593</cell>
+            <cell>0100000429362</cell>
             <cell>Venus Tea Brokers Ltd</cell>
             <cell>AccountEntryPosting</cell>
             <cell>USD</cell>
@@ -558,7 +558,7 @@
         <row>
             <cell>GACHARAGE</cell>
             <cell>GARDEN</cell>
-            <cell>1560262357899</cell>
+            <cell>7336226</cell>
             <cell>GACHARAGE Garden Mark</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -582,7 +582,7 @@
         <row>
             <cell>GATHUTHI</cell>
             <cell>GARDEN</cell>
-            <cell>1560262357899</cell>
+            <cell>8704023417600</cell>
             <cell>GATHUTHI Garden Mark</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -594,7 +594,7 @@
         <row>
             <cell>GATUNGURU</cell>
             <cell>GARDEN</cell>
-            <cell>1560262357899</cell>
+            <cell>300069015</cell>
             <cell>GATUNGURU Garden Mark</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -642,7 +642,7 @@
         <row>
             <cell>GITHAMBO</cell>
             <cell>GARDEN</cell>
-            <cell>1560262357899</cell>
+            <cell>8704022871400</cell>
             <cell>GITHAMBO Garden Mark</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -726,7 +726,7 @@
         <row>
             <cell>IMENTI</cell>
             <cell>GARDEN</cell>
-            <cell>0250299678149</cell>
+            <cell>0100000677738</cell>
             <cell>IMENTI Garden Mark</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -798,7 +798,7 @@
         <row>
             <cell>KAMBAA</cell>
             <cell>GARDEN</cell>
-            <cell>0250299678149</cell>
+            <cell>02120190093100</cell>
             <cell>KAMBAA Garden Mark</cell>
             <cell>CreateSwiftTransfer</cell>
             <cell>USD</cell>
@@ -810,7 +810,7 @@
         <row>
             <cell>KANGAITA</cell>
             <cell>GARDEN</cell>
-            <cell>0250299678149</cell>
+            <cell>02120002167000</cell>
             <cell>KANGAITA Garden Mark</cell>
             <cell>CreateSwiftTransfer</cell>
             <cell>USD</cell>
@@ -822,7 +822,7 @@
         <row>
             <cell>KANYENYAINI</cell>
             <cell>GARDEN</cell>
-            <cell>0250299678149</cell>
+            <cell>02120190093200</cell>
             <cell>KANYENYAINI Garden Mark</cell>
             <cell>CreateSwiftTransfer</cell>
             <cell>USD</cell>
@@ -846,7 +846,7 @@
         <row>
             <cell>KAPKATET</cell>
             <cell>GARDEN</cell>
-            <cell>0250299678149</cell>
+            <cell>0100000677797</cell>
             <cell>KAPKATET Garden Mark</cell>
             <cell>CreateSwiftTransfer</cell>
             <cell>USD</cell>
@@ -1266,7 +1266,7 @@
         <row>
             <cell>KIRU</cell>
             <cell>GARDEN</cell>
-            <cell>0250299678149</cell>
+            <cell>1101655933</cell>
             <cell>KIRU Garden Mark</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -1338,7 +1338,7 @@
         <row>
             <cell>LITEIN</cell>
             <cell>GARDEN</cell>
-            <cell>1560263449588</cell>
+            <cell>1101656484</cell>
             <cell>LITEIN Garden Mark</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -1578,7 +1578,7 @@
         <row>
             <cell>MOGOGOSIEK</cell>
             <cell>GARDEN</cell>
-            <cell>1560263741813</cell>
+            <cell>0100000677967</cell>
             <cell>MOGOGOSIEK Garden Mark</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -1590,7 +1590,7 @@
         <row>
             <cell>MOMUL</cell>
             <cell>GARDEN</cell>
-            <cell>1560263741813</cell>
+            <cell>7325453</cell>
             <cell>MOMUL Garden Mark</cell>
             <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
@@ -1674,7 +1674,7 @@
         <row>
             <cell>MUNUNGA</cell>
             <cell>GARDEN</cell>
-            <cell>1560262357899</cell>
+            <cell>8704022870800</cell>
             <cell>MUNUNGA Garden Mark</cell>
             <cell>AccountEntryPosting</cell>
             <cell>USD</cell>
@@ -1722,7 +1722,7 @@
         <row>
             <cell>NDIMA</cell>
             <cell>GARDEN</cell>
-            <cell>1560262357899</cell>
+            <cell>1101660724</cell>
             <cell>NDIMA Garden Mark</cell>
             <cell>AccountEntryPosting</cell>
             <cell>USD</cell>
@@ -1746,7 +1746,7 @@
         <row>
             <cell>NDUTI</cell>
             <cell>GARDEN</cell>
-            <cell>1560262357899</cell>
+            <cell>7336242</cell>
             <cell>NDUTI Garden Mark</cell>
             <cell>AccountEntryPosting</cell>
             <cell>USD</cell>
@@ -1878,7 +1878,7 @@
         <row>
             <cell>NYANKOBA</cell>
             <cell>GARDEN</cell>
-            <cell>1560262357899</cell>
+            <cell>0100000677657</cell>
             <cell>NYANKOBA Garden Mark</cell>
             <cell>CreateSwiftTransfer</cell>
             <cell>USD</cell>
@@ -1950,7 +1950,7 @@
         <row>
             <cell>RAGATI</cell>
             <cell>GARDEN</cell>
-            <cell>1560262357899</cell>
+            <cell>300056016</cell>
             <cell>RAGATI Garden Mark</cell>
             <cell>CreateSwiftTransfer</cell>
             <cell>USD</cell>
@@ -2226,7 +2226,7 @@
         <row>
             <cell>THETA</cell>
             <cell>GARDEN</cell>
-            <cell>1560263449588</cell>
+            <cell>158178508</cell>
             <cell>THETA Garden Mark</cell>
             <cell>CreateSwiftTransfer</cell>
             <cell>USD</cell>
@@ -2274,7 +2274,7 @@
         <row>
             <cell>TIRGAGA</cell>
             <cell>GARDEN</cell>
-            <cell>1560263449588</cell>
+            <cell>02120190093500</cell>
             <cell>TIRGAGA Garden Mark</cell>
             <cell>CreateSwiftTransfer</cell>
             <cell>USD</cell>
@@ -2337,6 +2337,30 @@
             <cell>1560263449588</cell>
             <cell>WERU Garden Mark</cell>
             <cell>AccountEntryPosting</cell>
+            <cell>USD</cell>
+            <cell>09</cell>
+            <cell>001</cell>
+            <cell>CBKEKENXXXX</cell>
+            <cell>KE</cell>
+        </row>
+	<row>
+            <cell>IRIANI</cell>
+            <cell>BROKER</cell>
+            <cell>0100000677587</cell>
+            <cell>PRUDENTIAL TEA BROKERS (EA) LTD</cell>
+            <cell>CreateRtgsTransfer</cell>
+            <cell>USD</cell>
+            <cell>09</cell>
+            <cell>001</cell>
+            <cell>CBKEKENXXXX</cell>
+            <cell>KE</cell>
+        </row>
+        <row>
+            <cell>ATLS</cell>
+            <cell>BROKER</cell>
+            <cell>01000004105324</cell>
+            <cell>Africa Tea Brokers Ltd</cell>
+            <cell>CreateRtgsTransfer</cell>
             <cell>USD</cell>
             <cell>09</cell>
             <cell>001</cell>
